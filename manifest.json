@@ -1,4 +1,5 @@
 {
+  "//": "https://developer.chrome.com/extensions/manifest",
   "manifest_version": 2,
 
   "name": "Modify CSS and HTML",
