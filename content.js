@@ -40,5 +40,4 @@ function setstyles(i) {
     }
 }
 
-setTimeout( setstyles(getplayers()) , 2000);
-console.log(getplayers());
+setTimeout( setstyles(getplayers()) , 1000);
