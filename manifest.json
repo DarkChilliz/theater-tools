@@ -1,16 +1,13 @@
 {
-  "//": "https://developer.chrome.com/extensions/manifest",
   "manifest_version": 2,
 
-  "name": "Modify CSS and HTML",
+  "name": "TwitchTheater.tv Styles",
   "version": "0.1.0.0001",
-  "description": "twitchtheater.tv style editor",
+  "description": "Modify CSS and HTML",
   "icons": { "192": "favicon-192.png" },
 
   "content_scripts": [{
-    "css": ["styles.css"],
     "js": ["content.js"],
     "matches": ["https://twitchtheater.tv/*"]
   }]
-
 }
