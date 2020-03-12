@@ -30,10 +30,17 @@ function MissingValue(aspect_ratio, width, height) {
 	}
 }
 
+var p = [];
 function getPlayers() {
-    for (i = 0; ; i++) {
+    var e = 0;
+    for (i = 0;;) {
         if(document.getElementById("v-" + i) == null) {
-            break;
+            e++
+            if(e > 2){
+                break;
+            }
+        } else {
+            i++
         }
     }
     return i;
@@ -43,7 +50,7 @@ function setStyles(i) {
     var clientW = document.getElementById("playdiv").clientWidth;
     var clientH = document.getElementById("playdiv").clientHeight;
     const r = 1.778;
-    var tmp = [];
+    // var tmp = [];
     var w = [];
     var h = [];
     var t = [];
@@ -108,23 +115,35 @@ function setStyles(i) {
     }
 }
 
-function refreshStyles(){
+function setStyleImg() {
     var img = document.createElement("img");
     img.src = "/x20/back.png";
     img.alt = "";
-    img.id = "refreshstylesimg";
-    img.onclick = shortyasdf;
+    // img.id = "refreshstylesimg";
+    img.onclick = setStyle;
     var src = document.getElementById("chatdiv");
     src.appendChild(img);
 }
 
-function shortyasdf(){
+function setStyle() {
     setStyles(getPlayers());
 }
 
-var s = document.createElement('script');
-s.src = chrome.extension.getURL('js/injected.js');
-(document.head || document.documentElement).appendChild(s);
+setStyleImg();
+setStyle();
 
-refreshStyles();
-setTimeout( setStyles(getPlayers()) , 2000);
+function getCount(parent, getChildrensChildren){
+    var relevantChildren = 0;
+    var children = parent.childNodes.length;
+    for(var i=0; i < children; i++){
+        if(parent.childNodes[i].nodeType != 3){
+            if(getChildrensChildren)
+                relevantChildren += getCount(parent.childNodes[i],true);
+            relevantChildren++;
+        }
+    }
+    return relevantChildren;
+}
+
+var element = document.getElementById("playdiv");
+console.log(getCount(element, false));
