@@ -25,12 +25,8 @@ function getPlayers() {
 function setStyles() {
     var clientW = document.getElementById("playdiv").clientWidth;
     var clientH = document.getElementById("playdiv").clientHeight;
+    var p = getPlayers(), w = [], h = [], t = [], l = [];
     const r = 1.778;
-    var p = getPlayers();
-    var w = [];
-    var h = [];
-    var t = [];
-    var l = [];
     function v_0_style_calc() {
         w[0] = Math.round( clientW );
         h[0] = Math.round( missingValue( r, w[0], 0 ) );
