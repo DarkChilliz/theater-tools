@@ -85,13 +85,28 @@ function setStyles() {
             writeStyle(p[4].id, [w[1],"px"], [h[1],"px"], [t[1],"px"], ["0","%"]);
             break;
         case 6:
-            // temp
+            v_0_style_calc();
+            v_1_style_calc();
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            l[1] = ( clientW - w[1] );
+            l[2] = w[2] = ( l[1] / 2 );
+            h[2] = ( h[1] / 2 );
+            t[2] = ( t[1] + h[2] );
+            writeStyle(p[0].id, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            writeStyle(p[1].id, [w[1],"px"], [h[1],"px"], [t[1],"px"], [l[1],"px"]);
+            writeStyle(p[2].id, [w[2],"px"], [h[2],"px"], [t[1],"px"], [l[2],"px"]);
+            writeStyle(p[3].id, [w[2],"px"], [h[2],"px"], [t[2],"px"], [l[2],"px"]);
+            writeStyle(p[4].id, [w[2],"px"], [h[2],"px"], [t[1],"px"], ["0","%"]);
+            writeStyle(p[5].id, [w[2],"px"], [h[2],"px"], [t[2],"px"], ["0","%"]);
             break;
         case 7:
             // temp
             break;
         case 8:
             // temp
+            break;
+        case 9:
+            //temp
             break;
     }
 }
