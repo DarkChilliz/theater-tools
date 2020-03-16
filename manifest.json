@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "TwitchTheater.tv Styles",
-  "version": "0.1.0.2000",
+  "version": "0.1.0.2020",
   "description": "Modify CSS and HTML",
   "icons": { "192": "favicon-192.png" },
 
