@@ -17,9 +17,26 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-//https://stackoverflow.com/questions/21441777/js-how-to-get-list-of-divs-with-similar-class-name
+//https://stackoverflow.com/questions/21441777
 function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
+}
+
+//https://stackoverflow.com/questions/15807021
+function convertToPercentage(parentWindow, pixels) {
+    //unfinished
+    return ( parentWindow - pixels ) / parentWindow; // 0.92%
+}
+
+//https://stackoverflow.com/questions/2735881
+function setStylesImg() {
+    var img = document.createElement("img");
+    img.src = "/x20/back.png";
+    img.alt = "";
+    img.id = "setStylesImg";
+    img.onclick = setStyles;
+    var src = document.getElementById("chatdiv");
+    src.appendChild(img);
 }
 
 function setStyles() {
@@ -29,7 +46,7 @@ function setStyles() {
     const r = 1.778;
     function v_0_style_calc() {
         w[0] = Math.round( clientW );
-        h[0] = Math.round( missingValue( r, w[0], 0 ) );
+        h[0] = Math.round( missingValue(r, w[0], 0) );
     }
     function v_1_style_calc() {
         h[1] = Math.round( clientH - h[0] );
@@ -63,7 +80,7 @@ function setStyles() {
         case 4:
             v_0_style_calc();
             v_1_style_calc();
-            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
             l[1] = ( clientW - w[1] );
             l[2] = w[2] = ( l[1] / 2 );
             writeStyle(p[0].id, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
@@ -87,7 +104,7 @@ function setStyles() {
         case 6:
             v_0_style_calc();
             v_1_style_calc();
-            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
             l[1] = ( clientW - w[1] );
             l[2] = w[2] = ( l[1] / 2 );
             h[2] = ( h[1] / 2 );
@@ -109,16 +126,6 @@ function setStyles() {
             //temp
             break;
     }
-}
-
-function setStylesImg() {
-    var img = document.createElement("img");
-    img.src = "/x20/back.png";
-    img.alt = "";
-    img.id = "setStylesImg";
-    img.onclick = setStyles;
-    var src = document.getElementById("chatdiv");
-    src.appendChild(img);
 }
 
 setStylesImg();
