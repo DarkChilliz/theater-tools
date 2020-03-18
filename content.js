@@ -22,12 +22,6 @@ function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
 }
 
-//https://stackoverflow.com/questions/15807021
-function convertToPercentage(parentWindow, pixels) {
-    //unfinished
-    return ( parentWindow - pixels ) / parentWindow; // 0.92%
-}
-
 //https://stackoverflow.com/questions/2735881
 function setStylesImg() {
     var img = document.createElement("img");
@@ -37,6 +31,12 @@ function setStylesImg() {
     img.onclick = setStyles;
     var src = document.getElementById("chatdiv");
     src.appendChild(img);
+}
+
+//https://stackoverflow.com/questions/15807021
+function convertToPercentage(parentWindow, pixels) {
+    //unfinished
+    return ( parentWindow - pixels ) / parentWindow; // 0.92%
 }
 
 function setStyles() {
