@@ -2,12 +2,17 @@
   "manifest_version": 2,
 
   "name": "TwitchTheater.tv Styles",
-  "version": "0.1.0.2020",
   "description": "Modify CSS and HTML",
-  "icons": { "192": "favicon-192.png" },
+  "version": "0.2",
+
+  "icons": {
+    "192": "favicon-192.png"
+  },
 
   "content_scripts": [{
     "js": ["content.js"],
-    "matches": ["https://twitchtheater.tv/*"]
-  }]
+    "matches": ["*://*.twitchtheater.tv/*"]
+  }],
+
+  "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
