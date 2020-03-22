@@ -3,16 +3,16 @@
 
   "name": "TwitchTheater.tv Styles",
   "description": "Modify CSS and HTML",
-  "version": "0.2",
-
+  "version": "0.2.1",
   "icons": {
     "192": "favicon-192.png"
   },
-
   "content_scripts": [{
     "js": ["content.js"],
     "matches": ["*://*.twitchtheater.tv/*"]
   }],
-
+  "web_accessible_resources": [
+    "main.js"
+  ],
   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
