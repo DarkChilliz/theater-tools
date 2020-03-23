@@ -40,6 +40,19 @@ function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
 }
 
+function test2() {
+    //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+    var val = document.getElementById("videoq");
+    val.value = "160p30";
+    console.log( val.options[val.selectedIndex].value );
+    chgquality();
+}
+
+function test3() {
+    var obj = document.getElementById("v-0");
+    obj.player.setQuality("160p30")
+}
+
 function test() {
     console.log(getPlayers());
     console.log(chans);
