@@ -49,10 +49,13 @@ function test2() {
 }
 
 function test3() {
-    var obj = document.getElementById("v-0");
-    obj.player.setQuality("160p30")
+    // var obj = document.getElementById("v-0");
+    // obj.player.setQuality("160p30")
+
+    document.getElementById("v-" + fldids[0]).player.setQuality("auto");
 }
 
+//https://developer.chrome.com/extensions/manifest
 function test() {
     console.log(getPlayers());
     console.log(chans);
