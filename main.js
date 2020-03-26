@@ -28,6 +28,24 @@ function setStylesImg() {
     src.appendChild(img);
 }
 
+//https://stackoverflow.com/questions/25934989
+function chg_chatsel() {
+    function set_chatsel_options() {
+        var val = document.getElementById("chatsel");
+        for(var i = 0; i < chats.length; i++) {
+            val.options[i].innerHTML = chats[i];
+        }
+    }
+    if(JSON.stringify(chats) != JSON.stringify(chans)) {
+        chats = chans;
+        set_chatsel_options();
+    } else {
+        set_chatsel_options();
+    }
+}
+
+// ## temp #############################################################################
+
 //https://stackoverflow.com/questions/15807021
 function convertToPercentage(parentWindow, pixels) {
     //obsolete + unfinished
@@ -40,19 +58,25 @@ function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
 }
 
-function test2() {
+function setQuality() {
     //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-    var val = document.getElementById("videoq");
-    val.value = "160p30";
-    console.log( val.options[val.selectedIndex].value );
-    chgquality();
-}
-
-function test3() {
-    // var obj = document.getElementById("v-0");
-    // obj.player.setQuality("160p30")
-
-    document.getElementById("v-" + fldids[0]).player.setQuality("auto");
+    function test1() {
+        var val = document.getElementById("videoq");
+        val.value = "160p30";
+        console.log( val.options[val.selectedIndex].value );
+        chgquality();
+        val.selectedIndex = 0
+    }
+    function test2() {
+        // var obj = document.getElementById("v-0");
+        // obj.player.setQuality("160p30")
+        document.getElementById("v-" + fldids[0]).player.setQuality("auto");
+    }
+    function test3() {
+        //
+    }
+    test1()
+    test2()
 }
 
 //https://developer.chrome.com/extensions/manifest
@@ -62,8 +86,10 @@ function test() {
     console.log(chats);
     console.log(fldids);
 }
+// ## end temp #########################################################################
 
 function setStyles() {
+    chg_chatsel();
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
