@@ -6,4 +6,4 @@
         this.remove();
     };
     (document.head || document.documentElement).appendChild(s);
-})();
+})(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
