@@ -44,6 +44,22 @@ function chg_chatsel() {
     }
 }
 
+function chg_quality() {
+    var q = ["160p30", "360p30", "480p30", "720p30", "720p60", "chunked", "auto"];
+    (function () {
+        var obj = document.getElementById("v-" + fldids[0]);
+        if(obj.player.getQuality() != q[5] && q.includes(obj.player.getQuality())) {
+            obj.player.setQuality(q[5]);
+        }
+    })();
+    for(var i = 1; i < chans.length; i++) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(obj.player.getQuality() != q[0] && q.includes(obj.player.getQuality())) {
+            obj.player.setQuality(q[0]);
+        }
+    }
+}
+
 // ## temp #############################################################################
 
 //https://stackoverflow.com/questions/15807021
@@ -58,38 +74,25 @@ function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
 }
 
-function setQuality() {
-    //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-    function test1() {
-        var val = document.getElementById("videoq");
-        val.value = "160p30";
-        console.log( val.options[val.selectedIndex].value );
-        chgquality();
-        val.selectedIndex = 0
-    }
-    function test2() {
-        // var obj = document.getElementById("v-0");
-        // obj.player.setQuality("160p30")
-        document.getElementById("v-" + fldids[0]).player.setQuality("auto");
-    }
-    function test3() {
-        //
-    }
-    test1()
-    test2()
+function get_if_crashed() {
+    // document.getElementById("volval").addEventListener("keydown", function(event) {
+    //     chgvolval(this, event.keyCode == 40 ? -5 : (event.keyCode == 38 ? 5 : 0))
+    // });
+    // obj.player.isPaused()
+    // addEventListener(event:String, callback:Function)
+    // Twitch.Player.PAUSE
+
+    // var obj = document.getElementById("v-" + val);
+    // obj.player.addEventListener("ready", function() {
+    //     initevt(val)
+    // });
 }
 
-//https://developer.chrome.com/extensions/manifest
-function test() {
-    console.log(getPlayers());
-    console.log(chans);
-    console.log(chats);
-    console.log(fldids);
-}
 // ## end temp #########################################################################
 
 function setStyles() {
     chg_chatsel();
+    chg_quality();
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
@@ -177,7 +180,5 @@ function setStyles() {
             break;
     }
 }
-
-setStylesImg();
+setStylesImg(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
 setStyles();
-test();
