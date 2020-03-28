@@ -130,6 +130,16 @@ function setStyles(firstrun) {
         // get_if_crashed();
         chg_quality();
     }
+    function setFullScreen() {
+        if(screen.width == 1440 && screen.height == 900) {
+            if(isfullscr()) {
+                // document.exitFullscreen();
+            } else {
+                fullscrn();
+                // document.documentElement.requestFullscreen();
+            }
+        }
+    }
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
@@ -143,7 +153,11 @@ function setStyles(firstrun) {
         t[1] = ( clientH - h[1] );
     }
     function writeStyle(p, w, h, t, l) {
-        document.getElementById("v-" + fldids[p]).style = "width: " + w[0] + w[1] + "; height: " + h[0] + h[1] + "; top: " + t[0] + t[1] + "; left: " + l[0] + l[1] + ";";
+        var obj = document.getElementById("v-" + fldids[p]);
+        obj.style = "width: " + w[0] + w[1] +
+                  "; height: " + h[0] + h[1] +
+                  "; top: " + t[0] + t[1] +
+                  "; left: " + l[0] + l[1] + ";";
     }
     switch(chans.length) {
         case 0:
@@ -235,6 +249,7 @@ function setStyles(firstrun) {
             //temp
             break;
     }
+    setFullScreen();
 }
 setStylesImg(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
 setStyles(1);
