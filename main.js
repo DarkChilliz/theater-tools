@@ -44,22 +44,51 @@ function chg_chatsel() {
     }
 }
 
-function chg_quality() {
-    var q = ["160p30", "360p30", "480p30", "720p30", "720p60", "chunked", "auto"];
-    (function () {
-        var obj = document.getElementById("v-" + fldids[0]);
-        if(obj.player.getQuality() != q[5] && q.includes(obj.player.getQuality())) {
-            obj.player.setQuality(q[5]);
-        }
-    })();
-    for(var i = 1; i < chans.length; i++) {
-        var obj = document.getElementById("v-" + fldids[i]);
-        if(obj.player.getQuality() != q[0] && q.includes(obj.player.getQuality())) {
-            obj.player.setQuality(q[0]);
-        }
+//https://stackoverflow.com/questions/19586137
+function get_if_crashed() {
+    //testing
+    function createfunc(i) {
+        return (function() {
+            var obj = document.getElementById("v-" + fldids[i]);
+            obj.player.addEventListener("pause", function() {
+                obj.player.play();
+                console.log(fldids[i])
+            });
+        })();
+    }
+    for(var i = 0; i < chans.length; i++){
+        createfunc(i);
     }
 }
 
+function chg_quality() {
+    //["auto", "chunked", "720p60", "720p30", "480p30", "360p30", "160p30"]
+    var t;
+    for(var i = 0; i < chans.length; i++) {
+        if (typeof t === 'undefined' && chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+            var list = document.getElementById("v-" + fldids[i]).player.getQualities();
+            t = [];
+            for(var x = 0; x < list.length; x++) {
+                t.push(list[x].group);
+            }
+        } else if (typeof t !== 'undefined') {
+            break;
+        }
+    }
+    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+        var obj = document.getElementById("v-" + fldids[0]);
+        obj.player.setQuality( t[t.indexOf("chunked")] );
+        console.log("v-" + fldids[0], "quality: set to", "'" + t[1] + "'");
+    }
+
+    for(var i = 1; i < chans.length; i++) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+            obj.player.setQuality( t[t.indexOf("160p30")] );
+            console.log("v-" + fldids[i], "quality: set to", "'" + t[t.indexOf("160p30")] + "'");
+        }
+    }
+}
 // ## temp #############################################################################
 
 //https://stackoverflow.com/questions/15807021
@@ -74,25 +103,23 @@ function getPlayers() {
     return document.querySelectorAll('[id*="v-"]');
 }
 
-function get_if_crashed() {
-    // document.getElementById("volval").addEventListener("keydown", function(event) {
-    //     chgvolval(this, event.keyCode == 40 ? -5 : (event.keyCode == 38 ? 5 : 0))
-    // });
-    // obj.player.isPaused()
-    // addEventListener(event:String, callback:Function)
-    // Twitch.Player.PAUSE
-
-    // var obj = document.getElementById("v-" + val);
-    // obj.player.addEventListener("ready", function() {
-    //     initevt(val)
-    // });
-}
-
 // ## end temp #########################################################################
 
-function setStyles() {
-    chg_chatsel();
-    chg_quality();
+function setStyles(firstrun) {
+    if(firstrun > 0) {
+        setTimeout(function() {
+            var obj = document.getElementById("v-" + fldids[0]);
+            function foo() {
+                chg_quality()
+                obj.player.removeEventListener("playing", foo);
+            }
+            obj.player.addEventListener("playing", foo);
+        }, 300)
+    } else {
+        chg_chatsel();
+        // get_if_crashed();
+        chg_quality();
+    }
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
@@ -112,8 +139,8 @@ function setStyles() {
         case 0:
             break;
         case 1:
-            v_0_style_calc();
-            writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            // v_0_style_calc();
+            // writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
             break;
         case 2:
             v_0_style_calc();
@@ -181,4 +208,4 @@ function setStyles() {
     }
 }
 setStylesImg(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
-setStyles();
+setStyles(1);
