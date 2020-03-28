@@ -237,33 +237,33 @@ function main_js(firstrun) {
                 obj.player.removeEventListener("playing", foo);
             }
             obj.player.addEventListener("playing", foo);
-        }, 300)
+        }, 300);
     } else {
         // chg_chatsel();
         // get_if_crashed();
         chg_quality();
     }
-    console.log("1")
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
             // document.exitFullscreen();
-            console.log("2")
+            console.log("1")
             setStyles()
         } else {
+            console.log("2")
             // document.documentElement.requestFullscreen();
-            console.log("3")
             fullscrn();
-            if(typeof isfullscr() === 'undefined') {
-                console.log("4")
-                setStyles()
-            } else {
-                setTimeout(function() {
+            setTimeout(function() {
+                console.log("3")
+                if(typeof isfullscr() === 'undefined') {
+                    console.log("4")
+                    setStyles()
+                } else {
                     if(typeof isfullscr() !== 'undefined') {
                         console.log("5")
                         setStyles()
                     }
-                }, 600)
-            }
+                }
+            }, 100);
         }
     } else {
         console.log("6")
