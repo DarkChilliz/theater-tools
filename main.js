@@ -17,129 +17,7 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-//https://stackoverflow.com/questions/2735881
-function setStylesImg() {
-    var img = document.createElement("img");
-    img.src = "/x20/back.png";
-    img.alt = "";
-    img.id = "setStylesImg";
-    img.onclick = setStyles;
-    var src = document.getElementById("chatdiv");
-    src.appendChild(img);
-}
-
-//https://stackoverflow.com/questions/25934989
-function chg_chatsel() {
-    function set_chatsel_options() {
-        var val = document.getElementById("chatsel");
-        for(var i = 0; i < chats.length; i++) {
-            val.options[i].innerHTML = chats[i];
-        }
-    }
-    if(JSON.stringify(chats) != JSON.stringify(chans)) {
-        chats = chans;
-        set_chatsel_options();
-    } else {
-        set_chatsel_options();
-    }
-}
-
-//https://stackoverflow.com/questions/19586137
-function get_if_crashed() {
-    //testing
-    function createfunc(i) {
-        return (function() {
-            var obj = document.getElementById("v-" + fldids[i]);
-            obj.player.addEventListener("pause", function() {
-                obj.player.play();
-                console.log(fldids[i])
-            });
-        })();
-    }
-    for(var i = 0; i < chans.length; i++){
-        createfunc(i);
-    }
-}
-
-function chg_quality() {
-    //["auto", "chunked", "720p60", "720p30", "480p30", "360p30", "160p30"]
-    var t;
-    for(var i = 0; i < chans.length; i++) {
-        if (typeof t === 'undefined' && chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-            var list = document.getElementById("v-" + fldids[i]).player.getQualities();
-            t = [];
-            for(var x = 0; x < list.length; x++) {
-                t.push(list[x].group);
-            }
-        } else if (typeof t !== 'undefined') {
-            break;
-        }
-    }
-    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
-        var obj = document.getElementById("v-" + fldids[0]);
-        obj.player.setQuality( t[t.indexOf("chunked")] );
-        console.log("v-" + fldids[0], "quality: set to", "'" + t[1] + "'");
-    }
-
-    for(var i = 1; i < chans.length; i++) {
-        var obj = document.getElementById("v-" + fldids[i]);
-        if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-            obj.player.setQuality( t[t.indexOf("160p30")] );
-            console.log("v-" + fldids[i], "quality: set to", "'" + t[t.indexOf("160p30")] + "'");
-        }
-    }
-}
-// ## temp #############################################################################
-
-//https://stackoverflow.com/questions/15807021
-function convertToPercentage(parentWindow, pixels) {
-    //obsolete + unfinished
-    return ( parentWindow - pixels ) / parentWindow; // 0.92%
-}
-// chans = [];
-// chats = [];
-// fldids = [];
-// hidstr = 0;
-// curcol = 1;
-// curcht = -1;
-// curdiv = 0;
-// curtab = 1;
-// sessid = -1;
-
-//https://stackoverflow.com/questions/21441777
-function getPlayers() {
-    //obsolete
-    return document.querySelectorAll('[id*="v-"]');
-}
-
-// ## end temp #########################################################################
-
-function setStyles(firstrun) {
-    if(firstrun > 0) {
-        //https://stackoverflow.com/questions/28610365
-        setTimeout(function() {
-            var obj = document.getElementById("v-" + fldids[0]);
-            function foo() {
-                chg_quality()
-                obj.player.removeEventListener("playing", foo);
-            }
-            obj.player.addEventListener("playing", foo);
-        }, 300)
-    } else {
-        // chg_chatsel();
-        // get_if_crashed();
-        chg_quality();
-    }
-    function setFullScreen() {
-        if(screen.width == 1440 && screen.height == 900) {
-            if(isfullscr()) {
-                // document.exitFullscreen();
-            } else {
-                fullscrn();
-                // document.documentElement.requestFullscreen();
-            }
-        }
-    }
+function setStyles() {
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
@@ -249,7 +127,148 @@ function setStyles(firstrun) {
             //temp
             break;
     }
-    setFullScreen();
+}
+
+//https://stackoverflow.com/questions/2735881
+function setStylesImg() {
+    var img = document.createElement("img");
+    img.src = "/x20/back.png";
+    img.alt = "";
+    img.id = "setStylesImg";
+    img.onclick = main_js;
+    var src = document.getElementById("chatdiv");
+    src.appendChild(img);
+}
+
+function chg_quality() {
+    // ["auto", "chunked", "720p60", "720p30", "480p30", "360p30", "160p30"]
+    var t;
+    for(var i = 0; i < chans.length; i++) {
+        if (typeof t === 'undefined' && chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+            var list = document.getElementById("v-" + fldids[i]).player.getQualities();
+            t = [];
+            for(var x = 0; x < list.length; x++) {
+                t.push(list[x].group);
+            }
+        } else if (typeof t !== 'undefined') {
+            break;
+        }
+    }
+    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+        var obj = document.getElementById("v-" + fldids[0]);
+        obj.player.setQuality( t[t.indexOf("chunked")] );
+        console.log("v-" + fldids[0], "quality: set to", "'" + t[1] + "'");
+    }
+
+    for(var i = 1; i < chans.length; i++) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+            obj.player.setQuality( t[t.indexOf("160p30")] );
+            console.log("v-" + fldids[i], "quality: set to", "'" + t[t.indexOf("160p30")] + "'");
+        }
+    }
+}
+
+// ## temp #############################################################################
+
+// chans = [];
+// chats = [];
+// fldids = [];
+// hidstr = 0;
+// curcol = 1;
+// curcht = -1;
+// curdiv = 0;
+// curtab = 1;
+// sessid = -1;
+
+//https://stackoverflow.com/questions/21441777
+function getPlayers() {
+    //obsolete
+    return document.querySelectorAll('[id*="v-"]');
+}
+
+//https://stackoverflow.com/questions/15807021
+function convertToPercentage(parentWindow, pixels) {
+    //obsolete + unfinished
+    return ( parentWindow - pixels ) / parentWindow; // 0.92%
+}
+
+//https://stackoverflow.com/questions/25934989
+function chg_chatsel() {
+    function set_chatsel_options() {
+        var val = document.getElementById("chatsel");
+        for(var i = 0; i < chats.length; i++) {
+            val.options[i].innerHTML = chats[i];
+        }
+    }
+    if(JSON.stringify(chats) != JSON.stringify(chans)) {
+        chats = chans;
+        set_chatsel_options();
+    } else {
+        set_chatsel_options();
+    }
+}
+
+//https://stackoverflow.com/questions/19586137
+function get_if_crashed() {
+    function createfunc(i) {
+        return (function() {
+            var obj = document.getElementById("v-" + fldids[i]);
+            obj.player.addEventListener("pause", function() {
+                obj.player.play();
+                console.log(fldids[i])
+            });
+        })();
+    }
+    for(var i = 0; i < chans.length; i++){
+        createfunc(i);
+    }
+}
+
+// ## end temp #########################################################################
+
+function main_js(firstrun) {
+    if(firstrun > 0) {
+        //https://stackoverflow.com/questions/28610365
+        setTimeout(function() {
+            var obj = document.getElementById("v-" + fldids[0]);
+            function foo() {
+                chg_quality()
+                obj.player.removeEventListener("playing", foo);
+            }
+            obj.player.addEventListener("playing", foo);
+        }, 300)
+    } else {
+        // chg_chatsel();
+        // get_if_crashed();
+        chg_quality();
+    }
+    console.log("1")
+    if(screen.width == 1440 && screen.height == 900) {
+        if(isfullscr()) {
+            // document.exitFullscreen();
+            console.log("2")
+            setStyles()
+        } else {
+            // document.documentElement.requestFullscreen();
+            console.log("3")
+            fullscrn();
+            if(typeof isfullscr() === 'undefined') {
+                console.log("4")
+                setStyles()
+            } else {
+                setTimeout(function() {
+                    if(typeof isfullscr() !== 'undefined') {
+                        console.log("5")
+                        setStyles()
+                    }
+                }, 600)
+            }
+        }
+    } else {
+        console.log("6")
+        setStyles()
+    }
 }
 setStylesImg(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
-setStyles(1);
+main_js(1);
