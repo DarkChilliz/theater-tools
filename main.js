@@ -96,6 +96,15 @@ function convertToPercentage(parentWindow, pixels) {
     //obsolete + unfinished
     return ( parentWindow - pixels ) / parentWindow; // 0.92%
 }
+// chans = [];
+// chats = [];
+// fldids = [];
+// hidstr = 0;
+// curcol = 1;
+// curcht = -1;
+// curdiv = 0;
+// curtab = 1;
+// sessid = -1;
 
 //https://stackoverflow.com/questions/21441777
 function getPlayers() {
@@ -107,6 +116,7 @@ function getPlayers() {
 
 function setStyles(firstrun) {
     if(firstrun > 0) {
+        //https://stackoverflow.com/questions/28610365
         setTimeout(function() {
             var obj = document.getElementById("v-" + fldids[0]);
             function foo() {
@@ -116,10 +126,10 @@ function setStyles(firstrun) {
             obj.player.addEventListener("playing", foo);
         }, 300)
     } else {
-        chg_chatsel();
-        // get_if_crashed();
         chg_quality();
     }
+    chg_chatsel();
+    // get_if_crashed();
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
