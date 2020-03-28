@@ -171,15 +171,19 @@ function setStyles(firstrun) {
         case 5:
             v_0_style_calc();
             v_1_style_calc();
-            w[1] = ( clientW / 4 );
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
             l[1] = ( clientW - w[1] );
-            l[2] = ( l[1] - w[1] );
-            l[3] = ( l[2] - w[1] );
+            h[3] = ( h[1] / 2 );
+            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
+            l[2] = ( l[1] - w[3] );
+            t[2] = ( t[1] + h[3] );
+            w[2] = ( l[1] - w[3] );
+            l[2] = w[3];
             writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
             writeStyle(1, [w[1],"px"], [h[1],"px"], [t[1],"px"], [l[1],"px"]);
-            writeStyle(2, [w[1],"px"], [h[1],"px"], [t[1],"px"], [l[2],"px"]);
-            writeStyle(3, [w[1],"px"], [h[1],"px"], [t[1],"px"], [l[3],"px"]);
-            writeStyle(4, [w[1],"px"], [h[1],"px"], [t[1],"px"], ["0","%"]);
+            writeStyle(2, [w[2],"px"], [h[1],"px"], [t[1],"px"], [l[2],"px"]);
+            writeStyle(3, [w[3],"px"], [h[3],"px"], [t[1],"px"], ["0","%"]);
+            writeStyle(4, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         case 6:
             v_0_style_calc();
