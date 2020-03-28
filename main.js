@@ -126,10 +126,10 @@ function setStyles(firstrun) {
             obj.player.addEventListener("playing", foo);
         }, 300)
     } else {
+        // chg_chatsel();
+        // get_if_crashed();
         chg_quality();
     }
-    chg_chatsel();
-    // get_if_crashed();
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
       , w = [], h = [], t = [], l = [];
@@ -211,7 +211,22 @@ function setStyles(firstrun) {
             writeStyle(5, [w[2],"px"], [h[2],"px"], [t[2],"px"], ["0","%"]);
             break;
         case 7:
-            // temp
+            v_0_style_calc();
+            v_1_style_calc();
+            h[3] = ( h[1] / 2 );
+            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
+            w[2] = w[1] = ( (clientW - (w[3] * 2)) / 2 );
+            l[1] = ( clientW - w[1] );
+            l[2] = ( l[1] - w[1] );
+            t[2] = ( t[1] + h[3] );
+            l[3] = w[3];
+            writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            writeStyle(1, [w[1],"px"], [h[1],"px"], [t[1],"px"], [l[1],"px"]);
+            writeStyle(2, [w[2],"px"], [h[1],"px"], [t[1],"px"], [l[2],"px"]);
+            writeStyle(3, [w[3],"px"], [h[3],"px"], [t[1],"px"], [l[3],"px"]);
+            writeStyle(4, [w[3],"px"], [h[3],"px"], [t[2],"px"], [l[3],"px"]);
+            writeStyle(5, [w[3],"px"], [h[3],"px"], [t[1],"px"], ["0","%"]);
+            writeStyle(6, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         case 8:
             // temp
