@@ -270,5 +270,6 @@ function main_js(firstrun) {
         setStyles()
     }
 }
-setStylesImg(); // https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
+// Repository https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
+setStylesImg();
 main_js(1);
