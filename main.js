@@ -217,7 +217,7 @@ function chgQuality() {
 
     if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
         var obj = document.getElementById("v-" + fldids[0]);
-        obj.player.setQuality( userQuality[0] ? userQuality[0] : chkQual(obj.quality, "chunked") );
+        obj.player.setQuality( userQuality[0] ? chkQual(obj.quality, userQuality[0]) : chkQual(obj.quality, "chunked") );
     }
     for(var i = 1; i < chans.length; i++) {
         var obj = document.getElementById("v-" + fldids[i]);
