@@ -3,7 +3,7 @@
 
   "name": "TwitchTheater.tv Styles",
   "description": "1440x900 style for https://twitchtheater.tv/",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "icons": {
     "192": "favicon-192.png"
   },
@@ -12,7 +12,8 @@
     "matches": ["*://*.twitchtheater.tv/*"]
   }],
   "web_accessible_resources": [
-    "main.js"
+    "main.js",
+    "menu.png"
   ],
   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
