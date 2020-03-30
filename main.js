@@ -130,47 +130,127 @@ function setStyles() {
 }
 
 //https://stackoverflow.com/questions/2735881
-function setStylesImg() {
+(function setStylesImg() {
     var img = document.createElement("img");
     img.src = "/x20/back.png";
     img.alt = "";
+    //img.title = "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv";
     img.id = "setStylesImg";
     img.onclick = main_js;
     var src = document.getElementById("chatdiv");
     src.appendChild(img);
+})();
+
+//https://stackoverflow.com/questions/33144234
+document.addEventListener('yourCustomEvent', function (e)
+{
+    var url=e.detail;
+    // console.log("received "+url);
+    // (function createMenuImg() {
+    //     var img = document.createElement("img");
+    //     img.src = url;
+    //     img.alt = "";
+    //     img.id = "menuImg";
+    //     img.onclick = main_js;
+    //     var src = document.getElementById("chatdiv");
+    //     src.appendChild(img);
+    // })();
+});
+
+function setFullscreen() {
+    if(screen.width == 1440 && screen.height == 900) {
+        if(isfullscr()) {
+            setStyles();
+        } else {
+            fullscrn();
+            setTimeout(function() {
+                setStyles();
+            }, 100);
+        }
+    } else {
+        setStyles();
+    }
 }
 
-function chg_quality() {
-    // ["auto", "chunked", "720p60", "720p30", "480p30", "360p30", "160p30"]
-    var t;
-    for(var i = 0; i < chans.length; i++) {
-        if (typeof t === 'undefined' && chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-            var list = document.getElementById("v-" + fldids[i]).player.getQualities();
-            t = [];
-            for(var x = 0; x < list.length; x++) {
-                t.push(list[x].group);
-            }
-        } else if (typeof t !== 'undefined') {
-            break;
-        }
-    }
-    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+var userQuality = [];
+function chgQuality() {
+    //get current quality for 'fldids[0]'
+    if(rncntr > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        obj.player.setQuality( t[t.indexOf("chunked")] );
-        console.log("v-" + fldids[0], "quality: set to", "'" + t[1] + "'");
+        if(userQuality[1] == fldids[0]) {
+            userQuality[0] = obj.player.getQuality();
+        } else {
+            userQuality[1] = fldids[0];
+        }
+    } else {
+        userQuality[1] = fldids[0];
     }
 
+    //check if quality exists
+    function chkQual(indx, sel) {
+        if( indx.indexOf(sel) < 0 ) {
+            return indx[0];
+        } else {
+            return (indx[indx.indexOf(sel)]);
+        }
+    }
+
+    //get player qualities
+    for(var i = 0; i < chans.length; i++) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(typeof obj.quality === 'undefined') {
+            if (chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+                var list = obj.player.getQualities();
+                obj.quality = [];
+                for(var x = 0; x < list.length; x++) {
+                    obj.quality.push(list[x].group);
+                }
+            }
+            if(chans[i].search("v=") > -1) {
+                obj.quality = obj.player.getQualities();
+            }
+            if(chans[i].search("mixer=") > -1) {
+                console.log("PepeLaugh 👉 mixer:", i)
+            }
+        }
+    }
+
+    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+        var obj = document.getElementById("v-" + fldids[0]);
+        obj.player.setQuality( userQuality[0] ? userQuality[0] : chkQual(obj.quality, "chunked") );
+    }
     for(var i = 1; i < chans.length; i++) {
         var obj = document.getElementById("v-" + fldids[i]);
         if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-            obj.player.setQuality( t[t.indexOf("160p30")] );
-            console.log("v-" + fldids[i], "quality: set to", "'" + t[t.indexOf("160p30")] + "'");
+            obj.player.setQuality( chkQual(obj.quality, "160p30") );
         }
     }
 }
 
-// ## temp #############################################################################
+var rncntr = 0, log = [];
+function main_js() {
+    if(rncntr < 1) {
+        setTimeout(function() { //https://stackoverflow.com/questions/28610365
+            var obj = document.getElementById("v-" + fldids[0]);
+            function foo() {
+                chgQuality(1);
+                obj.player.removeEventListener("playing", foo);
+            }
+            obj.player.addEventListener("playing", foo);
+        }, 300);
+    } else {
+        // chg_chatsel();
+        // get_if_crashed();
+        chgQuality();
+        // setStyles();
+    }
+    setFullscreen();
+    console.log(log[rncntr] ? log[rncntr] : "rncntr:", rncntr);
+    rncntr++;
+}
+main_js();
 
+// ## temp #############################################################################
 // chans = [];
 // chats = [];
 // fldids = [];
@@ -216,7 +296,7 @@ function get_if_crashed() {
             var obj = document.getElementById("v-" + fldids[i]);
             obj.player.addEventListener("pause", function() {
                 obj.player.play();
-                console.log(fldids[i])
+                console.log(fldids[i]);
             });
         })();
     }
@@ -226,50 +306,3 @@ function get_if_crashed() {
 }
 
 // ## end temp #########################################################################
-
-function main_js(firstrun) {
-    if(firstrun > 0) {
-        //https://stackoverflow.com/questions/28610365
-        setTimeout(function() {
-            var obj = document.getElementById("v-" + fldids[0]);
-            function foo() {
-                chg_quality()
-                obj.player.removeEventListener("playing", foo);
-            }
-            obj.player.addEventListener("playing", foo);
-        }, 300);
-    } else {
-        // chg_chatsel();
-        // get_if_crashed();
-        chg_quality();
-    }
-    if(screen.width == 1440 && screen.height == 900) {
-        if(isfullscr()) {
-            // document.exitFullscreen();
-            console.log("1")
-            setStyles()
-        } else {
-            console.log("2")
-            // document.documentElement.requestFullscreen();
-            fullscrn();
-            setTimeout(function() {
-                console.log("3")
-                if(typeof isfullscr() === 'undefined') {
-                    console.log("4")
-                    setStyles()
-                } else {
-                    if(typeof isfullscr() !== 'undefined') {
-                        console.log("5")
-                        setStyles()
-                    }
-                }
-            }, 100);
-        }
-    } else {
-        console.log("6")
-        setStyles()
-    }
-}
-// Repository https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv
-setStylesImg();
-main_js(1);
