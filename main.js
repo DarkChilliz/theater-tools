@@ -264,6 +264,7 @@ function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
         chgChatSel();
+        chgQuality();
     }
 }
 
