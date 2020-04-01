@@ -13,7 +13,7 @@ function missingValue(aspect_ratio, width, height) {
             return width;
 		}
 	} else {
-		console.log("function missingValue: Error");
+		console.log("missingValue(): error");
 	}
 }
 
@@ -126,6 +126,8 @@ function setStyles() {
         case 9:
             //temp
             break;
+        default:
+            console.log("setStyles(): error")
     }
 }
 
@@ -231,6 +233,35 @@ function chgQuality() {
     }
 }
 
+//https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+//https://stackoverflow.com/questions/25934989
+var x = 0;
+function chg_chatsel() {
+    if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
+        var val = document.getElementById("chatsel")
+        , obj = document.getElementById("chatmen")
+        , list = [], indx = [...chats];
+
+        for(var i = 0; i < chans.length; i++) {
+            list[i] = indx.splice(indx.indexOf(chans[i]), 1).toString();
+        }
+        for(; indx.length > 0; ) {
+            list[list.length] = indx.shift();
+        }
+
+        for(var i = 0; i < list.length; i++) {
+            val.options[i].innerHTML = list[i];
+            obj.options[i].innerHTML = list[i];
+        }
+
+        chats = [...list];
+
+        console.log("x", x);
+        x++;
+    } else {
+    }
+}
+
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
@@ -257,44 +288,18 @@ function main_js() {
             obj.player.addEventListener("playing", setQualityOnLoad);
         }, 300);
     } else {
-        // chg_chatsel();
         // get_if_crashed();
         chgQuality();
         // setStyles();
     }
     setFullscreen();
+    chg_chatsel();
     console.log(log[rncntr] ? log[rncntr] : "rncntr:", rncntr);
     rncntr++;
 }
 main_js();
 
 // ## temp #############################################################################
-
-//https://stackoverflow.com/questions/25934989
-//https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
-function chg_chatsel() {
-    var val = document.getElementById("chatsel")
-      list = [], indx = [...chats];
-
-    for(var i = 0; i < chans.length; i++) {
-        list[i] = indx.splice(indx.indexOf(chans[i]), 1).toString();
-    }
-    for(; indx.length > 0; ) {
-        list[list.length] = indx.shift();
-    }
-
-    for(var i = 0; i < list.length; i++) {
-        val.options[i].innerHTML = list[i];
-    }
-
-    chats = [...list];
-
-    // if(JSON.stringify(chats) != JSON.stringify(chans)) {
-    // } else {
-    // }
-}
-
-////////////////////////////////////////////////////////////////////////////////
 
 //https://stackoverflow.com/questions/19586137
 function get_if_crashed() {
