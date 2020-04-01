@@ -13,7 +13,7 @@ function missingValue(aspect_ratio, width, height) {
             return width;
 		}
 	} else {
-		console.error("function missingValue: Error");
+		console.log("function missingValue: Error");
 	}
 }
 
@@ -172,21 +172,8 @@ function setFullscreen() {
     }
 }
 
-var userQuality = [];
+var userQuality = [], loaded_var = 0;
 function chgQuality() {
-    //get current quality for 'fldids[0]'
-    if(rncntr > 0) {
-        var obj = document.getElementById("v-" + fldids[0]);
-        if(userQuality[1] == fldids[0]) {
-            userQuality[0] = obj.player.getQuality();
-        } else {
-            userQuality[1] = fldids[0];
-        }
-    } else {
-        userQuality[1] = fldids[0];
-    }
-
-    //check if quality exists
     function chkQual(indx, sel) {
         if( indx.indexOf(sel) < 0 ) {
             return indx[0];
@@ -194,49 +181,80 @@ function chgQuality() {
             return (indx[indx.indexOf(sel)]);
         }
     }
-
-    //get player qualities
-    for(var i = 0; i < chans.length; i++) {
-        var obj = document.getElementById("v-" + fldids[i]);
-        if(typeof obj.quality === 'undefined') {
-            if (chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-                var list = obj.player.getQualities();
-                obj.quality = [];
-                for(var x = 0; x < list.length; x++) {
-                    obj.quality.push(list[x].group);
+    function get_qualities() {
+        for(var i = 0; i < chans.length; i++) {
+            var obj = document.getElementById("v-" + fldids[i]);
+            if(typeof obj.quality === 'undefined') {
+                if (chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+                    var list = obj.player.getQualities();
+                    obj.quality = [];
+                    for(var x = 0; x < list.length; x++) {
+                        obj.quality.push(list[x].group);
+                    }
+                }
+                if(chans[i].search("v=") > -1) {
+                    obj.quality = obj.player.getQualities();
+                }
+                if(chans[i].search("mixer=") > -1) {
+                    console.log("PepeLaugh 👉 mixer:", i)
                 }
             }
-            if(chans[i].search("v=") > -1) {
-                obj.quality = obj.player.getQualities();
-            }
-            if(chans[i].search("mixer=") > -1) {
-                console.log("PepeLaugh 👉 mixer:", i)
+        }
+    }
+    function div_a() {
+        if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+            var obj = document.getElementById("v-" + fldids[0]);
+            obj.player.setQuality( userQuality[0] ? chkQual(obj.quality, userQuality[0]) : chkQual(obj.quality, "chunked") );
+        }
+    }
+    function div_b() {
+        for(var i = 1; i < chans.length; i++) {
+            var obj = document.getElementById("v-" + fldids[i]);
+            if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+                obj.player.setQuality( chkQual(obj.quality, "160p30") );
             }
         }
     }
 
-    if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+    if(rncntr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        obj.player.setQuality( userQuality[0] ? chkQual(obj.quality, userQuality[0]) : chkQual(obj.quality, "chunked") );
-    }
-    for(var i = 1; i < chans.length; i++) {
-        var obj = document.getElementById("v-" + fldids[i]);
-        if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-            obj.player.setQuality( chkQual(obj.quality, "160p30") );
+        if(userQuality[1] == fldids[0] && typeof obj.quality !== 'undefined') {
+            userQuality[0] = obj.player.getQuality();
+        } else {
+            userQuality[1] = fldids[0];
         }
+        get_qualities();
+        div_a();
+        div_b();
+    } else {
+        userQuality[1] = fldids[0];
+    }
+}
+
+function evtchk(event) {
+    if (event.ctrlKey) {
+        openmenu(0);
+        chg_chatsel();
     }
 }
 
 var rncntr = 0, log = [];
 function main_js() {
     if(rncntr < 1) {
-        setTimeout(function() { //https://stackoverflow.com/questions/28610365
+        //https://forum.webflow.com/t/23730
+        document.getElementById("menubtn").onclick = function() {
+            openmenu();
+            chg_chatsel();
+        }
+        //https://stackoverflow.com/questions/28610365
+        setTimeout(function() {
             var obj = document.getElementById("v-" + fldids[0]);
-            function foo() {
-                chgQuality(1);
-                obj.player.removeEventListener("playing", foo);
+            function setQualityOnLoad() {
+                loaded_var++;
+                chgQuality();
+                obj.player.removeEventListener("playing", setQualityOnLoad);
             }
-            obj.player.addEventListener("playing", foo);
+            obj.player.addEventListener("playing", setQualityOnLoad);
         }, 300);
     } else {
         // chg_chatsel();
@@ -251,43 +269,32 @@ function main_js() {
 main_js();
 
 // ## temp #############################################################################
-// chans = [];
-// chats = [];
-// fldids = [];
-// hidstr = 0;
-// curcol = 1;
-// curcht = -1;
-// curdiv = 0;
-// curtab = 1;
-// sessid = -1;
-
-//https://stackoverflow.com/questions/21441777
-function getPlayers() {
-    //obsolete
-    return document.querySelectorAll('[id*="v-"]');
-}
-
-//https://stackoverflow.com/questions/15807021
-function convertToPercentage(parentWindow, pixels) {
-    //obsolete + unfinished
-    return ( parentWindow - pixels ) / parentWindow; // 0.92%
-}
 
 //https://stackoverflow.com/questions/25934989
+//https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 function chg_chatsel() {
-    function set_chatsel_options() {
-        var val = document.getElementById("chatsel");
-        for(var i = 0; i < chats.length; i++) {
-            val.options[i].innerHTML = chats[i];
-        }
+    var val = document.getElementById("chatsel")
+      list = [], indx = [...chats];
+
+    for(var i = 0; i < chans.length; i++) {
+        list[i] = indx.splice(indx.indexOf(chans[i]), 1).toString();
     }
-    if(JSON.stringify(chats) != JSON.stringify(chans)) {
-        chats = chans;
-        set_chatsel_options();
-    } else {
-        set_chatsel_options();
+    for(; indx.length > 0; ) {
+        list[list.length] = indx.shift();
     }
+
+    for(var i = 0; i < list.length; i++) {
+        val.options[i].innerHTML = list[i];
+    }
+
+    chats = [...list];
+
+    // if(JSON.stringify(chats) != JSON.stringify(chans)) {
+    // } else {
+    // }
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 //https://stackoverflow.com/questions/19586137
 function get_if_crashed() {
@@ -305,4 +312,25 @@ function get_if_crashed() {
     }
 }
 
+//https://stackoverflow.com/questions/21441777
+function getPlayers() {
+    //obsolete
+    return document.querySelectorAll('[id*="v-"]');
+}
+
+//https://stackoverflow.com/questions/15807021
+function convertToPercentage(parentWindow, pixels) {
+    //obsolete + unfinished
+    return ( parentWindow - pixels ) / parentWindow; // 0.92%
+}
+
+// chans = [];
+// chats = [];
+// fldids = [];
+// hidstr = 0;
+// curcol = 1;
+// curcht = -1;
+// curdiv = 0;
+// curtab = 1;
+// sessid = -1;
 // ## end temp #########################################################################
