@@ -182,20 +182,20 @@ function setStyles() {
 })();
 
 //https://stackoverflow.com/questions/33144234
-document.addEventListener('yourCustomEvent', function (e)
-{
-    var url=e.detail;
-    // console.log("received "+url);
-    // (function createMenuImg() {
-    //     var img = document.createElement("img");
-    //     img.src = url;
-    //     img.alt = "";
-    //     img.id = "menuImg";
-    //     img.onclick = main_js;
-    //     var src = document.getElementById("chatdiv");
-    //     src.appendChild(img);
-    // })();
-});
+// document.addEventListener('yourCustomEvent', function (e)
+// {
+//     var url=e.detail;
+//     console.log("received "+url);
+//     (function createMenuImg() {
+//         var img = document.createElement("img");
+//         img.src = url;
+//         img.alt = "";
+//         img.id = "menuImg";
+//         img.onclick = main_js;
+//         var src = document.getElementById("chatdiv");
+//         src.appendChild(img);
+//     })();
+// });
 
 function setFullscreen() {
     if(screen.width == 1440 && screen.height == 900) {
