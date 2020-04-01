@@ -9,6 +9,7 @@
   },
   "content_scripts": [{
     "js": ["content.js"],
+    "run_at": "document_end",
     "matches": ["*://*.twitchtheater.tv/*"]
   }],
   "web_accessible_resources": [
