@@ -235,7 +235,7 @@ function chgQuality() {
 
 //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 //https://stackoverflow.com/questions/25934989
-var x = 0;
+var chgChatSelcntr = 0;
 function chgChatSel() {
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var val = document.getElementById("chatsel")
@@ -248,16 +248,14 @@ function chgChatSel() {
         for(; indx.length > 0; ) {
             list[list.length] = indx.shift();
         }
-
         for(var i = 0; i < list.length; i++) {
             val.options[i].innerHTML = list[i];
             obj.options[i].innerHTML = list[i];
         }
-
         chats = [...list];
 
-        console.log("chgChatSel:", x);
-        x++;
+        console.log("chgChatSel:", chgChatSelcntr);
+        chgChatSelcntr++;
     } else {
     }
 }
@@ -269,8 +267,9 @@ function evtchk(event) {
     }
 }
 
-var rncntr = 0, log = [];
+var rncntr = 0;
 function main_js() {
+
     if(rncntr < 1) {
         //https://forum.webflow.com/t/23730
         document.getElementById("menubtn").onclick = function() {
@@ -294,7 +293,7 @@ function main_js() {
     }
     setFullscreen();
     chgChatSel();
-    console.log(log[rncntr] ? log[rncntr] : "rncntr:", rncntr);
+    console.log("rncntr:", rncntr);
     rncntr++;
 }
 main_js();
