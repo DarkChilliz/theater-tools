@@ -303,6 +303,7 @@ function evtchk(event) {
         openmenu(0);
         chgChatSel();
         chgQuality();
+        setStyles();
     }
 }
 
