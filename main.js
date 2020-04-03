@@ -250,8 +250,8 @@ function chgQuality() {
                     break;
                 default:
                     obj.player.setQuality( userQuality[1] ? chkQual(obj.quality, userQuality[1]) : chkQual(obj.quality, q) );
-                    console.log("div_a():", i)
-            }
+                    console.log("v-0:", obj.player.getQuality(),"->" ,chkQual(obj.quality, q),"|", q);
+                }
         }
     }
     function div_b() {
@@ -261,7 +261,7 @@ function chgQuality() {
             if(obj.player.getQuality() !== q) {
                 if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
                     obj.player.setQuality( chkQual(obj.quality, q) );
-                    console.log("div_b():", "v-" + i, " |  chkQual():", obj.player.getQuality(),"->" ,chkQual(obj.quality, q)," |  Q:", q);
+                    console.log("v-" + i + ":", obj.player.getQuality(),"->" ,chkQual(obj.quality, q),"|", q);
                 } else {
                     console.log("chgQuality().div_b(): not twitch", i);
                 }
