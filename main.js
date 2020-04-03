@@ -309,16 +309,15 @@ function chgChatSel() {
 
         console.log("chgChatSel:", chgChatSelcntr);
         chgChatSelcntr++;
-    } else {
     }
 }
 
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
+        chgChatSel();
         setFullscreen();
         chgQuality();
-        chgChatSel();
     }
 }
 
@@ -336,16 +335,16 @@ function main_js() {
             var obj = document.getElementById("v-" + fldids[0]);
             function setQualityOnLoad() {
                 loaded_var++;
-                chgQuality();
                 obj.player.removeEventListener("playing", setQualityOnLoad);
+                chgQuality();
             }
             obj.player.addEventListener("playing", setQualityOnLoad);
             // get_if_crashed();
         }, 300);
     }
+    chgChatSel();
     setFullscreen();
     chgQuality();
-    chgChatSel();
     console.log("rncntr:", rncntr);
     rncntr++;
 }
