@@ -224,7 +224,7 @@ function chgQuality() {
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
             var obj = document.getElementById("v-" + fldids[i]);
-            if(typeof obj.quality === 'undefined') {
+            if(typeof obj.quality === "undefined" || obj.quality.length < 1) {
                 if (chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
                     var list = obj.player.getQualities();
                     obj.quality = [];
@@ -250,7 +250,7 @@ function chgQuality() {
                     break;
                 default:
                     obj.player.setQuality( userQuality[1] ? chkQual(obj.quality, userQuality[1]) : chkQual(obj.quality, q) );
-                    console.log("1")
+                    console.log("div_a():", i)
             }
         }
     }
@@ -259,9 +259,9 @@ function chgQuality() {
         for(var i = 1; i < chans.length; i++) {
             var obj = document.getElementById("v-" + fldids[i]);
             if(obj.player.getQuality() !== q) {
-                console.log("2")
                 if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
                     obj.player.setQuality( chkQual(obj.quality, q) );
+                    console.log("div_b():", "v-" + i, "| chkQual():", chkQual(obj.quality, q),"q:", q)
                 } else {
                     console.log("chgQuality().div_b(): not twitch", i);
                 }
