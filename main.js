@@ -261,7 +261,7 @@ function chgQuality() {
             if(obj.player.getQuality() !== q) {
                 if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
                     obj.player.setQuality( chkQual(obj.quality, q) );
-                    console.log("div_b():", "v-" + i, "| chkQual():", chkQual(obj.quality, q),"q:", q)
+                    console.log("div_b():", "v-" + i, " |  chkQual():", obj.player.getQuality(),"->" ,chkQual(obj.quality, q)," |  Q:", q);
                 } else {
                     console.log("chgQuality().div_b(): not twitch", i);
                 }
