@@ -214,13 +214,6 @@ function setFullscreen() {
 
 var userQuality = [], loaded_var = 0;
 function chgQuality() {
-    function chkQual(indx, sel) {
-        if( indx.indexOf(sel) < 0 ) {
-            return indx[0];
-        } else {
-            return (indx[indx.indexOf(sel)]);
-        }
-    }
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
             var obj = document.getElementById("v-" + fldids[i]);
@@ -237,6 +230,13 @@ function chgQuality() {
                     console.log("PepeLaugh 👉 mixer:", i);
                 }
             }
+        }
+    }
+    function chkQual(indx, sel) {
+        if( indx.indexOf(sel) < 0 ) {
+            return indx[0];
+        } else {
+            return (indx[indx.indexOf(sel)]);
         }
     }
     function div_a() {
