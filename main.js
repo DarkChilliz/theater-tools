@@ -236,7 +236,7 @@ function chgQuality() {
                     obj.quality = obj.player.getQualities();
                 }
                 if(chans[i].search("mixer=") > -1) {
-                    console.log("PepeLaugh 👉 mixer:", i)
+                    console.log("PepeLaugh 👉 mixer:", i);
                 }
             }
         }
@@ -258,16 +258,19 @@ function chgQuality() {
 
     if(rncntr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        if(userQuality[1] == fldids[0] && typeof obj.quality !== 'undefined') {
-            userQuality[0] = obj.player.getQuality();
-        } else {
-            userQuality[1] = fldids[0];
+        if(userQuality[0] === fldids[0] && typeof obj.quality !== 'undefined') {
+            if(userQuality[1] !== obj.player.getQuality()) {
+                userQuality[1] = obj.player.getQuality();
+                console.log("b",userQuality[1])
+            }
+        } else if(userQuality[0] !== fldids[0]) {
+            userQuality[0] = fldids[0];
         }
         get_qualities();
         div_a();
         div_b();
     } else {
-        userQuality[1] = fldids[0];
+        userQuality[0] = fldids[0];
     }
 }
 
@@ -301,9 +304,9 @@ function chgChatSel() {
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
-        chgChatSel();
+        setFullscreen();
         chgQuality();
-        setStyles();
+        chgChatSel();
     }
 }
 
@@ -325,13 +328,11 @@ function main_js() {
                 obj.player.removeEventListener("playing", setQualityOnLoad);
             }
             obj.player.addEventListener("playing", setQualityOnLoad);
+            // get_if_crashed();
         }, 300);
-    } else {
-        // get_if_crashed();
-        chgQuality();
-        // setStyles();
     }
     setFullscreen();
+    chgQuality();
     chgChatSel();
     console.log("rncntr:", rncntr);
     rncntr++;
@@ -342,6 +343,7 @@ main_js();
 
 //https://stackoverflow.com/questions/19586137
 function get_if_crashed() {
+    //unfinished
     function createfunc(i) {
         return (function() {
             var obj = document.getElementById("v-" + fldids[i]);
