@@ -231,27 +231,40 @@ function chgQuality() {
                     for(var x = 0; x < list.length; x++) {
                         obj.quality.push(list[x].group);
                     }
-                }
-                if(chans[i].search("v=") > -1) {
+                } else if(chans[i].search("v=") > -1) {
                     obj.quality = obj.player.getQualities();
-                }
-                if(chans[i].search("mixer=") > -1) {
+                } else if(chans[i].search("mixer=") > -1) {
                     console.log("PepeLaugh 👉 mixer:", i);
                 }
             }
         }
     }
     function div_a() {
+        var q = "chunked";
         if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
             var obj = document.getElementById("v-" + fldids[0]);
-            obj.player.setQuality( userQuality[0] ? chkQual(obj.quality, userQuality[0]) : chkQual(obj.quality, "chunked") );
+            switch(obj.player.getQuality()) {
+                case userQuality[1]:
+                    break;
+                case q:
+                    break;
+                default:
+                    obj.player.setQuality( userQuality[1] ? chkQual(obj.quality, userQuality[1]) : chkQual(obj.quality, q) );
+                    console.log("1")
+            }
         }
     }
     function div_b() {
+        var q = "160p30";
         for(var i = 1; i < chans.length; i++) {
             var obj = document.getElementById("v-" + fldids[i]);
-            if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-                obj.player.setQuality( chkQual(obj.quality, "160p30") );
+            if(obj.player.getQuality() !== q) {
+                console.log("2")
+                if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+                    obj.player.setQuality( chkQual(obj.quality, q) );
+                } else {
+                    console.log("chgQuality().div_b(): not twitch", i);
+                }
             }
         }
     }
@@ -261,7 +274,6 @@ function chgQuality() {
         if(userQuality[0] === fldids[0] && typeof obj.quality !== 'undefined') {
             if(userQuality[1] !== obj.player.getQuality()) {
                 userQuality[1] = obj.player.getQuality();
-                console.log("b",userQuality[1])
             }
         } else if(userQuality[0] !== fldids[0]) {
             userQuality[0] = fldids[0];
