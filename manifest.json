@@ -3,18 +3,20 @@
 
   "name": "TwitchTheater.tv Styles",
   "description": "1440x900 style for https://twitchtheater.tv/",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "icons": {
     "192": "favicon-192.png"
   },
   "content_scripts": [{
     "js": ["content.js"],
     "run_at": "document_end",
-    "matches": ["*://*.twitchtheater.tv/*"]
+    "matches": [
+      "*://*.twitchtheater.tv/*",
+      "*://*.darkchilliz.github.io/*"
+    ]
   }],
   "web_accessible_resources": [
-    "main.js",
-    "menu.png"
+    "main.js"
   ],
   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
