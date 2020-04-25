@@ -17,6 +17,7 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
+var setStylescntr = 0;
 function setStyles() {
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
@@ -167,6 +168,8 @@ function setStyles() {
         default:
             console.log("setStyles(): player number out of range")
     }
+    console.log("setStyles:", setStylescntr);
+    setStylescntr++;
 }
 
 //https://stackoverflow.com/questions/2735881
@@ -197,6 +200,7 @@ function setStyles() {
 //     })();
 // });
 
+var setFullscreencntr = 0;
 function setFullscreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
@@ -210,9 +214,11 @@ function setFullscreen() {
     } else {
         setStyles();
     }
+    console.log("setFullscreen:", setFullscreencntr);
+    setFullscreencntr++;
 }
 
-var userQuality = [], loaded_var = 0;
+var chgQualitycntr = 0, userQuality = [], loaded_var = 0;
 function chgQuality() {
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
@@ -284,6 +290,8 @@ function chgQuality() {
     } else {
         userQuality[0] = fldids[0];
     }
+    console.log("chgQuality:", chgQualitycntr);
+    chgQualitycntr++;
 }
 
 //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
