@@ -356,7 +356,7 @@ function main_js() {
                 loaded_var++;
                 obj.player.removeEventListener("playing", setQualityOnPlaying);
                 obj.player.removeEventListener("ended", setQualityOnEnded);
-                chgQuality();
+                setTimeout(chgQuality, 1000);
             }
             function setQualityOnEnded() {
                 loaded_var++;
