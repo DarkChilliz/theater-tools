@@ -331,7 +331,6 @@ function evtchk(event) {
 
 var rncntr = 0;
 function main_js() {
-
     if(rncntr < 1) {
         //https://forum.webflow.com/t/23730
         document.getElementById("menubtn").onclick = function() {
