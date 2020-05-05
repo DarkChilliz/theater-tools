@@ -246,30 +246,41 @@ function chgQuality() {
         }
     }
     function div_a() {
-        var q = "chunked";
-        if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
-            var obj = document.getElementById("v-" + fldids[0]);
-            switch(obj.player.getQuality()) {
-                case userQuality[1]:
-                    break;
-                case q:
-                    break;
-                default:
-                    obj.player.setQuality( userQuality[1] ? chkQual(obj.quality, userQuality[1]) : chkQual(obj.quality, q) );
-                    console.log("v-0:", obj.player.getQuality(),"->" ,chkQual(obj.quality, q),"|", q);
+        var obj = document.getElementById("v-" + fldids[0]);
+        if(obj.player.getEnded() !== true) {
+            var hardCodeQuality = "chunked",
+                currentQuality = "",
+                userSetQuality = "";
+            if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
+                currentQuality = obj.player.getQuality()
+                if(currentQuality !== userQuality[1] && currentQuality !== hardCodeQuality) {
+                    if(userQuality[1]) {
+                        userSetQuality = chkQual(obj.quality, userQuality[1]);
+                    } else {
+                        userSetQuality = chkQual(obj.quality, hardCodeQuality);
+                    }
+                    obj.player.setQuality(userSetQuality);
+                    console.log("v-" + fldids[0] + ":", currentQuality,"->" ,userSetQuality,"|", hardCodeQuality);
                 }
+            }
         }
     }
     function div_b() {
-        var q = "160p30";
+        var hardCodeQuality = "160p30",
+            currentQuality = "",
+            checkQuality = "";
         for(var i = 1; i < chans.length; i++) {
             var obj = document.getElementById("v-" + fldids[i]);
-            if(obj.player.getQuality() !== q) {
-                if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
-                    obj.player.setQuality( chkQual(obj.quality, q) );
-                    console.log("v-" + i + ":", obj.player.getQuality(),"->" ,chkQual(obj.quality, q),"|", q);
-                } else {
-                    console.log("chgQuality().div_b(): not twitch", i);
+            if(obj.player.getEnded() !== true) {
+                currentQuality = obj.player.getQuality();
+                if(currentQuality !== hardCodeQuality) {
+                    if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
+                        checkQuality = chkQual(obj.quality, hardCodeQuality);
+                        obj.player.setQuality( checkQuality );
+                        console.log("v-" + fldids[i] + ":", currentQuality,"->", checkQuality,"|", hardCodeQuality);
+                    } else {
+                        console.log("chgQuality().div_b(): not twitch", i);
+                    }
                 }
             }
         }
@@ -277,9 +288,10 @@ function chgQuality() {
 
     if(rncntr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        if(userQuality[0] === fldids[0] && typeof obj.quality !== 'undefined') {
+        if(obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== 'undefined') {
             if(userQuality[1] !== obj.player.getQuality()) {
                 userQuality[1] = obj.player.getQuality();
+                console.log("v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
             }
         } else if(userQuality[0] !== fldids[0]) {
             userQuality[0] = fldids[0];
@@ -340,19 +352,27 @@ function main_js() {
         //https://stackoverflow.com/questions/28610365
         setTimeout(function() {
             var obj = document.getElementById("v-" + fldids[0]);
-            function setQualityOnLoad() {
+            function setQualityOnPlaying() {
                 loaded_var++;
-                obj.player.removeEventListener("playing", setQualityOnLoad);
+                obj.player.removeEventListener("playing", setQualityOnPlaying);
+                obj.player.removeEventListener("ended", setQualityOnEnded);
                 chgQuality();
             }
-            obj.player.addEventListener("playing", setQualityOnLoad);
+            function setQualityOnEnded() {
+                loaded_var++;
+                obj.player.removeEventListener("ended", setQualityOnEnded);
+                obj.player.removeEventListener("playing", setQualityOnPlaying);
+                setTimeout(chgQuality, 3000);
+            }
+            obj.player.addEventListener("playing", setQualityOnPlaying);
+            obj.player.addEventListener("ended", setQualityOnEnded);
             // get_if_crashed();
         }, 300);
     }
     chgChatSel();
     setFullscreen();
     chgQuality();
-    console.log("rncntr:", rncntr);
+    console.log("runcounter:", rncntr);
     rncntr++;
 }
 main_js();
