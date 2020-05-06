@@ -166,7 +166,7 @@ function setStyles() {
             writeStyle(8, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         default:
-            console.log("setStyles(): player number out of range")
+            console.log("setStyles: player number out of range ( > 9 )")
     }
     console.log("setStyles:", setStylescntr);
     setStylescntr++;
@@ -367,7 +367,7 @@ function main_js() {
             obj.player.addEventListener("playing", setQualityOnPlaying);
             obj.player.addEventListener("ended", setQualityOnEnded);
             // get_if_crashed();
-        }, 300);
+        }, 500);
     }
     chgChatSel();
     setFullscreen();
@@ -380,8 +380,13 @@ main_js();
 // ## temp #############################################################################
 
 //https://stackoverflow.com/questions/19586137
-function get_if_crashed() {
-    //unfinished
+function get_if_crashed() { //unfinished
+    var intervalID = setInterval(function() {
+        //
+        //
+        //
+        clearInterval(intervalID);
+    }, 3000);
     function createfunc(i) {
         return (function() {
             var obj = document.getElementById("v-" + fldids[i]);
@@ -397,14 +402,12 @@ function get_if_crashed() {
 }
 
 //https://stackoverflow.com/questions/21441777
-function getPlayers() {
-    //obsolete
+function getPlayers() { //obsolete
     return document.querySelectorAll('[id*="v-"]');
 }
 
 //https://stackoverflow.com/questions/15807021
-function convertToPercentage(parentWindow, pixels) {
-    //obsolete + unfinished
+function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
     return ( parentWindow - pixels ) / parentWindow; // 0.92%
 }
 
