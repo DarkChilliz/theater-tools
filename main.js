@@ -58,8 +58,8 @@ function setStyles() {
         case 0:
             break;
         case 1:
-            // v_0_style_calc();
-            // writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            v_0_style_calc();
+            writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
             break;
         case 2:
             v_0_style_calc();
@@ -185,7 +185,7 @@ function setStyles() {
 })();
 
 //https://stackoverflow.com/questions/33144234
-// document.addEventListener('yourCustomEvent', function (e)
+// document.addEventListener("yourCustomEvent", function (e)
 // {
 //     var url=e.detail;
 //     console.log("received "+url);
@@ -288,7 +288,7 @@ function chgQuality() {
 
     if(rncntr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        if(obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== 'undefined') {
+        if(obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
             if(userQuality[1] !== obj.player.getQuality()) {
                 userQuality[1] = obj.player.getQuality();
                 console.log("v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
@@ -332,6 +332,10 @@ function chgChatSel() {
     }
 }
 
+function loadedVar() {
+    console.log("loaded_var:", loaded_var, "->", (loaded_var++ + 1));
+}
+
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
@@ -351,22 +355,26 @@ function main_js() {
         }
         //https://stackoverflow.com/questions/28610365
         setTimeout(function() {
-            var obj = document.getElementById("v-" + fldids[0]);
-            function setQualityOnPlaying() {
-                loaded_var++;
-                obj.player.removeEventListener("playing", setQualityOnPlaying);
-                obj.player.removeEventListener("ended", setQualityOnEnded);
-                setTimeout(chgQuality, 1000);
+            if(fldids.length > 0) {
+                var obj = document.getElementById("v-" + fldids[0]);
+                function setQualityOnPlaying() {
+                    loadedVar();
+                    obj.player.removeEventListener("playing", setQualityOnPlaying);
+                    obj.player.removeEventListener("ended", setQualityOnEnded);
+                    setTimeout(chgQuality, 1000);
+                }
+                function setQualityOnEnded() {
+                    loadedVar();
+                    obj.player.removeEventListener("ended", setQualityOnEnded);
+                    obj.player.removeEventListener("playing", setQualityOnPlaying);
+                    setTimeout(chgQuality, 3000);
+                }
+                obj.player.addEventListener("playing", setQualityOnPlaying);
+                obj.player.addEventListener("ended", setQualityOnEnded);
+                // get_if_crashed();
+            } else {
+                loadedVar();
             }
-            function setQualityOnEnded() {
-                loaded_var++;
-                obj.player.removeEventListener("ended", setQualityOnEnded);
-                obj.player.removeEventListener("playing", setQualityOnPlaying);
-                setTimeout(chgQuality, 3000);
-            }
-            obj.player.addEventListener("playing", setQualityOnPlaying);
-            obj.player.addEventListener("ended", setQualityOnEnded);
-            // get_if_crashed();
         }, 500);
     }
     chgChatSel();
@@ -403,7 +411,7 @@ function get_if_crashed() { //unfinished
 
 //https://stackoverflow.com/questions/21441777
 function getPlayers() { //obsolete
-    return document.querySelectorAll('[id*="v-"]');
+    return document.querySelectorAll("[id*=\"v-\"]");
 }
 
 //https://stackoverflow.com/questions/15807021
