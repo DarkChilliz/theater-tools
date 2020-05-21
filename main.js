@@ -288,7 +288,7 @@ function chgQuality() {
 
     if(rncntr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
-        if(obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
+        if(useUserQuality === true && obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
             if(userQuality[1] !== obj.player.getQuality()) {
                 userQuality[1] = obj.player.getQuality();
                 console.log("v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
@@ -345,7 +345,7 @@ function evtchk(event) {
     }
 }
 
-var rncntr = 0;
+var rncntr = 0, useUserQuality = false;
 function main_js() {
     if(rncntr < 1) {
         //https://forum.webflow.com/t/23730
