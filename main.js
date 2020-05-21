@@ -248,7 +248,7 @@ function chgQuality() {
     function div_a() {
         var obj = document.getElementById("v-" + fldids[0]);
         if(obj.player.getEnded() !== true) {
-            var hardCodeQuality = "chunked",
+            var hardCodeQuality = "auto", //"chunked"
                 currentQuality = "",
                 userSetQuality = "";
             if(chans[0].search("mixer=") == -1 && chans[0].search("v=") == -1) {
