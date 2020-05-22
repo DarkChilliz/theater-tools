@@ -17,7 +17,7 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-//var setStylescntr = 0;
+//var setStylesCtr = 0;
 function setStyles() {
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
@@ -170,8 +170,8 @@ function setStyles() {
         default:
             console.log("setStyles: player number out of range ( > 9 )")
     }
-    console.log("setStyles:", setStylescntr);
-    setStylescntr++;
+    console.log("setStyles:", setStylesCtr);
+    setStylesCtr++;
 }
 
 //https://stackoverflow.com/questions/2735881
@@ -202,7 +202,7 @@ function setStyles() {
 //     })();
 // });
 
-//var setFullscreencntr = 0;
+//var setFullscreenCtr = 0;
 function setFullscreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
@@ -216,11 +216,11 @@ function setFullscreen() {
     } else {
         setStyles();
     }
-    console.log("setFullscreen:", setFullscreencntr);
-    setFullscreencntr++;
+    console.log("setFullscreen:", setFullscreenCtr);
+    setFullscreenCtr++;
 }
 
-//var chgQualitycntr = 0, userQuality = [], loaded_var = 0;
+//var chgQualityCtr = 0, userQuality = [], loaded_var = 0;
 function chgQuality() {
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
@@ -288,7 +288,7 @@ function chgQuality() {
         }
     }
 
-    if(rncntr > 0 && loaded_var > 0) {
+    if(runCtr > 0 && loaded_var > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
         if(useUserQuality === true && obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
             if(userQuality[1] !== obj.player.getQuality()) {
@@ -304,13 +304,13 @@ function chgQuality() {
     } else {
         userQuality[0] = fldids[0];
     }
-    console.log("chgQuality:", chgQualitycntr);
-    chgQualitycntr++;
+    console.log("chgQuality:", chgQualityCtr);
+    chgQualityCtr++;
 }
 
 //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 //https://stackoverflow.com/questions/25934989
-//var chgChatSelcntr = 0;
+//var chgChatSelCtr = 0;
 function chgChatSel() {
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var val = document.getElementById("chatsel")
@@ -329,8 +329,8 @@ function chgChatSel() {
         }
         chats = [...list];
 
-        console.log("chgChatSel:", chgChatSelcntr);
-        chgChatSelcntr++;
+        console.log("chgChatSel:", chgChatSelCtr);
+        chgChatSelCtr++;
     }
 }
 
@@ -347,17 +347,17 @@ function evtchk(event) {
     }
 }
 
-var rncntr = 0,
+var runCtr = 0,
     useUserQuality = false,
     useSetStylesCaseOne = false,
-    setStylescntr = 0,
-    setFullscreencntr = 0,
-    chgQualitycntr = 0,
+    setStylesCtr = 0,
+    setFullscreenCtr = 0,
+    chgQualityCtr = 0,
     userQuality = [],
     loaded_var = 0,
-    chgChatSelcntr = 0;
+    chgChatSelCtr = 0;
 function main_js() {
-    if(rncntr < 1) {
+    if(runCtr < 1) {
         //https://forum.webflow.com/t/23730
         document.getElementById("menubtn").onclick = function() {
             openmenu();
@@ -390,8 +390,8 @@ function main_js() {
     chgChatSel();
     setFullscreen();
     chgQuality();
-    console.log("runcounter:", rncntr);
-    rncntr++;
+    console.log("runcounter:", runCtr);
+    runCtr++;
 }
 main_js();
 
