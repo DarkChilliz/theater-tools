@@ -17,7 +17,7 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-var setStylescntr = 0;
+//var setStylescntr = 0;
 function setStyles() {
     var clientW = document.getElementById("playdiv").clientWidth
       , clientH = document.getElementById("playdiv").clientHeight
@@ -58,8 +58,10 @@ function setStyles() {
         case 0:
             break;
         case 1:
-            v_0_style_calc();
-            writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            if(useSetStylesCaseOne === true) {
+                v_0_style_calc();
+                writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
+            }
             break;
         case 2:
             v_0_style_calc();
@@ -200,7 +202,7 @@ function setStyles() {
 //     })();
 // });
 
-var setFullscreencntr = 0;
+//var setFullscreencntr = 0;
 function setFullscreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
@@ -218,7 +220,7 @@ function setFullscreen() {
     setFullscreencntr++;
 }
 
-var chgQualitycntr = 0, userQuality = [], loaded_var = 0;
+//var chgQualitycntr = 0, userQuality = [], loaded_var = 0;
 function chgQuality() {
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
@@ -308,7 +310,7 @@ function chgQuality() {
 
 //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 //https://stackoverflow.com/questions/25934989
-var chgChatSelcntr = 0;
+//var chgChatSelcntr = 0;
 function chgChatSel() {
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var val = document.getElementById("chatsel")
@@ -345,7 +347,15 @@ function evtchk(event) {
     }
 }
 
-var rncntr = 0, useUserQuality = false;
+var rncntr = 0,
+    useUserQuality = false,
+    useSetStylesCaseOne = false,
+    setStylescntr = 0,
+    setFullscreencntr = 0,
+    chgQualitycntr = 0,
+    userQuality = [],
+    loaded_var = 0,
+    chgChatSelcntr = 0;
 function main_js() {
     if(rncntr < 1) {
         //https://forum.webflow.com/t/23730
