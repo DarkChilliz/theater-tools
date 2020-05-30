@@ -313,15 +313,19 @@ function chgQuality() {
 //var chgChatSelCtr = 0;
 function chgChatSel() {
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var val = document.getElementById("chatsel")
-        , obj = document.getElementById("chatmen")
-        , list = [], indx = [...chats];
+        var val = document.getElementById("chatsel"),
+            obj = document.getElementById("chatmen"),
+            list = [],
+            indx = [...chats];
 
         for(var i = 0; i < chans.length; i++) {
-            list[i] = indx.splice(indx.indexOf(chans[i]), 1).toString();
+            var indxOf = indx.indexOf(chans[i]);
+            if(indxOf > -1) {
+                list.push( indx.splice(indxOf, 1).toString() );
+            }
         }
         for(; indx.length > 0; ) {
-            list[list.length] = indx.shift();
+            list.push( indx.shift() );
         }
         for(var i = 0; i < list.length; i++) {
             val.options[i].innerHTML = list[i];
