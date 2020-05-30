@@ -318,7 +318,10 @@ function chgChatSel() {
         , list = [], indx = [...chats];
 
         for(var i = 0; i < chans.length; i++) {
-            list[i] = indx.splice(indx.indexOf(chans[i]), 1).toString();
+            var indxTemp = indx.splice(indx.indexOf(chans[i]), 1).toString();
+            if( indxTemp ) {
+                list[i] = indxTemp;
+            }
         }
         for(; indx.length > 0; ) {
             list[list.length] = indx.shift();
