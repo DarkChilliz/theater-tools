@@ -1,3 +1,7 @@
+//
+// pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
+//
+
 //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
 function missingValue(aspect_ratio, width, height) {
 	if (width && height) {
@@ -174,13 +178,20 @@ function setStyles() {
     setStylesCtr++;
 }
 
+//https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript
+(function removeElement() {
+    var element = document.getElementById("chattog");
+    element.style.display = "none";
+    //element.parentNode.removeChild(element);
+})();
+
 //https://stackoverflow.com/questions/2735881
 (function setStylesImg() {
     var img = document.createElement("img");
+    img.id = "setStylesImg";
     img.src = "/x20/back.png";
     img.alt = "";
-    //img.title = "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv";
-    img.id = "setStylesImg";
+    //img.title = "";
     img.onclick = main_js;
     var src = document.getElementById("chatdiv");
     src.appendChild(img);
@@ -208,7 +219,7 @@ function setFullscreen() {
         if(isfullscr()) {
             setStyles();
         } else {
-            fullscrn();
+            gofullscr();
             setTimeout(function() {
                 setStyles();
             }, 100);
@@ -313,8 +324,9 @@ function chgQuality() {
 //var chgChatSelCtr = 0;
 function chgChatSel() {
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var val = document.getElementById("chatsel"),
-            obj = document.getElementById("chatmen"),
+        var chatselObj = document.getElementById("chatsel"),
+            chatmenObj = document.getElementById("chatmen"),
+            indexOfSelectedChat = "",
             list = [],
             indx = [...chats];
 
@@ -327,11 +339,21 @@ function chgChatSel() {
         for(; indx.length > 0; ) {
             list.push( indx.shift() );
         }
+
+        //get name of shown chat
+        var indexOfSelectedChat = chats[chatselObj.selectedIndex];
+
         for(var i = 0; i < list.length; i++) {
-            val.options[i].innerHTML = list[i];
-            obj.options[i].innerHTML = list[i];
+            chatselObj.options[i].innerHTML = list[i];
+            chatmenObj.options[i].innerHTML = list[i];
         }
+
         chats = [...list];
+
+        //restore 'selectedIndex' to shown chat
+        indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
+        chatselObj.selectedIndex = indexOfSelectedChat;
+        chatmenObj.selectedIndex = indexOfSelectedChat
 
         console.log("chgChatSel:", chgChatSelCtr);
         chgChatSelCtr++;
@@ -397,7 +419,17 @@ function main_js() {
     console.log("runcounter:", runCtr);
     runCtr++;
 }
-main_js();
+
+//main_js first run
+(function() {
+    main_js();
+    //temp increment loaded_var as backup
+    setTimeout(function() {
+        if(loaded_var < 1) {
+            loadedVar();
+        }
+    }, 9000);
+})();
 
 // ## temp #############################################################################
 
