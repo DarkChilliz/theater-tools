@@ -2,8 +2,8 @@
 // pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
 //
 
-//https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
 function missingValue(aspect_ratio, width, height) {
+    //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
 	if (width && height) {
         aspect_ratio = width / height;
         return aspect_ratio;
@@ -21,12 +21,16 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-//var setStylesCtr = 0;
 function setStyles() {
-    var clientW = document.getElementById("playdiv").clientWidth
-      , clientH = document.getElementById("playdiv").clientHeight
-      , w = [], h = [], t = [], l = [];
-    const r = 1.778;
+    var clientW = document.getElementById("playdiv").clientWidth,
+        clientH = document.getElementById("playdiv").clientHeight,
+        w = [],
+        h = [],
+        t = [],
+        l = [];
+    const r = 1.778,
+          px = "px",
+          pct = "%";
     function v_0_style_calc() {
         w[0] = Math.round( clientW );
         h[0] = Math.round( missingValue(r, w[0], 0) );
@@ -172,48 +176,99 @@ function setStyles() {
             writeStyle(8, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         default:
-            console.log("setStyles: player number out of range ( > 9 )")
+            console.log("setStyles(): player number out of range (" + fldids.length + " / 9)");
     }
     console.log("setStyles:", setStylesCtr);
     setStylesCtr++;
 }
 
-//https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript
-(function removeElement() {
-    var element = document.getElementById("chattog");
-    element.style.display = "none";
-    //element.parentNode.removeChild(element);
-})();
+function menuClick() {
+    //https://forum.webflow.com/t/23730
+    document.getElementById("menubtn").onclick = function() {
+        openmenu();
+        chgChatSel();
+    }
+}
 
-//https://stackoverflow.com/questions/2735881
-(function setStylesImg() {
+function setStylesImg() {
+    //https://stackoverflow.com/questions/2735881
     var img = document.createElement("img");
     img.id = "setStylesImg";
     img.src = "/x20/back.png";
     img.alt = "";
+    img.style = "top: 50px; position: absolute; z-index: 1;"
     //img.title = "";
     img.onclick = main_js;
-    var src = document.getElementById("chatdiv");
-    src.appendChild(img);
-})();
+    var src = document.getElementById("chatdiv"); //chatwin
+    // src.appendChild(img);
+    src.insertBefore(img, src.firstChild);
+}
 
-//https://stackoverflow.com/questions/33144234
-// document.addEventListener("yourCustomEvent", function (e)
-// {
-//     var url=e.detail;
-//     console.log("received "+url);
-//     (function createMenuImg() {
-//         var img = document.createElement("img");
-//         img.src = url;
-//         img.alt = "";
-//         img.id = "menuImg";
-//         img.onclick = main_js;
-//         var src = document.getElementById("chatdiv");
-//         src.appendChild(img);
-//     })();
-// });
+function circleMenuImg() {
+    //https://stackoverflow.com/questions/33144234
+    document.addEventListener("yourCustomEvent", function (e) {
+        var url=e.detail;
+        console.log("received "+url);//templog
+        (function createMenuImg() {
+            var img = document.createElement("img");
+            img.id = "circleMenuImg";
+            img.src = url;
+            img.alt = "";
+            img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 2;"
+            img.onclick = main_js;
+            var src = document.getElementById("chatdiv");
+            // src.appendChild(img);
+            src.insertBefore(img, src.firstChild);
+        })();
+    });
+}
 
-//var setFullscreenCtr = 0;
+function setEventTrigger() {
+    //https://stackoverflow.com/questions/28610365
+    if(fldids.length > 0) {
+        var indx = ("v-" + fldids[fldids.length - 1]),
+            obj = document.getElementById(indx);
+        function playingEventListener() {
+            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
+            incrementLoadedVar();
+            obj.player.removeEventListener("playing", playingEventListener);
+            obj.player.removeEventListener("offline", offlineEventListener);
+            removeOfflineChannels();
+            chgQuality();
+        }
+        function offlineEventListener() {
+            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
+            incrementLoadedVar();
+            obj.player.removeEventListener("offline", offlineEventListener);
+            obj.player.removeEventListener("playing", playingEventListener);
+            removeOfflineChannels();
+            chgQuality();
+        }
+        obj.player.addEventListener("playing", playingEventListener);
+        obj.player.addEventListener("offline", offlineEventListener);
+        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
+    } else {
+        console.log("setEventTrigger(): no streams found");//templog
+        incrementLoadedVar();
+    }
+}
+
+function removeOfflineChannels() {
+    var indx = {};
+    for(var i = (fldids.length - 1); i >= 0; i--) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(obj.player.isPaused()) {
+            indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
+            remstream(fldids[i], 1);
+        }
+    }
+    console.log("removeOfflineChannels():", removeOfflineChannelsCtr, indx);
+    removeOfflineChannelsCtr++;
+    chgChatSel();
+    setStyles();
+    chgQuality();
+}
+
 function setFullscreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
@@ -227,11 +282,10 @@ function setFullscreen() {
     } else {
         setStyles();
     }
-    console.log("setFullscreen:", setFullscreenCtr);
+    console.log("setFullscreen():", setFullscreenCtr);
     setFullscreenCtr++;
 }
 
-//var chgQualityCtr = 0, userQuality = [], loaded_var = 0;
 function chgQuality() {
     function get_qualities() {
         for(var i = 0; i < chans.length; i++) {
@@ -273,7 +327,7 @@ function chgQuality() {
                         userSetQuality = chkQual(obj.quality, hardCodeQuality);
                     }
                     obj.player.setQuality(userSetQuality);
-                    console.log("v-" + fldids[0] + ":", currentQuality,"->" ,userSetQuality,"|", hardCodeQuality);
+                    console.log("chgQual(): v-" + fldids[0] + ":", currentQuality,"->" ,userSetQuality,"|", hardCodeQuality);
                 }
             }
         }
@@ -290,7 +344,7 @@ function chgQuality() {
                     if(chans[i].search("mixer=") == -1 && chans[i].search("v=") == -1) {
                         checkQuality = chkQual(obj.quality, hardCodeQuality);
                         obj.player.setQuality( checkQuality );
-                        console.log("v-" + fldids[i] + ":", currentQuality,"->", checkQuality,"|", hardCodeQuality);
+                        console.log("chgQual(): v-" + fldids[i] + ":", currentQuality,"->", checkQuality,"|", hardCodeQuality);
                     } else {
                         console.log("chgQuality().div_b(): not twitch", i);
                     }
@@ -299,12 +353,12 @@ function chgQuality() {
         }
     }
 
-    if(runCtr > 0 && loaded_var > 0) {
+    if(runCtr > 0 && loadedVar > 0) {
         var obj = document.getElementById("v-" + fldids[0]);
         if(useUserQuality === true && obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
             if(userQuality[1] !== obj.player.getQuality()) {
                 userQuality[1] = obj.player.getQuality();
-                console.log("v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
+                console.log("chgQuality(): v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
             }
         } else if(userQuality[0] !== fldids[0]) {
             userQuality[0] = fldids[0];
@@ -319,10 +373,9 @@ function chgQuality() {
     chgQualityCtr++;
 }
 
-//https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
-//https://stackoverflow.com/questions/25934989
-//var chgChatSelCtr = 0;
 function chgChatSel() {
+    //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+    //https://stackoverflow.com/questions/25934989
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var chatselObj = document.getElementById("chatsel"),
             chatmenObj = document.getElementById("chatmen"),
@@ -360,8 +413,8 @@ function chgChatSel() {
     }
 }
 
-function loadedVar() {
-    console.log("loaded_var:", loaded_var, "->", (loaded_var++ + 1));
+function incrementLoadedVar() {
+    console.log("loadedVar:", loadedVar, "->", (loadedVar++ + 1));
 }
 
 function evtchk(event) {
@@ -373,46 +426,8 @@ function evtchk(event) {
     }
 }
 
-var runCtr = 0,
-    useUserQuality = false,
-    useSetStylesCaseOne = false,
-    setStylesCtr = 0,
-    setFullscreenCtr = 0,
-    chgQualityCtr = 0,
-    userQuality = [],
-    loaded_var = 0,
-    chgChatSelCtr = 0;
+// main_js ////////////////////////////////
 function main_js() {
-    if(runCtr < 1) {
-        //https://forum.webflow.com/t/23730
-        document.getElementById("menubtn").onclick = function() {
-            openmenu();
-            chgChatSel();
-        }
-        //https://stackoverflow.com/questions/28610365
-        setTimeout(function() {
-            if(fldids.length > 0) {
-                var obj = document.getElementById("v-" + fldids[0]);
-                function setQualityOnPlaying() {
-                    loadedVar();
-                    obj.player.removeEventListener("playing", setQualityOnPlaying);
-                    obj.player.removeEventListener("ended", setQualityOnEnded);
-                    setTimeout(chgQuality, 1000);
-                }
-                function setQualityOnEnded() {
-                    loadedVar();
-                    obj.player.removeEventListener("ended", setQualityOnEnded);
-                    obj.player.removeEventListener("playing", setQualityOnPlaying);
-                    setTimeout(chgQuality, 3000);
-                }
-                obj.player.addEventListener("playing", setQualityOnPlaying);
-                obj.player.addEventListener("ended", setQualityOnEnded);
-                // get_if_crashed();
-            } else {
-                loadedVar();
-            }
-        }, 500);
-    }
     chgChatSel();
     setFullscreen();
     chgQuality();
@@ -420,21 +435,57 @@ function main_js() {
     runCtr++;
 }
 
-//main_js first run
+// initialize /////////////////////////////
+var runCtr = 0,
+    useUserQuality = false,
+    useSetStylesCaseOne = false,
+    setStylesCtr = 0,
+    setFullscreenCtr = 0,
+    chgQualityCtr = 0,
+    userQuality = [],
+    loadedVar = 0,
+    chgChatSelCtr = 0,
+    removeOfflineChannelsCtr = 0;
 (function() {
-    main_js();
-    //temp increment loaded_var as backup
-    setTimeout(function() {
-        if(loaded_var < 1) {
-            loadedVar();
-        }
-    }, 9000);
+        // removeElement();
+    menuClick();
+    circleMenuImg();
+    setStylesImg();
+    setTimeout(setEventTrigger, 500);
+        // chgChatSel();
+        // setStyles();
+        // chgQuality();
 })();
+// initialize end /////////////////////////
 
-// ## temp #############################################################################
+// temp ################################################################################
 
-//https://stackoverflow.com/questions/19586137
+function x() {
+    var obj = document.getElementById("v-11");
+    console.log(
+        obj.player.getPlayerState(),
+        obj.player.getPlayerState().channelName, // channel name
+        obj.player.getPlayerState().playback, // "Idle", "Ready", "Buffering", "Playing"
+        obj.player.getPlaybackStats(),
+        obj.player.getEnded(),
+        obj.player.isPaused(),
+        getPlayers(),
+        obj.player.play(),
+        obj.player.pause(),
+    );//templog
+}
+
+function onEventTrigger(eventType) {
+    //
+}
+
+function removeElement() {
+    //https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript
+    document.getElementById("chattog").style.display = "none";
+}
+
 function get_if_crashed() { //unfinished
+    //https://stackoverflow.com/questions/19586137
     var intervalID = setInterval(function() {
         //
         //
@@ -446,7 +497,7 @@ function get_if_crashed() { //unfinished
             var obj = document.getElementById("v-" + fldids[i]);
             obj.player.addEventListener("pause", function() {
                 obj.player.play();
-                console.log(fldids[i]);
+                console.log(fldids[i]);//templog
             });
         })();
     }
@@ -455,13 +506,13 @@ function get_if_crashed() { //unfinished
     }
 }
 
-//https://stackoverflow.com/questions/21441777
 function getPlayers() { //obsolete
+    //https://stackoverflow.com/questions/21441777
     return document.querySelectorAll("[id*=\"v-\"]");
 }
 
-//https://stackoverflow.com/questions/15807021
 function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
+    //https://stackoverflow.com/questions/15807021
     return ( parentWindow - pixels ) / parentWindow; // 0.92%
 }
 
