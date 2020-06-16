@@ -28,9 +28,6 @@ function setStyles() {
         h = [],
         t = [],
         l = [];
-    const r = 1.778,
-          px = "px",
-          pct = "%";
     function v_0_style_calc() {
         w[0] = Math.round( clientW );
         h[0] = Math.round( missingValue(r, w[0], 0) );
@@ -435,10 +432,13 @@ function main_js() {
     runCtr++;
 }
 
-// initialize /////////////////////////////
-var runCtr = 0,
+// main ///////////////////////////////////
+const r = 1.778,
+    pxl = "px",
+    percnt = "%",
     useUserQuality = false,
-    useSetStylesCaseOne = false,
+    useSetStylesCaseOne = false;
+var runCtr = 0,
     setStylesCtr = 0,
     setFullscreenCtr = 0,
     chgQualityCtr = 0,
@@ -447,16 +447,16 @@ var runCtr = 0,
     chgChatSelCtr = 0,
     removeOfflineChannelsCtr = 0;
 (function() {
-        // removeElement();
+    // removeElement();
     menuClick();
     functionsMenuImg();
     setStylesImg();
     setTimeout(setEventTrigger, 500);
-        // chgChatSel();
-        // setStyles();
-        // chgQuality();
+    // chgChatSel();
+    // setStyles();
+    // chgQuality();
 })();
-// initialize end /////////////////////////
+// main end ///////////////////////////////
 
 // temp ################################################################################
 
