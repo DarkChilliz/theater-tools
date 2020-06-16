@@ -195,7 +195,13 @@ function setStylesImg() {
     img.alt = "";
     img.style = "top: 50px; position: absolute; z-index: 1;"
     //img.title = "";
-    img.onclick = main_js;
+    img.onclick = function() {
+        chgChatSel();
+        setFullscreen();
+        chgQuality();
+        console.log("runcounter:", runCtr);
+        runCtr++;
+    }
     var src = document.getElementById("chatdiv"); //chatwin
     // src.appendChild(img);
     src.insertBefore(img, src.firstChild);
@@ -205,14 +211,16 @@ function functionsMenuImg() {
     //https://stackoverflow.com/questions/33144234
     document.addEventListener("yourCustomEvent", function (e) {
         var url=e.detail;
-        console.log("received "+url);//templog
+        console.log("functionsMenuImg():", url);//templog
         (function createFunctionsMenuImg() {
             var img = document.createElement("img");
             img.id = "functionsMenuImg";
             img.src = url;
             img.alt = "";
             img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 2;"
-            img.onclick = main_js;
+            img.onclick = function() {
+                console.log("functionsMenuImg");
+            }
             var src = document.getElementById("chatdiv");
             // src.appendChild(img);
             src.insertBefore(img, src.firstChild);
@@ -421,14 +429,6 @@ function evtchk(event) {
         setFullscreen();
         chgQuality();
     }
-}
-
-function main_js() {
-    chgChatSel();
-    setFullscreen();
-    chgQuality();
-    console.log("runcounter:", runCtr);
-    runCtr++;
 }
 
 // main ///////////////////////////////////
