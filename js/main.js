@@ -423,7 +423,6 @@ function evtchk(event) {
     }
 }
 
-// main_js ////////////////////////////////
 function main_js() {
     chgChatSel();
     setFullscreen();
