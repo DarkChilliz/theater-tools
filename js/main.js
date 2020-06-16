@@ -204,14 +204,14 @@ function setStylesImg() {
     src.insertBefore(img, src.firstChild);
 }
 
-function circleMenuImg() {
+function functionsMenuImg() {
     //https://stackoverflow.com/questions/33144234
     document.addEventListener("yourCustomEvent", function (e) {
         var url=e.detail;
         console.log("received "+url);//templog
-        (function createMenuImg() {
+        (function createFunctionsMenuImg() {
             var img = document.createElement("img");
-            img.id = "circleMenuImg";
+            img.id = "functionsMenuImg";
             img.src = url;
             img.alt = "";
             img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 2;"
@@ -449,7 +449,7 @@ var runCtr = 0,
 (function() {
         // removeElement();
     menuClick();
-    circleMenuImg();
+    functionsMenuImg();
     setStylesImg();
     setTimeout(setEventTrigger, 500);
         // chgChatSel();

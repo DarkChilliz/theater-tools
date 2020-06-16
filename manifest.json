@@ -5,10 +5,10 @@
   "description": "1440x900 style for https://twitchtheater.tv/",
   "version": "0.2.5",
   "icons": {
-    "192": "favicon-192.png"
+    "192": "images/favicon-192.png"
   },
   "content_scripts": [{
-    "js": ["content.js"],
+    "js": ["js/content.js"],
     "run_at": "document_end",
     "matches": [
       "*://*.twitchtheater.tv/*",
@@ -16,7 +16,8 @@
     ]
   }],
   "web_accessible_resources": [
-    "main.js"
+    "js/main.js",
+    "images/functionsmenu.png"
   ],
   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
