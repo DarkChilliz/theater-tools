@@ -21,7 +21,7 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
-function setStyles() {
+function chgPlayerStyle() {
     var clientW = document.getElementById("playdiv").clientWidth,
         clientH = document.getElementById("playdiv").clientHeight,
         w = [],
@@ -63,7 +63,7 @@ function setStyles() {
         case 0:
             break;
         case 1:
-            if(useSetStylesCaseOne === true) {
+            if(useChgPlayerStyleCaseOne === true) {
                 v_0_style_calc();
                 writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
             }
@@ -173,34 +173,32 @@ function setStyles() {
             writeStyle(8, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         default:
-            console.log("setStyles(): player number out of range (" + fldids.length + " / 9)");
+            console.log("chgPlayerStyle(): player number out of range (" + fldids.length + " / 9)");
     }
-    console.log("setStyles:", setStylesCtr);
-    setStylesCtr++;
+    console.log("chgPlayerStyle:", chgPlayerStyleCtr++);
 }
 
-function menuClick() {
+function updMenuElement() {
     //https://forum.webflow.com/t/23730
     document.getElementById("menubtn").onclick = function() {
         openmenu();
-        chgChatSel();
+        updChatIndx();
     }
+    document.getElementById("menudiv").style.zIndex = "1";
 }
 
-function setStylesImg() {
+function playerStyleImg() {
     //https://stackoverflow.com/questions/2735881
     var img = document.createElement("img");
-    img.id = "setStylesImg";
+    img.id = "playerStyleImg";
     img.src = "/x20/back.png";
     img.alt = "";
-    img.style = "top: 50px; position: absolute; z-index: 1;"
+    img.style = "top: 50px; position: absolute; z-index: 1; display: none;"
     //img.title = "";
     img.onclick = function() {
-        chgChatSel();
-        setFullscreen();
+        updChatIndx();
+        goFullScreen();
         chgQuality();
-        console.log("runcounter:", runCtr);
-        runCtr++;
     }
     var src = document.getElementById("chatdiv"); //chatwin
     // src.appendChild(img);
@@ -217,7 +215,7 @@ function functionsMenuImg() {
             img.id = "functionsMenuImg";
             img.src = url;
             img.alt = "";
-            img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 2;"
+            img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 1; display: none;"
             img.onclick = function() {
                 console.log("functionsMenuImg");
             }
@@ -234,28 +232,29 @@ function setEventTrigger() {
         var indx = ("v-" + fldids[fldids.length - 1]),
             obj = document.getElementById(indx);
         function playingEventListener() {
-            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
-            incrementLoadedVar();
             obj.player.removeEventListener("playing", playingEventListener);
-            obj.player.removeEventListener("offline", offlineEventListener);
-            removeOfflineChannels();
-            chgQuality();
+            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
+            onEventTrigger();
         }
         function offlineEventListener() {
-            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
-            incrementLoadedVar();
             obj.player.removeEventListener("offline", offlineEventListener);
-            obj.player.removeEventListener("playing", playingEventListener);
-            removeOfflineChannels();
-            chgQuality();
+            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
+            onEventTrigger();
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
         console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
     } else {
         console.log("setEventTrigger(): no streams found");//templog
-        incrementLoadedVar();
     }
+}
+
+function onEventTrigger() {
+    userQuality[0] = fldids[0];
+    removeOfflineChannels();
+    chgQuality();
+    document.getElementById("playerStyleImg").style.display = "";
+    document.getElementById("functionsMenuImg").style.display = "";
 }
 
 function removeOfflineChannels() {
@@ -267,28 +266,26 @@ function removeOfflineChannels() {
             remstream(fldids[i], 1);
         }
     }
-    console.log("removeOfflineChannels():", removeOfflineChannelsCtr, indx);
-    removeOfflineChannelsCtr++;
-    chgChatSel();
-    setStyles();
+    console.log("removeOfflineChannels():", removeOfflineChannelsCtr++, indx);
+    updChatIndx();
+    chgPlayerStyle();
     chgQuality();
 }
 
-function setFullscreen() {
+function goFullScreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
-            setStyles();
+            chgPlayerStyle();
         } else {
             gofullscr();
             setTimeout(function() {
-                setStyles();
-            }, 100);
+                chgPlayerStyle();
+            }, 200);
         }
     } else {
-        setStyles();
+        chgPlayerStyle();
     }
-    console.log("setFullscreen():", setFullscreenCtr);
-    setFullscreenCtr++;
+    console.log("goFullScreen():", goFullScreenCtr++);
 }
 
 function chgQuality() {
@@ -357,28 +354,22 @@ function chgQuality() {
             }
         }
     }
-
-    if(runCtr > 0 && loadedVar > 0) {
-        var obj = document.getElementById("v-" + fldids[0]);
-        if(useUserQuality === true && obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
-            if(userQuality[1] !== obj.player.getQuality()) {
-                userQuality[1] = obj.player.getQuality();
-                console.log("chgQuality(): v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
-            }
-        } else if(userQuality[0] !== fldids[0]) {
-            userQuality[0] = fldids[0];
+    var obj = document.getElementById("v-" + fldids[0]);
+    if(useUserQuality === true && obj.player.getEnded() !== true && userQuality[0] === fldids[0] && typeof obj.quality !== "undefined") {
+        if(userQuality[1] !== obj.player.getQuality()) {
+            userQuality[1] = obj.player.getQuality();
+            console.log("chgQuality(): v-" + fldids[0] + ":", "userQuality[1] =", userQuality[1]);
         }
-        get_qualities();
-        div_a();
-        div_b();
-    } else {
+    } else if(userQuality[0] !== fldids[0]) {
         userQuality[0] = fldids[0];
     }
-    console.log("chgQuality:", chgQualityCtr);
-    chgQualityCtr++;
+    get_qualities();
+    div_a();
+    div_b();
+    console.log("chgQuality:", chgQualityCtr++);
 }
 
-function chgChatSel() {
+function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
@@ -413,20 +404,15 @@ function chgChatSel() {
         chatselObj.selectedIndex = indexOfSelectedChat;
         chatmenObj.selectedIndex = indexOfSelectedChat
 
-        console.log("chgChatSel:", chgChatSelCtr);
-        chgChatSelCtr++;
+        console.log("updChatIndx:", chgChatSelCtr++);
     }
-}
-
-function incrementLoadedVar() {
-    console.log("loadedVar:", loadedVar, "->", (loadedVar++ + 1));
 }
 
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
-        chgChatSel();
-        setFullscreen();
+        updChatIndx();
+        goFullScreen();
         chgQuality();
     }
 }
@@ -434,25 +420,23 @@ function evtchk(event) {
 // main ///////////////////////////////////
 const r = 1.778,
     pxl = "px",
-    percnt = "%",
+    percnt = "%";
+var userQuality = [],
     useUserQuality = false,
-    useSetStylesCaseOne = false;
-var runCtr = 0,
-    setStylesCtr = 0,
-    setFullscreenCtr = 0,
+    useChgPlayerStyleCaseOne = false,
+    chgPlayerStyleCtr = 0,
+    goFullScreenCtr = 0,
     chgQualityCtr = 0,
-    userQuality = [],
-    loadedVar = 0,
     chgChatSelCtr = 0,
     removeOfflineChannelsCtr = 0;
 (function() {
     // removeElement();
-    menuClick();
+    updMenuElement();
     functionsMenuImg();
-    setStylesImg();
+    playerStyleImg();
     setTimeout(setEventTrigger, 500);
-    // chgChatSel();
-    // setStyles();
+    // updChatIndx();
+    // chgPlayerStyle();
     // chgQuality();
 })();
 // main end ///////////////////////////////
@@ -472,10 +456,6 @@ function x() {
         obj.player.play(),
         obj.player.pause(),
     );//templog
-}
-
-function onEventTrigger(eventType) {
-    //
 }
 
 function removeElement() {
