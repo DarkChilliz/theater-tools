@@ -175,7 +175,7 @@ function chgPlayerStyle() {
         default:
             console.log("chgPlayerStyle(): player number out of range (" + fldids.length + " / 9)");
     }
-    console.log("chgPlayerStyle:", chgPlayerStyleCtr++);
+    console.log("chgPlayerStyle:", chgPlayerStyleCtr++);//templog
 }
 
 function goFullScreen() {
@@ -191,7 +191,7 @@ function goFullScreen() {
     } else {
         chgPlayerStyle();
     }
-    console.log("goFullScreen():", goFullScreenCtr++);
+    console.log("goFullScreen():", goFullScreenCtr++);//templog
 }
 
 function chgQuality() {
@@ -272,7 +272,7 @@ function chgQuality() {
     get_qualities();
     div_a();
     div_b();
-    console.log("chgQuality:", chgQualityCtr++);
+    console.log("chgQuality:", chgQualityCtr++);//templog
 }
 
 function updChatIndx() {
@@ -310,7 +310,7 @@ function updChatIndx() {
         chatselObj.selectedIndex = indexOfSelectedChat;
         chatmenObj.selectedIndex = indexOfSelectedChat
 
-        console.log("updChatIndx:", chgChatSelCtr++);
+        console.log("updChatIndx:", chgChatSelCtr++);//templog
     }
 }
 
