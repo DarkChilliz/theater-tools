@@ -360,8 +360,8 @@ function createPlayerStyleImg(url) {
     // img.style = "display: none;"
     img.onclick = function() {
         updChatIndx();
-        goFullScreen();
         chgQuality();
+        goFullScreen();
     };
     var src = document.getElementById("chatdiv"); //chatwin, chatdiv
     // src.appendChild(img);
@@ -415,10 +415,6 @@ function setEventTrigger() {
 
 function onEventTrigger() {
     userQuality[0] = fldids[0];
-    ///////////////////
-    updChatIndx();
-    chgPlayerStyle();
-    ///////////////////
     chgQuality();
     document.getElementById("playerStyleImg").style.display = "initial"; //initial, inherit, block
     document.getElementById("functionsMenuImg").style.display = "initial";
