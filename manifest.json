@@ -8,16 +8,15 @@
     "192": "images/favicon-192.png"
   },
   "content_scripts": [{
-    "js": ["js/content.js"],
-    "run_at": "document_end",
-    "matches": [
-      "*://*.twitchtheater.tv/*",
-      "*://*.darkchilliz.github.io/*"
-    ]
+    "matches": [ "*://*.twitchtheater.tv/*", "*://*.darkchilliz.github.io/*" ],
+    "run_at": "document_idle",
+    "js": ["js/content.js"]
   }],
   "web_accessible_resources": [
+    "css/main.css",
     "js/main.js",
-    "images/functionsmenu.png"
+    "images/functionsmenu.png",
+    "images/playerstyle.png"
   ],
   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }

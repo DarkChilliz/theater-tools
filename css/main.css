@@ -1,0 +1,24 @@
+#functionsMenuImg, #playerStyleImg {
+    position: absolute;
+    display: none;
+    opacity: 0.5;
+    top: 50px;
+}
+
+#functionsMenuImg, #playerStyleImg, #menudiv { /* #chattog, #chatnav */
+    z-index: 1;
+}
+
+#functionsMenuImg {
+    left: 50px;
+}
+
+
+/* #chattog {
+    position: absolute;
+    top: 50px;
+} */
+
+/* #chatnav {
+    top: 67px;
+} */

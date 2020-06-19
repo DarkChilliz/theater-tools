@@ -1,5 +1,4 @@
-//
-// pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
+// main.js: pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
 //
 
 function missingValue(aspect_ratio, width, height) {
@@ -22,6 +21,7 @@ function missingValue(aspect_ratio, width, height) {
 }
 
 function chgPlayerStyle() {
+    const r = 1.778;
     var clientW = document.getElementById("playdiv").clientWidth,
         clientH = document.getElementById("playdiv").clientHeight,
         w = [],
@@ -184,46 +184,40 @@ function updMenuElement() {
         openmenu();
         updChatIndx();
     }
-    document.getElementById("menudiv").style.zIndex = "1";
 }
 
-function playerStyleImg() {
+function createPlayerStyleImg(url) {
     //https://stackoverflow.com/questions/2735881
     var img = document.createElement("img");
     img.id = "playerStyleImg";
-    img.src = "/x20/back.png";
+    img.src = url;
     img.alt = "";
-    img.style = "top: 50px; position: absolute; z-index: 1; display: none;"
-    //img.title = "";
+    // img.style = "display: none;"
     img.onclick = function() {
         updChatIndx();
         goFullScreen();
         chgQuality();
-    }
-    var src = document.getElementById("chatdiv"); //chatwin
+    };
+    var src = document.getElementById("chatdiv"); //chatwin, chatdiv
     // src.appendChild(img);
     src.insertBefore(img, src.firstChild);
 }
 
-function functionsMenuImg() {
+function createFunctionsMenuImg(url) {
     //https://stackoverflow.com/questions/33144234
-    document.addEventListener("yourCustomEvent", function (e) {
-        var url=e.detail;
-        console.log("functionsMenuImg():", url);//templog
-        (function createFunctionsMenuImg() {
-            var img = document.createElement("img");
-            img.id = "functionsMenuImg";
-            img.src = url;
-            img.alt = "";
-            img.style = "top: 50px; left: 50px; width: 50px; height: 50px; position: absolute; z-index: 1; display: none;"
-            img.onclick = function() {
-                console.log("functionsMenuImg");
-            }
-            var src = document.getElementById("chatdiv");
-            // src.appendChild(img);
-            src.insertBefore(img, src.firstChild);
-        })();
-    });
+    var img = document.createElement("img");
+    img.id = "functionsMenuImg";
+    img.src = url;
+    img.alt = "";
+    // img.style = "display: none;"
+    img.onclick = function() {
+        removeOfflineChannels();
+        updChatIndx();
+        chgQuality();
+    };
+    var src = document.getElementById("chatdiv");
+    // src.appendChild(img);
+    src.insertBefore(img, src.firstChild);
 }
 
 function setEventTrigger() {
@@ -231,15 +225,20 @@ function setEventTrigger() {
     if(fldids.length > 0) {
         var indx = ("v-" + fldids[fldids.length - 1]),
             obj = document.getElementById(indx);
+
         function playingEventListener() {
-            obj.player.removeEventListener("playing", playingEventListener);
             console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
+            rmvEvtLsnr();
             onEventTrigger();
         }
         function offlineEventListener() {
-            obj.player.removeEventListener("offline", offlineEventListener);
             console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
+            rmvEvtLsnr();
             onEventTrigger();
+        }
+        function rmvEvtLsnr() {
+            obj.player.removeEventListener("playing", playingEventListener);
+            obj.player.removeEventListener("offline", offlineEventListener);
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
@@ -251,25 +250,21 @@ function setEventTrigger() {
 
 function onEventTrigger() {
     userQuality[0] = fldids[0];
-    removeOfflineChannels();
     chgQuality();
-    document.getElementById("playerStyleImg").style.display = "";
-    document.getElementById("functionsMenuImg").style.display = "";
+    document.getElementById("playerStyleImg").style.display = "initial"; //initial, inherit, block
+    document.getElementById("functionsMenuImg").style.display = "initial";
 }
 
 function removeOfflineChannels() {
     var indx = {};
     for(var i = (fldids.length - 1); i >= 0; i--) {
         var obj = document.getElementById("v-" + fldids[i]);
-        if(obj.player.isPaused()) {
+        if(obj.player.isPaused() || obj.player.getEnded()) {
             indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
             remstream(fldids[i], 1);
         }
     }
     console.log("removeOfflineChannels():", removeOfflineChannelsCtr++, indx);
-    updChatIndx();
-    chgPlayerStyle();
-    chgQuality();
 }
 
 function goFullScreen() {
@@ -418,9 +413,6 @@ function evtchk(event) {
 }
 
 // main ///////////////////////////////////
-const r = 1.778,
-    pxl = "px",
-    percnt = "%";
 var userQuality = [],
     useUserQuality = false,
     useChgPlayerStyleCaseOne = false,
@@ -430,10 +422,8 @@ var userQuality = [],
     chgChatSelCtr = 0,
     removeOfflineChannelsCtr = 0;
 (function() {
-    // removeElement();
     updMenuElement();
-    functionsMenuImg();
-    playerStyleImg();
+    document.addEventListener("sendImgURL", onReceiveImgURL);
     setTimeout(setEventTrigger, 500);
     // updChatIndx();
     // chgPlayerStyle();
@@ -441,67 +431,8 @@ var userQuality = [],
 })();
 // main end ///////////////////////////////
 
-// temp ################################################################################
-
-function x() {
-    var obj = document.getElementById("v-11");
-    console.log(
-        obj.player.getPlayerState(),
-        obj.player.getPlayerState().channelName, // channel name
-        obj.player.getPlayerState().playback, // "Idle", "Ready", "Buffering", "Playing"
-        obj.player.getPlaybackStats(),
-        obj.player.getEnded(),
-        obj.player.isPaused(),
-        getPlayers(),
-        obj.player.play(),
-        obj.player.pause(),
-    );//templog
+function onReceiveImgURL(e) {
+    document.removeEventListener("sendImgURL", onReceiveImgURL);
+    createFunctionsMenuImg(e.detail.functionsMenuImg);
+    createPlayerStyleImg(e.detail.playerStyleImg);
 }
-
-function removeElement() {
-    //https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript
-    document.getElementById("chattog").style.display = "none";
-}
-
-function get_if_crashed() { //unfinished
-    //https://stackoverflow.com/questions/19586137
-    var intervalID = setInterval(function() {
-        //
-        //
-        //
-        clearInterval(intervalID);
-    }, 3000);
-    function createfunc(i) {
-        return (function() {
-            var obj = document.getElementById("v-" + fldids[i]);
-            obj.player.addEventListener("pause", function() {
-                obj.player.play();
-                console.log(fldids[i]);//templog
-            });
-        })();
-    }
-    for(var i = 0; i < chans.length; i++){
-        createfunc(i);
-    }
-}
-
-function getPlayers() { //obsolete
-    //https://stackoverflow.com/questions/21441777
-    return document.querySelectorAll("[id*=\"v-\"]");
-}
-
-function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
-    //https://stackoverflow.com/questions/15807021
-    return ( parentWindow - pixels ) / parentWindow; // 0.92%
-}
-
-// chans = [];
-// chats = [];
-// fldids = [];
-// hidstr = 0;
-// curcol = 1;
-// curcht = -1;
-// curdiv = 0;
-// curtab = 1;
-// sessid = -1;
-// ## end temp #########################################################################
