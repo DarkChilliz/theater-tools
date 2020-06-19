@@ -63,9 +63,11 @@ function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
 // curtab = 1;
 // sessid = -1;
 // ## end temp #########################################################################
+
 // inject css: https://stackoverflow.com/questions/11553600/how-to-inject-css-using-content-script-file-in-chrome-extension
 // display css: https://www.w3schools.com/cssref/pr_class_display.asp
 // multiple parameters through Events: https://salesforcediaries.com/2019/12/10/send-multiple-parameters-in-lwc-events-via-detial-property/
+
 /////////////////////////////////////////////////////////////////
 // content.js » Obsolete
 //
@@ -79,6 +81,5 @@ function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
 
 // document.getElementById("menudiv").style.zIndex = "1";
 
-
-        // pxl = "px",
-        // percnt = "%"
+// pxl = "px",
+// percnt = "%"

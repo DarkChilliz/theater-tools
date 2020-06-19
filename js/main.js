@@ -178,95 +178,6 @@ function chgPlayerStyle() {
     console.log("chgPlayerStyle:", chgPlayerStyleCtr++);
 }
 
-function updMenuElement() {
-    //https://forum.webflow.com/t/23730
-    document.getElementById("menubtn").onclick = function() {
-        openmenu();
-        updChatIndx();
-    }
-}
-
-function createPlayerStyleImg(url) {
-    //https://stackoverflow.com/questions/2735881
-    var img = document.createElement("img");
-    img.id = "playerStyleImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        updChatIndx();
-        goFullScreen();
-        chgQuality();
-    };
-    var src = document.getElementById("chatdiv"); //chatwin, chatdiv
-    // src.appendChild(img);
-    src.insertBefore(img, src.firstChild);
-}
-
-function createFunctionsMenuImg(url) {
-    //https://stackoverflow.com/questions/33144234
-    var img = document.createElement("img");
-    img.id = "functionsMenuImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        removeOfflineChannels();
-        updChatIndx();
-        chgQuality();
-    };
-    var src = document.getElementById("chatdiv");
-    // src.appendChild(img);
-    src.insertBefore(img, src.firstChild);
-}
-
-function setEventTrigger() {
-    //https://stackoverflow.com/questions/28610365
-    if(fldids.length > 0) {
-        var indx = ("v-" + fldids[fldids.length - 1]),
-            obj = document.getElementById(indx);
-
-        function playingEventListener() {
-            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
-            rmvEvtLsnr();
-            onEventTrigger();
-        }
-        function offlineEventListener() {
-            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
-            rmvEvtLsnr();
-            onEventTrigger();
-        }
-        function rmvEvtLsnr() {
-            obj.player.removeEventListener("playing", playingEventListener);
-            obj.player.removeEventListener("offline", offlineEventListener);
-        }
-        obj.player.addEventListener("playing", playingEventListener);
-        obj.player.addEventListener("offline", offlineEventListener);
-        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
-    } else {
-        console.log("setEventTrigger(): no streams found");//templog
-    }
-}
-
-function onEventTrigger() {
-    userQuality[0] = fldids[0];
-    chgQuality();
-    document.getElementById("playerStyleImg").style.display = "initial"; //initial, inherit, block
-    document.getElementById("functionsMenuImg").style.display = "initial";
-}
-
-function removeOfflineChannels() {
-    var indx = {};
-    for(var i = (fldids.length - 1); i >= 0; i--) {
-        var obj = document.getElementById("v-" + fldids[i]);
-        if(obj.player.isPaused() || obj.player.getEnded()) {
-            indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
-            remstream(fldids[i], 1);
-        }
-    }
-    console.log("removeOfflineChannels():", removeOfflineChannelsCtr++, indx);
-}
-
 function goFullScreen() {
     if(screen.width == 1440 && screen.height == 900) {
         if(isfullscr()) {
@@ -403,6 +314,28 @@ function updChatIndx() {
     }
 }
 
+function removeOfflineChannels() {
+    var indx = {};
+    for(var i = (fldids.length - 1); i >= 0; i--) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(obj.player.isPaused() || obj.player.getEnded()) {
+            indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
+            remstream(fldids[i], 1);
+        }
+    }
+    console.log("removeOfflineChannels():", removeOfflineChannelsCtr++, indx);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+function updMenuElement() {
+    //https://forum.webflow.com/t/23730
+    document.getElementById("menubtn").onclick = function() {
+        openmenu();
+        updChatIndx();
+    }
+}
+
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
@@ -412,7 +345,87 @@ function evtchk(event) {
     }
 }
 
-// main ///////////////////////////////////
+function onReceiveImgURL(e) {
+    document.removeEventListener("sendImgURL", onReceiveImgURL);
+    createFunctionsMenuImg(e.detail.functionsMenuImg);
+    createPlayerStyleImg(e.detail.playerStyleImg);
+}
+
+function createPlayerStyleImg(url) {
+    //https://stackoverflow.com/questions/2735881
+    var img = document.createElement("img");
+    img.id = "playerStyleImg";
+    img.src = url;
+    img.alt = "";
+    // img.style = "display: none;"
+    img.onclick = function() {
+        updChatIndx();
+        goFullScreen();
+        chgQuality();
+    };
+    var src = document.getElementById("chatdiv"); //chatwin, chatdiv
+    // src.appendChild(img);
+    src.insertBefore(img, src.firstChild);
+}
+
+function createFunctionsMenuImg(url) {
+    //https://stackoverflow.com/questions/33144234
+    var img = document.createElement("img");
+    img.id = "functionsMenuImg";
+    img.src = url;
+    img.alt = "";
+    // img.style = "display: none;"
+    img.onclick = function() {
+        removeOfflineChannels();
+        updChatIndx();
+        chgQuality();
+    };
+    var src = document.getElementById("chatdiv");
+    // src.appendChild(img);
+    src.insertBefore(img, src.firstChild);
+}
+
+function setEventTrigger() {
+    //https://stackoverflow.com/questions/28610365
+    if(fldids.length > 0) {
+        var indx = ("v-" + fldids[fldids.length - 1]),
+            obj = document.getElementById(indx);
+
+        function playingEventListener() {
+            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
+            rmvEvtLsnr();
+            onEventTrigger();
+        }
+        function offlineEventListener() {
+            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
+            rmvEvtLsnr();
+            onEventTrigger();
+        }
+        function rmvEvtLsnr() {
+            obj.player.removeEventListener("playing", playingEventListener);
+            obj.player.removeEventListener("offline", offlineEventListener);
+        }
+        obj.player.addEventListener("playing", playingEventListener);
+        obj.player.addEventListener("offline", offlineEventListener);
+        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
+    } else {
+        console.log("setEventTrigger(): no streams found");//templog
+    }
+}
+
+function onEventTrigger() {
+    userQuality[0] = fldids[0];
+    ///////////////////
+    updChatIndx();
+    chgPlayerStyle();
+    ///////////////////
+    chgQuality();
+    document.getElementById("playerStyleImg").style.display = "initial"; //initial, inherit, block
+    document.getElementById("functionsMenuImg").style.display = "initial";
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
 var userQuality = [],
     useUserQuality = false,
     useChgPlayerStyleCaseOne = false,
@@ -425,14 +438,4 @@ var userQuality = [],
     updMenuElement();
     document.addEventListener("sendImgURL", onReceiveImgURL);
     setTimeout(setEventTrigger, 500);
-    // updChatIndx();
-    // chgPlayerStyle();
-    // chgQuality();
 })();
-// main end ///////////////////////////////
-
-function onReceiveImgURL(e) {
-    document.removeEventListener("sendImgURL", onReceiveImgURL);
-    createFunctionsMenuImg(e.detail.functionsMenuImg);
-    createPlayerStyleImg(e.detail.playerStyleImg);
-}
