@@ -279,8 +279,8 @@ function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
     if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var chatselObj = document.getElementById("chatsel"),
-            chatmenObj = document.getElementById("chatmen"),
+        var chatsel = document.getElementById("chatsel"),
+            chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
             list = [],
             indx = [...chats];
@@ -295,20 +295,20 @@ function updChatIndx() {
             list.push( indx.shift() );
         }
 
-        //get name of shown chat
-        var indexOfSelectedChat = chats[chatselObj.selectedIndex];
+        //get 'selectedIndex' value
+        var indexOfSelectedChat = chats[chatsel.selectedIndex];
 
         for(var i = 0; i < list.length; i++) {
-            chatselObj.options[i].innerHTML = list[i];
-            chatmenObj.options[i].innerHTML = list[i];
+            chatsel.options[i].innerHTML = list[i];
+            chatmen.options[i].innerHTML = list[i];
         }
 
         chats = [...list];
 
-        //restore 'selectedIndex' to shown chat
+        //restore 'selectedIndex' value
         indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
-        chatselObj.selectedIndex = indexOfSelectedChat;
-        chatmenObj.selectedIndex = indexOfSelectedChat
+        chatsel.selectedIndex = indexOfSelectedChat;
+        chatmen.selectedIndex = indexOfSelectedChat
 
         console.log("updChatIndx:", chgChatSelCtr++);//templog
     }
