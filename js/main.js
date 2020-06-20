@@ -379,6 +379,7 @@ function createFunctionsMenuImg(url) {
         removeOfflineChannels();
         updChatIndx();
         chgQuality();
+        goFullScreen();
     };
     var src = document.getElementById("chatdiv");
     // src.appendChild(img);
