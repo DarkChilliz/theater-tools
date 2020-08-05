@@ -309,6 +309,10 @@ function evtchk(event) {
         updChatIndx();
         goFullScreen();
         // chgQuality();
+        for(var i = 0; i < chans.length; i++) {
+            var x = 0;
+            chgQuality(i, (i > 0 ? "160p30" : "auto"));
+        }
     }
 }
 
