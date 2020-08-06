@@ -218,7 +218,7 @@ function chkQuality(indx, sel) {
 }
 
 function setQuality(strmID, strmQuality) {
-    var hardCodeQuality = strmQuality, //"160p30" "auto" "chunked" "360p30"
+    var hardCodeQuality = strmQuality, //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
     currentQuality = "",
     checkQuality = "";
     var obj = document.getElementById("v-" + fldids[strmID]);
@@ -237,9 +237,21 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    getQualities(strmID);
-    setQuality(strmID, strmQuality);
-    console.log("chgQuality:", chgQualityCtr++);//templog
+    // getQualities(strmID);
+    // setQuality(strmID, strmQuality);
+
+    var l = 0;
+    switch(chans.length) {
+        case 6:
+            l = 1;
+    }
+    for(var i = 0; i < chans.length; i++) {
+        getQualities(i);
+        setQuality(i, (i > l ? "160p30" : "auto"));
+        var indx = ("v-" + fldids[i]),
+        obj = document.getElementById(indx);
+        console.log("chgQuality():", indx, obj.player.getQuality().padEnd(7), "["+obj.player.getPlayerState().channelName+"]");//templog
+    }
 }
 
 function updChatIndx() {
@@ -308,11 +320,7 @@ function evtchk(event) {
         openmenu(0);
         updChatIndx();
         goFullScreen();
-        // chgQuality();
-        for(var i = 0; i < chans.length; i++) {
-            var x = 0;
-            chgQuality(i, (i > 0 ? "160p30" : "auto"));
-        }
+        chgQuality();
     }
 }
 
@@ -331,17 +339,11 @@ function createPlayerStyleImg(url) {
     // img.style = "display: none;"
     img.onclick = function() {
         updChatIndx();
-        // chgQuality();
-        for(var i = 0; i < chans.length; i++) {
-            var x = 0;
-            chgQuality(i, (i > 0 ? "160p30" : "auto"));
-        }
-
+        chgQuality();
         goFullScreen();
     };
     var src = document.getElementById("chatdiv"); //chatwin, chatdiv
-    // src.appendChild(img);
-    src.insertBefore(img, src.firstChild);
+    src.insertBefore(img, src.firstChild); //src.appendChild(img);
 }
 
 function createFunctionsMenuImg(url) {
@@ -354,17 +356,11 @@ function createFunctionsMenuImg(url) {
     img.onclick = function() {
         removeOfflineChannels();
         updChatIndx();
-        // chgQuality();
-        for(var i = 0; i < chans.length; i++) {
-            var x = 0;
-            chgQuality(i, (i > 0 ? "160p30" : "auto"));
-        }
-
+        chgQuality();
         goFullScreen();
     };
     var src = document.getElementById("chatdiv");
-    // src.appendChild(img);
-    src.insertBefore(img, src.firstChild);
+    src.insertBefore(img, src.firstChild); //src.appendChild(img);
 }
 
 function setEventTrigger() {
@@ -397,12 +393,7 @@ function setEventTrigger() {
 
 function onEventTrigger() {
     userQuality[0] = fldids[0];
-    // chgQuality();
-    for(var i = 0; i < chans.length; i++) {
-        var x = 0;
-        chgQuality(i, (i > 0 ? "160p30" : "auto"));
-    }
-
+    chgQuality();
     document.getElementById("playerStyleImg").style.display = "block"; //initial, inherit, block
     document.getElementById("functionsMenuImg").style.display = "block";
 }
@@ -414,7 +405,6 @@ var userQuality = [],
     useChgPlayerStyleCaseOne = false,
     chgPlayerStyleCtr = 0,
     goFullScreenCtr = 0,
-    chgQualityCtr = 0,
     chgChatSelCtr = 0,
     removeOfflineChannelsCtr = 0;
 (function() {
