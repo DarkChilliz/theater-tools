@@ -250,7 +250,7 @@ function chgQuality(strmID, strmQuality) {
         setQuality(i, (i > l ? "160p30" : "auto"));
         var indx = ("v-" + fldids[i]),
         obj = document.getElementById(indx);
-        console.log("chgQuality():", indx, obj.player.getQuality().padEnd(7), "["+obj.player.getPlayerState().channelName+"]");//templog
+        console.log("chgQuality(): "+ indx + ": " + obj.player.getQuality().padEnd(7) +"["+obj.player.getPlayerState().channelName+"]");//templog
     }
 }
 
