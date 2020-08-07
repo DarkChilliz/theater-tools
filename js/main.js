@@ -240,17 +240,21 @@ function chgQuality(strmID, strmQuality) {
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
 
-    var l = 0;
+    var l = function() {
+        return 0
+    }
     switch(chans.length) {
         case 6:
             l = 1;
+        default:
+
     }
     for(var i = 0; i < chans.length; i++) {
         getQualities(i);
-        setQuality(i, (i > l ? "160p30" : "auto"));
+        setQuality(i, (i > l ? "auto" : "auto")); //160p30
         var indx = ("v-" + fldids[i]),
         obj = document.getElementById(indx);
-        console.log("chgQuality(): "+ indx + ": " + obj.player.getQuality().padEnd(7) +"["+obj.player.getPlayerState().channelName+"]");//templog
+        console.log("chgQuality():", indx + ": " + obj.player.getQuality().padEnd(7) +"["+obj.player.getPlayerState().channelName+"]");//templog
     }
 }
 
