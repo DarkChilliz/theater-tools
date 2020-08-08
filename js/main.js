@@ -387,7 +387,7 @@ function setEventTrigger() {
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
-        console.log("setEventTrigger(): fldids.length ==", fldids.length);//templog
+        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
     } else {
         console.log("setEventTrigger(): no streams found");//templog
     }
