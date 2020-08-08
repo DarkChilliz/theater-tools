@@ -20,6 +20,14 @@ function missingValue(aspect_ratio, width, height) {
 	}
 }
 
+function writeStyle(v, w, h, t, l) {
+    var obj = document.getElementById("v-" + fldids[v]);
+    obj.style = "width: " + w[0] + w[1] +
+              "; height: " + h[0] + h[1] +
+              "; top: " + t[0] + t[1] +
+              "; left: " + l[0] + l[1] + ";";
+}
+
 function chgPlayerStyle() {
     const r = 1.778;
     var clientW = document.getElementById("playdiv").clientWidth,
@@ -51,13 +59,6 @@ function chgPlayerStyle() {
     function v_7_8_9_style_calc() {
         h[3] = ( h[1] / 2 );
         t[2] = ( t[1] + h[3] );
-    }
-    function writeStyle(p, w, h, t, l) {
-        var obj = document.getElementById("v-" + fldids[p]);
-        obj.style = "width: " + w[0] + w[1] +
-                  "; height: " + h[0] + h[1] +
-                  "; top: " + t[0] + t[1] +
-                  "; left: " + l[0] + l[1] + ";";
     }
     switch(chans.length) {
         case 0:
@@ -175,7 +176,7 @@ function chgPlayerStyle() {
         default:
             console.log("chgPlayerStyle(): player number out of range (" + fldids.length + " / 9)");
     }
-    console.log("chgPlayerStyle:", chgPlayerStyleCtr++);//templog
+    // console.log("chgPlayerStyle():", chgPlayerStyleCtr++);//templog
 }
 
 function goFullScreen() {
@@ -191,7 +192,7 @@ function goFullScreen() {
     } else {
         chgPlayerStyle();
     }
-    console.log("goFullScreen():", goFullScreenCtr++);//templog
+    // console.log("goFullScreen():", goFullScreenCtr++);//templog
 }
 
 function getQualities(strmID) {
@@ -218,44 +219,31 @@ function chkQuality(indx, sel) {
 }
 
 function setQuality(strmID, strmQuality) {
-    var hardCodeQuality = strmQuality, //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-    currentQuality = "",
-    checkQuality = "";
-    var obj = document.getElementById("v-" + fldids[strmID]);
+    var currentQuality = "",
+        checkQuality = "",
+        obj = document.getElementById("v-" + fldids[strmID]);
     if(obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
         currentQuality = obj.player.getQuality();
-        if(currentQuality !== hardCodeQuality) {
+        if(currentQuality !== strmQuality) {
             if(chans[strmID].search("v=") == -1) {
-                checkQuality = chkQuality(obj.quality, hardCodeQuality);
+                checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
-                console.log("setQuality(): v-" + fldids[strmID] + ":", currentQuality,"->", checkQuality,"|", hardCodeQuality);
+                console.log("setQuality(): v-"+ fldids[strmID] + ":", (typeof currentQuality !== "undefined" ? currentQuality.padEnd(7) : " "),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(7) : " "), "["+obj.player.getPlayerState().channelName+"]");
             } else {
-                console.log("chgQuality(): not twitch", strmID);
+                console.log("setQuality(): not twitch", strmID);
             }
         }
     }
 }
 
 function chgQuality(strmID, strmQuality) {
+    var l = 0;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
-
-    var l = function() {
-        return 0
-    }
-    switch(chans.length) {
-        case 6:
-            l = 1;
-        default:
-
-    }
     for(var i = 0; i < chans.length; i++) {
         getQualities(i);
-        setQuality(i, (i > l ? "auto" : "auto")); //160p30
-        var indx = ("v-" + fldids[i]),
-        obj = document.getElementById(indx);
-        console.log("chgQuality():", indx + ": " + obj.player.getQuality().padEnd(7) +"["+obj.player.getPlayerState().channelName+"]");//templog
-    }
+        setQuality(i, (i > l ? "160p30" : "auto"));
+    } //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
 }
 
 function updChatIndx() {
@@ -266,7 +254,7 @@ function updChatIndx() {
             chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
             list = [],
-            indx = [...chats];
+            indx = chats.slice(); //indx = [...chats];
 
         for(var i = 0; i < chans.length; i++) {
             var indxOf = indx.indexOf(chans[i]);
@@ -286,14 +274,14 @@ function updChatIndx() {
             chatmen.options[i].innerHTML = list[i];
         }
 
-        chats = [...list];
+        chats = list.slice(); //chats = [...list];
 
         //restore 'selectedIndex' value
         indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
         chatsel.selectedIndex = indexOfSelectedChat;
         chatmen.selectedIndex = indexOfSelectedChat
 
-        console.log("updChatIndx:", chgChatSelCtr++);//templog
+        // console.log("updChatIndx:", chgChatSelCtr++);//templog
     }
 }
 
@@ -374,12 +362,12 @@ function setEventTrigger() {
             obj = document.getElementById(indx);
 
         function playingEventListener() {
-            console.log("setEventTrigger():", indx + " is playing ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.log("playingEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
             rmvEvtLsnr();
             onEventTrigger();
         }
         function offlineEventListener() {
-            console.log("setEventTrigger():", indx + " is offline ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.log("offlineEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
             rmvEvtLsnr();
             onEventTrigger();
         }
@@ -389,7 +377,7 @@ function setEventTrigger() {
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
-        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
+        console.log("setEventTrigger(): fldids.length ==", fldids.length);//templog
     } else {
         console.log("setEventTrigger(): no streams found");//templog
     }
