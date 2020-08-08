@@ -237,13 +237,23 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    var l = 0;
+    var length = 0;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
+    switch(chans.length) {
+        case 3:
+            length = 2;
+            break;
+        case 2:
+        case 4:
+        case 5:
+        case 6:
+            length = 1;
+    }
     for(var i = 0; i < chans.length; i++) {
-        getQualities(i);
-        setQuality(i, (i > l ? "160p30" : "auto"));
-    } //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+        getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+        setQuality(i, (i > length ? "160p30" : "auto"));
+    }
 }
 
 function updChatIndx() {
