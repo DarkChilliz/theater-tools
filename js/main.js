@@ -323,43 +323,38 @@ function evtchk(event) {
     }
 }
 
+function funcEvtChk(event) {
+    if (event.ctrlKey) {
+        openFuncMenu(0);
+        goFullScreen();
+        chgQuality();
+    }
+}
+
+function createImgElem(id, url, alt, elemID, onclick) {
+    var img = document.createElement("img"),
+        src = document.getElementById(elemID); //chatwin, chatdiv
+    img.id = id;
+    img.src = url;
+    img.alt = alt;
+    img.onclick = onclick;
+    src.insertBefore(img, src.firstChild); //src.appendChild(img);
+}
+
 function onReceiveImgURL(e) {
     document.removeEventListener("sendImgURL", onReceiveImgURL);
-    createFunctionsMenuImg(e.detail.functionsMenuImg);
-    createPlayerStyleImg(e.detail.playerStyleImg);
-}
-
-function createPlayerStyleImg(url) {
-    //https://stackoverflow.com/questions/2735881
-    var img = document.createElement("img");
-    img.id = "playerStyleImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        updChatIndx();
-        chgQuality();
-        goFullScreen();
-    };
-    var src = document.getElementById("chatdiv"); //chatwin, chatdiv
-    src.insertBefore(img, src.firstChild); //src.appendChild(img);
-}
-
-function createFunctionsMenuImg(url) {
-    //https://stackoverflow.com/questions/33144234
-    var img = document.createElement("img");
-    img.id = "functionsMenuImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        removeOfflineChannels();
-        updChatIndx();
-        chgQuality();
-        goFullScreen();
-    };
-    var src = document.getElementById("chatdiv");
-    src.insertBefore(img, src.firstChild); //src.appendChild(img);
+    createImgElem("functionsMenuImg", e.detail.functionsMenuImg, "", "funcMenuDiv",//"chatdiv"
+        function() {
+            openFuncMenu();
+        }
+    ); //https://stackoverflow.com/questions/33144234
+    createImgElem("playerStyleImg", e.detail.playerStyleImg, "", "funcMenuDiv", //"chatdiv"
+        function() {
+            updChatIndx();
+            chgQuality();
+            goFullScreen();
+        }
+    ); //https://stackoverflow.com/questions/2735881
 }
 
 function setEventTrigger() {
@@ -369,12 +364,12 @@ function setEventTrigger() {
             obj = document.getElementById(indx);
 
         function playingEventListener() {
-            console.log("playingEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.info("playingEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
             rmvEvtLsnr();
             onEventTrigger();
         }
         function offlineEventListener() {
-            console.log("offlineEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.info("offlineEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
             rmvEvtLsnr();
             onEventTrigger();
         }
@@ -384,17 +379,17 @@ function setEventTrigger() {
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
-        console.log("setEventTrigger(): fldids.length ===", fldids.length);//templog
+        console.info("setEventTrigger(): fldids.length ===", fldids.length);//templog
     } else {
-        console.log("setEventTrigger(): no streams found");//templog
+        console.info("setEventTrigger(): no streams found");//templog
     }
 }
 
 function onEventTrigger() {
     userQuality[0] = fldids[0];
     chgQuality();
-    document.getElementById("playerStyleImg").style.display = "block"; //initial, inherit, block
-    document.getElementById("functionsMenuImg").style.display = "block";
+    document.getElementById("playerStyleImg").style.visibility = "visible"; //https://www.w3schools.com/jsref/prop_style_display.asp
+    document.getElementById("functionsMenuImg").style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -404,6 +399,7 @@ var userQuality = [],
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
+    createFuncMenuDiv();
     document.addEventListener("sendImgURL", onReceiveImgURL);
     setTimeout(setEventTrigger, 500);
 })();
