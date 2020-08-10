@@ -4,8 +4,8 @@
     s.src = chrome.runtime.getURL('js/main.js');
     s.onload = function() {
         var url = {
-            functionsMenuImg: chrome.runtime.getURL("images/functionsmenu.png"),
-            playerStyleImg: chrome.runtime.getURL("images/playerstyle.png")
+            functionsMenuImg: chrome.runtime.getURL("img/functionsmenu.png"),
+            playerStyleImg: chrome.runtime.getURL("img/playerstyle.png")
         },
             event = new CustomEvent("sendImgURL", { detail: url });
         document.dispatchEvent(event);
