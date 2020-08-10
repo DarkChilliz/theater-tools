@@ -2,6 +2,23 @@
 //
 
 ////////////////////////////////////////////////////////////////////////////////////////
+// old removeOfflineChannels
+
+function removeOfflineChannels() {
+    var indx = {};
+    for(var i = (fldids.length - 1); i > -1; i--) {
+        var obj = document.getElementById("v-" + fldids[i]);
+        if(obj.player.isPaused() || obj.player.getEnded()) {
+            indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
+            remstream(fldids[i], 1);
+        }
+    }
+    if(indx)
+    console.info("removeOfflineChannels():", indx);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+// old chgQuality
 
 function chgQuality() {
     function get_qualities() {
