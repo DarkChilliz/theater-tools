@@ -15,8 +15,6 @@ function missingValue(aspect_ratio, width, height) {
             width = height * aspect_ratio;
             return width;
 		}
-	} else {
-		console.log("missingValue(): error");
 	}
 }
 
@@ -174,9 +172,8 @@ function chgPlayerStyle() {
             writeStyle(8, [w[3],"px"], [h[3],"px"], [t[2],"px"], ["0","%"]);
             break;
         default:
-            console.log("chgPlayerStyle(): player number out of range (" + fldids.length + " / 9)");
+            console.info("chgPlayerStyle(): player number out of range (" + fldids.length + " / 9)");
     }
-    // console.log("chgPlayerStyle():", chgPlayerStyleCtr++);//templog
 }
 
 function goFullScreen() {
@@ -192,7 +189,6 @@ function goFullScreen() {
     } else {
         chgPlayerStyle();
     }
-    // console.log("goFullScreen():", goFullScreenCtr++);//templog
 }
 
 function getQualities(strmID) {
@@ -221,6 +217,7 @@ function chkQuality(indx, sel) {
 function setQuality(strmID, strmQuality) {
     var currentQuality = "",
         checkQuality = "",
+        pad = 7,
         obj = document.getElementById("v-" + fldids[strmID]);
     if(obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
         currentQuality = obj.player.getQuality();
@@ -228,9 +225,9 @@ function setQuality(strmID, strmQuality) {
             if(chans[strmID].search("v=") == -1) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
-                console.log("setQuality(): v-"+ fldids[strmID] + ":", (typeof currentQuality !== "undefined" ? currentQuality.padEnd(7) : " "),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(7) : " "), "["+obj.player.getPlayerState().channelName+"]");
+                console.info("setQuality(): v-"+ fldids[strmID] + ":", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
             } else {
-                console.log("setQuality(): not twitch", strmID);
+                console.info("setQuality(): not twitch [v-"+ fldids[strmID]+"]");
             }
         }
     }
@@ -280,8 +277,8 @@ function updChatIndx() {
         var indexOfSelectedChat = chats[chatsel.selectedIndex];
 
         for(var i = 0; i < list.length; i++) {
-            chatsel.options[i].innerHTML = list[i];
-            chatmen.options[i].innerHTML = list[i];
+            chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+            chatmen.options[i].textContent = list[i]; //innerHTML, value
         }
 
         chats = list.slice(); //chats = [...list];
@@ -289,22 +286,22 @@ function updChatIndx() {
         //restore 'selectedIndex' value
         indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
         chatsel.selectedIndex = indexOfSelectedChat;
-        chatmen.selectedIndex = indexOfSelectedChat
-
-        // console.log("updChatIndx:", chgChatSelCtr++);//templog
+        chatmen.selectedIndex = indexOfSelectedChat;
     }
 }
 
 function removeOfflineChannels() {
-    var indx = {};
-    for(var i = (fldids.length - 1); i >= 0; i--) {
+    var list = [];
+    for(var i = (fldids.length - 1); i > -1; i--) {
         var obj = document.getElementById("v-" + fldids[i]);
         if(obj.player.isPaused() || obj.player.getEnded()) {
-            indx[("v-" + fldids[i])] = obj.player.getPlayerState().channelName;
+            list.push(obj.player.getPlayerState().channelName);
             remstream(fldids[i], 1);
         }
     }
-    console.log("removeOfflineChannels():", indx); //removeOfflineChannelsCtr++,
+    if(list.length > 0){
+        console.info("removeOfflineChannels():", list.toString());
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -405,10 +402,6 @@ function onEventTrigger() {
 var userQuality = [],
     useUserQuality = false,
     useChgPlayerStyleCaseOne = false;
-    // chgPlayerStyleCtr = 0,
-    // goFullScreenCtr = 0,
-    // chgChatSelCtr = 0,
-    // removeOfflineChannelsCtr = 0;
 (function() {
     updMenuElement();
     document.addEventListener("sendImgURL", onReceiveImgURL);
