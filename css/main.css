@@ -1,24 +1,46 @@
 #functionsMenuImg, #playerStyleImg {
     position: absolute;
-    display: none;
+    visibility: hidden;
     opacity: 0.5;
-    top: 50px;
-}
-
-#functionsMenuImg, #playerStyleImg, #menudiv { /* #chattog, #chatnav */
-    z-index: 1;
 }
 
 #functionsMenuImg {
     left: 50px;
 }
 
-
-/* #chattog {
+#funcMenuDiv {
     position: absolute;
+    overflow: hidden;
+    min-width: 86px;
+    min-height: 50px;
+    right: 254px;
     top: 50px;
-} */
+}
 
-/* #chatnav {
-    top: 67px;
-} */
+#funcMenuTop {
+    padding-top: 15px;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#funcMenuBot {
+    font-size: 0.8em;
+    line-height: 1.5em;
+    overflow: auto;
+    /* min-height: 70px; */
+}
+
+.funcBtn {
+    border: none;
+    /* background-color: inherit; */
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#fm0 {
+    padding: 10px 10px;
+}
