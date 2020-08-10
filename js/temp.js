@@ -1,6 +1,30 @@
 // temp.js: pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
 //
 
+//
+//Another way of doing it is to use new Fetch API:
+//If the file's name is modal.html - update manifest.json accordingly
+/* "web_accessible_resources": [
+"modal.html",
+], */
+//and inject it like this:
+fetch(chrome.extension.getURL('/modal.html'))
+.then(response => response.text())
+.then(data => {
+    document.body.innerHTML += data;
+    // other code
+    // eg update injected elements,
+    // add event listeners or logic to connect to other parts of the app
+}).catch(err => {
+// handle error
+});
+
+
+// CSS
+/* #functionsMenuImg, #playerStyleImg, #menudiv {
+    z-index: 1;
+} */
+
 ////////////////////////////////////////////////////////////////////////////////////////
 // old removeOfflineChannels
 
@@ -99,6 +123,47 @@ function chgQuality() {
     div_a();
     div_b();
     console.log("chgQuality:", chgQualityCtr++);//templog
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+// Menu
+// https://jsfiddle.net/sDbff/3/
+// https://www.w3schools.com/js/js_cookies.asp
+// https://www.google.com/search?client=firefox-b-d&q=javascript+create+menu
+// https://stackoverflow.com/questions/13665480/how-to-create-a-menu-with-dom-and-javascript
+
+function xfgd() {
+
+    // All items we'd like to add
+    // var navItems = [
+    //     {href: 'http://google.com', text: 'Google'},
+    //     {href: 'http://bing.com', text: 'Bing'},
+    //     {href: 'http://stackoverflow.com', text: 'StackOverflow'}
+    // ];
+
+    // Cycle over each nav item
+    for (var i = 0; i < navItems.length; i++) {
+        // Create a fresh list item, and anchor
+        navItem = document.createElement("li");
+        navLink = document.createElement("a");
+
+        // Set properties on anchor
+        navLink.href = navItems[i].href;
+        navLink.innerHTML = navItems[i].text;
+
+        // Add anchor to list item, and list item to list
+        navItem.appendChild(navLink);
+        navList.appendChild(navItem);
+    }
+
+    // Set first list item as current
+    navList.children[0].className = "current";
+
+    // Add list to body (or anywhere else)
+    window.onload = function () {
+        document.body.appendChild(navElem);
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,9 @@
 // main.js: pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
 //
 
+///////////////////
+// set player styles
+
 function missingValue(aspect_ratio, width, height) {
     //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
 	if (width && height) {
@@ -191,6 +194,9 @@ function goFullScreen() {
     }
 }
 
+///////////////////
+// set quality
+
 function getQualities(strmID) {
     var obj = document.getElementById("v-" + fldids[strmID]);
     if(typeof obj.quality === "undefined" || obj.quality.length < 1) {
@@ -253,6 +259,9 @@ function chgQuality(strmID, strmQuality) {
     }
 }
 
+///////////////////
+// miscellaneous functions
+
 function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
@@ -304,13 +313,31 @@ function removeOfflineChannels() {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
+function openFuncMenu(val) {
+    if (val == undefined) {
+        val = document.getElementById("funcMenuBot").style.display //funcMenuDiv
+    }
+    if (val) {
+        document.getElementById("funcMenuTop").style.display = ""; //"inline"
+        document.getElementById("funcMenuBot").style.display = ""; //"inline"
+        document.getElementById("funcMenuDiv").style.right = "0px";
+        document.getElementById("funcMenuDiv").style.width = "340px";
+        document.getElementById("funcMenuBot").style.background = "#202023 none repeat scroll 0% 0%"; //funcMenuDiv
+        document.getElementById("funcMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px"
+        // showmenu(1);
+        // updmenpos();
+        // layoutchg()
+    } else {
+        document.getElementById("funcMenuTop").style.display = "none";
+        document.getElementById("funcMenuBot").style.display = "none";
 
-function updMenuElement() {
-    //https://forum.webflow.com/t/23730
-    document.getElementById("menubtn").onclick = function() {
-        openmenu();
-        updChatIndx();
+        document.getElementById("funcMenuDiv").style.right = ""; //"290px", "254px"
+        document.getElementById("funcMenuDiv").style.width = "";
+        document.getElementById("funcMenuDiv").style.background = "";
+        // chgmenu(0);
+        // showmenu(0);
+        // updmenpos();
+        // layoutchg()
     }
 }
 
@@ -329,6 +356,45 @@ function funcEvtChk(event) {
         goFullScreen();
         chgQuality();
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+// setup functions
+
+function updMenuElement() {
+    //https://forum.webflow.com/t/23730
+    document.getElementById("menubtn").onclick = function() {
+        openmenu();
+        updChatIndx();
+    }
+}
+
+function createFuncMenuDiv() {
+    var funcMenuDiv = document.createElement("div"),
+        funcMenuTop = document.createElement("div"),
+        funcMenuBot = document.createElement("div"),
+        fm0 = document.createElement("div"),
+        removeOfflineChannelsBtn = document.createElement("button"); //https://www.w3schools.com/howto/howto_css_text_buttons.asp
+
+    funcMenuDiv.id = "funcMenuDiv";
+    funcMenuTop.id = "funcMenuTop";
+    funcMenuBot.id = "funcMenuBot";
+    fm0.id = "fm0";
+
+    funcMenuTop.style = "display:none";
+    funcMenuBot.style = "display:none";
+
+    removeOfflineChannelsBtn.classList = "funcBtn removeOfflineChannels";
+    removeOfflineChannelsBtn.textContent = "removeOfflineChannels";
+
+    fm0.onclick = funcEvtChk;
+    removeOfflineChannelsBtn.onclick = removeOfflineChannels;
+
+    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
+    document.getElementById("funcMenuDiv").appendChild(funcMenuTop);
+    document.getElementById("funcMenuDiv").appendChild(funcMenuBot);
+    document.getElementById("funcMenuBot").appendChild(fm0);
+    document.getElementById("fm0").appendChild(removeOfflineChannelsBtn);
 }
 
 function createImgElem(id, url, alt, elemID, onclick) {
@@ -401,131 +467,7 @@ var userQuality = [],
     updMenuElement();
     createFuncMenuDiv();
     document.addEventListener("sendImgURL", onReceiveImgURL);
-    setTimeout(setEventTrigger, 500);
+    setEventTrigger(); //setTimeout(setEventTrigger, 100);
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// menu: https://jsfiddle.net/sDbff/3/
-
-//https://www.w3schools.com/js/js_cookies.asp
-//https://www.google.com/search?client=firefox-b-d&sxsrf=ALeKk02rJiCFDBrEKOrK2eXX48byf1D9aw%3A1596635573169&ei=tbkqX5n-CeaX4-EP-KGp-AU&q=javascript+create+menu&oq=javascript+create+menu&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjoECAAQRzoHCAAQFBCHAlCJ9QZYjfgGYKb7BmgAcAN4AIAB9wGIAdwFkgEFMC4zLjGYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjZrLKBm4TrAhXmyzgGHfhQCl8Q4dUDCAs&uact=5
-//https://stackoverflow.com/questions/13665480/how-to-create-a-menu-with-dom-and-javascript
-
-function createPlayerStyleImg(url) {
-    //https://stackoverflow.com/questions/2735881
-    var img = document.createElement("img");
-    img.id = "playerStyleImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        updChatIndx();
-        // chgQuality();
-        for(var i = 0; i < chans.length; i++) {
-            var x = 0;
-            chgQuality(i, (i > 0 ? "160p30" : "auto"));
-        }
-
-        goFullScreen();
-    };
-    var src = document.getElementById("chatdiv"); //chatwin, chatdiv
-    // src.appendChild(img);
-    // document.getElementById("funcMenuDiv").appendChild(img);
-    document.getElementById("funcMenuDiv").insertBefore(img, document.getElementById("functionsMenuImg"));
-    // src.insertBefore(img, src.firstChild);
-}
-
-function openMenu(val) { //funcMenuTop funcMenuBot menutop menubot
-    if (val == undefined) {
-        val = document.getElementById("funcMenuBot").style.display
-    }
-    if (val) {
-        document.getElementById("funcMenuTop").style.display = "";
-        document.getElementById("funcMenuBot").style.display = "";
-        // showmenu(1);
-        // updmenpos();
-        // layoutchg()
-    } else {
-        document.getElementById("funcMenuTop").style.display = "none";
-        document.getElementById("funcMenuBot").style.display = "none";
-        document.getElementById("funcMenuDiv").style.width = "";
-        // chgmenu(0);
-        // showmenu(0);
-        // updmenpos();
-        // layoutchg()
-    }
-}
-
-function createFunctionsMenuImg(url) {
-    //https://stackoverflow.com/questions/33144234
-    var img = document.createElement("img");
-    img.id = "functionsMenuImg";
-    img.src = url;
-    img.alt = "";
-    // img.style = "display: none;"
-    img.onclick = function() {
-        openMenu();
-        console.log("functionsMenuImg.onclick");
-    };
-    var src = document.getElementById("chatdiv");
-    // src.appendChild(img);
-    // src.insertBefore(img, src.firstChild);
-
-    // menu
-    var funcMenuDiv = document.createElement("div"),
-        funcMenuTop = document.createElement("div"),
-        funcMenuBot = document.createElement("div");
-
-    funcMenuDiv.id = "funcMenuDiv";
-
-    funcMenuTop.id = "funcMenuTop";
-    funcMenuTop.style = "display:none";
-
-    funcMenuBot.id = "funcMenuBot";
-    funcMenuBot.style = "display:none";
-
-
-    // navElem.appendChild(navList);
-    img.style = "top:0px;"
-    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
-    document.getElementById("funcMenuDiv").appendChild(img);
-    document.getElementById("funcMenuDiv").appendChild(funcMenuTop);
-    document.getElementById("funcMenuDiv").appendChild(funcMenuBot);
-}
-
-function xfgd() {
-
-    // All items we'd like to add
-    // var navItems = [
-    //     {href: 'http://google.com', text: 'Google'},
-    //     {href: 'http://bing.com', text: 'Bing'},
-    //     {href: 'http://stackoverflow.com', text: 'StackOverflow'}
-    // ];
-
-    // A few variables for use later
-
-
-    // Cycle over each nav item
-    for (var i = 0; i < navItems.length; i++) {
-        // Create a fresh list item, and anchor
-        navItem = document.createElement("li");
-        navLink = document.createElement("a");
-
-        // Set properties on anchor
-        navLink.href = navItems[i].href;
-        navLink.innerHTML = navItems[i].text;
-
-        // Add anchor to list item, and list item to list
-        navItem.appendChild(navLink);
-        navList.appendChild(navItem);
-    }
-
-    // Set first list item as current
-    navList.children[0].className = "current";
-
-    // Add list to body (or anywhere else)
-    window.onload = function () {
-        document.body.appendChild(navElem);
-    }
-
-}
