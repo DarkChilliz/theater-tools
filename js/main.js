@@ -381,7 +381,7 @@ function createFuncMenuDiv() {
     funcMenuBot.id = "funcMenuBot";
     fm0.id = "fm0";
 
-    funcMenuTop.style = "display:none";
+    funcMenuTop.style = "display:none"; //https://www.w3schools.com/jsref/prop_style_display.asp
     funcMenuBot.style = "display:none";
 
     removeOfflineChannelsBtn.classList = "funcBtn removeOfflineChannels";
@@ -424,8 +424,13 @@ function onReceiveImgURL(e) {
 }
 
 function setButtonVisibility() {
-    document.getElementById("playerStyleImg").style.visibility = "visible"; //https://www.w3schools.com/jsref/prop_style_display.asp
-    document.getElementById("functionsMenuImg").style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
+    var list = ["playerStyleImg", "functionsMenuImg"];
+    list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
+        var obj = document.getElementById(value)
+        if(obj.style.visibility != "visible") {
+            obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
+        }
+    });
 }
 
 function onEventTrigger() {
