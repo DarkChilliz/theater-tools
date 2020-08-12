@@ -423,6 +423,17 @@ function onReceiveImgURL(e) {
     ); //https://stackoverflow.com/questions/2735881
 }
 
+function setButtonVisibility() {
+    document.getElementById("playerStyleImg").style.visibility = "visible"; //https://www.w3schools.com/jsref/prop_style_display.asp
+    document.getElementById("functionsMenuImg").style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
+}
+
+function onEventTrigger() {
+    userQuality[0] = fldids[0];
+    chgQuality();
+    setButtonVisibility();
+}
+
 function setEventTrigger() {
     //https://stackoverflow.com/questions/28610365
     if(fldids.length > 0) {
@@ -447,15 +458,9 @@ function setEventTrigger() {
         obj.player.addEventListener("offline", offlineEventListener);
         console.info("setEventTrigger(): fldids.length ===", fldids.length);//templog
     } else {
+        setButtonVisibility();
         console.info("setEventTrigger(): no streams found");//templog
     }
-}
-
-function onEventTrigger() {
-    userQuality[0] = fldids[0];
-    chgQuality();
-    document.getElementById("playerStyleImg").style.visibility = "visible"; //https://www.w3schools.com/jsref/prop_style_display.asp
-    document.getElementById("functionsMenuImg").style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
