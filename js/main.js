@@ -441,12 +441,12 @@ function setEventTrigger() {
             obj = document.getElementById(indx);
 
         function playingEventListener() {
-            console.info("playingEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.info("playingEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");
             rmvEvtLsnr();
             onEventTrigger();
         }
         function offlineEventListener() {
-            console.info("offlineEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");//templog
+            console.info("offlineEventListener():", indx + " ["+obj.player.getPlayerState().channelName+"]");
             rmvEvtLsnr();
             onEventTrigger();
         }
@@ -456,10 +456,10 @@ function setEventTrigger() {
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
-        console.info("setEventTrigger(): fldids.length ===", fldids.length);//templog
+        console.info("setEventTrigger(): fldids.length ===", fldids.length);
     } else {
         setButtonVisibility();
-        console.info("setEventTrigger(): no streams found");//templog
+        console.info("setEventTrigger(): no streams found");
     }
 }
 
