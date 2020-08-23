@@ -1,29 +1,20 @@
 // temp.js: pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
 //
 
-//
-//Another way of doing it is to use new Fetch API:
-//If the file's name is modal.html - update manifest.json accordingly
-/* "web_accessible_resources": [
-"modal.html",
-], */
-//and inject it like this:
-fetch(chrome.extension.getURL('/modal.html'))
-.then(response => response.text())
-.then(data => {
-    document.body.innerHTML += data;
-    // other code
-    // eg update injected elements,
-    // add event listeners or logic to connect to other parts of the app
-}).catch(err => {
-// handle error
-});
-
-
 // CSS
 /* #functionsMenuImg, #playerStyleImg, #menudiv {
     z-index: 1;
 } */
+
+function setButtonVisibility() {
+    var list = ["playerStyleImg", "functionsMenuImg"];
+    list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
+        var obj = document.getElementById(value)
+        if(obj.style.visibility != "visible") {
+            obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
+        }
+    });
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // old removeOfflineChannels
@@ -255,3 +246,21 @@ function convertToPercentage(parentWindow, pixels) { //obsolete & unfinished
 
 // pxl = "px",
 // percnt = "%"
+
+//
+//Another way of doing it is to use new Fetch API:
+//If the file's name is modal.html - update manifest.json accordingly
+/* "web_accessible_resources": [
+"modal.html",
+], */
+//and inject it like this:
+fetch(chrome.extension.getURL('/modal.html'))
+.then(response => response.text())
+.then(data => {
+    document.body.innerHTML += data;
+    // other code
+    // eg update injected elements,
+    // add event listeners or logic to connect to other parts of the app
+}).catch(err => {
+// handle error
+});

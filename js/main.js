@@ -345,16 +345,16 @@ function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
         updChatIndx();
-        goFullScreen();
         chgQuality();
+        goFullScreen();
     }
 }
 
 function funcEvtChk(event) {
     if (event.ctrlKey) {
         openFuncMenu(0);
-        goFullScreen();
         chgQuality();
+        goFullScreen();
     }
 }
 
@@ -409,14 +409,16 @@ function createImgElem(id, url, alt, elemID, onclick) {
 
 function onReceiveImgURL(e) {
     document.removeEventListener("sendImgURL", onReceiveImgURL);
-    createImgElem("functionsMenuImg", e.detail.functionsMenuImg, "", "funcMenuDiv",//"chatdiv"
+    createImgElem("functionsMenuImg", e.detail.functionsMenuImg, "", "funcMenuDiv",
         function() {
             openFuncMenu();
         }
     ); //https://stackoverflow.com/questions/33144234
-    createImgElem("playerStyleImg", e.detail.playerStyleImg, "", "funcMenuDiv", //"chatdiv"
-        function() {
-            updChatIndx();
+    createImgElem("playerStyleImg", e.detail.playerStyleImg, "", "funcMenuDiv",
+        function(event) {
+            if (event.ctrlKey) {
+                playpause(1);
+            }
             chgQuality();
             goFullScreen();
         }
@@ -477,7 +479,7 @@ var userQuality = [],
     updMenuElement();
     createFuncMenuDiv();
     document.addEventListener("sendImgURL", onReceiveImgURL);
-    setEventTrigger(); //setTimeout(setEventTrigger, 100);
+    setTimeout(setEventTrigger, 100); // setEventTrigger();
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////

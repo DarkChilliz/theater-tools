@@ -32,6 +32,7 @@
     /* min-height: 70px; */
 }
 
+/* .funcBtn:hover {background: #eee;} */
 .funcBtn {
     border: none;
     /* background-color: inherit; */
@@ -40,6 +41,11 @@
     cursor: pointer;
     display: inline-block;
 }
+/* .success {color: green;}
+.info {color: dodgerblue;}
+.warning {color: orange;}
+.danger {color: red;}
+.default {color: black;} */
 
 #fm0 {
     padding: 10px 10px;
