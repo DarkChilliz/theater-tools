@@ -65,7 +65,7 @@ function chgPlayerStyle() {
         case 0:
             break;
         case 1:
-            if(useChgPlayerStyleCaseOne === true) {
+            if (useChgPlayerStyleCaseOne === true) {
                 v_0_style_calc();
                 writeStyle(0, [w[0],"px"], [h[0],"px"], ["0","%"], ["0","%"]);
             }
@@ -180,8 +180,8 @@ function chgPlayerStyle() {
 }
 
 function goFullScreen() {
-    if(screen.width == 1440 && screen.height == 900) {
-        if(isfullscr()) {
+    if (screen.width == 1440 && screen.height == 900) {
+        if (isfullscr()) {
             chgPlayerStyle();
         } else {
             gofullscr();
@@ -199,21 +199,21 @@ function goFullScreen() {
 
 function getQualities(strmID) {
     var obj = document.getElementById("v-" + fldids[strmID]);
-    if(typeof obj.quality === "undefined" || obj.quality.length < 1) {
+    if (typeof obj.quality === "undefined" || obj.quality.length < 1) {
         if (chans[strmID].search("v=") == -1) {
             var list = obj.player.getQualities();
             obj.quality = [];
             for(var x = 0; x < list.length; x++) {
                 obj.quality.push(list[x].group);
             }
-        } else if(chans[strmID].search("v=") > -1) {
+        } else if (chans[strmID].search("v=") > -1) {
             obj.quality = obj.player.getQualities();
         }
     }
 }
 
 function chkQuality(indx, sel) {
-    if( indx.indexOf(sel) < 0 ) {
+    if (indx.indexOf(sel) < 0) {
         return indx[0];
     } else {
         return (indx[indx.indexOf(sel)]);
@@ -225,10 +225,10 @@ function setQuality(strmID, strmQuality) {
         checkQuality = "",
         pad = 7,
         obj = document.getElementById("v-" + fldids[strmID]);
-    if(obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
+    if (obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
         currentQuality = obj.player.getQuality();
-        if(currentQuality !== strmQuality) {
-            if(chans[strmID].search("v=") == -1) {
+        if (currentQuality !== strmQuality) {
+            if (chans[strmID].search("v=") == -1) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
                 console.info("setQuality(): v-"+ fldids[strmID] + ":", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
@@ -265,7 +265,7 @@ function chgQuality(strmID, strmQuality) {
 function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
-    if( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
+    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var chatsel = document.getElementById("chatsel"),
             chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
@@ -274,7 +274,7 @@ function updChatIndx() {
 
         for(var i = 0; i < chans.length; i++) {
             var indxOf = indx.indexOf(chans[i]);
-            if(indxOf > -1) {
+            if (indxOf > -1) {
                 list.push( indx.splice(indxOf, 1).toString() );
             }
         }
@@ -303,12 +303,12 @@ function removeOfflineChannels() {
     var list = [];
     for(var i = (fldids.length - 1); i > -1; i--) {
         var obj = document.getElementById("v-" + fldids[i]);
-        if(obj.player.isPaused() || obj.player.getEnded()) {
-            list.push(obj.player.getPlayerState().channelName);
+        if (obj.player.isPaused() || obj.player.getEnded()) {
+            list.unshift(obj.player.getPlayerState().channelName);
             remstream(fldids[i], 1);
         }
     }
-    if(list.length > 0){
+    if (list.length > 0){
         console.info("removeOfflineChannels():", list.toString());
     }
 }
@@ -344,6 +344,7 @@ function openFuncMenu(val) {
 function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
+        openFuncMenu(0);
         updChatIndx();
         chgQuality();
         goFullScreen();
@@ -429,7 +430,7 @@ function setButtonVisibility() {
     var list = ["playerStyleImg", "functionsMenuImg"];
     list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
         var obj = document.getElementById(value)
-        if(obj.style.visibility != "visible") {
+        if (obj.style.visibility != "visible") {
             obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
         }
     });
@@ -443,7 +444,7 @@ function onEventTrigger() {
 
 function setEventTrigger() {
     //https://stackoverflow.com/questions/28610365
-    if(fldids.length > 0) {
+    if (fldids.length > 0) {
         var indx = ("v-" + fldids[fldids.length - 1]),
             obj = document.getElementById(indx);
 
