@@ -18,18 +18,22 @@
 }
 
 #funcMenuTop {
-    padding-top: 15px;
-    height: 35px;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+    padding-top: 15px;
+    height: 35px;
+    /* position: relative; */
+    /* top: 50px; */
 }
 
 #funcMenuBot {
     font-size: 0.8em;
     line-height: 1.5em;
     overflow: auto;
-    /* min-height: 70px; */
+    min-height: 70px;
+    /* position: relative; */
+    /* top: 100px; */
 }
 
 .funcBtn:hover {background: rgb(73, 73, 73);}
