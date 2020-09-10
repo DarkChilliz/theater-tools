@@ -37,68 +37,74 @@ function chgPlayerStyle() {
         h = [],
         t = [],
         l = [];
-    function v_0_style_calc() {
-        w[0] = Math.round( clientW );
-        h[0] = Math.round( missingValue(r, w[0], 0) );
-    }
-    function v_1_style_calc() {
-        h[1] = Math.round( clientH - h[0] );
-        t[1] = ( clientH - h[1] );
-    }
-    function v_4_5_6_style_calc() {
-        w[1] = Math.round( missingValue(r, 0, h[1]) );
-        l[1] = ( clientW - w[1] );
-    }
-    function v_4_6_style_calc() {
-        l[2] = w[2] = ( l[1] / 2 );
-    }
-    function v_7_8_style_calc() {
-        w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
-        l[2] = ( w[3] * 2 );
-        l[3] = w[3];
-    }
-    function v_7_8_9_style_calc() {
-        h[3] = ( h[1] / 2 );
-        t[2] = ( t[1] + h[3] );
-    }
     switch(chans.length) {
         case 0:
             break;
         case 1:
             if (useChgPlayerStyleCaseOne === true) {
-                v_0_style_calc();
+                // v_0_style_calc();
+                w[0] = Math.round( clientW );
+                h[0] = Math.round( missingValue(r, w[0], 0) );
+                //
                 writeStyle(0, w[0], h[0], 0, 0);
             }
             break;
         case 2:
-            v_0_style_calc();
-            v_1_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            //
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[0], h[1], t[1], 0);
             break;
         case 3:
-            v_0_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            //
             w[1] = ( clientW / 2 );
-            v_1_style_calc();
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            //
             l[1] = ( clientW / 2 );
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[1], h[1], t[1], l[1]);
             writeStyle(2, w[1], h[1], t[1], 0);
             break;
         case 4:
-            v_0_style_calc();
-            v_1_style_calc();
-            v_4_5_6_style_calc();
-            v_4_6_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            //
+            // v_4_5_6_style_calc();
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
+            l[1] = ( clientW - w[1] );
+            // v_4_6_style_calc();
+            l[2] = w[2] = ( l[1] / 2 );
+            //
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[1], h[1], t[1], l[1]);
             writeStyle(2, w[2], h[1], t[1], l[2]);
             writeStyle(3, w[2], h[1], t[1], 0);
             break;
         case 5:
-            v_0_style_calc();
-            v_1_style_calc();
-            v_4_5_6_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            // v_4_5_6_style_calc();
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
+            l[1] = ( clientW - w[1] );
+            //
             h[3] = ( h[1] / 2 );
             w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
             l[2] = ( l[1] - w[3] );
@@ -112,9 +118,16 @@ function chgPlayerStyle() {
             writeStyle(4, w[3], h[3], t[2], 0);
             break;
         case 6:
-            v_0_style_calc();
-            v_1_style_calc();
-            v_4_5_6_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            // v_4_5_6_style_calc();
+            w[1] = Math.round( missingValue(r, 0, h[1]) );
+            l[1] = ( clientW - w[1] );
+            //
             l[2] = w[2] = ( l[1] / 2 );
             h[2] = ( h[1] / 2 );
             t[2] = ( t[1] + h[2] );
@@ -126,10 +139,20 @@ function chgPlayerStyle() {
             writeStyle(5, w[2], h[2], t[2], 0);
             break;
         case 7:
-            v_0_style_calc();
-            v_1_style_calc();
-            v_7_8_style_calc();
-            v_7_8_9_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            // v_7_8_style_calc();
+            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
+            l[2] = ( w[3] * 2 );
+            l[3] = w[3];
+            // v_7_8_9_style_calc();
+            h[3] = ( h[1] / 2 );
+            t[2] = ( t[1] + h[3] );
+            //
             w[2] = w[1] = ( (clientW - (w[3] * 2)) / 2 );
             l[1] = ( clientW - w[1] );
             writeStyle(0, w[0], h[0], 0, 0);
@@ -141,10 +164,20 @@ function chgPlayerStyle() {
             writeStyle(6, w[3], h[3], t[2], 0);
             break;
         case 8:
-            v_0_style_calc();
-            v_1_style_calc();
-            v_7_8_style_calc();
-            v_7_8_9_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            // v_7_8_style_calc();
+            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
+            l[2] = ( w[3] * 2 );
+            l[3] = w[3];
+            // v_7_8_9_style_calc();
+            h[3] = ( h[1] / 2 );
+            t[2] = ( t[1] + h[3] );
+            //
             w[1] = ( clientW - (w[3] * 3) );
             l[1] = ( w[3] * 3 );
             writeStyle(0, w[0], h[0], 0, 0);
@@ -157,10 +190,18 @@ function chgPlayerStyle() {
             writeStyle(7, w[3], h[3], t[2], 0);
             break;
         case 9:
-            v_0_style_calc();
-            v_1_style_calc();
+            // v_0_style_calc();
+            w[0] = Math.round( clientW );
+            h[0] = Math.round( missingValue(r, w[0], 0) );
+            // v_1_style_calc();
+            h[1] = Math.round( clientH - h[0] );
+            t[1] = ( clientH - h[1] );
+            //
             w[3] = ( clientW / 4 );
-            v_7_8_9_style_calc();
+            // v_7_8_9_style_calc();
+            h[3] = ( h[1] / 2 );
+            t[2] = ( t[1] + h[3] );
+            //
             l[1] = ( w[3] * 3 );
             l[2] = ( w[3] * 2 );
             l[3] = w[3];
