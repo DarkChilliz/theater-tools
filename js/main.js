@@ -510,6 +510,7 @@ function onReceiveImgURL(e) {
     createImgElem("playerStyleImg", e.detail.playerStyleImg, "", "funcMenuDiv",
         function(event) {
             if (event.ctrlKey) {
+                openFuncMenu(0);
                 playpause(1);
             }
             chgQuality();
