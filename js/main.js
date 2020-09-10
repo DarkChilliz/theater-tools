@@ -326,7 +326,8 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    var length = 0;
+    var length = 0,
+        quality = ["auto","auto","auto"];
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
     switch(chans.length) {
@@ -338,10 +339,15 @@ function chgQuality(strmID, strmQuality) {
         case 5:
         case 6:
             length = 1;
+            break;
+        case 10:
+            length = 1;
+            quality[1] = "360p30";
+            break;
     }
     for(var i = 0; i < chans.length; i++) {
         getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-        setQuality(i, (i > length ? "160p30" : "auto"));
+        setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
 }
 
