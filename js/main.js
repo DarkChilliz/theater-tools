@@ -31,8 +31,8 @@ function writeStyle(v, w, h, t, l) {
 
 function chgPlayerStyle() {
     const r = 1.778;
-    var clientW = document.getElementById("playdiv").clientWidth,
-        clientH = document.getElementById("playdiv").clientHeight,
+    var clientW = Math.round( document.getElementById("playdiv").clientWidth ),
+        clientH = Math.round( document.getElementById("playdiv").clientHeight ),
         w = [],
         h = [],
         t = [],
@@ -43,51 +43,51 @@ function chgPlayerStyle() {
         case 1:
             if (useChgPlayerStyleCaseOne === true) {
                 // v_0_style_calc();
-                w[0] = Math.round( clientW );
-                h[0] = Math.round( missingValue(r, w[0], 0) );
+                w[0] = clientW;
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 writeStyle(0, w[0], h[0], 0, 0);
             }
             break;
         case 2:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
             //
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[0], h[1], t[1], 0);
             break;
         case 3:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             //
-            w[1] = ( clientW / 2 );
+            w[1] = clientW / 2;
             // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
             //
-            l[1] = ( clientW / 2 );
+            l[1] = clientW / 2;
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[1], h[1], t[1], l[1]);
             writeStyle(2, w[1], h[1], t[1], 0);
             break;
         case 4:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
             //
             // v_4_5_6_style_calc();
-            w[1] = Math.round( missingValue(r, 0, h[1]) );
-            l[1] = ( clientW - w[1] );
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            l[1] = clientW - w[1];
             // v_4_6_style_calc();
-            l[2] = w[2] = ( l[1] / 2 );
+            l[2] = w[2] = l[1] / 2;
             //
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[1], h[1], t[1], l[1]);
@@ -96,20 +96,20 @@ function chgPlayerStyle() {
             break;
         case 5:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
             // v_4_5_6_style_calc();
-            w[1] = Math.round( missingValue(r, 0, h[1]) );
-            l[1] = ( clientW - w[1] );
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            l[1] = clientW - w[1];
             //
-            h[3] = ( h[1] / 2 );
-            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
-            l[2] = ( l[1] - w[3] );
-            t[2] = ( t[1] + h[3] );
-            w[2] = ( l[1] - w[3] );
+            h[3] = h[1] / 2;
+            w[3] = Math.round( missingValue( r, 0, h[3] ) );
+            l[2] = l[1] - w[3];
+            t[2] = t[1] + h[3];
+            w[2] = l[1] - w[3];
             l[2] = w[3];
             writeStyle(0, w[0], h[0], 0, 0);
             writeStyle(1, w[1], h[1], t[1], l[1]);
@@ -119,147 +119,326 @@ function chgPlayerStyle() {
             break;
         case 6:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
             // v_4_5_6_style_calc();
-            w[1] = Math.round( missingValue(r, 0, h[1]) );
-            l[1] = ( clientW - w[1] );
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            l[1] = clientW - w[1];
             //
-            l[2] = w[2] = ( l[1] / 2 );
-            h[2] = ( h[1] / 2 );
-            t[2] = ( t[1] + h[2] );
+            l[2] = w[2] = l[1] / 2;
+            h[2] = h[1] / 2;
+            t[2] = t[1] + h[2];
+            //top
             writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
             writeStyle(1, w[1], h[1], t[1], l[1]);
+            //stack 2
             writeStyle(2, w[2], h[2], t[1], l[2]);
             writeStyle(3, w[2], h[2], t[2], l[2]);
+            //stack 3
             writeStyle(4, w[2], h[2], t[1], 0);
             writeStyle(5, w[2], h[2], t[2], 0);
             break;
         case 7:
             // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
-            // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
-            // v_7_8_style_calc();
-            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
-            l[2] = ( w[3] * 2 );
-            l[3] = w[3];
-            // v_7_8_9_style_calc();
-            h[3] = ( h[1] / 2 );
-            t[2] = ( t[1] + h[3] );
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
             //
-            w[2] = w[1] = ( (clientW - (w[3] * 2)) / 2 );
-            l[1] = ( clientW - w[1] );
-            writeStyle(0, w[0], h[0], 0, 0);
-            writeStyle(1, w[1], h[1], t[1], l[1]);
-            writeStyle(2, w[2], h[1], t[1], l[2]);
-            writeStyle(3, w[3], h[3], t[1], l[3]);
-            writeStyle(4, w[3], h[3], t[2], l[3]);
-            writeStyle(5, w[3], h[3], t[1], 0);
-            writeStyle(6, w[3], h[3], t[2], 0);
-            break;
-        case 8:
-            // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
-            // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
-            // v_7_8_style_calc();
-            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
-            l[2] = ( w[3] * 2 );
-            l[3] = w[3];
-            // v_7_8_9_style_calc();
-            h[3] = ( h[1] / 2 );
-            t[2] = ( t[1] + h[3] );
+            h[1] = clientH - h[0];
+            h[2] = h[1] / 2;
+            h[3] = h[1] / 3;
             //
-            w[1] = ( clientW - (w[3] * 3) );
-            l[1] = ( w[3] * 3 );
-            writeStyle(0, w[0], h[0], 0, 0);
-            writeStyle(1, w[1], h[1], t[1], l[1]);
-            writeStyle(2, w[3], h[3], t[1], l[2]);
-            writeStyle(3, w[3], h[3], t[2], l[2]);
-            writeStyle(4, w[3], h[3], t[1], l[3]);
-            writeStyle(5, w[3], h[3], t[2], l[3]);
-            writeStyle(6, w[3], h[3], t[1], 0);
-            writeStyle(7, w[3], h[3], t[2], 0);
-            break;
-        case 9:
-            // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
-            // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
+            t[1] = clientH - h[1];
+            t[2] = t[1] + h[2];
+            t[3] = t[1] + h[3];
+            t[4] = t[3] + h[3];
             //
-            w[3] = ( clientW / 4 );
-            // v_7_8_9_style_calc();
-            h[3] = ( h[1] / 2 );
-            t[2] = ( t[1] + h[3] );
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            w[3] = Math.round( missingValue( r, 0, h[3] ) );
+            w[4] = w[0] - ( w[3] + w[2] + w[1] );
             //
-            l[1] = ( w[3] * 3 );
-            l[2] = ( w[3] * 2 );
-            l[3] = w[3];
-            writeStyle(0, w[0], h[0], 0, 0);
-            writeStyle(1, w[3], h[3], t[1], l[1]);
-            writeStyle(2, w[3], h[3], t[2], l[1]);
-            writeStyle(3, w[3], h[3], t[1], l[2]);
-            writeStyle(4, w[3], h[3], t[2], l[2]);
-            writeStyle(5, w[3], h[3], t[1], l[3]);
-            writeStyle(6, w[3], h[3], t[2], l[3]);
-            writeStyle(7, w[3], h[3], t[1], 0);
-            writeStyle(8, w[3], h[3], t[2], 0);
-            break;
-        case 10:
-            // v_0_style_calc();
-            w[0] = Math.round( clientW );
-            h[0] = Math.round( missingValue(r, w[0], 0) );
-            // v_1_style_calc();
-            h[1] = Math.round( clientH - h[0] );
-            t[1] = ( clientH - h[1] );
-            // v_7_8_9_style_calc();
-            h[3] = ( h[1] / 2 );
-            t[2] = ( t[1] + h[3] );
-            //
-            w[3] = Math.round( missingValue(r, 0, (h[1] / 2)) );
-            //
-            l[1] = ( w[3] * 1 );
-            l[2] = ( w[3] * 2 );
-            l[3] = ( w[3] * 3 );
-            //
-            w[4] = ( clientW - l[3] );
-            w[5] = ( w[4] / 2 );
-            l[4] = l[3] + w[5];
-            h[5] = Math.round( missingValue(r, w[5], 0) );
-            h[4] = ( h[1] - h[5] );
-            t[3] = ( t[1] + h[4] );
+            l[1] = w[3];
+            l[2] = l[1] + w[4];
+            l[3] = l[2] + w[2];
+            // w[6] = w[0] - ( w[3] + w[2] + w[1] );
+            // l[2] = w[3] + w[6];
             //top
             writeStyle(0, w[0], h[0], 0, 0);
             //stack 1
-            writeStyle(1, w[4], h[4], t[1], l[3]);
-            writeStyle(8, w[5], h[5], t[3], l[4]);
-            writeStyle(9, w[5], h[5], t[3], l[3]);
+            writeStyle(1, w[1], h[1], t[1], l[3]);
             //stack 2
-            writeStyle(2, w[3], h[3], t[1], l[2]);
-            writeStyle(3, w[3], h[3], t[2], l[2]);
+            writeStyle(2, w[2], h[2], t[1], l[2]);
+            writeStyle(3, w[2], h[2], t[2], l[2]);
             //stack 3
-            writeStyle(4, w[3], h[3], t[1], l[1]);
-            writeStyle(5, w[3], h[3], t[2], l[1]);
+            writeStyle(4, w[4], h[2], t[1], l[1]);
+            writeStyle(5, w[4], h[2], t[2], l[1]);
+            //stack 4
+            writeStyle(6, w[3], h[1], t[1], 0);
+            break;
+        case 8:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            h[2] = h[1] / 2;
+            h[3] = h[1] / 3;
+            //
+            t[1] = clientH - h[1];
+            t[2] = t[1] + h[2];
+            //
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            w[3] = Math.round( missingValue( r, 0, h[3] ) );
+            w[4] = w[0] - ( w[3] + w[2] + w[1] );
+            //
+            l[1] = w[3];
+            l[2] = w[3] + w[4];
+            l[3] = l[2] + w[2];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[3]);
+            //stack 2
+            writeStyle(2, w[2], h[2], t[1], l[2]);
+            writeStyle(3, w[2], h[2], t[2], l[2]);
+            //stack 3
+            writeStyle(4, w[4], h[2], t[1], l[1]);
+            writeStyle(5, w[4], h[2], t[2], l[1]);
+            //stack 4
+            writeStyle(6, w[3], h[2], t[1], 0);
+            writeStyle(7, w[3], h[2], t[2], 0);
+            break;
+        case 9:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            //
+            h[2] = h[1] / 2;
+            h[3] = h[1] / 3;
+            //
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            w[3] = Math.round( missingValue( r, 0, h[3] ) );
+            w[4] = w[0] - ( w[3] + w[2] + w[1] );
+            //
+            t[2] = t[1] + h[3];
+            t[3] = t[2] + h[3];
+            t[4] = t[1] + h[2];
+            //
+            l[1] = w[3];
+            l[2] = l[1] + w[4];
+            l[3] = l[2] + w[2];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[3]);
+            //stack 2
+            writeStyle(2, w[2], h[2], t[1], l[2]);
+            writeStyle(3, w[2], h[2], t[4], l[2]);
+            //stack 3
+            writeStyle(4, w[4], h[2], t[1], l[1]);
+            writeStyle(5, w[4], h[2], t[4], l[1]);
             //stack 4
             writeStyle(6, w[3], h[3], t[1], 0);
             writeStyle(7, w[3], h[3], t[2], 0);
+            writeStyle(8, w[3], h[3], t[3], 0);
             break;
-        // case 11:
-        //     break;
-        // case 12:
-        //     break;
-        // case 13:
-        //     break;
+        case 10:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            h[2] = h[1] / 2;
+            h[3] = h[1] / 3;
+            //
+            w[1] = Math.round( missingValue( r, 0, h[1] ) );
+            w[3] = Math.round( missingValue( r, 0, h[3] ) );
+            //
+            t[2] = t[1] + h[3];
+            t[3] = t[2] + h[3];
+            t[4] = t[1] + h[2];
+            //
+            l[1] = w[3];
+            l[2] = w[3] * 2;
+            w[2] = w[0] - ( l[2] + w[1] );
+            l[3] = l[2] + w[2];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[3]);
+            //stack 2
+            writeStyle(2, w[2], h[2], t[1], l[2]);
+            writeStyle(3, w[2], h[2], t[4], l[2]);
+            //stack 3
+            writeStyle(4, w[3], h[3], t[1], l[1]);
+            writeStyle(5, w[3], h[3], t[2], l[1]);
+            writeStyle(6, w[3], h[3], t[3], l[1]);
+            //stack 4
+            writeStyle(7, w[3], h[3], t[1], 0);
+            writeStyle(8, w[3], h[3], t[2], 0);
+            writeStyle(9, w[3], h[3], t[3], 0);
+            break;
+        case 11:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            //
+            h[2] = h[1] / 3;
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            //
+            t[2] = t[1] + h[2];
+            t[3] = t[2] + h[2];
+            //
+            l[1] = w[2];
+            l[2] = w[2] * 2;
+            l[3] = w[2] * 3;
+            //
+            w[1] = w[0] - l[3]; //Math.round( missingValue( r, 0, h[1] ) );
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[3]);
+            //stack 2
+            writeStyle(2, w[2], h[2], t[1], l[2]);
+            writeStyle(3, w[2], h[2], t[2], l[2]);
+            writeStyle(4, w[2], h[2], t[3], l[2]);
+            //stack 3
+            writeStyle(5, w[2], h[2], t[1], l[1]);
+            writeStyle(6, w[2], h[2], t[2], l[1]);
+            writeStyle(7, w[2], h[2], t[3], l[1]);
+            //stack 4
+            writeStyle( 8, w[2], h[2], t[1], 0);
+            writeStyle( 9, w[2], h[2], t[2], 0);
+            writeStyle(10, w[2], h[2], t[3], 0);
+            break;
+        case 12:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            //
+            h[2] = h[1] / 3;
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            //
+            t[2] = t[1] + h[2];
+            t[3] = t[2] + h[2];
+            //
+            l[1] = w[2];
+            l[2] = w[2] * 2;
+            l[3] = w[2] * 3;
+            l[4] = w[2] * 4;
+            //
+            w[1] = w[0] - l[4];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[4]);
+            //stack 2
+            writeStyle(2, w[2], h[1], t[1], l[3]);
+            //stack 3
+            writeStyle(3, w[2], h[2], t[1], l[2]);
+            writeStyle(4, w[2], h[2], t[2], l[2]);
+            writeStyle(5, w[2], h[2], t[3], l[2]);
+            //stack 4
+            writeStyle(6, w[2], h[2], t[1], l[1]);
+            writeStyle(7, w[2], h[2], t[2], l[1]);
+            writeStyle(8, w[2], h[2], t[3], l[1]);
+            //stack 5
+            writeStyle( 9, w[2], h[2], t[1], 0);
+            writeStyle(10, w[2], h[2], t[2], 0);
+            writeStyle(11, w[2], h[2], t[3], 0);
+            break;
+        case 13:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            //
+            h[2] = h[1] / 3;
+            h[3] = h[1] / 2;
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            //
+            t[2] = t[1] + h[2];
+            t[3] = t[2] + h[2];
+            t[4] = t[1] + h[3];
+            //
+            l[1] = w[2];
+            l[2] = w[2] * 2;
+            l[3] = w[2] * 3;
+            l[4] = w[2] * 4;
+            //
+            w[1] = w[0] - l[4];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[4]);
+            //stack 2
+            writeStyle(2, w[2], h[3], t[1], l[3]);
+            writeStyle(3, w[2], h[3], t[4], l[3]);
+            //stack 3
+            writeStyle(4, w[2], h[2], t[1], l[2]);
+            writeStyle(5, w[2], h[2], t[2], l[2]);
+            writeStyle(6, w[2], h[2], t[3], l[2]);
+            //stack 4
+            writeStyle(7, w[2], h[2], t[1], l[1]);
+            writeStyle(8, w[2], h[2], t[2], l[1]);
+            writeStyle(9, w[2], h[2], t[3], l[1]);
+            //stack 5
+            writeStyle(10, w[2], h[2], t[1], 0);
+            writeStyle(11, w[2], h[2], t[2], 0);
+            writeStyle(12, w[2], h[2], t[3], 0);
+            break;
+        case 14:
+            w[0] = clientW;
+            h[0] = Math.round( missingValue( r, w[0], 0 ) );
+            //
+            h[1] = clientH - h[0];
+            t[1] = clientH - h[1];
+            //
+            h[2] = h[1] / 3;
+            w[2] = Math.round( missingValue( r, 0, h[2] ) );
+            //
+            t[2] = t[1] + h[2];
+            t[3] = t[2] + h[2];
+            //
+            l[1] = w[2];
+            l[2] = w[2] * 2;
+            l[3] = w[2] * 3;
+            l[4] = w[2] * 4;
+            //
+            w[1] = w[0] - l[4];
+            //top
+            writeStyle(0, w[0], h[0], 0, 0);
+            //stack 1
+            writeStyle(1, w[1], h[1], t[1], l[4]);
+            //stack 2
+            writeStyle(2, w[2], h[2], t[1], l[3]);
+            writeStyle(3, w[2], h[2], t[2], l[3]);
+            writeStyle(4, w[2], h[2], t[3], l[3]);
+            //stack 3
+            writeStyle(5, w[2], h[2], t[1], l[2]);
+            writeStyle(6, w[2], h[2], t[2], l[2]);
+            writeStyle(7, w[2], h[2], t[3], l[2]);
+            //stack 4
+            writeStyle( 8, w[2], h[2], t[1], l[1]);
+            writeStyle( 9, w[2], h[2], t[2], l[1]);
+            writeStyle(10, w[2], h[2], t[3], l[1]);
+            //stack 5
+            writeStyle(11, w[2], h[2], t[1], 0);
+            writeStyle(12, w[2], h[2], t[2], 0);
+            writeStyle(13, w[2], h[2], t[3], 0);
+            break;
         default:
             console.info("chgPlayerStyle(): player number out of range (" + fldids.length + ")");
     }
@@ -334,13 +513,24 @@ function chgQuality(strmID, strmQuality) {
         case 3:
             length = 2;
             break;
+        case 5:
+            length = 2;
+            quality[2] = "360p30";
+            break;
         case 2:
         case 4:
-        case 5:
         case 6:
+        case 7:
+        case 11:
             length = 1;
             break;
+        case 8:
+        case 9:
         case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
             length = 1;
             quality[1] = "360p30";
             break;
