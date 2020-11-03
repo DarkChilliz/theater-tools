@@ -812,7 +812,7 @@ function updChatIndx() {
             chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
             list = [],
-            indx = chats.slice(); //indx = [...chats];
+            indx = chats.slice();
 
         for(var i = 0; i < chans.length; i++) {
             var indxOf = indx.indexOf(chans[i]);
