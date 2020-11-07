@@ -6,19 +6,19 @@
 
 function missingValue(aspect_ratio, width, height) {
     //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
-	if (width && height) {
+    if (width && height) {
         aspect_ratio = width / height;
         return aspect_ratio;
-	}
-	if (aspect_ratio) {
-		if (width && !height) {
+    }
+    if (aspect_ratio) {
+        if (width && !height) {
             height = width / aspect_ratio;
             return height;
-		} else if (height && !width) {
+        } else if (height && !width) {
             width = height * aspect_ratio;
             return width;
-		}
-	}
+        }
+    }
 }
 
 function writeStyle(v, w, h, t, l) {
@@ -807,7 +807,7 @@ function chgQuality(strmID, strmQuality) {
 function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
-    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
+    if ( JSON.stringify(chans).toLowerCase() !== JSON.stringify(chats.slice(0, chans.length)).toLowerCase() ) {
         var chatsel = document.getElementById("chatsel"),
             chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
