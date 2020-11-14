@@ -757,12 +757,16 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    var length = 0,
-        quality = ["auto","auto","auto"];
+    var length = 0;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
     if (gameMode === true) {
         quality = ["480p30","160p30","160p30"];
+    } else {
+        quality = ["auto","auto","auto"];
+    }
+    if (maxQualityMode === true) {
+        quality[0] = "chunked";
     }
     switch(chans.length) {
         case 3:
@@ -910,6 +914,15 @@ function setGameMode() {
     }
 }
 
+function setMaxQualityMode() {
+    maxQualityMode = !maxQualityMode;
+    if (maxQualityMode === true) {
+        document.getElementsByClassName("setMaxQualityMode")[0].style.color = "lightcoral";
+    } else {
+        document.getElementsByClassName("setMaxQualityMode")[0].style.color = "whitesmoke";
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 // setup functions
 
@@ -927,25 +940,31 @@ function createFuncMenuDiv() {
         funcMenuBot = document.createElement("div"),
         fm0 = document.createElement("div"),
         removeOfflineChannelsBtn = document.createElement("button"); //https://www.w3schools.com/howto/howto_css_text_buttons.asp
-        setGameModeBtn = document.createElement("button");
+        setGameModeBtn = document.createElement("button"),
+        setMaxQualityModeBtn = document.createElement("button");
 
     funcMenuDiv.id = "funcMenuDiv";
-    funcMenuTop.id = "funcMenuTop";
-    funcMenuBot.id = "funcMenuBot";
-    fm0.id = "fm0";
 
+    funcMenuTop.id = "funcMenuTop";
     funcMenuTop.style = "display:none"; //https://www.w3schools.com/jsref/prop_style_display.asp
+
+    funcMenuBot.id = "funcMenuBot";
     funcMenuBot.style = "display:none";
+
+    fm0.id = "fm0";
+    fm0.onclick = funcEvtChk;
 
     removeOfflineChannelsBtn.classList = "funcBtn removeOfflineChannels";
     removeOfflineChannelsBtn.textContent = "removeOfflineChannels";
+    removeOfflineChannelsBtn.onclick = removeOfflineChannels;
 
     setGameModeBtn.classList = "funcBtn setGameMode";
     setGameModeBtn.textContent = "setGameMode";
-
-    fm0.onclick = funcEvtChk;
-    removeOfflineChannelsBtn.onclick = removeOfflineChannels;
     setGameModeBtn.onclick = setGameMode;
+
+    setMaxQualityModeBtn.classList = "funcBtn setMaxQualityMode";
+    setMaxQualityModeBtn.textContent = "setMaxQualityMode";
+    setMaxQualityModeBtn.onclick = setMaxQualityMode;
 
     document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
     document.getElementById("funcMenuDiv").appendChild(funcMenuTop);
@@ -953,6 +972,7 @@ function createFuncMenuDiv() {
     document.getElementById("funcMenuBot").appendChild(fm0);
     document.getElementById("fm0").appendChild(removeOfflineChannelsBtn);
     document.getElementById("fm0").appendChild(setGameModeBtn);
+    document.getElementById("fm0").appendChild(setMaxQualityModeBtn);
 }
 
 function createImgElem(id, url, alt, elemID, onclick) {
@@ -1034,6 +1054,7 @@ function setEventTrigger() {
 var userQuality = [],
     useUserQuality = false,
     gameMode = false,
+    maxQualityMode = false,
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
