@@ -787,7 +787,6 @@ function chgQuality(strmID, strmQuality) {
         case 8:
         case 9:
         case 10:
-        case 11:
         case 12:
         case 13:
         case 14:
