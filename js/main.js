@@ -771,6 +771,7 @@ function chgQuality(strmID, strmQuality) {
         case 3:
             length = 2;
             break;
+        case 7:
         case 5:
             length = 2;
             if (gameMode === false) {
@@ -780,7 +781,6 @@ function chgQuality(strmID, strmQuality) {
         case 2:
         case 4:
         case 6:
-        case 7:
         case 11:
             length = 1;
             break;
@@ -791,6 +791,7 @@ function chgQuality(strmID, strmQuality) {
         case 12:
         case 13:
         case 14:
+        case 15:
         case 16:
             length = 1;
             if (gameMode === false) {
