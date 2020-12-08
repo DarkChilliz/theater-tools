@@ -996,6 +996,7 @@ function onReceiveImgURL(e) {
             if (event.ctrlKey) {
                 openFuncMenu(0);
                 playpause(1);
+                theatr.playm = 0;
             }
             chgQuality();
             goFullScreen();
