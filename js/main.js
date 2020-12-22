@@ -703,17 +703,13 @@ function chgPlayerStyle() {
 }
 
 function goFullScreen() {
-    if (screen.width == 1440 && screen.height == 900) {
-        if (isfullscr()) {
-            chgPlayerStyle();
-        } else {
-            gofullscr();
-            setTimeout(function() {
-                chgPlayerStyle();
-            }, 200);
-        }
-    } else {
+    if (isfullscr()) {
         chgPlayerStyle();
+    } else {
+        gofullscr();
+        setTimeout(function() {
+            chgPlayerStyle();
+        }, 200);
     }
 }
 
