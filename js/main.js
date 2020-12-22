@@ -700,6 +700,18 @@ function chgPlayerStyle() {
         default:
             console.info("chgPlayerStyle(): player number out of range (" + fldids.length + ")");
     }
+
+    //1920x1080 (16:9 aspect ratio)
+    if (screen.width / screen.height == 1.7777777777777777 || screen.width == 1920 && screen.height == 1080) {
+        switch(chans.length) {
+
+        }
+    //1440x900 (16:10 aspect ratio)
+    } else if (screen.width / screen.height == 1.6 || screen.width == 1440 && screen.height == 900) {
+        switch(chans.length) {
+
+        }
+    }
 }
 
 function goFullScreen() {
