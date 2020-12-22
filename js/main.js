@@ -1,4 +1,4 @@
-// main.js: pepeLaugh 👉 https://www.youtube.com/watch?v=9OG-Qr1qAe4
+// main.js
 //
 
 ///////////////////
