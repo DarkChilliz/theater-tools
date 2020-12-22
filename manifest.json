@@ -2,13 +2,16 @@
   "manifest_version": 2,
 
   "name": "TwitchTheater.tv Styles",
-  "description": "1440x900 style for https://twitchtheater.tv/",
-  "version": "0.2.5",
+  "description": "1920x1080 (16:9) & 1440x900 (16:10) style for https://twitchtheater.tv/",
+  "version": "1.1.1",
   "icons": {
     "192": "img/favicon-192.png"
   },
   "content_scripts": [{
-    "matches": [ "*://*.twitchtheater.tv/*", "*://*.darkchilliz.github.io/*" ],
+    "matches": [
+      "*://*.twitchtheater.tv/*",
+      "*://*.darkchilliz.github.io/*"
+    ],
     "run_at": "document_idle",
     "js": ["js/content.js"]
   }],
