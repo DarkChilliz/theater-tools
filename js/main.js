@@ -36,7 +36,8 @@ function chgPlayerStyle() {
         w = [],
         h = [],
         t = [],
-        l = [];
+        l = [],
+        playerNotConfigured = console.info("chgPlayerStyle(): not configured for [" + fldids.length + "] players");
     switch(chans.length) {
         case 0:
             break;
@@ -698,7 +699,7 @@ function chgPlayerStyle() {
             writeStyle(18, w[2], h[2], t[3], 0);
             break;
         default:
-            console.info("chgPlayerStyle(): player number out of range (" + fldids.length + ")");
+            playerNotConfigured;
     }
 
     //1920x1080 (16:9 aspect ratio)
