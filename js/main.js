@@ -153,7 +153,7 @@ function chgPlayerStyle() {
                 //stack 5
                 writeStyle(5, w[2], h[1], t[1], 0);
                 break;
-            case 7: //unfinished
+            case 7:
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
