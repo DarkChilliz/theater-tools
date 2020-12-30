@@ -74,7 +74,7 @@ function chgPlayerStyle() {
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                l[0] = clientW / 2;
+                l[0] = w[1];
                 //top
                 writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
@@ -82,7 +82,7 @@ function chgPlayerStyle() {
                 //stack 2
                 writeStyle(2, w[1], h[1], t[1], 0);
                 break;
-            case 4:
+            case 4: //improve
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -184,7 +184,7 @@ function chgPlayerStyle() {
                 writeStyle(5, w[2], h[2], t[1], 0);
                 writeStyle(6, w[2], h[2], t[2], 0);
                 break;
-            case 8:
+            case 8: //improve
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -728,7 +728,7 @@ function chgPlayerStyle() {
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                l[0] = clientW / 2;
+                l[0] = w[1];
                 //top
                 writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
