@@ -126,7 +126,7 @@ function chgPlayerStyle() {
                 writeStyle(3, w[3], h[3], t[1], 0);
                 writeStyle(4, w[3], h[3], t[2], 0);
                 break;
-            case 6:
+            case 6: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -158,7 +158,7 @@ function chgPlayerStyle() {
                 //stack 3 bot
                 writeStyle(5, w[3], h[4], t[3], 0);
                 break;
-            case 7:
+            case 7: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -226,7 +226,7 @@ function chgPlayerStyle() {
                 writeStyle(6, w[3], h[2], t[1], 0);
                 writeStyle(7, w[3], h[2], t[2], 0);
                 break;
-            case 9:
+            case 9: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -263,7 +263,7 @@ function chgPlayerStyle() {
                 writeStyle(7, w[3], h[3], t[2], 0);
                 writeStyle(8, w[3], h[3], t[3], 0);
                 break;
-            case 10:
+            case 10: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -299,7 +299,7 @@ function chgPlayerStyle() {
                 writeStyle(8, w[3], h[3], t[2], 0);
                 writeStyle(9, w[3], h[3], t[3], 0);
                 break;
-            case 11:
+            case 11: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -334,7 +334,7 @@ function chgPlayerStyle() {
                 writeStyle( 9, w[2], h[2], t[2], 0);
                 writeStyle(10, w[2], h[2], t[3], 0);
                 break;
-            case 12:
+            case 12: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -372,7 +372,7 @@ function chgPlayerStyle() {
                 writeStyle(10, w[2], h[2], t[2], 0);
                 writeStyle(11, w[2], h[2], t[3], 0);
                 break;
-            case 13:
+            case 13: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -413,7 +413,7 @@ function chgPlayerStyle() {
                 writeStyle(11, w[2], h[2], t[2], 0);
                 writeStyle(12, w[2], h[2], t[3], 0);
                 break;
-            case 14:
+            case 14: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -453,7 +453,7 @@ function chgPlayerStyle() {
                 writeStyle(12, w[2], h[2], t[2], 0);
                 writeStyle(13, w[2], h[2], t[3], 0);
                 break;
-            case 15:
+            case 15: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -503,7 +503,7 @@ function chgPlayerStyle() {
                 writeStyle(13, w[2], h[2], t[2], 0);
                 writeStyle(14, w[2], h[2], t[3], 0);
                 break;
-            case 16:
+            case 16: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -553,7 +553,7 @@ function chgPlayerStyle() {
                 writeStyle(14, w[2], h[2], t[2], 0);
                 writeStyle(15, w[2], h[2], t[3], 0);
                 break;
-            case 17:
+            case 17: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -606,7 +606,7 @@ function chgPlayerStyle() {
                 writeStyle(15, w[2], h[2], t[2], 0);
                 writeStyle(16, w[2], h[2], t[3], 0);
                 break;
-            case 18:
+            case 18: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
@@ -656,7 +656,7 @@ function chgPlayerStyle() {
                 writeStyle(16, w[2], h[2], t[2], 0);
                 writeStyle(17, w[2], h[2], t[3], 0);
                 break;
-            case 19:
+            case 19: //unfinished
                 w[0] = clientW;
                 h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
