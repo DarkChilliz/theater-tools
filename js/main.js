@@ -107,24 +107,28 @@ function chgPlayerStyle() {
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = clientW / 4; // Math.round( missingValue( r, 0, h[1] ) );
                 l[0] = clientW - w[1];
+                l[1] = l[0] - w[1];
+                l[2] = l[1] - w[1];
+                w[2] = l[2];
                 //
-                h[3] = h[1] / 2;
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
-                l[1] = l[0] - w[3];
-                t[2] = t[1] + h[3];
-                w[2] = l[0] - w[3];
-                l[1] = w[3];
+                // h[3] = h[1] / 2;
+                // w[3] = Math.round( missingValue( r, 0, h[3] ) );
+                // l[1] = l[0] - w[3];
+                // t[2] = t[1] + h[3];
+                // w[2] = l[0] - w[3];
+                // l[1] = w[3];
                 //top
                 writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
                 writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[1], t[1], l[1]);
+                writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[3], h[3], t[1], 0);
-                writeStyle(4, w[3], h[3], t[2], 0);
+                writeStyle(3, w[1], h[1], t[1], l[2]);
+                //stack 4
+                writeStyle(4, w[1], h[1], t[1], 0);
                 break;
             case 6: //unfinished
                 w[0] = clientW;
@@ -205,26 +209,26 @@ function chgPlayerStyle() {
                 t[2] = t[1] + h[2];
                 //
                 w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
-                w[4] = w[0] - ( w[3] + w[2] + w[1] );
                 //
-                l[1] = w[3];
-                l[2] = w[3] + w[4];
-                l[0] = l[2] + w[2];
+                l[0] = clientW - w[1];
+                l[1] = l[0] - w[1];
+                l[2] = l[1] - w[1];
+                w[2] = l[2] / 2;
+                l[3] = w[2];
                 //top
                 writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
                 writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[2]);
-                writeStyle(3, w[2], h[2], t[2], l[2]);
+                writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(4, w[4], h[2], t[1], l[1]);
-                writeStyle(5, w[4], h[2], t[2], l[1]);
+                writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(6, w[3], h[2], t[1], 0);
-                writeStyle(7, w[3], h[2], t[2], 0);
+                writeStyle(4, w[2], h[2], t[1], l[3]);
+                writeStyle(5, w[2], h[2], t[2], l[3]);
+                //stack 5
+                writeStyle(6, w[2], h[2], t[1], 0);
+                writeStyle(7, w[2], h[2], t[2], 0);
                 break;
             case 9: //unfinished
                 w[0] = clientW;
@@ -777,7 +781,7 @@ function chgPlayerStyle() {
                 //
                 h[3] = h[1] / 2;
                 w[3] = Math.round( missingValue( r, 0, h[3] ) );
-                l[1] = l[0] - w[3];
+                // l[1] = l[0] - w[3];
                 t[2] = t[1] + h[3];
                 w[2] = l[0] - w[3];
                 l[1] = w[3];
