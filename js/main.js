@@ -1384,8 +1384,8 @@ function getQualities(strmID) {
         if (chans[strmID].search("v=") == -1) {
             var list = obj.player.getQualities();
             obj.quality = [];
-            for(var x = 0; x < list.length; x++) {
-                obj.quality.push(list[x].group);
+            for(let i = 0; i < list.length; i++) {
+                obj.quality.push(list[i].group);
             }
         } else if (chans[strmID].search("v=") > -1) {
             obj.quality = obj.player.getQualities();
@@ -1463,7 +1463,7 @@ function chgQuality(strmID, strmQuality) {
             }
             break;
     }
-    for(var i = 0; i < chans.length; i++) {
+    for(let i = 0; i < chans.length; i++) {
         getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
         setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
@@ -1482,8 +1482,8 @@ function updChatIndx() {
             list = [],
             indx = chats.slice();
 
-        for(var i = 0; i < chans.length; i++) {
-            var indxOf = indx.indexOf(chans[i]);
+        for(let i = 0; i < chans.length; i++) {
+            let indxOf = indx.indexOf(chans[i]);
             if (indxOf > -1) {
                 list.push( indx.splice(indxOf, 1).toString() );
             }
@@ -1495,7 +1495,7 @@ function updChatIndx() {
         //get 'selectedIndex' value
         var indexOfSelectedChat = chats[chatsel.selectedIndex];
 
-        for(var i = 0; i < list.length; i++) {
+        for(let i = 0; i < list.length; i++) {
             chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
             chatmen.options[i].textContent = list[i]; //innerHTML, value
         }
@@ -1511,8 +1511,8 @@ function updChatIndx() {
 
 function removeOfflineChannels() {
     var list = [];
-    for(var i = (fldids.length - 1); i > -1; i--) {
-        var obj = document.getElementById("v-" + fldids[i]);
+    for(let i = (fldids.length - 1); i > -1; i--) {
+        let obj = document.getElementById("v-" + fldids[i]);
         if (obj.player.isPaused() || obj.player.getEnded()) {
             list.unshift(obj.player.getPlayerState().channelName);
             remstream(fldids[i], 1);
