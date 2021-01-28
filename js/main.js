@@ -1472,6 +1472,20 @@ function chgQuality(strmID, strmQuality) {
 ///////////////////
 // miscellaneous functions
 
+function chgCookie_redundantBackup(chk, val, txt) {
+    var i = new Date();
+    i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
+    document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
+}
+
+function getCookie_redundantBackup(txt) {
+    if (txt) {
+        return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
+    } else {
+        return document.cookie.replace(/\s+/g, "").split(";")
+    }
+}
+
 function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
