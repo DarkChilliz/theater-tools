@@ -1489,7 +1489,7 @@ function getCookie_redundantBackup(txt) {
 function updChatIndx() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
     //https://stackoverflow.com/questions/25934989
-    if ( JSON.stringify(chans).toLowerCase() !== JSON.stringify(chats.slice(0, chans.length)).toLowerCase() ) {
+    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var chatsel = document.getElementById("chatsel"),
             chatmen = document.getElementById("chatmen"),
             indexOfSelectedChat = "",
@@ -1520,6 +1520,8 @@ function updChatIndx() {
         indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
         chatsel.selectedIndex = indexOfSelectedChat;
         chatmen.selectedIndex = indexOfSelectedChat;
+
+        chgchat();
     }
 }
 
