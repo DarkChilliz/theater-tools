@@ -1487,7 +1487,26 @@ function getCookie_redundantBackup(txt) {
 }
 
 function updChatIndx() {
-    //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+    //https://www.w3schools.com/js/js_cookies.asp
+    var cookieName = "sesssave",
+        sesssave = getCookie_redundantBackup(cookieName),
+        sesssaveLowerCase = sesssave.toLowerCase();
+
+    if ( sesssave !== sesssaveLowerCase ) {
+        chgCookie_redundantBackup( 1, cookieName, sesssaveLowerCase );
+    }
+
+    // https://morioh.com/p/0b5bd0ececd4
+    if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
+        chans = chans.join('|').toLowerCase().split('|');
+    }
+    if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
+        chats = chats.join('|').toLowerCase().split('|');
+    }
+    //vtils
+    //ctils
+
+    //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
     if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var chatsel = document.getElementById("chatsel"),
