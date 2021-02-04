@@ -1593,6 +1593,7 @@ function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
         openFuncMenu(0);
+        chgvolume(100);
         updChatIndx();
         chgQuality();
         goFullScreen();
@@ -1602,6 +1603,7 @@ function evtchk(event) {
 function funcEvtChk(event) {
     if (event.ctrlKey) {
         openFuncMenu(0);
+        chgvolume(100);
         chgQuality();
         goFullScreen();
     }
@@ -1698,6 +1700,7 @@ function onReceiveImgURL(e) {
         function(event) {
             if (event.ctrlKey) {
                 openFuncMenu(0);
+                chgvolume(100);
                 playpause(1);
                 theatr.playm = 0;
             }
