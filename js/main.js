@@ -1377,7 +1377,7 @@ function goFullScreen() {
         gofullscr();
         setTimeout(function() {
             chgPlayerStyle();
-        }, 200);
+        }, 300);
     }
 }
 
@@ -1612,6 +1612,9 @@ function funcEvtChk(event) {
     }
 }
 
+///////////////////
+// button menu functions
+
 function setGameMode() {
     gameMode = !gameMode;
     if (gameMode === true) {
@@ -1769,7 +1772,7 @@ var userQuality = [],
     updMenuElement();
     createFuncMenuDiv();
     document.addEventListener("sendImgURL", onReceiveImgURL);
-    setTimeout(setEventTrigger, 100); // setEventTrigger();
+    setTimeout(setEventTrigger, 300); // setEventTrigger();
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////
