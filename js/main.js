@@ -1758,6 +1758,10 @@ function setEventTrigger() {
         }
         obj.player.addEventListener("playing", playingEventListener);
         obj.player.addEventListener("offline", offlineEventListener);
+        setTimeout(function(){
+            rmvEvtLsnr();
+            onEventTrigger();
+        },10000);
         console.info("setEventTrigger(): fldids.length ===", fldids.length);
     } else {
         setButtonVisibility();
