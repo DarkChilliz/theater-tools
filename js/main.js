@@ -1494,7 +1494,9 @@ function getCookie_redundantBackup(txt) {
 
 function updChatIndx() {
     //https://www.w3schools.com/js/js_cookies.asp
-    var cookieName = "sesssave",
+    var chatsel = document.getElementById("chatsel"),
+        chatmen = document.getElementById("chatmen"),
+        cookieName = "sesssave",
         sesssave = getCookie_redundantBackup(cookieName),
         sesssaveLowerCase = sesssave.toLowerCase();
 
@@ -1504,20 +1506,22 @@ function updChatIndx() {
 
     // https://morioh.com/p/0b5bd0ececd4
     if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
+        for(let i = 0; i < chans.length; i++) {
+            obj = document.querySelector("#t-" + i);
+            if (obj.value !== obj.value.toLowerCase()) {
+                obj.value = obj.value.toLowerCase();
+            }
+        }
         chans = chans.join('|').toLowerCase().split('|');
     }
     if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
         chats = chats.join('|').toLowerCase().split('|');
     }
-    //vtils
-    //ctils
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
-    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var chatsel = document.getElementById("chatsel"),
-            chatmen = document.getElementById("chatmen"),
-            indexOfSelectedChat = "",
+    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) && 1 == 0) {
+        var indexOfSelectedChat = "",
             list = [],
             indx = chats.slice();
 
