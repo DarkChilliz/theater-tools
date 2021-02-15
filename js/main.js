@@ -1515,7 +1515,19 @@ function updChatIndx() {
         chans = chans.join('|').toLowerCase().split('|');
     }
     if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
+        for(let value in chats) {
+            let obj = document.getElementById("c-" + chats[value]);
+            if (obj.id !== obj.id.toLowerCase()) {
+                obj.id = obj.id.toLowerCase();
+                obj.textContent = '';
+            }
+        }
+        for(let i = 0; i < chats.length; i++) {
+            chatsel.options[i].textContent = chatsel.options[i].textContent.toLowerCase();
+            chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
+        }
         chats = chats.join('|').toLowerCase().split('|');
+        chgchat();
     }
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
