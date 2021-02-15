@@ -1521,12 +1521,14 @@ function updChatIndx() {
             list = [],
             indx = chats.slice();
 
+        //find 'chats' that have active streams and list them in order of 'chans'
         for(let i = 0; i < chans.length; i++) {
             let indxOf = indx.indexOf(chans[i]);
             if (indxOf > -1) {
                 list.push( indx.splice(indxOf, 1).toString() );
             }
         }
+        //add rest of chats with inactive streams to end of list
         for(; indx.length > 0; ) {
             list.push( indx.shift() );
         }
@@ -1534,11 +1536,13 @@ function updChatIndx() {
         //get 'selectedIndex' value
         var indexOfSelectedChat = chats[chatsel.selectedIndex];
 
+        //replace 'chatsel' & 'chatmen'
         for(let i = 0; i < list.length; i++) {
             chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
             chatmen.options[i].textContent = list[i]; //innerHTML, value
         }
 
+        //replace 'chats' with reordered 'list'
         chats = list.slice(); //chats = [...list];
 
         //restore 'selectedIndex' value
