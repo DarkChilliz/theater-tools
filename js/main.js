@@ -1532,7 +1532,7 @@ function updChatIndx() {
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
-    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) && 1 == 0) {
+    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
         var indexOfSelectedChat = "",
             list = [],
             indx = chats.slice();
