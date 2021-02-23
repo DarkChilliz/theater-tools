@@ -1399,11 +1399,11 @@ function getQualities(strmID) {
     }
 }
 
-function chkQuality(indx, sel) {
-    if (indx.indexOf(sel) < 0) {
-        return indx[0];
+function chkQuality(array, string) {
+    if (array.indexOf(string) < 0) {
+        return array[array.length - 1]; //[0]
     } else {
-        return (indx[indx.indexOf(sel)]);
+        return (array[array.indexOf(string)]);
     }
 }
 
