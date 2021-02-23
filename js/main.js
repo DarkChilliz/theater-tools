@@ -1441,6 +1441,7 @@ function chgQuality(strmID, strmQuality) {
     }
     switch(aspect_ratio) {
         case 1.7777777777777777:
+            // length = 0;
             break;
         case 1.6:
             switch(chans.length) {
@@ -1476,6 +1477,7 @@ function chgQuality(strmID, strmQuality) {
             }
             break;
         default:
+            // length = 0;
     }
     for(let i = 0; i < chans.length; i++) {
         getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
