@@ -1427,7 +1427,8 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    var length = 0;
+    var length = 0,
+        aspect_ratio = screen.width / screen.height;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
     if (gameMode === true) {
@@ -1438,36 +1439,45 @@ function chgQuality(strmID, strmQuality) {
     if (maxQualityMode === true) {
         quality[0] = "chunked";
     }
-    switch(chans.length) {
-        case 3:
-            length = 2;
-            break;
-        case 7:
-        case 5:
-            length = 2;
-            if (gameMode === false) {
-                quality[2] = "360p30"; //(gameMode === true ? "160p30" : "360p30")
-            }
-            break;
-        case 2:
-        case 4:
-        case 6:
-        case 11:
+    switch(aspect_ratio) {
+        case 1.7777777777777777:
             length = 1;
             break;
-        case 8:
-        case 9:
-        case 10:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-        case 16:
-            length = 1;
-            if (gameMode === false) {
-                quality[1] = "360p30";
+        case 1.6:
+            switch(chans.length) {
+                case 3:
+                    length = 2;
+                    break;
+                case 7:
+                case 5:
+                    length = 2;
+                    if (gameMode === false) {
+                        quality[2] = "360p30"; //(gameMode === true ? "160p30" : "360p30")
+                    }
+                    break;
+                case 2:
+                case 4:
+                case 6:
+                case 11:
+                    length = 1;
+                    break;
+                case 8:
+                case 9:
+                case 10:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                    length = 1;
+                    if (gameMode === false) {
+                        quality[1] = "360p30";
+                    }
+                    break;
             }
             break;
+        default:
+            length = 1;
     }
     for(let i = 0; i < chans.length; i++) {
         getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
