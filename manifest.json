@@ -1,25 +1,25 @@
 {
-  "manifest_version": 2,
+   "manifest_version": 2,
 
-  "name": "TwitchTheater.tv Styles",
-  "description": "1920x1080 (16:9) & 1440x900 (16:10) style for https://twitchtheater.tv/",
-  "version": "1.1.1",
-  "icons": {
-    "192": "img/favicon-192.png"
-  },
-  "content_scripts": [{
-    "matches": [
-      "*://*.twitchtheater.tv/*",
-      "*://*.darkchilliz.github.io/*"
-    ],
-    "run_at": "document_idle",
-    "js": ["js/content.js"]
-  }],
-  "web_accessible_resources": [
-    "css/main.css",
-    "js/main.js",
-    "img/functionsmenu.png",
-    "img/playerstyle.png"
-  ],
-  "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
+   "name": "TwitchTheater.tv Styles",
+   "description": "1920x1080 (16:9) & 1440x900 (16:10) style for https://twitchtheater.tv/",
+   "version": "1.1.1",
+   "icons": {
+      "192": "img/favicon-192.png"
+   },
+   "content_scripts": [{
+      "matches": [
+         "*://*.twitchtheater.tv/*",
+         "*://*.darkchilliz.github.io/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["js/content.js"]
+   }],
+   "web_accessible_resources": [
+      "css/*.css",
+      "js/*.js",
+      "img/*.png",
+      "html/*.html"
+   ],
+   "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv"
 }
