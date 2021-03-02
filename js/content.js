@@ -2,10 +2,26 @@
     //https://stackoverflow.com/questions/9515704
     var s = document.createElement('script');
     s.src = chrome.runtime.getURL('js/main.js');
+
+    //https://stackoverflow.com/questions/9847580
+    var isFirefox = typeof InstallTrigger !== 'undefined',
+        isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
+        functionsMenuStr = "",
+        playerStyleStr = "";
+
+    if (isChrome == true) {
+        functionsMenuStr = chrome.runtime.getURL("img/functionsmenu.png");
+        playerStyleStr = chrome.runtime.getURL("img/playerstyle.png");
+    }
+    else if (isFirefox == true) {
+        functionsMenuStr = browser.extension.getURL("img/functionsmenu.png");
+        playerStyleStr = browser.extension.getURL("img/playerstyle.png");
+    }
+
     s.onload = function() {
         var url = {
-            functionsMenuImg: chrome.runtime.getURL("img/functionsmenu.png"),
-            playerStyleImg: chrome.runtime.getURL("img/playerstyle.png")
+            functionsMenuImg: functionsMenuStr,
+            playerStyleImg: playerStyleStr
         },
             event = new CustomEvent("sendImgURL", { detail: url });
         document.dispatchEvent(event);
