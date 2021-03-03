@@ -1401,7 +1401,7 @@ function getQualities(strmID) {
         if (chans[strmID].search("v=") == -1) {
             var list = obj.player.getQualities();
             obj.quality = [];
-            for(let i = 0; i < list.length; i++) {
+            for(let i = 0, l = list.length; i < l; i++) {
                 obj.quality.push(list[i].group);
             }
         } else if (chans[strmID].search("v=") > -1) {
@@ -1490,7 +1490,7 @@ function chgQuality(strmID, strmQuality) {
         default:
             // length = 0;
     }
-    for(let i = 0; i < chans.length; i++) {
+    for(let i = 0, l = chans.length; i < l; i++) {
         getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
         setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
@@ -1543,7 +1543,7 @@ function updChatIndx() {
                 obj.textContent = '';
             }
         }
-        for(let i = 0; i < chats.length; i++) {
+        for(let i = 0, l = chats.length; i < l; i++) {
             chatsel.options[i].textContent = chatsel.options[i].textContent.toLowerCase();
             chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
         }
@@ -1559,14 +1559,14 @@ function updChatIndx() {
             indx = chats.slice();
 
         //find 'chats' that have active streams and list them in order of 'chans'
-        for(let i = 0; i < chans.length; i++) {
+        for(let i = 0, l = chans.length; i < l; i++) {
             let indxOf = indx.indexOf(chans[i]);
             if (indxOf > -1) {
                 list.push( indx.splice(indxOf, 1).toString() );
             }
         }
         //add rest of chats with inactive streams to end of list
-        for(; indx.length > 0; ) {
+        for(let l = indx.length; l > 0; l--) {
             list.push( indx.shift() );
         }
 
@@ -1574,7 +1574,7 @@ function updChatIndx() {
         var indexOfSelectedChat = chats[chatsel.selectedIndex];
 
         //replace 'chatsel' & 'chatmen'
-        for(let i = 0; i < list.length; i++) {
+        for(let i = 0, l = list.length; i < l; i++) {
             chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
             chatmen.options[i].textContent = list[i]; //innerHTML, value
         }
