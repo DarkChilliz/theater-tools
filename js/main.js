@@ -1693,12 +1693,13 @@ function createFuncMenuDiv() {
 
 function onReceiveImgURL(e) {
     document.removeEventListener("sendImgURL", onReceiveImgURL);
-
-    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
+    var funcMenuDivObj = document.getElementById("funcMenuDiv");
+    funcMenuDivObj.outerHTML = e.detail.funcMenuDivHtml;
 
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
         functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
+    //playerStyleImg
     playerStyleImgObj.src = e.detail.playerStyleImg;
     playerStyleImgObj.onclick = function(event) {
         if (event.ctrlKey) {
@@ -1711,6 +1712,7 @@ function onReceiveImgURL(e) {
         goFullScreen();
     };
 
+    //functionsMenuImg
     functionsMenuImgObj.src = e.detail.functionsMenuImg;
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
