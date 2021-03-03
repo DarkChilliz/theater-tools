@@ -34,10 +34,10 @@
 
                 script.onload = function() {
                     let url = {
-                        functionsMenuImg: sFunctionsMenuURL,
-                        playerStyleImg: sPlayerStyleURL,
-                        funcMenuDivHtml: txtFile.responseText
-                    },
+                            functionsMenuImg: sFunctionsMenuURL,
+                            playerStyleImg: sPlayerStyleURL,
+                            funcMenuDivHtml: txtFile.responseText
+                        },
                         event = new CustomEvent("sendImgURL", { detail: url });
                     document.dispatchEvent(event);
                     this.remove();
