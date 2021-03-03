@@ -1693,8 +1693,7 @@ function createFuncMenuDiv() {
 
 function onReceiveImgURL(e) {
     document.removeEventListener("sendImgURL", onReceiveImgURL);
-    var funcMenuDivObj = document.getElementById("funcMenuDiv");
-    funcMenuDivObj.outerHTML = e.detail.funcMenuDivHtml;
+    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
 
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
         functionsMenuImgObj = document.getElementById("functionsMenuImg");
