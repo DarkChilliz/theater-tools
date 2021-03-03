@@ -1591,20 +1591,6 @@ function updChatIndx() {
     }
 }
 
-function removeOfflineChannels() {
-    var list = [];
-    for(let i = (fldids.length - 1); i > -1; i--) {
-        let obj = document.getElementById("v-" + fldids[i]);
-        if (obj.player.isPaused() || obj.player.getEnded()) {
-            list.unshift(obj.player.getPlayerState().channelName);
-            remstream(fldids[i], 1);
-        }
-    }
-    if (list.length > 0){
-        console.info("removeOfflineChannels():", list.toString());
-    }
-}
-
 function openFuncMenu(val) {
     if (val == undefined) {
         val = document.getElementById("funcMenuBot").style.display //funcMenuDiv
@@ -1655,6 +1641,20 @@ function funcEvtChk(event) {
 
 ///////////////////
 // button menu functions
+
+function removeOfflineChannels() {
+    var list = [];
+    for(let i = (fldids.length - 1); i > -1; i--) {
+        let obj = document.getElementById("v-" + fldids[i]);
+        if (obj.player.isPaused() || obj.player.getEnded()) {
+            list.unshift(obj.player.getPlayerState().channelName);
+            remstream(fldids[i], 1);
+        }
+    }
+    if (list.length > 0){
+        console.info("removeOfflineChannels():", list.toString());
+    }
+}
 
 function setGameMode() {
     gameMode = !gameMode;
