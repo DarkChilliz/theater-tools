@@ -1657,11 +1657,13 @@ function removeOfflineChannels() {
 }
 
 function setGameMode() {
+    var obj = document.getElementsByClassName("setGameMode")[0];
     gameMode = !gameMode;
+
     if (gameMode === true) {
-        document.getElementsByClassName("setGameMode")[0].style.color = "lightcoral";
+        obj.style.color = "lightcoral";
     } else {
-        document.getElementsByClassName("setGameMode")[0].style.color = "whitesmoke";
+        obj.style.color = "whitesmoke";
     }
 }
 
