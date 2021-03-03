@@ -1668,11 +1668,13 @@ function setGameMode() {
 }
 
 function setMaxQualityMode() {
+    var obj = document.getElementsByClassName("setMaxQualityMode")[0];
     maxQualityMode = !maxQualityMode;
+
     if (maxQualityMode === true) {
-        document.getElementsByClassName("setMaxQualityMode")[0].style.color = "lightcoral";
+        obj.style.color = "lightcoral";
     } else {
-        document.getElementsByClassName("setMaxQualityMode")[0].style.color = "whitesmoke";
+        obj.style.color = "whitesmoke";
     }
 }
 
