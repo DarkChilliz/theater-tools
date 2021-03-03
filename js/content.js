@@ -29,12 +29,8 @@
     //https://forums.tumult.com/t/2129
     txtFile.open("GET", contentHTML, true);
     txtFile.onreadystatechange = function () {
-        if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
-            if (txtFile.status === 200) {  // Makes sure its found the file.
-                // allText = txtFile.responseText;
-                //lines = txtFile.responseText.split("\n"); // Will separate each line into an array
-                // var customTextElement = document.getElementById('textHolder');
-                // customTextElement.innerHTML = txtFile.responseText;
+        if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse
+            if (txtFile.status === 200) {  // Makes sure its found the file
 
                 script.onload = function() {
                     let url = {
