@@ -1,42 +1,12 @@
-<!-- info -->
-<div id="menudiv" class="rootdiv" style="min-width:50px;min-height:50px;right:0px;display:none"onmouseover="showmenu(1)" onmouseout="showmenu(0)" ondragover="chgmenu(0);openmenu(1)">
-    <img src="x20/menu.png" alt="" id="menubtn" style="position:absolute;right:0px" onclick="openmenu()">
-    <div id="menutop" style="display:none">
-        <span class="blu">TwitchTheater.tv </span>
-        <sup>v19.8</sup>
-    </div>
-    <div id="menubot" style="display:none">
-    <div id="menubot">
-        <div class="menurow">
-            <input type="text" id="stream0" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {addfromui(0);evtchk(event)}">
-            <img src="x20/awc.png" alt="" title="Add with chat" onclick="addfromui(0)">
-        </div>
-        <div class="menurow">
-            <input type="text" id="stream1" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {addfromui(1);evtchk(event)}">
-            <img src="x20/add.png" alt="" title="Add without chat" onclick="addfromui(1)">
-        </div>
-        <div class="menurow">
-            <input type="text" id="stream2" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {addfromui(2);evtchk(event)}">
-            <img src="x20/add.png" alt="" title="Add without chat" onclick="addfromui(2)">
+<div id="funcMenuDiv">
+    <img id="playerStyleImg" src="" alt="">
+    <img id="functionsMenuImg" src="" alt="">
+    <div id="funcMenuTop" style="display:none;"></div>
+    <div id="funcMenuBot" style="display:none;">
+        <div id="fm0" onclick="funcEvtChk()">
+            <button class="funcBtn removeOfflineChannels" onclick="removeOfflineChannels()">removeOfflineChannels</button>
+            <button class="funcBtn setGameMode" onclick="setGameMode()">setGameMode</button>
+            <button class="funcBtn setMaxQualityMode" onclick="setMaxQualityMode()">setMaxQualityMode</button>
         </div>
     </div>
 </div>
-
-<script>
-
-// https://www.w3schools.com/js/js_cookies.asp
-function chgCookie(chk, val, txt) {
-    var i = new Date();
-    i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
-    document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
-}
-
-function getCookie(txt) {
-    if (txt) {
-        return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
-    } else {
-        return document.cookie.replace(/\s+/g, "").split(";")
-    }
-}
-
-</script>
