@@ -1536,8 +1536,8 @@ function updChatIndx() {
         chans = chans.join('|').toLowerCase().split('|');
     }
     if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
-        for(let value in chats) {
-            let obj = document.getElementById("c-" + chats[value]);
+        for(let indx in chats) {
+            let obj = document.getElementById("c-" + chats[indx]);
             if (obj.id !== obj.id.toLowerCase()) {
                 obj.id = obj.id.toLowerCase();
                 obj.textContent = '';
