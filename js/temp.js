@@ -264,3 +264,18 @@ fetch(chrome.extension.getURL('/modal.html'))
 }).catch(err => {
 // handle error
 });
+
+// https://www.w3schools.com/js/js_cookies.asp
+function chgCookie(chk, val, txt) {
+    var i = new Date();
+    i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
+    document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
+}
+
+function getCookie(txt) {
+    if (txt) {
+        return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
+    } else {
+        return document.cookie.replace(/\s+/g, "").split(";")
+    }
+}
