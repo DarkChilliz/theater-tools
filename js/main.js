@@ -1686,75 +1686,35 @@ function updMenuElement() {
 }
 
 function createFuncMenuDiv() {
-    var funcMenuDiv = document.createElement("div"),
-        funcMenuTop = document.createElement("div"),
-        funcMenuBot = document.createElement("div"),
-        fm0 = document.createElement("div"),
-        removeOfflineChannelsBtn = document.createElement("button"); //https://www.w3schools.com/howto/howto_css_text_buttons.asp
-        setGameModeBtn = document.createElement("button"),
-        setMaxQualityModeBtn = document.createElement("button");
-
+    var funcMenuDiv = document.createElement("div");
     funcMenuDiv.id = "funcMenuDiv";
-
-    funcMenuTop.id = "funcMenuTop";
-    funcMenuTop.style = "display:none"; //https://www.w3schools.com/jsref/prop_style_display.asp
-
-    funcMenuBot.id = "funcMenuBot";
-    funcMenuBot.style = "display:none";
-
-    fm0.id = "fm0";
-    fm0.onclick = funcEvtChk;
-
-    removeOfflineChannelsBtn.classList = "funcBtn removeOfflineChannels";
-    removeOfflineChannelsBtn.textContent = "removeOfflineChannels";
-    removeOfflineChannelsBtn.onclick = removeOfflineChannels;
-
-    setGameModeBtn.classList = "funcBtn setGameMode";
-    setGameModeBtn.textContent = "setGameMode";
-    setGameModeBtn.onclick = setGameMode;
-
-    setMaxQualityModeBtn.classList = "funcBtn setMaxQualityMode";
-    setMaxQualityModeBtn.textContent = "setMaxQualityMode";
-    setMaxQualityModeBtn.onclick = setMaxQualityMode;
-
     document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
-    document.getElementById("funcMenuDiv").appendChild(funcMenuTop);
-    document.getElementById("funcMenuDiv").appendChild(funcMenuBot);
-    document.getElementById("funcMenuBot").appendChild(fm0);
-    document.getElementById("fm0").appendChild(removeOfflineChannelsBtn);
-    document.getElementById("fm0").appendChild(setGameModeBtn);
-    document.getElementById("fm0").appendChild(setMaxQualityModeBtn);
-}
-
-function createImgElem(id, url, alt, elemID, onclick) {
-    var img = document.createElement("img"),
-        src = document.getElementById(elemID); //chatwin, chatdiv
-    img.id = id;
-    img.src = url;
-    img.alt = alt;
-    img.onclick = onclick;
-    src.insertBefore(img, src.firstChild); //src.appendChild(img);
 }
 
 function onReceiveImgURL(e) {
     document.removeEventListener("sendImgURL", onReceiveImgURL);
-    createImgElem("functionsMenuImg", e.detail.functionsMenuImg, "", "funcMenuDiv",
-        function() {
-            openFuncMenu();
+
+    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
+
+    var playerStyleImgObj = document.getElementById("playerStyleImg"),
+        functionsMenuImgObj = document.getElementById("functionsMenuImg");
+
+    playerStyleImgObj.src = e.detail.playerStyleImg;
+    playerStyleImgObj.onclick = function(event) {
+        if (event.ctrlKey) {
+            openFuncMenu(0);
+            chgvolume(100);
+            playpause(1);
+            theatr.playm = 0;
         }
-    ); //https://stackoverflow.com/questions/33144234
-    createImgElem("playerStyleImg", e.detail.playerStyleImg, "", "funcMenuDiv",
-        function(event) {
-            if (event.ctrlKey) {
-                openFuncMenu(0);
-                chgvolume(100);
-                playpause(1);
-                theatr.playm = 0;
-            }
-            chgQuality();
-            goFullScreen();
-        }
-    ); //https://stackoverflow.com/questions/2735881
+        chgQuality();
+        goFullScreen();
+    };
+
+    functionsMenuImgObj.src = e.detail.functionsMenuImg;
+    functionsMenuImgObj.onclick = function() {
+        openFuncMenu();
+    };
 }
 
 function setButtonVisibility() {
