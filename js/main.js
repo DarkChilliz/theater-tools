@@ -1678,6 +1678,21 @@ function setMaxQualityMode() {
     }
 }
 
+function unloadAllChats() {
+    var obj = document.getElementsByClassName("unloadAllChats")[0];
+    obj.style.color = "lightcoral";
+
+    for(let indx in chats) {
+        let obj = document.getElementById("c-" + chats[indx]);
+        obj.textContent = '';
+    }
+    chgchat();
+
+    setTimeout(function() {
+        obj.style.color = "whitesmoke";
+    }, 300)
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 // setup functions
 
