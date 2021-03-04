@@ -1640,7 +1640,10 @@ function funcEvtChk(event) {
 // button menu functions
 
 function removeOfflineChannels() {
-    var list = [];
+    var obj = document.getElementsByClassName("removeOfflineChannels")[0],
+        list = [];
+    obj.style.color = "lightcoral";
+
     for(let i = (fldids.length - 1); i > -1; i--) {
         let obj = document.getElementById("v-" + fldids[i]);
         if (obj.player.isPaused() || obj.player.getEnded()) {
@@ -1651,6 +1654,10 @@ function removeOfflineChannels() {
     if (list.length > 0){
         console.info("removeOfflineChannels():", list.toString());
     }
+
+    setTimeout(function() {
+        obj.style.color = "whitesmoke";
+    }, 300)
 }
 
 function setGameMode() {
