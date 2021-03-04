@@ -1525,7 +1525,7 @@ function updChatIndx() {
     // https://morioh.com/p/0b5bd0ececd4
     if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
         for(let indx in fldids) {
-            let obj = document.querySelector("#t-" + fldids[indx]);
+            let obj = document.querySelector("#t-" + fldids[indx]); //strflds
             if (obj.value !== obj.value.toLowerCase()) {
                 obj.value = obj.value.toLowerCase();
             }
