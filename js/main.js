@@ -1694,7 +1694,8 @@ function unloadAllChats() {
 
     setTimeout(function() {
         obj.style.color = "whitesmoke";
-    }, 300)
+    }, 300);
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
