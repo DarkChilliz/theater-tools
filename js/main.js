@@ -1657,7 +1657,7 @@ function removeOfflineChannels() {
 
     setTimeout(function() {
         obj.style.color = "whitesmoke";
-    }, 300)
+    }, 300);
 }
 
 function setGameMode() {
