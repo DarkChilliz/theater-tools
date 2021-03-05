@@ -1721,6 +1721,21 @@ function addStreamsFromChat() {
     }, 300);
 }
 
+function randomTestButton() {
+    let obj = document.getElementById("v-" + fldids[0]);
+    // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
+    // console.log( obj.player.getPlaybackStats().hlsLatencyBroadcaster + ' - hlsLatencyBroadcaster' );
+    // console.log( obj.player.getPlayerState().currentTime +             ' - currentTime' );
+    // console.log( obj.player.isPaused() +                               ' - isPaused' );
+    // console.log( obj.player.getChannel() +                             ' - getChannel' );
+    // console.log( obj.player.getChannelId() +                           ' - getChannelId' );
+    console.log( obj.player.getPlayerState().playback + ' - playback' );
+    console.log( obj.player.getPlayerState().ended + ' - ended' );
+    console.log( obj.player.getPlayerState().qualitiesAvailable );
+    console.log( obj.player.getEnded() + ' - getEnded' );
+    console.log( obj.player.getQualities() );
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 // setup functions
 
