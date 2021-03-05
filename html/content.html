@@ -4,11 +4,24 @@
     <div id="funcMenuTop" style="display:none;"></div>
     <div id="funcMenuBot" style="display:none;">
         <div id="fm0" onclick="funcEvtChk(event)">
-            <button class="funcBtn removeOfflineChannels" onclick="removeOfflineChannels()">removeOfflineChannels</button>
-            <button class="funcBtn setGameMode" onclick="setGameMode()">setGameMode</button>
-            <button class="funcBtn setMaxQualityMode" onclick="setMaxQualityMode()">setMaxQualityMode</button>
-            <button class="funcBtn unloadAllChats" onclick="unloadAllChats()">unloadAllChats</button>
-            <button class="funcBtn addStreamsFromChat" onclick="addStreamsFromChat()">addStreamsFromChat</button>
+            <div id="btnLine1">
+                <div class="btnInner"><button class="funcBtn removeOfflineChannels" onclick="removeOfflineChannels(1)">remOffChannels</button></div>
+                <div class="btnInner"><button class="funcBtn removeOfflineStreams" onclick="removeOfflineChannels()">remOffStreams</button></div>
+            </div>
+
+            <div id="btnLine2">
+                <div class="btnInner"><button class="funcBtn setGameMode" onclick="setGameMode()">setGameMode</button></div>
+                <div class="btnInner"><button class="funcBtn setMaxQualityMode" onclick="setMaxQualityMode()">setMaxQualityMode</button></div>
+            </div>
+
+            <div id="btnLine3">
+                <div class="btnInner"><button class="funcBtn unloadAllChats" onclick="unloadAllChats()">unloadAllChats</button></div>
+                <div class="btnInner"><button class="funcBtn addStreamsFromChat" onclick="addStreamsFromChat()">addStreamsFromChat</button></div>
+            </div>
+
+            <div id="btnLine4">
+                <div><button class="funcBtn randomTestButton" onclick="randomTestButton()">randomTestButton</button></div>
+            </div>
         </div>
     </div>
 </div>
