@@ -36,15 +36,22 @@
     /* top: 100px; */
 }
 
+#fm0 {
+    /* padding: 10px 10px; */
+    padding: 6px 6px;
+}
+
 .funcBtn:hover {background: rgb(73, 73, 73);}
 .funcBtn {
     border: none;
     background-color: rgb(56, 56, 56); /* background-color: inherit; */
     color: whitesmoke;
-    padding: 14px 28px;
+    /* padding: 14px 28px; */
+    padding: 12px 12px;
     font-size: 16px;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; */
+    /* display: block; */
 }
 /* .success {color: green;}
 .info {color: dodgerblue;}
@@ -52,6 +59,13 @@
 .danger {color: red;}
 .default {color: black;} */
 
-#fm0 {
-    padding: 10px 10px;
+.btnInner, #btnLine1, #btnLine2, #btnLine3, #btnLine4 {
+    display: inline-block;
+}
+#btnLine1, #btnLine2, #btnLine3, #btnLine4 {
+    /* text-align: center; */
+    width: 100%;
+}
+#btnLine2, #btnLine3, #btnLine4 {
+    padding-top: 4px;
 }
