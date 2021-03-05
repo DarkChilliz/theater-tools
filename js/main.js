@@ -1729,11 +1729,11 @@ function randomTestButton() {
     // console.log( obj.player.isPaused() +                               ' - isPaused' );
     // console.log( obj.player.getChannel() +                             ' - getChannel' );
     // console.log( obj.player.getChannelId() +                           ' - getChannelId' );
-    console.log( obj.player.getPlayerState().playback + ' - playback' );
-    console.log( obj.player.getPlayerState().ended + ' - ended' );
-    console.log( obj.player.getPlayerState().qualitiesAvailable );
-    console.log( obj.player.getEnded() + ' - getEnded' );
+    console.log( obj.player.getPlayerState().playback +            ' - playback' );
+    console.log( obj.player.getPlayerState().ended +               ' - ended' );
+    console.log( obj.player.getEnded() +                           ' - getEnded' );
     console.log( obj.player.getQualities() );
+    console.log( obj.player.getPlayerState().qualitiesAvailable );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
