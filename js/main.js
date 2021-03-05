@@ -1639,18 +1639,31 @@ function funcEvtChk(event) {
 ///////////////////
 // button menu functions
 
-function removeOfflineChannels() {
+function removeOfflineChannels(indx) {
     var obj = document.getElementsByClassName("removeOfflineChannels")[0],
-        list = [];
+        list = [],
+        id = [];
     obj.style.color = "lightcoral";
 
     for(let i = (fldids.length - 1); i > -1; i--) {
         let obj = document.getElementById("v-" + fldids[i]);
-        if (obj.player.isPaused() || obj.player.getEnded()) {
+        if (obj.player.getEnded() || obj.player.getQualities().length == 0) {//obj.player.isPaused()
             list.unshift(obj.player.getPlayerState().channelName);
-            remstream(fldids[i], 1);
+            id.unshift(fldids[i]);
         }
     }
+
+    if (indx == 1) {
+        for(let i = 0, l = id.length; i < l; i++) {
+            remstream(id[i], 1); // stream & chat
+        }
+    }
+    else if (!indx) {
+        for(let i = 0, l = id.length; i < l; i++) {
+            remstream(id[i]); // stream
+        }
+    }
+
     if (list.length > 0){
         console.info("removeOfflineChannels():", list.toString());
     }
