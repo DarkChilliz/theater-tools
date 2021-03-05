@@ -1696,6 +1696,16 @@ function unloadAllChats() {
         obj.style.color = "whitesmoke";
     }, 300);
 }
+
+function addStreamsFromChat() {
+    var obj = document.getElementsByClassName("addStreamsFromChat")[0];
+    obj.style.color = "lightcoral";
+
+    addfromui(1, chats.toString());
+
+    setTimeout(function() {
+        obj.style.color = "whitesmoke";
+    }, 300);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
