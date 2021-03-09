@@ -1706,9 +1706,10 @@ function watchPartyMode() {
     watchParty = !watchParty;
 
     if (watchParty === true) {
-        obj.style.color = "lightcoral";
-    } else {
-        obj.style.color = "whitesmoke";
+        obj.classList.add("active");
+    }
+    else {
+        obj.classList.remove("active");
     }
 }
 
