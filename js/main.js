@@ -1721,6 +1721,17 @@ function addStreamsFromChat() {
     }, 300);
 }
 
+function watchPartyMode() {
+    var obj = document.getElementsByClassName("watchPartyMode")[0];
+    watchParty = !watchParty;
+
+    if (watchParty === true) {
+        obj.style.color = "lightcoral";
+    } else {
+        obj.style.color = "whitesmoke";
+    }
+}
+
 function randomTestButton() {
     let obj = document.getElementById("v-" + fldids[0]);
     // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
@@ -1837,6 +1848,7 @@ var userQuality = [],
     useUserQuality = false,
     gameMode = false,
     maxQualityMode = false,
+    watchParty = false,
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
