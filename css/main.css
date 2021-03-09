@@ -42,6 +42,8 @@
 }
 
 .funcBtn:hover {background: rgb(73, 73, 73);}
+.funcBtn:focus {background: rgb(50, 50, 50);}
+.funcBtn:active {color: lightcoral;}
 .funcBtn {
     border: none;
     background-color: rgb(56, 56, 56); /* background-color: inherit; */
@@ -53,6 +55,8 @@
     /* display: inline-block; */
     /* display: block; */
 }
+.active {color: lightcoral;}
+
 /* .success {color: green;}
 .info {color: dodgerblue;}
 .warning {color: orange;}
