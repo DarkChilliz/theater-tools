@@ -1640,10 +1640,8 @@ function funcEvtChk(event) {
 // button menu functions
 
 function removeOfflineChannels(indx) {
-    var obj = document.getElementsByClassName("removeOfflineChannels")[0],
-        list = [],
+    var list = [],
         id = [];
-    obj.style.color = "lightcoral";
 
     for(let i = (fldids.length - 1); i > -1; i--) {
         let obj = document.getElementById("v-" + fldids[i]);
@@ -1667,10 +1665,6 @@ function removeOfflineChannels(indx) {
     if (list.length > 0){
         console.info("removeOfflineChannels():", list.toString());
     }
-
-    setTimeout(function() {
-        obj.style.color = "whitesmoke";
-    }, 300);
 }
 
 function setGameMode() {
@@ -1696,29 +1690,15 @@ function setMaxQualityMode() {
 }
 
 function unloadAllChats() {
-    var obj = document.getElementsByClassName("unloadAllChats")[0];
-    obj.style.color = "lightcoral";
-
     for(let indx in chats) {
         let obj = document.getElementById("c-" + chats[indx]);
         obj.textContent = '';
     }
     chgchat();
-
-    setTimeout(function() {
-        obj.style.color = "whitesmoke";
-    }, 300);
 }
 
 function addStreamsFromChat() {
-    var obj = document.getElementsByClassName("addStreamsFromChat")[0];
-    obj.style.color = "lightcoral";
-
     addfromui(1, chats.toString());
-
-    setTimeout(function() {
-        obj.style.color = "whitesmoke";
-    }, 300);
 }
 
 function watchPartyMode() {
