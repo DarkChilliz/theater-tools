@@ -1,5 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////////////
-// set player styles
+// Set Player Styles ///////////////////////////////////////////////////////////////////
 
 function missingValue(aspect_ratio, width, height) {
     //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
@@ -1389,8 +1388,7 @@ function goFullScreen() {
     }
 }
 
-///////////////////
-// set quality
+// Set Quality /////////////////////////////////////////////////////////////////////////
 
 function getQualities(strmID) {
     var obj = document.getElementById("v-" + fldids[strmID]);
@@ -1493,8 +1491,7 @@ function chgQuality(strmID, strmQuality) {
     }
 }
 
-///////////////////
-// miscellaneous functions
+// Miscellaneous Functions /////////////////////////////////////////////////////////////
 
 function chgCookie_redundantBackup(chk, val, txt) {
     var i = new Date();
@@ -1636,8 +1633,7 @@ function funcEvtChk(event) {
     }
 }
 
-///////////////////
-// button menu functions
+// Button Menu Functions ///////////////////////////////////////////////////////////////
 
 function removeOfflineChannels(indx) {
     var list = [],
@@ -1728,8 +1724,7 @@ function randomTestButton() {
     console.log( obj.player.getPlayerState().qualitiesAvailable );
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-// setup functions
+// Setup Functions /////////////////////////////////////////////////////////////////////
 
 function updMenuElement() {
     //https://forum.webflow.com/t/23730
