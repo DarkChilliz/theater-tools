@@ -1664,7 +1664,7 @@ function removeOfflineChannels(indx) {
     }
 
     if (list.length > 0){
-        console.info("removeOfflineChannels():", list.toString());
+        console.info("removeOfflineChannels(" + list.length + "):", list.toString());
     }
 }
 
