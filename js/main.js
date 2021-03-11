@@ -1699,7 +1699,27 @@ function unloadAllChats() {
 }
 
 function addStreamsFromChat() {
+    var currentPlayerLength = fldids.length;
+
     addfromui(1, chats.toString());
+
+    for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
+        let obj = document.getElementById('v-' + fldids[i]);
+
+        // temp function
+        function playerReadyEventListener() {
+            obj.player.removeEventListener("ready", playerReadyEventListener);
+            obj.player.pause();
+
+            console.info("playerReadyEventListener(v-" + i +"): ["+obj.player.getPlayerState().channelName+"]");
+        }
+
+        if (!obj.player.pause()) {
+            setTimeout(function() {
+                obj.player.addEventListener("ready", playerReadyEventListener);
+            }, 300)
+        }
+    }
 }
 
 function watchPartyMode() {
