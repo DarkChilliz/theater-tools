@@ -1424,9 +1424,9 @@ function setQuality(strmID, strmQuality) {
             if (chans[strmID].search("v=") == -1) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
-                console.info("setQuality(): v-"+ fldids[strmID] + ":", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
+                console.info("setQuality(v-" + fldids[strmID] + "): ", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
             } else {
-                console.info("setQuality(): not twitch [v-"+ fldids[strmID]+"]");
+                console.info("setQuality(v-" + fldids[strmID] +"): Not Twitch");
             }
         }
     }
@@ -1542,13 +1542,16 @@ function updChatIndx() {
             chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
         }
         chats = chats.join('|').toLowerCase().split('|');
-        chgchat();
+
+        if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
+            chgchat();
+        }
     }
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
     if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var indexOfSelectedChat = "",
+        var selectedChat = "",
             list = [],
             indx = chats.slice();
 
@@ -1565,7 +1568,7 @@ function updChatIndx() {
         }
 
         //get 'selectedIndex' value
-        var indexOfSelectedChat = chats[chatsel.selectedIndex];
+        selectedChat = chats[chatsel.selectedIndex];
 
         //replace 'chatsel' & 'chatmen'
         for(let i = 0, l = list.length; i < l; i++) {
@@ -1577,11 +1580,13 @@ function updChatIndx() {
         chats = list.slice(); //chats = [...list];
 
         //restore 'selectedIndex' value
-        indexOfSelectedChat = chats.indexOf(indexOfSelectedChat);
-        chatsel.selectedIndex = indexOfSelectedChat;
-        chatmen.selectedIndex = indexOfSelectedChat;
+        selectedChat = chats.indexOf(selectedChat);
+        chatsel.selectedIndex = selectedChat;
+        chatmen.selectedIndex = selectedChat;
 
-        chgchat();
+        if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
+            chgchat();
+        }
     }
 }
 
