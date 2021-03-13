@@ -1738,7 +1738,7 @@ function unloadAllChats() {
         chgchat();
     }
 
-    updateUnloadAllChatsButton(1);
+    updateUnloadAllChatsButton();
 }
 
 function addStreamsFromChat() {
@@ -1832,7 +1832,6 @@ function onReceiveImgURL(e) {
     functionsMenuImgObj.src = e.detail.functionsMenuImg;
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
-        updateUnloadAllChatsButton();
     };
 }
 
