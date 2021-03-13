@@ -1805,6 +1805,7 @@ function onReceiveImgURL(e) {
     functionsMenuImgObj.src = e.detail.functionsMenuImg;
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
+        updateUnloadAllChatsButton();
     };
 }
 
