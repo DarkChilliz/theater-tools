@@ -1651,7 +1651,7 @@ function updateUnloadAllChatsButton() {
 
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
-function removeOfflineChannels(indx) {
+function removeOfflineChannels(val) {
     var list = [],
         id = [];
 
@@ -1663,15 +1663,8 @@ function removeOfflineChannels(indx) {
         }
     }
 
-    if (indx == 1) {
-        for(let i = 0, l = id.length; i < l; i++) {
-            remstream(id[i], 1); // stream & chat
-        }
-    }
-    else if (!indx) {
-        for(let i = 0, l = id.length; i < l; i++) {
-            remstream(id[i]); // stream
-        }
+    for(let i = 0, l = id.length; i < l; i++) {
+        remstream(id[i], !val ? null : val);
     }
 
     if (list.length > 0){
@@ -1711,18 +1704,18 @@ function unloadAllChats() {
         // selectedChat = chats[indexOfSelectedChat],
         obj = document.getElementById('v-' + fldids[indexOfSelectedChat]);
 
+    /*
+    if (event.shiftKey) {
 
-    // if (event.shiftKey) {
+    }
+    if (!document.getElementById("c-" + chats[indx]).innerHTML) {
+        genchat(indx)
+    }
 
-    // }
-    // if (!document.getElementById("c-" + chats[indx]).innerHTML) {
-    //     genchat(indx)
-    // }
+    for(let i = 0, l = chats.length; i < l; i++) {
 
-    // for(let i = 0, l = chats.length; i < l; i++) {
-        
-    // }
-
+    }
+    */
 
     for(let indx in chats) {
         // if (chats[indx] != selectedChat) {}
