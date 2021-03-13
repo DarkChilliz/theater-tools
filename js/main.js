@@ -1595,6 +1595,8 @@ function openFuncMenu(val) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
     if (val) {
+        updateUnloadAllChatsButton();
+
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
         document.getElementById("funcMenuDiv").style.right = "0px";
