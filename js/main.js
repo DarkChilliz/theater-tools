@@ -1705,8 +1705,7 @@ function setMaxQualityMode() {
 }
 
 function unloadAllChats() {
-
-    //add number of loaded chats to button text
+    // add number of loaded chats to button text
     // dont unload selected chat.. only if shift is held
 
     var chatsel = document.getElementById("chatsel"),
