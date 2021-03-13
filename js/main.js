@@ -1638,6 +1638,22 @@ function funcEvtChk(event) {
     }
 }
 
+function updateUnloadAllChatsButton() {
+    var loadedChats = 0;
+    for(let indx in chats) {
+        let obj = document.getElementById("c-" + chats[indx]);
+
+        if (obj.innerHTML) {
+            loadedChats++;
+        }
+    }
+
+    if (loadedChats > 0) {
+        let obj = document.getElementsByClassName("unloadAllChats")[0];
+        obj.innerText = "chats " + loadedChats + " / " + chats.length;
+    }
+}
+
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
 function removeOfflineChannels(indx) {
