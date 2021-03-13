@@ -1705,11 +1705,40 @@ function setMaxQualityMode() {
 }
 
 function unloadAllChats() {
+
+    //add number of loaded chats to button text
+    // dont unload selected chat.. only if shift is held
+
+    var chatsel = document.getElementById("chatsel"),
+        // c = chans.slice(),
+        indexOfSelectedChat = chatsel.selectedIndex,
+        // selectedChat = chats[indexOfSelectedChat],
+        obj = document.getElementById('v-' + fldids[indexOfSelectedChat]);
+
+
+    // if (event.shiftKey) {
+
+    // }
+    // if (!document.getElementById("c-" + chats[indx]).innerHTML) {
+    //     genchat(indx)
+    // }
+
+    // for(let i = 0, l = chats.length; i < l; i++) {
+        
+    // }
+
+
     for(let indx in chats) {
+        // if (chats[indx] != selectedChat) {}
         let obj = document.getElementById("c-" + chats[indx]);
         obj.textContent = '';
     }
-    chgchat();
+
+    if (!obj.player.getPlayerState().videoID) {
+        chgchat();
+    }
+
+    updateUnloadAllChatsButton(1);
 }
 
 function addStreamsFromChat() {
