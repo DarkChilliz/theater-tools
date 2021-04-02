@@ -20,10 +20,12 @@
         sMainCSS_URL = chrome.runtime.getURL(sMainCSS_URL);
     }
     else if (isFirefox == true) {
-        sFunctionsMenuURL = browser.extension.getURL(sFunctionsMenuURL);
-        sPlayerStyleURL = browser.extension.getURL(sPlayerStyleURL);
-        sContentHTML = browser.extension.getURL(sContentHTML);
-        sMainCSS_URL = browser.extension.getURL(sMainCSS_URL);
+        //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
+        //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extension/getURL
+        sFunctionsMenuURL = browser.runtime.getURL(sFunctionsMenuURL);
+        sPlayerStyleURL = browser.runtime.getURL(sPlayerStyleURL);
+        sContentHTML = browser.runtime.getURL(sContentHTML);
+        sMainCSS_URL = browser.runtime.getURL(sMainCSS_URL);
     }
 
     //https://forums.tumult.com/t/2129
