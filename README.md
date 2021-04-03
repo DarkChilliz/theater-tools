@@ -6,8 +6,7 @@
 
 * Set `xpinstall.signatures.required` to `false` in `about:config`.
 
-* Package files into ZIP & `Install Add-on From File...` in `about:addons`.
-    - https://extensionworkshop.com/documentation/publish/package-your-extension/
+* [Package files into ZIP](https://extensionworkshop.com/documentation/publish/package-your-extension/) & `Install Add-on From File...` in `about:addons`.
 
 ## Chrome
 
