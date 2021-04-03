@@ -26,11 +26,19 @@ function onReceiveImgURL(e) {
 
     var isFirefox = typeof InstallTrigger !== 'undefined',//https://stackoverflow.com/questions/9847580
         isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
+
+        //content.html
         txtFile = new XMLHttpRequest(),
-        sScriptURL = "js/main.js",
-        sFunctionsMenuURL = "img/functionsmenu.png",
-        sPlayerStyleURL = "img/playerstyle.png",
         sContentHTML = "html/content.html",
+
+        //createFuncMenuDiv()
+        sPlayerStyleURL = "img/playerstyle.png",
+        sFunctionsMenuURL = "img/functionsmenu.png",
+
+        //main.js
+        sScriptURL = "js/main.js",
+
+        //main.css
         sMainCSS_URL = "css/main.css";
 
     if (isChrome == true) {//https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
