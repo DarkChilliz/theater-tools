@@ -1791,21 +1791,10 @@ function updMenuElement() {
     }
 }
 
-function createFuncMenuDiv() {
-    var funcMenuDiv = document.createElement("div");
-    funcMenuDiv.id = "funcMenuDiv";
-    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
-}
-
-function onReceiveImgURL(e) {
-    document.removeEventListener("sendImgURL", onReceiveImgURL);
-    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
-
+function triggerJs() {
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
-        functionsMenuImgObj = document.getElementById("functionsMenuImg");
+    functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
-    //playerStyleImg
-    playerStyleImgObj.src = e.detail.playerStyleImg;
     playerStyleImgObj.onclick = function(event) {
         if (event.ctrlKey) {
             openFuncMenu(0);
@@ -1816,9 +1805,6 @@ function onReceiveImgURL(e) {
         chgQuality();
         goFullScreen();
     };
-
-    //functionsMenuImg
-    functionsMenuImgObj.src = e.detail.functionsMenuImg;
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
     };
@@ -1885,8 +1871,9 @@ var userQuality = [],
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
-    createFuncMenuDiv();
-    document.addEventListener("sendImgURL", onReceiveImgURL);
+    // createFuncMenuDiv();
+    // document.addEventListener("sendImgURL", onReceiveImgURL);
+    document.addEventListener("triggerJs", triggerJs);
     setTimeout(setEventTrigger, 300); // setEventTrigger();
 })();
 
