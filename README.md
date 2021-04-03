@@ -10,4 +10,4 @@
 
 ## Chrome
 
-*
+* Toggle `Developer mode` in `chrome://extensions/` and `Load unpacked`.
