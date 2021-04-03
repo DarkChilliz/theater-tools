@@ -1871,7 +1871,6 @@ var userQuality = [],
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
-    // createFuncMenuDiv();
     // document.addEventListener("sendImgURL", onReceiveImgURL);
     document.addEventListener("triggerJs", triggerJs);
     setTimeout(setEventTrigger, 300); // setEventTrigger();

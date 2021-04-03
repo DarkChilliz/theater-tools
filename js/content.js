@@ -84,7 +84,6 @@ function onReceiveImgURL(e) {
     style.href = sMainCSS_URL;
     (document.head || document.documentElement).appendChild(style);
 
-    // updMenuElement();
     createFuncMenuDiv();
 
     document.addEventListener("sendImgURL", onReceiveImgURL);
