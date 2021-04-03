@@ -62,7 +62,10 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
     txtFile.onreadystatechange = function () {
         if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse
             if (txtFile.status === 200) {  // Makes sure its found the file
-                onReceiveImgURL(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL);
+                script.onload = function() {
+                    onReceiveImgURL(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL);
+                    this.remove();
+                };
             }
         }
     }
