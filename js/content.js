@@ -22,9 +22,7 @@ function onReceiveImgURL(e) {
 }
 
 (function () {
-    //https://stackoverflow.com/questions/9515704
-    var script = document.createElement('script');
-    // script.src = chrome.runtime.getURL('js/main.js');
+    var script = document.createElement('script');//https://stackoverflow.com/questions/9515704
 
     //https://stackoverflow.com/questions/9847580
     var isFirefox = typeof InstallTrigger !== 'undefined',
