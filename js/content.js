@@ -80,6 +80,4 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
     style.type = 'text/css';
     style.href = sMainCSS_URL;
     (document.head || document.documentElement).appendChild(style);
-
-    document.addEventListener("sendImgURL", onReceiveImgURL);
 })();
