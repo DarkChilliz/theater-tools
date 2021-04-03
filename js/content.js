@@ -74,8 +74,8 @@ function onReceiveImgURL(e) {
     }
     txtFile.send(null);
 
-    //https://stackoverflow.com/questions/9721344
-    var style = document.createElement('link');
+    //main.css
+    var style = document.createElement('link');//https://stackoverflow.com/questions/9721344
     style.rel = 'stylesheet';
     style.type = 'text/css';
     style.href = sMainCSS_URL;
