@@ -1791,7 +1791,7 @@ function updMenuElement() {
     }
 }
 
-function triggerJs() {
+function triggerScript() {
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
     functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
@@ -1871,9 +1871,8 @@ var userQuality = [],
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
-    // document.addEventListener("sendImgURL", onReceiveImgURL);
-    document.addEventListener("triggerJs", triggerJs);
-    setTimeout(setEventTrigger, 300); // setEventTrigger();
+    document.addEventListener("triggerScript", triggerScript);
+    setTimeout(setEventTrigger, 300);
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////
