@@ -4,18 +4,17 @@ function createFuncMenuDiv() {
     document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
 }
 
-function onReceiveImgURL(e) {
-    document.removeEventListener("sendImgURL", onReceiveImgURL);
-    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
+function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
+    document.getElementById("funcMenuDiv").outerHTML = funcMenuDivHtml;
 
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
         functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
     //playerStyleImg
-    playerStyleImgObj.src = e.detail.playerStyleImg;
+    playerStyleImgObj.src = playerStyleImg;
 
     //functionsMenuImg
-    functionsMenuImgObj.src = e.detail.functionsMenuImg;
+    functionsMenuImgObj.src = functionsMenuImg;
 
     var event = new CustomEvent("triggerScript");
     document.dispatchEvent(event);
@@ -56,28 +55,21 @@ function onReceiveImgURL(e) {
         sMainCSS_URL = browser.runtime.getURL(sMainCSS_URL);
     }
 
+    createFuncMenuDiv();
+
     //content.html
     txtFile.open("GET", sContentHTML, true);//https://forums.tumult.com/t/2129
     txtFile.onreadystatechange = function () {
         if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse
             if (txtFile.status === 200) {  // Makes sure its found the file
-
-                script.onload = function() {
-                    let url = {
-                            functionsMenuImg: sFunctionsMenuURL,
-                            playerStyleImg: sPlayerStyleURL,
-                            funcMenuDivHtml: txtFile.responseText
-                        },
-                        event = new CustomEvent("sendImgURL", { detail: url });
-                    document.dispatchEvent(event);
-                    this.remove();
-                };
-
-                (document.head || document.documentElement).appendChild(script);
+                onReceiveImgURL(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL);
             }
         }
     }
     txtFile.send(null);
+
+    //main.js
+    (document.head || document.documentElement).appendChild(script);
 
     //main.css
     var style = document.createElement('link');//https://stackoverflow.com/questions/9721344
@@ -86,8 +78,5 @@ function onReceiveImgURL(e) {
     style.href = sMainCSS_URL;
     (document.head || document.documentElement).appendChild(style);
 
-    createFuncMenuDiv();
-
     document.addEventListener("sendImgURL", onReceiveImgURL);
-    // onReceiveImgURL();
 })();
