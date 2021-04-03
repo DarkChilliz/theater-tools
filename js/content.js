@@ -1,3 +1,26 @@
+function createFuncMenuDiv() {
+    var funcMenuDiv = document.createElement("div");
+    funcMenuDiv.id = "funcMenuDiv";
+    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
+}
+
+function onReceiveImgURL(e) {
+    document.removeEventListener("sendImgURL", onReceiveImgURL);
+    document.getElementById("funcMenuDiv").outerHTML = e.detail.funcMenuDivHtml;
+
+    var playerStyleImgObj = document.getElementById("playerStyleImg"),
+        functionsMenuImgObj = document.getElementById("functionsMenuImg");
+
+    //playerStyleImg
+    playerStyleImgObj.src = e.detail.playerStyleImg;
+
+    //functionsMenuImg
+    functionsMenuImgObj.src = e.detail.functionsMenuImg;
+
+    var event = new CustomEvent("triggerJs");
+    document.dispatchEvent(event);
+}
+
 (function () {
     //https://stackoverflow.com/questions/9515704
     var script = document.createElement('script');
@@ -60,4 +83,10 @@
     style.type = 'text/css';
     style.href = sMainCSS_URL;
     (document.head || document.documentElement).appendChild(style);
+
+    // updMenuElement();
+    createFuncMenuDiv();
+
+    document.addEventListener("sendImgURL", onReceiveImgURL);
+    // onReceiveImgURL();
 })();
