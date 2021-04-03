@@ -1,12 +1,12 @@
 (function () {
     //https://stackoverflow.com/questions/9515704
     var script = document.createElement('script');
-    script.src = chrome.runtime.getURL('js/main.js');
 
     //https://stackoverflow.com/questions/9847580
     var isFirefox = typeof InstallTrigger !== 'undefined',
         isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
         txtFile = new XMLHttpRequest(),
+        sScriptURL = "js/main.js",
         sFunctionsMenuURL = "img/functionsmenu.png",
         sPlayerStyleURL = "img/playerstyle.png",
         sContentHTML = "html/content.html",
@@ -14,6 +14,7 @@
 
     if (isChrome == true) {
         //https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
+        script.src = chrome.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = chrome.runtime.getURL(sFunctionsMenuURL);
         sPlayerStyleURL = chrome.runtime.getURL(sPlayerStyleURL);
         sContentHTML = chrome.runtime.getURL(sContentHTML);
@@ -22,6 +23,7 @@
     else if (isFirefox == true) {
         //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
         //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extension/getURL
+        script.src = browser.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = browser.runtime.getURL(sFunctionsMenuURL);
         sPlayerStyleURL = browser.runtime.getURL(sPlayerStyleURL);
         sContentHTML = browser.runtime.getURL(sContentHTML);
