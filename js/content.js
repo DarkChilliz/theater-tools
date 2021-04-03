@@ -17,7 +17,7 @@ function onReceiveImgURL(e) {
     //functionsMenuImg
     functionsMenuImgObj.src = e.detail.functionsMenuImg;
 
-    var event = new CustomEvent("triggerJs");
+    var event = new CustomEvent("triggerScript");
     document.dispatchEvent(event);
 }
 
