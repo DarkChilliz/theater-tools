@@ -51,8 +51,8 @@ function onReceiveImgURL(e) {
         sMainCSS_URL = browser.runtime.getURL(sMainCSS_URL);
     }
 
-    //https://forums.tumult.com/t/2129
-    txtFile.open("GET", sContentHTML, true);
+    //content.html
+    txtFile.open("GET", sContentHTML, true);//https://forums.tumult.com/t/2129
     txtFile.onreadystatechange = function () {
         if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse
             if (txtFile.status === 200) {  // Makes sure its found the file
