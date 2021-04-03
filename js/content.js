@@ -36,17 +36,14 @@ function onReceiveImgURL(e) {
         sContentHTML = "html/content.html",
         sMainCSS_URL = "css/main.css";
 
-    if (isChrome == true) {
-        //https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
+    if (isChrome == true) {//https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
         script.src = chrome.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = chrome.runtime.getURL(sFunctionsMenuURL);
         sPlayerStyleURL = chrome.runtime.getURL(sPlayerStyleURL);
         sContentHTML = chrome.runtime.getURL(sContentHTML);
         sMainCSS_URL = chrome.runtime.getURL(sMainCSS_URL);
     }
-    else if (isFirefox == true) {
-        //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
-        //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/extension/getURL
+    else if (isFirefox == true) {//https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
         script.src = browser.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = browser.runtime.getURL(sFunctionsMenuURL);
         sPlayerStyleURL = browser.runtime.getURL(sPlayerStyleURL);
