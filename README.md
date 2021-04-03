@@ -4,11 +4,9 @@
 
 ## Firefox Developer Edition, Nightly, or ESR
 
-* `xpinstall.signatures.required` set to `false` in `about:config`.
+* Set `xpinstall.signatures.required` to `false` in `about:config`.
 
-* Package into ZIP & `Install Add-on From File...` in `about:addons`.
-
-### https://extensionworkshop.com/documentation/publish/package-your-extension/
+* Package into ZIP & `Install Add-on From File...` in `about:addons`. <!-- https://extensionworkshop.com/documentation/publish/package-your-extension/ -->
 
 ## Chrome
 
