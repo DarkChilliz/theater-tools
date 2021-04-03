@@ -1792,6 +1792,7 @@ function updMenuElement() {
 }
 
 function triggerScript() {
+    document.removeEventListener("triggerScript", triggerScript);
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
     functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
