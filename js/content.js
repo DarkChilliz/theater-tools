@@ -24,8 +24,7 @@ function onReceiveImgURL(e) {
 (function () {
     var script = document.createElement('script');//https://stackoverflow.com/questions/9515704
 
-    //https://stackoverflow.com/questions/9847580
-    var isFirefox = typeof InstallTrigger !== 'undefined',
+    var isFirefox = typeof InstallTrigger !== 'undefined',//https://stackoverflow.com/questions/9847580
         isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
         txtFile = new XMLHttpRequest(),
         sScriptURL = "js/main.js",
