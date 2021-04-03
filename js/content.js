@@ -21,9 +21,9 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
 }
 
 (function () {
-    var script = document.createElement('script');//https://stackoverflow.com/questions/9515704
+    var script = document.createElement('script'),//https://stackoverflow.com/questions/9515704
 
-    var isFirefox = typeof InstallTrigger !== 'undefined',//https://stackoverflow.com/questions/9847580
+        isFirefox = typeof InstallTrigger !== 'undefined',//https://stackoverflow.com/questions/9847580
         isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
 
         //content.html
