@@ -41,18 +41,18 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
         sMainCSS_URL = "css/main.css";
 
     if (isChrome == true) {//https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
-        script.src = chrome.runtime.getURL(sScriptURL);
+        script.src =        chrome.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = chrome.runtime.getURL(sFunctionsMenuURL);
-        sPlayerStyleURL = chrome.runtime.getURL(sPlayerStyleURL);
-        sContentHTML = chrome.runtime.getURL(sContentHTML);
-        sMainCSS_URL = chrome.runtime.getURL(sMainCSS_URL);
+        sPlayerStyleURL =   chrome.runtime.getURL(sPlayerStyleURL);
+        sContentHTML =      chrome.runtime.getURL(sContentHTML);
+        sMainCSS_URL =      chrome.runtime.getURL(sMainCSS_URL);
     }
     else if (isFirefox == true) {//https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
-        script.src = browser.runtime.getURL(sScriptURL);
+        script.src =        browser.runtime.getURL(sScriptURL);
         sFunctionsMenuURL = browser.runtime.getURL(sFunctionsMenuURL);
-        sPlayerStyleURL = browser.runtime.getURL(sPlayerStyleURL);
-        sContentHTML = browser.runtime.getURL(sContentHTML);
-        sMainCSS_URL = browser.runtime.getURL(sMainCSS_URL);
+        sPlayerStyleURL =   browser.runtime.getURL(sPlayerStyleURL);
+        sContentHTML =      browser.runtime.getURL(sContentHTML);
+        sMainCSS_URL =      browser.runtime.getURL(sMainCSS_URL);
     }
 
     createFuncMenuDiv();
