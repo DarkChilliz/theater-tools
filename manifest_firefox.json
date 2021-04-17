@@ -24,7 +24,7 @@
    "homepage_url": "https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv",
    "browser_specific_settings": {
       "gecko": {
-         "id": "extension@darkchilliz.github.com",
+         "id": "extension@darkchilliz.github.io",
          "strict_min_version": "42.0"
       }
    }
