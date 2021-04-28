@@ -2,8 +2,11 @@
 // @name         twitch-player.user.js
 // @namespace    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv
 // @match        *://*.twitch.tv/*
+// @run-at       document-start
 // @grant        none
-// @version      0.0.0001
+// @version      0.1
+// @updateURL    https://github.com/pixeltris/TwitchAdSolutions/raw/master/notify-strip/notify-strip.user.js
+// @downloadURL  https://github.com/pixeltris/TwitchAdSolutions/raw/master/notify-strip/notify-strip.user.js
 // @author       darkchilliz
 // @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
