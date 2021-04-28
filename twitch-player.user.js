@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name        New script
-// @namespace   Violentmonkey Scripts
-// @match       *://*.twitch.tv/*
-// @grant       none
-// @version     1.0
-// @author      -
-// @description 29/04/2021, 1:54:21 am
+// @name         twitch-player.user.js
+// @namespace    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv
+// @match        *://*.twitch.tv/*
+// @grant        none
+// @version      0.0.0001
+// @author       darkchilliz
+// @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
