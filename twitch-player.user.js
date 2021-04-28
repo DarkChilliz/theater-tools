@@ -4,9 +4,9 @@
 // @match        *://*.twitch.tv/*
 // @run-at       document-start
 // @grant        none
-// @version      0.1
-// @updateURL    https://github.com/pixeltris/TwitchAdSolutions/raw/master/notify-strip/notify-strip.user.js
-// @downloadURL  https://github.com/pixeltris/TwitchAdSolutions/raw/master/notify-strip/notify-strip.user.js
+// @version      0.0.0001
+// @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
+// @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @author       darkchilliz
 // @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
