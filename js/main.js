@@ -10,7 +10,8 @@ function missingValue(aspect_ratio, width, height) {
         if (width && !height) {
             height = width / aspect_ratio;
             return height;
-        } else if (height && !width) {
+        }
+        else if (height && !width) {
             width = height * aspect_ratio;
             return width;
         }
@@ -710,7 +711,8 @@ function chgPlayerStyle() {
                 playerNotConfigured;
         }
     //1440x900 (16:10 aspect ratio)
-    } else if (screen.width / screen.height == 1.6 || screen.width == 1440 && screen.height == 900) {
+    }
+    else if (screen.width / screen.height == 1.6 || screen.width == 1440 && screen.height == 900) {
         switch(chans.length) {
             case 0:
                 break;
@@ -1380,7 +1382,8 @@ function chgPlayerStyle() {
 function goFullScreen() {
     if (isfullscr()) {
         chgPlayerStyle();
-    } else {
+    }
+    else {
         gofullscr();
         setTimeout(function() {
             chgPlayerStyle();
@@ -1399,7 +1402,8 @@ function getQualities(strmID) {
             for(let i = 0, l = list.length; i < l; i++) {
                 obj.quality.push(list[i].group);
             }
-        } else if (chans[strmID].search("v=") > -1) {
+        }
+        else if (chans[strmID].search("v=") > -1) {
             obj.quality = obj.player.getQualities();
         }
     }
@@ -1408,7 +1412,8 @@ function getQualities(strmID) {
 function chkQuality(array, string) {
     if (array.indexOf(string) < 0) {
         return array[array.length - 1]; //[0]
-    } else {
+    }
+    else {
         return (array[array.indexOf(string)]);
     }
 }
@@ -1425,7 +1430,8 @@ function setQuality(strmID, strmQuality) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
                 console.info("setQuality(v-" + fldids[strmID] + "): ", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
-            } else {
+            }
+            else {
                 console.info("setQuality(v-" + fldids[strmID] +"): Not Twitch");
             }
         }
@@ -1439,7 +1445,8 @@ function chgQuality(strmID, strmQuality) {
     // setQuality(strmID, strmQuality);
     if (gameMode === true) {
         quality = ["480p30","160p30","160p30"];
-    } else {
+    }
+    else {
         quality = ["auto","auto","auto"];
     }
     if (maxQualityMode === true) {
@@ -1502,7 +1509,8 @@ function chgCookie_redundantBackup(chk, val, txt) {
 function getCookie_redundantBackup(txt) {
     if (txt) {
         return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
-    } else {
+    }
+    else {
         return document.cookie.replace(/\s+/g, "").split(";")
     }
 }
@@ -1603,7 +1611,8 @@ function openFuncMenu(val) {
         document.getElementById("funcMenuDiv").style.width = "340px";
         document.getElementById("funcMenuBot").style.background = "#202023 none repeat scroll 0% 0%"; //funcMenuDiv
         document.getElementById("funcMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
-    } else {
+    }
+    else {
         document.getElementById("funcMenuTop").style.display = "none";
         document.getElementById("funcMenuBot").style.display = "none";
 
@@ -1678,7 +1687,8 @@ function setGameMode() {
 
     if (gameMode === true) {
         obj.style.color = "lightcoral";
-    } else {
+    }
+    else {
         obj.style.color = "whitesmoke";
     }
 }
@@ -1689,7 +1699,8 @@ function setMaxQualityMode() {
 
     if (maxQualityMode === true) {
         obj.style.color = "lightcoral";
-    } else {
+    }
+    else {
         obj.style.color = "whitesmoke";
     }
 }
@@ -1863,7 +1874,8 @@ function setEventTrigger() {
         }, 10000);
 
         console.info("setEventTrigger(): fldids.length ===", fldids.length);
-    } else {
+    }
+    else {
         setButtonVisibility();
         console.info("setEventTrigger(): no streams found");
     }
