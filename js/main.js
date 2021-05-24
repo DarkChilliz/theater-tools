@@ -1804,8 +1804,15 @@ function triggerScript() {
             theatr.playm = 0;
         }
         chgQuality();
-        goFullScreen();
+
+        if (useGoFullScreen) {
+            goFullScreen();
+        }
+        else {
+            chgPlayerStyle();
+        }
     };
+
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
     };
@@ -1869,6 +1876,7 @@ var userQuality = [],
     gameMode = false,
     maxQualityMode = false,
     watchParty = false,
+    useGoFullScreen = true,
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
