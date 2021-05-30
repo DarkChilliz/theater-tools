@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         twitch-player.user.js
-// @namespace    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv
+// @namespace    https://github.com/DarkChilliz
 // @match        *://*.twitch.tv/*
 // @run-at       document-start
 // @grant        none
-// @version      0.0.0001
+// @version      1.0.0000
 // @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @author       darkchilliz
@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
-import { ContextEventHandler } from 'beaverjs';
+// import { ContextEventHandler } from 'beaverjs';
 
 // 'src/options.ts'
 var Option;
@@ -175,26 +175,26 @@ class ReactConnector {
 // 'dist/build/context-script.js'
 
 const lazyConnector = lazy(() => new ReactConnector());
-const eventHandler = new ContextEventHandler();
+// const eventHandler = new ContextEventHandler();
 window.addEventListener('playing', () => initWorkerHandler(lazyConnector), true);
-eventHandler.on('updateUrl', ({ url, stream }) => {
-    const core = getPlayer(lazyConnector)?.props?.mediaPlayerInstance?.core;
-    if (!core)
-        return;
-    const path = core.getPath();
-    if (url === path)
-        return; // same url
-    const user = path.match(/\/channel\/hls\/([^.]+).m3u8/)?.[1];
-    if (!user) {
-        console.warn('Attempted to reload but got a bad path:', path);
-        return;
-    }
-    if (user !== stream)
-        return; // other stream -- invalid
-    core.load(url, '');
-    signalPlayer('blue');
-});
-eventHandler.on('adSkipped', () => signalPlayer('red'));
+// eventHandler.on('updateUrl', ({ url, stream }) => {
+//     const core = getPlayer(lazyConnector)?.props?.mediaPlayerInstance?.core;
+//     if (!core)
+//         return;
+//     const path = core.getPath();
+//     if (url === path)
+//         return; // same url
+//     const user = path.match(/\/channel\/hls\/([^.]+).m3u8/)?.[1];
+//     if (!user) {
+//         console.warn('Attempted to reload but got a bad path:', path);
+//         return;
+//     }
+//     if (user !== stream)
+//         return; // other stream -- invalid
+//     core.load(url, '');
+//     signalPlayer('blue');
+// });
+// eventHandler.on('adSkipped', () => signalPlayer('red'));
 function signalPlayer(color) {
     const player = document.querySelector('.video-player__overlay');
     if (!player)
@@ -226,8 +226,8 @@ function signalPlayer(color) {
         return baseFetch(url, init, ...args);
     };
 })();
-window.addEventListener('DOMContentLoaded', () => {
-    eventHandler.emitContent('clientId', window.commonOptions.headers['Client-ID']);
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//     eventHandler.emitContent('clientId', window.commonOptions.headers['Client-ID']);
+// });
 
 //# "context-script.js"
