@@ -7,7 +7,7 @@
 // @version      1.0.0000
 // @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
-// @author       darkchilliz
+// @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
 // @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
 
