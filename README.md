@@ -23,4 +23,4 @@ Features:
 - Minimal latency (automatically reload or speed up the stream if you're too far behind)
 - Reload on error (if the player errors, reload it)
 
-Credit to https://github.com/Nerixyz/ttv-tools
+Credit to [Nerixyz/ttv-tools](https://github.com/Nerixyz/ttv-tools)
