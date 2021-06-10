@@ -4,7 +4,7 @@
 // @match        *://*.twitch.tv/*
 // @run-at       document-start
 // @grant        none
-// @version      1.0.0001
+// @version      1.0.0002
 // @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
 // @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
@@ -17,9 +17,9 @@
 // 'src/options.ts'
 var Option;
 (function (Option) {
-    Option.MinLatencySpeedup = 2.25; //2.25
-    Option.MinLatencyReload  = 4.5; //4.5
-    Option.KeepBuffer        = 1.5; //1.5
+    Option.MinLatencySpeedup = 2.5; //2.25
+    Option.MinLatencyReload  = 44.5; //4.5
+    Option.KeepBuffer        = 1.75; //1.5
     Option.OverridePlayer    = false;
 })(Option || (Option = {}));
 function makeGetOption(key) {
