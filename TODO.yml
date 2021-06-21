@@ -1,0 +1,42 @@
+########################################################################### main.js ####
+# https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv/settings
+chrome-extension-twitchtheater.tv
+custom-styles-ext-twitchtheater.tv
+custom-styles-ext-tt.tv
+
+# primary objectives
+main.js: create fullscreen toggle and cookie
+
+main.js: watch party mode
+main.js: throw away chats not tied to a stream
+main.js: pause play if not desired quality
+main.js: chat 'streamchat' change to stream name
+main.js: menu cookie presets
+main.js: onEventTrigger(): check style.display !== "none"
+main.js: setQuality(): v-10: padding to 2/3
+main.js: obj.player.getPlaybackStats().bufferSize !== 0
+main.js: (userQuality[0] = fldids[0]) move to div var like getQualities(); obj.quality = [];
+
+# secondary objectives
+main.js: gaming mode check box with cookie to lower quality to 720/480
+  - 1st steam quality option list
+  - 2nd stream quality option list
+main.js: update player calls to 'player.twitch.tv' calls, instead of 'twitchtheater.tv' functions. [line 1044 / getQuality = getPlaybackQuality().quality ]
+main.js: userQuality(): for all streams
+main.js: openFuncMenu(val): move styles to CSS file
+main.js: setQuality(): dynamic function; call from setStyles
+main.js: setQuality(): check if stream is set to auto
+main.js: offline streams messing with setQuality [setQuality() v-14    auto ->         [forsen]]
+main.js: make (playerStyleImg, functionsMenuImg) buttons out of html elements
+main.js: if(fldids.length > 0) {} //not defined when page dosent load | https://www.w3schools.com/js/js_errors.asp
+main.js: removeOfflineChannels(): create check to remove or keep, button to remove all
+main.js: menu checkbox cookies for functions to run on main.js load
+main.js: updMenuElement(): (obsolete?): check if page loaded before running extra code
+main.js: fix buttons not loading when event is not called due to last stream not loading
+main.js: replace menu images with js created ones
+
+# idea
+main.js: writeStyle(): inline calculations
+main.js: function writeStyle(){}: left and right l[0]=, l[1]="right"
+
+########################################################################################
