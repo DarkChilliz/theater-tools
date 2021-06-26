@@ -17,7 +17,7 @@
 // 'src/options.ts'
 var Option;
 (function (Option) {                  // Defaults //
-    Option.MinLatencySpeedup =  2.5;  //   2.25;  //
+    Option.MinLatencySpeedup =  7.5;  //   2.25;  //
     Option.MinLatencyReload  = 44.5;  //   4.5;   //
     Option.KeepBuffer        =  1.75; //   1.5;   //
     Option.OverridePlayer    = false; //   false  //
