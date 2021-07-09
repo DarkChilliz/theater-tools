@@ -1586,6 +1586,7 @@ function updChatIndx() {
 
         //replace 'chats' with reordered 'list'
         chats = list.slice(); //chats = [...list];
+        ctils = list.slice();
 
         //restore 'selectedIndex' value
         selectedChat = chats.indexOf(selectedChat);
