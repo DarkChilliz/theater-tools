@@ -18,6 +18,7 @@ main.js: obj.player.getPlaybackStats().bufferSize !== 0
 main.js: (userQuality[0] = fldids[0]) move to div var like getQualities(); obj.quality = [];
 
 # secondary objectives
+main.js: "playerStyleImg" » check if number of loaded chats dosent exceed set value(7)
 main.js: gaming mode check box with cookie to lower quality to 720/480
   - 1st steam quality option list
   - 2nd stream quality option list
