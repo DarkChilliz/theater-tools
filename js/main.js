@@ -1654,19 +1654,19 @@ function updateUnloadAllChatsButton() {
     }
 
     if (loadedChats > -1) {
+        // if (loadedChats == 0) { //load chat if 0
+        //     let chatsel = document.getElementById("chatsel"),
+        //         indexOfSelectedChat = chatsel.selectedIndex,
+        //         obj = document.getElementById('v-' + fldids[indexOfSelectedChat]);
+
+        //     if (!obj.player.getPlayerState().videoID) {
+        //         chgchat();
+        //     }
+        // }
+
         let obj = document.getElementsByClassName("unloadAllChats")[0];
         obj.innerText = "chats " + loadedChats + " / " + chats.length;
     }
-    // else if (loadedChats == 0 && !cntr) { //load chat if 0
-    //     let chatsel = document.getElementById("chatsel"),
-    //         indexOfSelectedChat = chatsel.selectedIndex,
-    //         obj = document.getElementById('v-' + fldids[indexOfSelectedChat]);
-
-    //     if (!obj.player.getPlayerState().videoID) {
-    //         chgchat();
-    //         updateUnloadAllChatsButton(1);
-    //     }
-    // }
 }
 
 // Button Menu Functions ///////////////////////////////////////////////////////////////
