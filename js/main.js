@@ -1,6 +1,6 @@
 // Set Player Styles ///////////////////////////////////////////////////////////////////
 
-function missingValue(aspect_ratio, width, height) {
+async function missingValue(aspect_ratio, width, height) {
     //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
     if (width && height) {
         aspect_ratio = width / height;
@@ -18,7 +18,7 @@ function missingValue(aspect_ratio, width, height) {
     }
 }
 
-function writeStyle(v, w, h, t, l) {
+async function writeStyle(v, w, h, t, l) {
     var obj = document.getElementById("v-" + fldids[v]);
     obj.style = "width: "  + w + "px;" +
                 "height: " + h + "px;" +
@@ -26,7 +26,7 @@ function writeStyle(v, w, h, t, l) {
                 "left: "   + l + "px;";
 }
 
-function chgPlayerStyle() {
+async function chgPlayerStyle() {
     const r = 1.7777777777777777; //1.778
     var clientW = Math.round( document.getElementById("playdiv").clientWidth ),
         clientH = Math.round( document.getElementById("playdiv").clientHeight ),
@@ -46,25 +46,25 @@ function chgPlayerStyle() {
             case 1:
                 if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
-                    h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                    h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                     //top
-                    writeStyle(0, w[0], h[0], 0, 0);
+                    await writeStyle(0, w[0], h[0], 0, 0);
                 }
                 break;
             case 2:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[0], h[1], t[1], 0);
+                await writeStyle(1, w[0], h[1], t[1], 0);
                 break;
             case 3:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 w[1] = clientW / 2;
                 //
@@ -73,15 +73,15 @@ function chgPlayerStyle() {
                 //
                 l[0] = w[1];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], 0);
+                await writeStyle(2, w[1], h[1], t[1], 0);
                 break;
             case 4:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -90,17 +90,17 @@ function chgPlayerStyle() {
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], 0);
+                await writeStyle(3, w[1], h[1], t[1], 0);
                 break;
             case 5:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -111,25 +111,25 @@ function chgPlayerStyle() {
                 l[2] = l[1] - w[1];
                 w[2] = l[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], l[2]);
+                await writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[1], h[1], t[1], 0);
+                await writeStyle(4, w[1], h[1], t[1], 0);
                 break;
             case 6:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 //
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -137,21 +137,21 @@ function chgPlayerStyle() {
                 l[3] = l[2] - w[1];
                 w[2] = l[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], l[2]);
+                await writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[1], h[1], t[1], l[3]);
+                await writeStyle(4, w[1], h[1], t[1], l[3]);
                 //stack 5
-                writeStyle(5, w[2], h[1], t[1], 0);
+                await writeStyle(5, w[2], h[1], t[1], 0);
                 break;
             case 7:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -159,7 +159,7 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -167,29 +167,29 @@ function chgPlayerStyle() {
                 l[3] = l[2] - w[1];
                 w[2] = l[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], l[2]);
+                await writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[1], h[1], t[1], l[3]);
+                await writeStyle(4, w[1], h[1], t[1], l[3]);
                 //stack 5
-                writeStyle(5, w[2], h[2], t[1], 0);
-                writeStyle(6, w[2], h[2], t[2], 0);
+                await writeStyle(5, w[2], h[2], t[1], 0);
+                await writeStyle(6, w[2], h[2], t[2], 0);
                 break;
             case 8:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 3;
                 //
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -199,28 +199,28 @@ function chgPlayerStyle() {
                 w[2] = l[3];
                 w[3] = l[3] / 2;
                 l[4] = w[3];
-                h[4] = Math.round( missingValue( r, w[3], 0 ) );
+                h[4] = Math.round( await missingValue( r, w[3], 0 ) );
                 h[3] = h[1] - h[4];
                 t[2] = t[1] + h[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], l[2]);
+                await writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[1], h[1], t[1], l[3]);
+                await writeStyle(4, w[1], h[1], t[1], l[3]);
                 //stack 5 top
-                writeStyle(5, w[2], h[3], t[1], 0);
+                await writeStyle(5, w[2], h[3], t[1], 0);
                 //stack 5 bot
-                writeStyle(6, w[3], h[4], t[2], l[4]);
-                writeStyle(7, w[3], h[4], t[2], 0);
+                await writeStyle(6, w[3], h[4], t[2], l[4]);
+                await writeStyle(7, w[3], h[4], t[2], 0);
                 break;
             case 9: //update
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -228,8 +228,8 @@ function chgPlayerStyle() {
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 w[3] = clientW - (w[2] * 2) - (w[1] * 3);
                 //
                 t[2] = t[1] + h[3];
@@ -242,33 +242,33 @@ function chgPlayerStyle() {
                 l[3] = w[2] * 2;
                 l[4] = w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[1], h[1], t[1], l[2]);
+                await writeStyle(3, w[1], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[3], h[1], t[1], l[3]);
+                await writeStyle(4, w[3], h[1], t[1], l[3]);
                 //stack 5
-                writeStyle(5, w[2], h[2], t[1], l[4]);
-                writeStyle(6, w[2], h[2], t[4], l[4]);
+                await writeStyle(5, w[2], h[2], t[1], l[4]);
+                await writeStyle(6, w[2], h[2], t[4], l[4]);
                 //stack 6
-                writeStyle(7, w[2], h[2], t[1], 0);
-                writeStyle(8, w[2], h[2], t[4], 0);
+                await writeStyle(7, w[2], h[2], t[1], 0);
+                await writeStyle(8, w[2], h[2], t[4], 0);
                 break;
             case 10:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -278,34 +278,34 @@ function chgPlayerStyle() {
                 l[2] = w[2] * 3;
                 w[3] = clientW - (l[2] + (w[1] * 2));
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], l[1]);
+                await writeStyle(2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[3], h[1], t[1], l[2]);
+                await writeStyle(3, w[3], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle(4, w[2], h[2], t[1], l[3]);
-                writeStyle(5, w[2], h[2], t[2], l[3]);
+                await writeStyle(4, w[2], h[2], t[1], l[3]);
+                await writeStyle(5, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle(6, w[2], h[2], t[1], l[4]);
-                writeStyle(7, w[2], h[2], t[2], l[4]);
+                await writeStyle(6, w[2], h[2], t[1], l[4]);
+                await writeStyle(7, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle(8, w[2], h[2], t[1], 0);
-                writeStyle(9, w[2], h[2], t[2], 0);
+                await writeStyle(8, w[2], h[2], t[1], 0);
+                await writeStyle(9, w[2], h[2], t[2], 0);
                 break;
             case 11: //update
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -315,35 +315,35 @@ function chgPlayerStyle() {
                 l[2] = w[2] * 3;
                 w[3] = clientW - (l[2] + (w[1] * 2));
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[1], h[1], t[1], l[1]);
+                await writeStyle( 2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle( 3, w[3], h[2], t[1], l[2]);
-                writeStyle( 4, w[3], h[2], t[2], l[2]);
+                await writeStyle( 3, w[3], h[2], t[1], l[2]);
+                await writeStyle( 4, w[3], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 5, w[2], h[2], t[1], l[3]);
-                writeStyle( 6, w[2], h[2], t[2], l[3]);
+                await writeStyle( 5, w[2], h[2], t[1], l[3]);
+                await writeStyle( 6, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 7, w[2], h[2], t[1], l[4]);
-                writeStyle( 8, w[2], h[2], t[2], l[4]);
+                await writeStyle( 7, w[2], h[2], t[1], l[4]);
+                await writeStyle( 8, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle( 9, w[2], h[2], t[1], 0);
-                writeStyle(10, w[2], h[2], t[2], 0);
+                await writeStyle( 9, w[2], h[2], t[1], 0);
+                await writeStyle(10, w[2], h[2], t[2], 0);
                 break;
             case 12:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -355,37 +355,37 @@ function chgPlayerStyle() {
                 l[4] = w[2] * 2;
                 l[5] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[1], h[1], t[1], l[1]);
+                await writeStyle( 2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle( 3, w[3], h[1], t[1], l[2]);
+                await writeStyle( 3, w[3], h[1], t[1], l[2]);
                 //stack 4
-                writeStyle( 4, w[2], h[2], t[1], l[3]);
-                writeStyle( 5, w[2], h[2], t[2], l[3]);
+                await writeStyle( 4, w[2], h[2], t[1], l[3]);
+                await writeStyle( 5, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 6, w[2], h[2], t[1], l[4]);
-                writeStyle( 7, w[2], h[2], t[2], l[4]);
+                await writeStyle( 6, w[2], h[2], t[1], l[4]);
+                await writeStyle( 7, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle( 8, w[2], h[2], t[1], l[5]);
-                writeStyle( 9, w[2], h[2], t[2], l[5]);
+                await writeStyle( 8, w[2], h[2], t[1], l[5]);
+                await writeStyle( 9, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(10, w[2], h[2], t[1], 0);
-                writeStyle(11, w[2], h[2], t[2], 0);
+                await writeStyle(10, w[2], h[2], t[1], 0);
+                await writeStyle(11, w[2], h[2], t[2], 0);
                 break;
             case 13:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -397,38 +397,38 @@ function chgPlayerStyle() {
                 l[4] = w[2] * 2;
                 l[5] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[1], h[1], t[1], l[1]);
+                await writeStyle( 2, w[1], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle( 3, w[3], h[2], t[1], l[2]);
-                writeStyle( 4, w[3], h[2], t[2], l[2]);
+                await writeStyle( 3, w[3], h[2], t[1], l[2]);
+                await writeStyle( 4, w[3], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 5, w[2], h[2], t[1], l[3]);
-                writeStyle( 6, w[2], h[2], t[2], l[3]);
+                await writeStyle( 5, w[2], h[2], t[1], l[3]);
+                await writeStyle( 6, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 7, w[2], h[2], t[1], l[4]);
-                writeStyle( 8, w[2], h[2], t[2], l[4]);
+                await writeStyle( 7, w[2], h[2], t[1], l[4]);
+                await writeStyle( 8, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle( 9, w[2], h[2], t[1], l[5]);
-                writeStyle(10, w[2], h[2], t[2], l[5]);
+                await writeStyle( 9, w[2], h[2], t[1], l[5]);
+                await writeStyle(10, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(11, w[2], h[2], t[1], 0);
-                writeStyle(12, w[2], h[2], t[2], 0);
+                await writeStyle(11, w[2], h[2], t[1], 0);
+                await writeStyle(12, w[2], h[2], t[2], 0);
                 break;
             case 14:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -440,39 +440,39 @@ function chgPlayerStyle() {
                 l[4] = w[2] * 2;
                 l[5] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[3], h[2], t[1], l[1]);
-                writeStyle( 3, w[3], h[2], t[2], l[1]);
+                await writeStyle( 2, w[3], h[2], t[1], l[1]);
+                await writeStyle( 3, w[3], h[2], t[2], l[1]);
                 //stack 3
-                writeStyle( 4, w[2], h[2], t[1], l[2]);
-                writeStyle( 5, w[2], h[2], t[2], l[2]);
+                await writeStyle( 4, w[2], h[2], t[1], l[2]);
+                await writeStyle( 5, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 6, w[2], h[2], t[1], l[3]);
-                writeStyle( 7, w[2], h[2], t[2], l[3]);
+                await writeStyle( 6, w[2], h[2], t[1], l[3]);
+                await writeStyle( 7, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 8, w[2], h[2], t[1], l[4]);
-                writeStyle( 9, w[2], h[2], t[2], l[4]);
+                await writeStyle( 8, w[2], h[2], t[1], l[4]);
+                await writeStyle( 9, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle(10, w[2], h[2], t[1], l[5]);
-                writeStyle(11, w[2], h[2], t[2], l[5]);
+                await writeStyle(10, w[2], h[2], t[1], l[5]);
+                await writeStyle(11, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(12, w[2], h[2], t[1], 0);
-                writeStyle(13, w[2], h[2], t[2], 0);
+                await writeStyle(12, w[2], h[2], t[1], 0);
+                await writeStyle(13, w[2], h[2], t[2], 0);
                 break;
             case 15:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -485,41 +485,41 @@ function chgPlayerStyle() {
                 l[5] = w[2] * 2;
                 l[6] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[3], h[1], t[1], l[1]);
+                await writeStyle( 2, w[3], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle( 3, w[2], h[2], t[1], l[2]);
-                writeStyle( 4, w[2], h[2], t[2], l[2]);
+                await writeStyle( 3, w[2], h[2], t[1], l[2]);
+                await writeStyle( 4, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 5, w[2], h[2], t[1], l[3]);
-                writeStyle( 6, w[2], h[2], t[2], l[3]);
+                await writeStyle( 5, w[2], h[2], t[1], l[3]);
+                await writeStyle( 6, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 7, w[2], h[2], t[1], l[4]);
-                writeStyle( 8, w[2], h[2], t[2], l[4]);
+                await writeStyle( 7, w[2], h[2], t[1], l[4]);
+                await writeStyle( 8, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle( 9, w[2], h[2], t[1], l[5]);
-                writeStyle(10, w[2], h[2], t[2], l[5]);
+                await writeStyle( 9, w[2], h[2], t[1], l[5]);
+                await writeStyle(10, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(11, w[2], h[2], t[1], l[6]);
-                writeStyle(12, w[2], h[2], t[2], l[6]);
+                await writeStyle(11, w[2], h[2], t[1], l[6]);
+                await writeStyle(12, w[2], h[2], t[2], l[6]);
                 //stack 8
-                writeStyle(13, w[2], h[2], t[1], 0);
-                writeStyle(14, w[2], h[2], t[2], 0);
+                await writeStyle(13, w[2], h[2], t[1], 0);
+                await writeStyle(14, w[2], h[2], t[2], 0);
                 break;
             case 16:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -532,41 +532,41 @@ function chgPlayerStyle() {
                 l[5] = w[2] * 2;
                 l[6] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[3], h[2], t[1], l[1]);
-                writeStyle( 3, w[3], h[2], t[2], l[1]);
+                await writeStyle( 2, w[3], h[2], t[1], l[1]);
+                await writeStyle( 3, w[3], h[2], t[2], l[1]);
                 //stack 3
-                writeStyle( 4, w[2], h[2], t[1], l[2]);
-                writeStyle( 5, w[2], h[2], t[2], l[2]);
+                await writeStyle( 4, w[2], h[2], t[1], l[2]);
+                await writeStyle( 5, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 6, w[2], h[2], t[1], l[3]);
-                writeStyle( 7, w[2], h[2], t[2], l[3]);
+                await writeStyle( 6, w[2], h[2], t[1], l[3]);
+                await writeStyle( 7, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 8, w[2], h[2], t[1], l[4]);
-                writeStyle( 9, w[2], h[2], t[2], l[4]);
+                await writeStyle( 8, w[2], h[2], t[1], l[4]);
+                await writeStyle( 9, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle(10, w[2], h[2], t[1], l[5]);
-                writeStyle(11, w[2], h[2], t[2], l[5]);
+                await writeStyle(10, w[2], h[2], t[1], l[5]);
+                await writeStyle(11, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(12, w[2], h[2], t[1], l[6]);
-                writeStyle(13, w[2], h[2], t[2], l[6]);
+                await writeStyle(12, w[2], h[2], t[1], l[6]);
+                await writeStyle(13, w[2], h[2], t[2], l[6]);
                 //stack 8
-                writeStyle(14, w[2], h[2], t[1], 0);
-                writeStyle(15, w[2], h[2], t[2], 0);
+                await writeStyle(14, w[2], h[2], t[1], 0);
+                await writeStyle(15, w[2], h[2], t[2], 0);
                 break;
             case 17: //update
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -579,43 +579,43 @@ function chgPlayerStyle() {
                 l[6] = w[2] * 2;
                 l[7] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[2], h[1], t[1], l[1]);
+                await writeStyle( 2, w[2], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle( 3, w[2], h[2], t[1], l[2]);
-                writeStyle( 4, w[2], h[2], t[2], l[2]);
+                await writeStyle( 3, w[2], h[2], t[1], l[2]);
+                await writeStyle( 4, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 5, w[2], h[2], t[1], l[3]);
-                writeStyle( 6, w[2], h[2], t[2], l[3]);
+                await writeStyle( 5, w[2], h[2], t[1], l[3]);
+                await writeStyle( 6, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 7, w[2], h[2], t[1], l[4]);
-                writeStyle( 8, w[2], h[2], t[2], l[4]);
+                await writeStyle( 7, w[2], h[2], t[1], l[4]);
+                await writeStyle( 8, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle( 9, w[2], h[2], t[1], l[5]);
-                writeStyle(10, w[2], h[2], t[2], l[5]);
+                await writeStyle( 9, w[2], h[2], t[1], l[5]);
+                await writeStyle(10, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(11, w[2], h[2], t[1], l[6]);
-                writeStyle(12, w[2], h[2], t[2], l[6]);
+                await writeStyle(11, w[2], h[2], t[1], l[6]);
+                await writeStyle(12, w[2], h[2], t[2], l[6]);
                 //stack 8
-                writeStyle(13, w[2], h[2], t[1], l[7]);
-                writeStyle(14, w[2], h[2], t[2], l[7]);
+                await writeStyle(13, w[2], h[2], t[1], l[7]);
+                await writeStyle(14, w[2], h[2], t[2], l[7]);
                 //stack 9
-                writeStyle(15, w[2], h[2], t[1], 0);
-                writeStyle(16, w[2], h[2], t[2], 0);
+                await writeStyle(15, w[2], h[2], t[1], 0);
+                await writeStyle(16, w[2], h[2], t[2], 0);
                 break;
             case 18:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -628,44 +628,44 @@ function chgPlayerStyle() {
                 l[6] = w[2] * 2;
                 l[7] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[1], t[1], l[0]);
+                await writeStyle( 1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle( 2, w[2], h[2], t[1], l[1]);
-                writeStyle( 3, w[2], h[2], t[2], l[1]);
+                await writeStyle( 2, w[2], h[2], t[1], l[1]);
+                await writeStyle( 3, w[2], h[2], t[2], l[1]);
                 //stack 3
-                writeStyle( 4, w[2], h[2], t[1], l[2]);
-                writeStyle( 5, w[2], h[2], t[2], l[2]);
+                await writeStyle( 4, w[2], h[2], t[1], l[2]);
+                await writeStyle( 5, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 6, w[2], h[2], t[1], l[3]);
-                writeStyle( 7, w[2], h[2], t[2], l[3]);
+                await writeStyle( 6, w[2], h[2], t[1], l[3]);
+                await writeStyle( 7, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 8, w[2], h[2], t[1], l[4]);
-                writeStyle( 9, w[2], h[2], t[2], l[4]);
+                await writeStyle( 8, w[2], h[2], t[1], l[4]);
+                await writeStyle( 9, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle(10, w[2], h[2], t[1], l[5]);
-                writeStyle(11, w[2], h[2], t[2], l[5]);
+                await writeStyle(10, w[2], h[2], t[1], l[5]);
+                await writeStyle(11, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(12, w[2], h[2], t[1], l[6]);
-                writeStyle(13, w[2], h[2], t[2], l[6]);
+                await writeStyle(12, w[2], h[2], t[1], l[6]);
+                await writeStyle(13, w[2], h[2], t[2], l[6]);
                 //stack 8
-                writeStyle(14, w[2], h[2], t[1], l[7]);
-                writeStyle(15, w[2], h[2], t[2], l[7]);
+                await writeStyle(14, w[2], h[2], t[1], l[7]);
+                await writeStyle(15, w[2], h[2], t[2], l[7]);
                 //stack 9
-                writeStyle(16, w[2], h[2], t[1], 0);
-                writeStyle(17, w[2], h[2], t[2], 0);
+                await writeStyle(16, w[2], h[2], t[1], 0);
+                await writeStyle(17, w[2], h[2], t[2], 0);
                 break;
             case 19:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -678,34 +678,34 @@ function chgPlayerStyle() {
                 l[6] = w[2] * 2;
                 l[7] = w[2];
                 //top
-                writeStyle( 0, w[0], h[0], 0, 0);
+                await writeStyle( 0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle( 1, w[1], h[2], t[1], l[0]);
-                writeStyle( 2, w[1], h[2], t[2], l[0]);
+                await writeStyle( 1, w[1], h[2], t[1], l[0]);
+                await writeStyle( 2, w[1], h[2], t[2], l[0]);
                 //stack 2
-                writeStyle( 3, w[2], h[2], t[1], l[1]);
-                writeStyle( 4, w[2], h[2], t[2], l[1]);
+                await writeStyle( 3, w[2], h[2], t[1], l[1]);
+                await writeStyle( 4, w[2], h[2], t[2], l[1]);
                 //stack 3
-                writeStyle( 5, w[2], h[2], t[1], l[2]);
-                writeStyle( 6, w[2], h[2], t[2], l[2]);
+                await writeStyle( 5, w[2], h[2], t[1], l[2]);
+                await writeStyle( 6, w[2], h[2], t[2], l[2]);
                 //stack 4
-                writeStyle( 7, w[2], h[2], t[1], l[3]);
-                writeStyle( 8, w[2], h[2], t[2], l[3]);
+                await writeStyle( 7, w[2], h[2], t[1], l[3]);
+                await writeStyle( 8, w[2], h[2], t[2], l[3]);
                 //stack 5
-                writeStyle( 9, w[2], h[2], t[1], l[4]);
-                writeStyle(10, w[2], h[2], t[2], l[4]);
+                await writeStyle( 9, w[2], h[2], t[1], l[4]);
+                await writeStyle(10, w[2], h[2], t[2], l[4]);
                 //stack 6
-                writeStyle(11, w[2], h[2], t[1], l[5]);
-                writeStyle(12, w[2], h[2], t[2], l[5]);
+                await writeStyle(11, w[2], h[2], t[1], l[5]);
+                await writeStyle(12, w[2], h[2], t[2], l[5]);
                 //stack 7
-                writeStyle(13, w[2], h[2], t[1], l[6]);
-                writeStyle(14, w[2], h[2], t[2], l[6]);
+                await writeStyle(13, w[2], h[2], t[1], l[6]);
+                await writeStyle(14, w[2], h[2], t[2], l[6]);
                 //stack 8
-                writeStyle(15, w[2], h[2], t[1], l[7]);
-                writeStyle(16, w[2], h[2], t[2], l[7]);
+                await writeStyle(15, w[2], h[2], t[1], l[7]);
+                await writeStyle(16, w[2], h[2], t[2], l[7]);
                 //stack 9
-                writeStyle(17, w[2], h[2], t[1], 0);
-                writeStyle(18, w[2], h[2], t[2], 0);
+                await writeStyle(17, w[2], h[2], t[1], 0);
+                await writeStyle(18, w[2], h[2], t[2], 0);
                 break;
             default:
                 playerNotConfigured;
@@ -719,25 +719,25 @@ function chgPlayerStyle() {
             case 1:
                 if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
-                    h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                    h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                     //top
-                    writeStyle(0, w[0], h[0], 0, 0);
+                    await writeStyle(0, w[0], h[0], 0, 0);
                 }
                 break;
             case 2:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[0], h[1], t[1], 0);
+                await writeStyle(1, w[0], h[1], t[1], 0);
                 break;
             case 3:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 w[1] = clientW / 2;
                 //
@@ -746,61 +746,61 @@ function chgPlayerStyle() {
                 //
                 l[0] = w[1];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[1], h[1], t[1], 0);
+                await writeStyle(2, w[1], h[1], t[1], 0);
                 break;
             case 4:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
                 l[0] = clientW - w[1];
                 //
                 l[1] = w[2] = l[0] / 2;
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[1], t[1], l[1]);
+                await writeStyle(2, w[2], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[2], h[1], t[1], 0);
+                await writeStyle(3, w[2], h[1], t[1], 0);
                 break;
             case 5:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
                 l[0] = clientW - w[1];
                 //
                 h[3] = h[1] / 2;
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
+                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
                 // l[1] = l[0] - w[3];
                 t[2] = t[1] + h[3];
                 w[2] = l[0] - w[3];
                 l[1] = w[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[1], t[1], l[1]);
+                await writeStyle(2, w[2], h[1], t[1], l[1]);
                 //stack 3
-                writeStyle(3, w[3], h[3], t[1], 0);
-                writeStyle(4, w[3], h[3], t[2], 0);
+                await writeStyle(3, w[3], h[3], t[1], 0);
+                await writeStyle(4, w[3], h[3], t[2], 0);
                 break;
             case 6:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -808,31 +808,31 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 w[3] = clientW - ( w[1] + w[2] );
                 //
-                h[3] = Math.round( missingValue( r, w[3], 0 ) );
+                h[3] = Math.round( await missingValue( r, w[3], 0 ) );
                 h[4] = h[1] - h[3];
                 t[3] = t[1] + h[3];
                 //
                 l[2] = w[3];
                 l[0] = w[3] + w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(3, w[2], h[2], t[1], l[2]);
-                writeStyle(4, w[2], h[2], t[2], l[2]);
+                await writeStyle(3, w[2], h[2], t[1], l[2]);
+                await writeStyle(4, w[2], h[2], t[2], l[2]);
                 //stack 3 top
-                writeStyle(2, w[3], h[3], t[1], 0);
+                await writeStyle(2, w[3], h[3], t[1], 0);
                 //stack 3 bot
-                writeStyle(5, w[3], h[4], t[3], 0);
+                await writeStyle(5, w[3], h[4], t[3], 0);
                 break;
             case 7:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -840,12 +840,12 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 w[3] = clientW - ( w[1] + w[2] );
                 w[4] = w[3] / 2;
                 //
-                h[4] = Math.round( missingValue( r, w[4], 0 ) );
+                h[4] = Math.round( await missingValue( r, w[4], 0 ) );
                 h[3] = h[1] - h[4];
                 t[3] = t[1] + h[3];
                 //
@@ -853,21 +853,21 @@ function chgPlayerStyle() {
                 l[1] = w[4];
                 l[0] = w[3] + w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(3, w[2], h[2], t[1], l[2]);
-                writeStyle(4, w[2], h[2], t[2], l[2]);
+                await writeStyle(3, w[2], h[2], t[1], l[2]);
+                await writeStyle(4, w[2], h[2], t[2], l[2]);
                 //stack 3 top
-                writeStyle(2, w[3], h[3], t[1], 0);
+                await writeStyle(2, w[3], h[3], t[1], 0);
                 //stack 3 bot
-                writeStyle(5, w[4], h[4], t[3], l[1]);
-                writeStyle(6, w[4], h[4], t[3], 0);
+                await writeStyle(5, w[4], h[4], t[3], l[1]);
+                await writeStyle(6, w[4], h[4], t[3], 0);
                 break;
             case 8:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -876,31 +876,31 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
                 w[4] = w[0] - ( w[3] + w[2] + w[1] );
                 //
                 l[1] = w[3];
                 l[2] = w[3] + w[4];
                 l[0] = l[2] + w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[2]);
-                writeStyle(3, w[2], h[2], t[2], l[2]);
+                await writeStyle(2, w[2], h[2], t[1], l[2]);
+                await writeStyle(3, w[2], h[2], t[2], l[2]);
                 //stack 3
-                writeStyle(4, w[4], h[2], t[1], l[1]);
-                writeStyle(5, w[4], h[2], t[2], l[1]);
+                await writeStyle(4, w[4], h[2], t[1], l[1]);
+                await writeStyle(5, w[4], h[2], t[2], l[1]);
                 //stack 4
-                writeStyle(6, w[3], h[2], t[1], 0);
-                writeStyle(7, w[3], h[2], t[2], 0);
+                await writeStyle(6, w[3], h[2], t[1], 0);
+                await writeStyle(7, w[3], h[2], t[2], 0);
                 break;
             case 9:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -908,9 +908,9 @@ function chgPlayerStyle() {
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
                 w[4] = w[0] - ( w[3] + w[2] + w[1] );
                 //
                 t[2] = t[1] + h[3];
@@ -921,31 +921,31 @@ function chgPlayerStyle() {
                 l[2] = l[1] + w[4];
                 l[0] = l[2] + w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[2]);
-                writeStyle(3, w[2], h[2], t[4], l[2]);
+                await writeStyle(2, w[2], h[2], t[1], l[2]);
+                await writeStyle(3, w[2], h[2], t[4], l[2]);
                 //stack 3
-                writeStyle(4, w[4], h[2], t[1], l[1]);
-                writeStyle(5, w[4], h[2], t[4], l[1]);
+                await writeStyle(4, w[4], h[2], t[1], l[1]);
+                await writeStyle(5, w[4], h[2], t[4], l[1]);
                 //stack 4
-                writeStyle(6, w[3], h[3], t[1], 0);
-                writeStyle(7, w[3], h[3], t[2], 0);
-                writeStyle(8, w[3], h[3], t[3], 0);
+                await writeStyle(6, w[3], h[3], t[1], 0);
+                await writeStyle(7, w[3], h[3], t[2], 0);
+                await writeStyle(8, w[3], h[3], t[3], 0);
                 break;
             case 10:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( missingValue( r, 0, h[1] ) );
-                w[3] = Math.round( missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
                 //
                 t[2] = t[1] + h[3];
                 t[3] = t[2] + h[3];
@@ -956,30 +956,30 @@ function chgPlayerStyle() {
                 w[2] = w[0] - ( l[2] + w[1] );
                 l[0] = l[2] + w[2];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[2]);
-                writeStyle(3, w[2], h[2], t[4], l[2]);
+                await writeStyle(2, w[2], h[2], t[1], l[2]);
+                await writeStyle(3, w[2], h[2], t[4], l[2]);
                 //stack 3
-                writeStyle(4, w[3], h[3], t[1], l[1]);
-                writeStyle(5, w[3], h[3], t[2], l[1]);
-                writeStyle(6, w[3], h[3], t[3], l[1]);
+                await writeStyle(4, w[3], h[3], t[1], l[1]);
+                await writeStyle(5, w[3], h[3], t[2], l[1]);
+                await writeStyle(6, w[3], h[3], t[3], l[1]);
                 //stack 4
-                writeStyle(7, w[3], h[3], t[1], 0);
-                writeStyle(8, w[3], h[3], t[2], 0);
-                writeStyle(9, w[3], h[3], t[3], 0);
+                await writeStyle(7, w[3], h[3], t[1], 0);
+                await writeStyle(8, w[3], h[3], t[2], 0);
+                await writeStyle(9, w[3], h[3], t[3], 0);
                 break;
             case 11:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -988,33 +988,33 @@ function chgPlayerStyle() {
                 l[2] = w[2] * 2;
                 l[0] = w[2] * 3;
                 //
-                w[1] = w[0] - l[0]; //Math.round( missingValue( r, 0, h[1] ) );
+                w[1] = w[0] - l[0]; //Math.round( await missingValue( r, 0, h[1] ) );
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[2]);
-                writeStyle(3, w[2], h[2], t[2], l[2]);
-                writeStyle(4, w[2], h[2], t[3], l[2]);
+                await writeStyle(2, w[2], h[2], t[1], l[2]);
+                await writeStyle(3, w[2], h[2], t[2], l[2]);
+                await writeStyle(4, w[2], h[2], t[3], l[2]);
                 //stack 3
-                writeStyle(5, w[2], h[2], t[1], l[1]);
-                writeStyle(6, w[2], h[2], t[2], l[1]);
-                writeStyle(7, w[2], h[2], t[3], l[1]);
+                await writeStyle(5, w[2], h[2], t[1], l[1]);
+                await writeStyle(6, w[2], h[2], t[2], l[1]);
+                await writeStyle(7, w[2], h[2], t[3], l[1]);
                 //stack 4
-                writeStyle( 8, w[2], h[2], t[1], 0);
-                writeStyle( 9, w[2], h[2], t[2], 0);
-                writeStyle(10, w[2], h[2], t[3], 0);
+                await writeStyle( 8, w[2], h[2], t[1], 0);
+                await writeStyle( 9, w[2], h[2], t[2], 0);
+                await writeStyle(10, w[2], h[2], t[3], 0);
                 break;
             case 12:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1026,34 +1026,34 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[1], t[1], l[3]);
+                await writeStyle(2, w[2], h[1], t[1], l[3]);
                 //stack 3
-                writeStyle(3, w[2], h[2], t[1], l[2]);
-                writeStyle(4, w[2], h[2], t[2], l[2]);
-                writeStyle(5, w[2], h[2], t[3], l[2]);
+                await writeStyle(3, w[2], h[2], t[1], l[2]);
+                await writeStyle(4, w[2], h[2], t[2], l[2]);
+                await writeStyle(5, w[2], h[2], t[3], l[2]);
                 //stack 4
-                writeStyle(6, w[2], h[2], t[1], l[1]);
-                writeStyle(7, w[2], h[2], t[2], l[1]);
-                writeStyle(8, w[2], h[2], t[3], l[1]);
+                await writeStyle(6, w[2], h[2], t[1], l[1]);
+                await writeStyle(7, w[2], h[2], t[2], l[1]);
+                await writeStyle(8, w[2], h[2], t[3], l[1]);
                 //stack 5
-                writeStyle( 9, w[2], h[2], t[1], 0);
-                writeStyle(10, w[2], h[2], t[2], 0);
-                writeStyle(11, w[2], h[2], t[3], 0);
+                await writeStyle( 9, w[2], h[2], t[1], 0);
+                await writeStyle(10, w[2], h[2], t[2], 0);
+                await writeStyle(11, w[2], h[2], t[3], 0);
                 break;
             case 13:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
                 h[3] = h[1] / 2;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1066,34 +1066,34 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[3], t[1], l[3]);
-                writeStyle(3, w[2], h[3], t[4], l[3]);
+                await writeStyle(2, w[2], h[3], t[1], l[3]);
+                await writeStyle(3, w[2], h[3], t[4], l[3]);
                 //stack 3
-                writeStyle(4, w[2], h[2], t[1], l[2]);
-                writeStyle(5, w[2], h[2], t[2], l[2]);
-                writeStyle(6, w[2], h[2], t[3], l[2]);
+                await writeStyle(4, w[2], h[2], t[1], l[2]);
+                await writeStyle(5, w[2], h[2], t[2], l[2]);
+                await writeStyle(6, w[2], h[2], t[3], l[2]);
                 //stack 4
-                writeStyle(7, w[2], h[2], t[1], l[1]);
-                writeStyle(8, w[2], h[2], t[2], l[1]);
-                writeStyle(9, w[2], h[2], t[3], l[1]);
+                await writeStyle(7, w[2], h[2], t[1], l[1]);
+                await writeStyle(8, w[2], h[2], t[2], l[1]);
+                await writeStyle(9, w[2], h[2], t[3], l[1]);
                 //stack 5
-                writeStyle(10, w[2], h[2], t[1], 0);
-                writeStyle(11, w[2], h[2], t[2], 0);
-                writeStyle(12, w[2], h[2], t[3], 0);
+                await writeStyle(10, w[2], h[2], t[1], 0);
+                await writeStyle(11, w[2], h[2], t[2], 0);
+                await writeStyle(12, w[2], h[2], t[3], 0);
                 break;
             case 14:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1105,35 +1105,35 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[1], t[1], l[0]);
+                await writeStyle(1, w[1], h[1], t[1], l[0]);
                 //stack 2
-                writeStyle(2, w[2], h[2], t[1], l[3]);
-                writeStyle(3, w[2], h[2], t[2], l[3]);
-                writeStyle(4, w[2], h[2], t[3], l[3]);
+                await writeStyle(2, w[2], h[2], t[1], l[3]);
+                await writeStyle(3, w[2], h[2], t[2], l[3]);
+                await writeStyle(4, w[2], h[2], t[3], l[3]);
                 //stack 3
-                writeStyle(5, w[2], h[2], t[1], l[2]);
-                writeStyle(6, w[2], h[2], t[2], l[2]);
-                writeStyle(7, w[2], h[2], t[3], l[2]);
+                await writeStyle(5, w[2], h[2], t[1], l[2]);
+                await writeStyle(6, w[2], h[2], t[2], l[2]);
+                await writeStyle(7, w[2], h[2], t[3], l[2]);
                 //stack 4
-                writeStyle( 8, w[2], h[2], t[1], l[1]);
-                writeStyle( 9, w[2], h[2], t[2], l[1]);
-                writeStyle(10, w[2], h[2], t[3], l[1]);
+                await writeStyle( 8, w[2], h[2], t[1], l[1]);
+                await writeStyle( 9, w[2], h[2], t[2], l[1]);
+                await writeStyle(10, w[2], h[2], t[3], l[1]);
                 //stack 5
-                writeStyle(11, w[2], h[2], t[1], 0);
-                writeStyle(12, w[2], h[2], t[2], 0);
-                writeStyle(13, w[2], h[2], t[3], 0);
+                await writeStyle(11, w[2], h[2], t[1], 0);
+                await writeStyle(12, w[2], h[2], t[2], 0);
+                await writeStyle(13, w[2], h[2], t[3], 0);
                 break;
             case 15:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1154,36 +1154,36 @@ function chgPlayerStyle() {
                 t[5] = t[1] + h[4];
                 w[3] = clientW - l[4];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[3], h[4], t[1], l[4]);
-                writeStyle(2, w[3], h[5], t[5], l[4]);
+                await writeStyle(1, w[3], h[4], t[1], l[4]);
+                await writeStyle(2, w[3], h[5], t[5], l[4]);
                 //stack 2
-                writeStyle(3, w[2], h[2], t[1], l[3]);
-                writeStyle(4, w[2], h[2], t[2], l[3]);
-                writeStyle(5, w[2], h[2], t[3], l[3]);
+                await writeStyle(3, w[2], h[2], t[1], l[3]);
+                await writeStyle(4, w[2], h[2], t[2], l[3]);
+                await writeStyle(5, w[2], h[2], t[3], l[3]);
                 //stack 3
-                writeStyle(6, w[2], h[2], t[1], l[2]);
-                writeStyle(7, w[2], h[2], t[2], l[2]);
-                writeStyle(8, w[2], h[2], t[3], l[2]);
+                await writeStyle(6, w[2], h[2], t[1], l[2]);
+                await writeStyle(7, w[2], h[2], t[2], l[2]);
+                await writeStyle(8, w[2], h[2], t[3], l[2]);
                 //stack 4
-                writeStyle( 9, w[2], h[2], t[1], l[1]);
-                writeStyle(10, w[2], h[2], t[2], l[1]);
-                writeStyle(11, w[2], h[2], t[3], l[1]);
+                await writeStyle( 9, w[2], h[2], t[1], l[1]);
+                await writeStyle(10, w[2], h[2], t[2], l[1]);
+                await writeStyle(11, w[2], h[2], t[3], l[1]);
                 //stack 5
-                writeStyle(12, w[2], h[2], t[1], 0);
-                writeStyle(13, w[2], h[2], t[2], 0);
-                writeStyle(14, w[2], h[2], t[3], 0);
+                await writeStyle(12, w[2], h[2], t[1], 0);
+                await writeStyle(13, w[2], h[2], t[2], 0);
+                await writeStyle(14, w[2], h[2], t[3], 0);
                 break;
             case 16:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1203,37 +1203,37 @@ function chgPlayerStyle() {
                 w[3] = w[1] / 2;
                 l[4] = l[0] + w[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[4], t[1], l[0]);
-                writeStyle(2, w[3], h[5], t[5], l[4]);
-                writeStyle(3, w[3], h[5], t[5], l[0]);
+                await writeStyle(1, w[1], h[4], t[1], l[0]);
+                await writeStyle(2, w[3], h[5], t[5], l[4]);
+                await writeStyle(3, w[3], h[5], t[5], l[0]);
                 //stack 2
-                writeStyle(4, w[2], h[2], t[1], l[3]);
-                writeStyle(5, w[2], h[2], t[2], l[3]);
-                writeStyle(6, w[2], h[2], t[3], l[3]);
+                await writeStyle(4, w[2], h[2], t[1], l[3]);
+                await writeStyle(5, w[2], h[2], t[2], l[3]);
+                await writeStyle(6, w[2], h[2], t[3], l[3]);
                 //stack 3
-                writeStyle( 7, w[2], h[2], t[1], l[2]);
-                writeStyle( 8, w[2], h[2], t[2], l[2]);
-                writeStyle( 9, w[2], h[2], t[3], l[2]);
+                await writeStyle( 7, w[2], h[2], t[1], l[2]);
+                await writeStyle( 8, w[2], h[2], t[2], l[2]);
+                await writeStyle( 9, w[2], h[2], t[3], l[2]);
                 //stack 4
-                writeStyle(10, w[2], h[2], t[1], l[1]);
-                writeStyle(11, w[2], h[2], t[2], l[1]);
-                writeStyle(12, w[2], h[2], t[3], l[1]);
+                await writeStyle(10, w[2], h[2], t[1], l[1]);
+                await writeStyle(11, w[2], h[2], t[2], l[1]);
+                await writeStyle(12, w[2], h[2], t[3], l[1]);
                 //stack 5
-                writeStyle(13, w[2], h[2], t[1], 0);
-                writeStyle(14, w[2], h[2], t[2], 0);
-                writeStyle(15, w[2], h[2], t[3], 0);
+                await writeStyle(13, w[2], h[2], t[1], 0);
+                await writeStyle(14, w[2], h[2], t[2], 0);
+                await writeStyle(15, w[2], h[2], t[3], 0);
                 break;
             case 17:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1246,47 +1246,47 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //
-                h[3] = Math.round( missingValue( r, w[1], 0 ) );
+                h[3] = Math.round( await missingValue( r, w[1], 0 ) );
                 h[4] = h[1] - h[3];
                 t[4] = t[1] + h[3];
                 //
-                w[3] = Math.round( missingValue( r, 0, h[4] ) );
+                w[3] = Math.round( await missingValue( r, 0, h[4] ) );
                 w[4] = (w[1] + w[2]) - w[3];
                 l[5] = l[4] + w[4];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[3], t[1], l[0]);
-                writeStyle(2, w[3], h[4], t[4], l[5]);
+                await writeStyle(1, w[1], h[3], t[1], l[0]);
+                await writeStyle(2, w[3], h[4], t[4], l[5]);
                 //stack 2
-                writeStyle(4, w[2], h[3], t[1], l[4]);
-                writeStyle(3, w[4], h[4], t[4], l[4]);
+                await writeStyle(4, w[2], h[3], t[1], l[4]);
+                await writeStyle(3, w[4], h[4], t[4], l[4]);
                 //stack 3
-                writeStyle(5, w[2], h[2], t[1], l[3]);
-                writeStyle(6, w[2], h[2], t[2], l[3]);
-                writeStyle(7, w[2], h[2], t[3], l[3]);
+                await writeStyle(5, w[2], h[2], t[1], l[3]);
+                await writeStyle(6, w[2], h[2], t[2], l[3]);
+                await writeStyle(7, w[2], h[2], t[3], l[3]);
                 //stack 4
-                writeStyle( 8, w[2], h[2], t[1], l[2]);
-                writeStyle( 9, w[2], h[2], t[2], l[2]);
-                writeStyle(10, w[2], h[2], t[3], l[2]);
+                await writeStyle( 8, w[2], h[2], t[1], l[2]);
+                await writeStyle( 9, w[2], h[2], t[2], l[2]);
+                await writeStyle(10, w[2], h[2], t[3], l[2]);
                 //stack 5
-                writeStyle(11, w[2], h[2], t[1], l[1]);
-                writeStyle(12, w[2], h[2], t[2], l[1]);
-                writeStyle(13, w[2], h[2], t[3], l[1]);
+                await writeStyle(11, w[2], h[2], t[1], l[1]);
+                await writeStyle(12, w[2], h[2], t[2], l[1]);
+                await writeStyle(13, w[2], h[2], t[3], l[1]);
                 //stack 6
-                writeStyle(14, w[2], h[2], t[1], 0);
-                writeStyle(15, w[2], h[2], t[2], 0);
-                writeStyle(16, w[2], h[2], t[3], 0);
+                await writeStyle(14, w[2], h[2], t[1], 0);
+                await writeStyle(15, w[2], h[2], t[2], 0);
+                await writeStyle(16, w[2], h[2], t[3], 0);
                 break;
             case 18:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1299,38 +1299,38 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //
-                h[3] = Math.round( missingValue( r, w[1], 0 ) );
+                h[3] = Math.round( await missingValue( r, w[1], 0 ) );
                 h[4] = h[1] - h[3];
                 t[4] = t[1] + h[3];
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[1], h[3], t[1], l[0]);
-                writeStyle(2, w[1], h[4], t[4], l[0]);
+                await writeStyle(1, w[1], h[3], t[1], l[0]);
+                await writeStyle(2, w[1], h[4], t[4], l[0]);
                 //stack 2
-                writeStyle(3, w[2], h[2], t[1], l[4]);
-                writeStyle(4, w[2], h[2], t[2], l[4]);
-                writeStyle(5, w[2], h[2], t[3], l[4]);
+                await writeStyle(3, w[2], h[2], t[1], l[4]);
+                await writeStyle(4, w[2], h[2], t[2], l[4]);
+                await writeStyle(5, w[2], h[2], t[3], l[4]);
                 //stack 3
-                writeStyle(6, w[2], h[2], t[1], l[3]);
-                writeStyle(7, w[2], h[2], t[2], l[3]);
-                writeStyle(8, w[2], h[2], t[3], l[3]);
+                await writeStyle(6, w[2], h[2], t[1], l[3]);
+                await writeStyle(7, w[2], h[2], t[2], l[3]);
+                await writeStyle(8, w[2], h[2], t[3], l[3]);
                 //stack 4
-                writeStyle( 9, w[2], h[2], t[1], l[2]);
-                writeStyle(10, w[2], h[2], t[2], l[2]);
-                writeStyle(11, w[2], h[2], t[3], l[2]);
+                await writeStyle( 9, w[2], h[2], t[1], l[2]);
+                await writeStyle(10, w[2], h[2], t[2], l[2]);
+                await writeStyle(11, w[2], h[2], t[3], l[2]);
                 //stack 5
-                writeStyle(12, w[2], h[2], t[1], l[1]);
-                writeStyle(13, w[2], h[2], t[2], l[1]);
-                writeStyle(14, w[2], h[2], t[3], l[1]);
+                await writeStyle(12, w[2], h[2], t[1], l[1]);
+                await writeStyle(13, w[2], h[2], t[2], l[1]);
+                await writeStyle(14, w[2], h[2], t[3], l[1]);
                 //stack 6
-                writeStyle(15, w[2], h[2], t[1], 0);
-                writeStyle(16, w[2], h[2], t[2], 0);
-                writeStyle(17, w[2], h[2], t[3], 0);
+                await writeStyle(15, w[2], h[2], t[1], 0);
+                await writeStyle(16, w[2], h[2], t[2], 0);
+                await writeStyle(17, w[2], h[2], t[3], 0);
                 break;
             case 19:
                 w[0] = clientW;
-                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -1347,31 +1347,31 @@ function chgPlayerStyle() {
                 l[4] = w[2] * 4;
                 l[0] = w[2] * 5;
                 //top
-                writeStyle(0, w[0], h[0], 0, 0);
+                await writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
-                writeStyle(1, w[2], h[2], t[1], l[0]);
-                writeStyle(2, w[2], h[2], t[2], l[0]);
-                writeStyle(3, w[2], h[2], t[3], l[0]);
+                await writeStyle(1, w[2], h[2], t[1], l[0]);
+                await writeStyle(2, w[2], h[2], t[2], l[0]);
+                await writeStyle(3, w[2], h[2], t[3], l[0]);
                 //stack 2
-                writeStyle(4, w[2], h[2], t[1], l[4]);
-                writeStyle(5, w[2], h[2], t[2], l[4]);
-                writeStyle(6, w[2], h[2], t[3], l[4]);
+                await writeStyle(4, w[2], h[2], t[1], l[4]);
+                await writeStyle(5, w[2], h[2], t[2], l[4]);
+                await writeStyle(6, w[2], h[2], t[3], l[4]);
                 //stack 3
-                writeStyle(7, w[2], h[2], t[1], l[3]);
-                writeStyle(8, w[2], h[2], t[2], l[3]);
-                writeStyle(9, w[2], h[2], t[3], l[3]);
+                await writeStyle(7, w[2], h[2], t[1], l[3]);
+                await writeStyle(8, w[2], h[2], t[2], l[3]);
+                await writeStyle(9, w[2], h[2], t[3], l[3]);
                 //stack 4
-                writeStyle(10, w[2], h[2], t[1], l[2]);
-                writeStyle(11, w[2], h[2], t[2], l[2]);
-                writeStyle(12, w[2], h[2], t[3], l[2]);
+                await writeStyle(10, w[2], h[2], t[1], l[2]);
+                await writeStyle(11, w[2], h[2], t[2], l[2]);
+                await writeStyle(12, w[2], h[2], t[3], l[2]);
                 //stack 5
-                writeStyle(13, w[2], h[2], t[1], l[1]);
-                writeStyle(14, w[2], h[2], t[2], l[1]);
-                writeStyle(15, w[2], h[2], t[3], l[1]);
+                await writeStyle(13, w[2], h[2], t[1], l[1]);
+                await writeStyle(14, w[2], h[2], t[2], l[1]);
+                await writeStyle(15, w[2], h[2], t[3], l[1]);
                 //stack 6
-                writeStyle(16, w[2], h[2], t[1], 0);
-                writeStyle(17, w[2], h[2], t[2], 0);
-                writeStyle(18, w[2], h[2], t[3], 0);
+                await writeStyle(16, w[2], h[2], t[1], 0);
+                await writeStyle(17, w[2], h[2], t[2], 0);
+                await writeStyle(18, w[2], h[2], t[3], 0);
                 break;
             default:
                 playerNotConfigured;
@@ -1379,9 +1379,9 @@ function chgPlayerStyle() {
     }
 }
 
-function goFullScreen() {
+async function goFullScreen() {
     if (isfullscr()) {
-        chgPlayerStyle();
+        await chgPlayerStyle();
     }
     else {
         gofullscr();
@@ -1393,7 +1393,7 @@ function goFullScreen() {
 
 // Set Quality /////////////////////////////////////////////////////////////////////////
 
-function getQualities(strmID) {
+async function getQualities(strmID) {
     var obj = document.getElementById("v-" + fldids[strmID]);
     if (typeof obj.quality === "undefined" || obj.quality.length < 1) {
         if (chans[strmID].search("v=") == -1) {
@@ -1409,7 +1409,7 @@ function getQualities(strmID) {
     }
 }
 
-function chkQuality(array, string) {
+async function chkQuality(array, string) {
     if (array.indexOf(string) < 0) {
         return array[array.length - 1]; //[0]
     }
@@ -1418,7 +1418,7 @@ function chkQuality(array, string) {
     }
 }
 
-function setQuality(strmID, strmQuality) {
+async function setQuality(strmID, strmQuality) {
     var currentQuality = "",
         checkQuality = "",
         pad = 7,
@@ -1427,7 +1427,7 @@ function setQuality(strmID, strmQuality) {
         currentQuality = obj.player.getQuality();
         if (currentQuality !== strmQuality) {
             if (chans[strmID].search("v=") == -1) {
-                checkQuality = chkQuality(obj.quality, strmQuality);
+                checkQuality = await chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
                 console.info("setQuality(v-" + fldids[strmID] + "): ", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
             }
@@ -1438,7 +1438,7 @@ function setQuality(strmID, strmQuality) {
     }
 }
 
-function chgQuality(strmID, strmQuality) {
+async function chgQuality(strmID, strmQuality) {
     var length = 0,
         aspect_ratio = screen.width / screen.height;
     // getQualities(strmID);
@@ -1493,20 +1493,20 @@ function chgQuality(strmID, strmQuality) {
             // length = 0;
     }
     for(let i = 0, l = chans.length; i < l; i++) {
-        getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-        setQuality(i, (i > length ? "160p30" : quality[i]) );
+        await getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+        await setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
 }
 
 // Miscellaneous Functions /////////////////////////////////////////////////////////////
 
-function chgCookie_redundantBackup(chk, val, txt) {
+async function chgCookie_(chk, val, txt) {
     var i = new Date();
     i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
     document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
 }
 
-function getCookie_redundantBackup(txt) {
+async function getCookie_(txt) {
     if (txt) {
         return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
     }
@@ -1515,16 +1515,16 @@ function getCookie_redundantBackup(txt) {
     }
 }
 
-function updChatIndx() {
+async function updChatIndx() {
     //https://www.w3schools.com/js/js_cookies.asp
     var chatsel = document.getElementById("chatsel"),
         chatmen = document.getElementById("chatmen"),
         cookieName = "sesssave",
-        sesssave = getCookie_redundantBackup(cookieName),
+        sesssave = await getCookie_(cookieName),
         sesssaveLowerCase = sesssave.toLowerCase();
 
     if ( sesssave !== sesssaveLowerCase ) {
-        chgCookie_redundantBackup( 1, cookieName, sesssaveLowerCase );
+        await chgCookie_( 1, cookieName, sesssaveLowerCase );
     }
 
     // https://morioh.com/p/0b5bd0ececd4
@@ -1599,12 +1599,12 @@ function updChatIndx() {
     }
 }
 
-function openFuncMenu(val) {
+async function openFuncMenu(val) {
     if (val == undefined) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
     if (val) {
-        updateUnloadAllChatsButton();
+        await updateUnloadAllChatsButton();
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
@@ -1623,27 +1623,27 @@ function openFuncMenu(val) {
     }
 }
 
-function evtchk(event) {
+async function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
-        openFuncMenu(0);
+        await openFuncMenu(0);
         chgvolume(100);
-        updChatIndx();
-        chgQuality();
-        goFullScreen();
+        await updChatIndx();
+        await chgQuality();
+        await goFullScreen();
     }
 }
 
-function funcEvtChk(event) {
+async function funcEvtChk(event) {
     if (event.ctrlKey) {
-        openFuncMenu(0);
+        await openFuncMenu(0);
         chgvolume(100);
-        chgQuality();
-        goFullScreen();
+        await chgQuality();
+        await goFullScreen();
     }
 }
 
-function updateUnloadAllChatsButton() {
+async function updateUnloadAllChatsButton() {
     var loadedChats = 0;
     for(let indx in chats) {
         let obj = document.getElementById("c-" + chats[indx]);
@@ -1671,7 +1671,7 @@ function updateUnloadAllChatsButton() {
 
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
-function removeOfflineChannels(val) {
+async function removeOfflineChannels(val) {
     var list = [],
         id = [];
 
@@ -1692,7 +1692,7 @@ function removeOfflineChannels(val) {
     }
 }
 
-function setGameMode() {
+async function setGameMode() {
     var obj = document.getElementsByClassName("setGameMode")[0];
     gameMode = !gameMode;
 
@@ -1704,7 +1704,7 @@ function setGameMode() {
     }
 }
 
-function setMaxQualityMode() {
+async function setMaxQualityMode() {
     var obj = document.getElementsByClassName("setMaxQualityMode")[0];
     maxQualityMode = !maxQualityMode;
 
@@ -1716,7 +1716,7 @@ function setMaxQualityMode() {
     }
 }
 
-function unloadAllChats() {
+async function unloadAllChats() {
     // add number of loaded chats to button text
     // dont unload selected chat.. only if shift is held
 
@@ -1749,10 +1749,10 @@ function unloadAllChats() {
         chgchat();
     }
 
-    updateUnloadAllChatsButton();
+    await updateUnloadAllChatsButton();
 }
 
-function addStreamsFromChat() {
+async function addStreamsFromChat() {
     var currentPlayerLength = fldids.length;
 
     addfromui(1, chats.toString());
@@ -1776,7 +1776,7 @@ function addStreamsFromChat() {
     }
 }
 
-function watchPartyMode() {
+async function watchPartyMode() {
     var obj = document.getElementsByClassName("watchPartyMode")[0];
     watchParty = !watchParty;
 
@@ -1788,7 +1788,7 @@ function watchPartyMode() {
     }
 }
 
-function randomTestButton() {
+async function randomTestButton() {
     let obj = document.getElementById("v-" + fldids[0]);
     // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
     // console.log( obj.player.getPlaybackStats().hlsLatencyBroadcaster + ' - hlsLatencyBroadcaster' );
@@ -1805,7 +1805,7 @@ function randomTestButton() {
 
 // Setup Functions /////////////////////////////////////////////////////////////////////
 
-function updMenuElement() {
+async function updMenuElement() {
     //https://forum.webflow.com/t/23730
     document.getElementById("menubtn").onclick = function() {
         openmenu();
@@ -1813,7 +1813,7 @@ function updMenuElement() {
     }
 }
 
-function triggerScript() {
+async function triggerScript() {
     document.removeEventListener("triggerScript", triggerScript);
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
     functionsMenuImgObj = document.getElementById("functionsMenuImg");
@@ -1840,7 +1840,7 @@ function triggerScript() {
     };
 }
 
-function setButtonVisibility() {
+async function setButtonVisibility() {
     var list = ["playerStyleImg", "functionsMenuImg"];
     list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
         var obj = document.getElementById(value)
@@ -1850,13 +1850,13 @@ function setButtonVisibility() {
     });
 }
 
-function onEventTrigger() {
+async function onEventTrigger() {
     userQuality[0] = fldids[0];
-    chgQuality();
-    setButtonVisibility();
+    await chgQuality();
+    await setButtonVisibility();
 }
 
-function setEventTrigger() {
+async function setEventTrigger() {
     //https://stackoverflow.com/questions/28610365
     if (fldids.length > 0) {
         var indx = ("v-" + fldids[fldids.length - 1]),
@@ -1887,7 +1887,7 @@ function setEventTrigger() {
         console.info("setEventTrigger(): fldids.length ===", fldids.length);
     }
     else {
-        setButtonVisibility();
+        await setButtonVisibility();
         console.info("setEventTrigger(): no streams found");
     }
 }
@@ -1904,7 +1904,9 @@ var userQuality = [],
 (function() {
     updMenuElement();
     document.addEventListener("triggerScript", triggerScript);
-    setTimeout(setEventTrigger, 300);
+    setTimeout(function() { // setTimeout(setEventTrigger, 300);
+        setEventTrigger();
+    }, 300);
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////
