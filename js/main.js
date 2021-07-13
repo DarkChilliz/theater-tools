@@ -1690,6 +1690,7 @@ async function removeOfflineChannels(val) {
     if (list.length > 0){
         console.info("removeOfflineChannels(" + list.length + "):", list.toString());
     }
+    await updateUnloadAllChatsButton();
 }
 
 async function setGameMode() {
@@ -1810,6 +1811,9 @@ async function updMenuElement() {
     document.getElementById("menubtn").onclick = function() {
         openmenu();
         updChatIndx();
+        if (!document.getElementById("funcMenuBot").style.display) {
+            updateUnloadAllChatsButton();
+        }
     }
 }
 
