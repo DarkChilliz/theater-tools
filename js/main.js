@@ -1857,7 +1857,7 @@ async function triggerScript() {
 async function onEventTrigger() {
     userQuality[0] = fldids[0];
     await chgQuality();
-    await setButtonVisibility();
+    // await setButtonVisibility();
 }
 
 async function setEventTrigger() {
