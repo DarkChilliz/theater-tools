@@ -1443,6 +1443,9 @@ async function chgQuality(strmID, strmQuality) {
         aspect_ratio = screen.width / screen.height;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
+    if (lockChgQuality === true) {
+        return;
+    }
     if (gameMode === true) {
         quality = ["480p30","160p30","160p30"];
     }
@@ -1856,6 +1859,7 @@ async function triggerScript() {
 
 async function onEventTrigger() {
     userQuality[0] = fldids[0];
+    lockChgQuality = false;
     await chgQuality();
     // await setButtonVisibility();
 }
@@ -1904,6 +1908,7 @@ var userQuality = [],
     maxQualityMode = false,
     watchParty = false,
     useGoFullScreen = true,
+    lockChgQuality = true,
     useChgPlayerStyleCaseOne = false;
 (function() {
     updMenuElement();
