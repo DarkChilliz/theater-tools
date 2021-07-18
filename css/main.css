@@ -1,6 +1,6 @@
 #functionsMenuImg, #playerStyleImg {
     position: absolute;
-    visibility: hidden;
+    /* visibility: hidden; */
     opacity: 0.5;
 }
 
