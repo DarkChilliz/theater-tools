@@ -1844,15 +1844,15 @@ async function triggerScript() {
     };
 }
 
-async function setButtonVisibility() {
-    var list = ["playerStyleImg", "functionsMenuImg"];
-    list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
-        var obj = document.getElementById(value)
-        if (obj.style.visibility != "visible") {
-            obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
-        }
-    });
-}
+// async function setButtonVisibility() {
+//     var list = ["playerStyleImg", "functionsMenuImg"];
+//     list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
+//         var obj = document.getElementById(value)
+//         if (obj.style.visibility != "visible") {
+//             obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
+//         }
+//     });
+// }
 
 async function onEventTrigger() {
     userQuality[0] = fldids[0];
