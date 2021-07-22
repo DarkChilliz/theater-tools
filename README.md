@@ -7,7 +7,7 @@ Features:
 ## Firefox Developer Edition, Nightly, or ESR
 
 - Set `xpinstall.signatures.required` to `false` in `about:config`.
-- Rename `manifest_firefox.json` to `manifest.json` replacing the chrome version.
+<!-- - Rename `manifest_firefox.json` to `manifest.json` replacing the chrome version. -->
 - [Package files into ZIP](https://extensionworkshop.com/documentation/publish/package-your-extension/) & `Install Add-on From File...` in `about:addons`.
 
 ## Chrome
