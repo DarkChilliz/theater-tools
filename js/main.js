@@ -1895,7 +1895,7 @@ async function setEventTrigger() {
         console.info("setEventTrigger(): fldids.length ===", fldids.length);
     }
     else {
-        await setButtonVisibility();
+        // await setButtonVisibility();
         console.info("setEventTrigger(): no streams found");
     }
 }
