@@ -16,6 +16,7 @@ main.js: onEventTrigger(): check style.display !== "none"
 main.js: setQuality(): v-10: padding to 2/3
 main.js: obj.player.getPlaybackStats().bufferSize !== 0
 main.js: (userQuality[0] = fldids[0]) move to div var like getQualities(); obj.quality = [];
+          userQuality = reference to stream player div
 
 # secondary objectives
 main.js: "playerStyleImg" » check if number of loaded chats dosent exceed set value(7)
