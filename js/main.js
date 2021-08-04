@@ -1672,6 +1672,13 @@ async function updateUnloadAllChatsButton() {
     }
 }
 
+async function menubtnOnclick() {
+    updChatIndx();
+    if (!document.getElementById("funcMenuBot").style.display) {
+        await updateUnloadAllChatsButton();
+    }
+}
+
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
 async function removeOfflineChannels(val) {
@@ -1813,10 +1820,7 @@ async function updMenuElement() {
     //https://forum.webflow.com/t/23730
     document.getElementById("menubtn").onclick = function() {
         openmenu();
-        updChatIndx();
-        if (!document.getElementById("funcMenuBot").style.display) {
-            updateUnloadAllChatsButton();
-        }
+        menubtnOnclick();
     }
 }
 
@@ -1857,10 +1861,10 @@ async function triggerScript() {
 //     });
 // }
 
-async function onEventTrigger() {
+function onEventTrigger() {
     userQuality[0] = fldids[0];
     lockChgQuality = false;
-    await chgQuality();
+    chgQuality();
     // await setButtonVisibility();
 }
 
