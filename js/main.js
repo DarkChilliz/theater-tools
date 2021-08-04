@@ -1917,9 +1917,7 @@ var userQuality = [],
 (function() {
     updMenuElement();
     document.addEventListener("triggerScript", triggerScript);
-    setTimeout(function() { // setTimeout(setEventTrigger, 300);
-        setEventTrigger();
-    }, 300);
+    setTimeout(setEventTrigger, 300);
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////
