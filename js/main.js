@@ -1554,9 +1554,12 @@ async function updChatIndx() {
         }
         chats = chats.join('|').toLowerCase().split('|');
 
-        if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
-            chgchat();
+        try {
+            if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
+                chgchat();
+            }
         }
+        catch(e){}
     }
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
