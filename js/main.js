@@ -1559,7 +1559,7 @@ async function updChatIndx() {
                 chgchat();
             }
         }
-        catch(e){}
+        catch(err) {}
     }
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
