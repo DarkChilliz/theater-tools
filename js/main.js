@@ -1759,7 +1759,7 @@ async function unloadAllChats() {
     await updateUnloadAllChatsButton();
 }
 
-async function addStreamsFromChat() {
+async function addStreamsFromChat(event) {
     var currentPlayerLength = fldids.length;
 
     addfromui(1, chats.toString());
