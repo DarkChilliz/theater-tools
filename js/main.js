@@ -1765,6 +1765,36 @@ async function addStreamsFromChat(event) {
     if (event.shiftKey) {
         addfromui(1, chats.toString());
     }
+    else {
+        updChatIndx();
+
+        let c = chats.slice(),
+            list = [];
+
+        // console.log(c.length, "c.length a");
+
+        for(let indx in chans) {
+            if (c.indexOf(chans[indx]) > -1) {
+                list.push(indx);
+                // console.log(indx, "a")
+            }
+            // console.log(indx, "b")
+        }
+        // console.log(list, "before")
+        list.sort(function(a, b){return b-a});
+        // console.log(list, "after")
+
+        for(let indx in list) {
+            c.splice(list[indx], 1);
+            // console.log(c.splice(list[indx], 1), "aaaaa");
+        }
+
+        // console.log(c.length, "c.length b");
+        c.splice(7, c.length)
+
+        addfromui(1, c.toString());
+        updateUnloadAllChatsButton();
+    }
 
     for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
         let obj = document.getElementById('v-' + fldids[i]);
