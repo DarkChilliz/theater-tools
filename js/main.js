@@ -1381,7 +1381,7 @@ async function chgPlayerStyle() {
 
 async function goFullScreen() {
     if (isfullscr()) {
-        await chgPlayerStyle();
+        chgPlayerStyle();
     }
     else {
         gofullscr();
@@ -1497,7 +1497,7 @@ async function chgQuality(strmID, strmQuality) {
     }
     for(let i = 0, l = chans.length; i < l; i++) {
         await getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-        await setQuality(i, (i > length ? "160p30" : quality[i]) );
+        setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
 }
 
@@ -1527,7 +1527,7 @@ async function updChatIndx() {
         sesssaveLowerCase = sesssave.toLowerCase();
 
     if ( sesssave !== sesssaveLowerCase ) {
-        await chgCookie_( 1, cookieName, sesssaveLowerCase );
+        chgCookie_( 1, cookieName, sesssaveLowerCase );
     }
 
     // https://morioh.com/p/0b5bd0ececd4
@@ -1610,7 +1610,7 @@ async function openFuncMenu(val) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
     if (val) {
-        await updateUnloadAllChatsButton();
+        updateUnloadAllChatsButton();
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
@@ -1632,20 +1632,20 @@ async function openFuncMenu(val) {
 async function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
-        await openFuncMenu(0);
+        openFuncMenu(0);
         chgvolume(100);
-        await updChatIndx();
-        await chgQuality();
-        await goFullScreen();
+        updChatIndx();
+        chgQuality();
+        goFullScreen();
     }
 }
 
 async function funcEvtChk(event) {
     if (event.ctrlKey) {
-        await openFuncMenu(0);
+        openFuncMenu(0);
         chgvolume(100);
-        await chgQuality();
-        await goFullScreen();
+        chgQuality();
+        goFullScreen();
     }
 }
 
@@ -1696,7 +1696,7 @@ async function removeOfflineChannels(val) {
     if (list.length > 0){
         console.info("removeOfflineChannels(" + list.length + "):", list.toString());
     }
-    await updateUnloadAllChatsButton();
+    updateUnloadAllChatsButton();
 }
 
 async function setGameMode() {
@@ -1756,7 +1756,7 @@ async function unloadAllChats() {
         chgchat();
     }
 
-    await updateUnloadAllChatsButton();
+    updateUnloadAllChatsButton();
 }
 
 async function addStreamsFromChat(event) {
@@ -1899,7 +1899,7 @@ function onEventTrigger() {
     userQuality[0] = fldids[0];
     lockChgQuality = false;
     chgQuality();
-    // await setButtonVisibility();
+    // setButtonVisibility();
 }
 
 async function setEventTrigger() {
@@ -1933,7 +1933,7 @@ async function setEventTrigger() {
         console.info("setEventTrigger(): fldids.length ===", fldids.length);
     }
     else {
-        // await setButtonVisibility();
+        // setButtonVisibility();
         console.info("setEventTrigger(): no streams found");
     }
 }
