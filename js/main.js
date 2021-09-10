@@ -1762,7 +1762,9 @@ async function unloadAllChats() {
 async function addStreamsFromChat(event) {
     var currentPlayerLength = fldids.length;
 
-    addfromui(1, chats.toString());
+    if (event.shiftKey) {
+        addfromui(1, chats.toString());
+    }
 
     for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
         let obj = document.getElementById('v-' + fldids[i]);
