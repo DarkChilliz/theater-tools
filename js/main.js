@@ -1790,7 +1790,7 @@ async function addStreamsFromChat(event) {
         }
 
         // console.log(c.length, "c.length b");
-        c.splice(7, c.length)
+        c.splice(7, c.length);
 
         addfromui(1, c.toString());
         updateUnloadAllChatsButton();
