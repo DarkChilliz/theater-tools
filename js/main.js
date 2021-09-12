@@ -1675,6 +1675,15 @@ async function updateUnloadAllChatsButton() {
     }
 }
 
+async function updateAddStreamsFromChatButton() {
+    const loadedStreams = chans.length;
+
+    if (loadedStreams > 0) {
+        let obj = document.getElementsByClassName("addStreamsFromChat")[0];
+        obj.innerText = "addStreams " + loadedStreams + " / " + chats.length;
+    }
+}
+
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
 async function removeOfflineChannels(val) {
