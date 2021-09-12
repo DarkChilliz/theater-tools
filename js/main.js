@@ -1649,6 +1649,8 @@ async function funcEvtChk(event) {
     }
 }
 
+// Update Function Menu Buttons ////////////////////////////////////////////////////////
+
 async function updateUnloadAllChatsButton() {
     var loadedChats = 0;
     for(let indx in chats) {
