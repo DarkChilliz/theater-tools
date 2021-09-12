@@ -1671,7 +1671,7 @@ async function updateUnloadAllChatsButton() {
         // }
 
         let obj = document.getElementsByClassName("unloadAllChats")[0];
-        obj.innerText = "chats " + loadedChats + " / " + chats.length;
+        obj.innerText = "loadedChats " + loadedChats + " / " + chats.length;
     }
 }
 
