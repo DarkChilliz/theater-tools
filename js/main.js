@@ -1686,6 +1686,11 @@ async function updateAddStreamsFromChatButton() {
     }
 }
 
+async function updateFunctionMenuButtons() {
+    updateUnloadAllChatsButton();
+    updateAddStreamsFromChatButton();
+}
+
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
 async function removeOfflineChannels(val) {
