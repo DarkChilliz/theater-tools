@@ -1610,7 +1610,7 @@ async function openFuncMenu(val) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
     if (val) {
-        updateUnloadAllChatsButton();
+        updateFunctionMenuButtons();
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
@@ -1712,7 +1712,7 @@ async function removeOfflineChannels(val) {
     if (list.length > 0){
         console.info("removeOfflineChannels(" + list.length + "):", list.toString());
     }
-    updateUnloadAllChatsButton();
+    updateFunctionMenuButtons();
 }
 
 async function setGameMode() {
@@ -1772,7 +1772,7 @@ async function unloadAllChats() {
         chgchat();
     }
 
-    updateUnloadAllChatsButton();
+    updateFunctionMenuButtons();
 }
 
 async function addStreamsFromChat(event) {
@@ -1809,7 +1809,7 @@ async function addStreamsFromChat(event) {
         c.splice(7, c.length);
 
         addfromui(1, c.toString());
-        updateUnloadAllChatsButton();
+        updateFunctionMenuButtons();
     }
 
     for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
@@ -1867,7 +1867,7 @@ async function updMenuElement() {
         updChatIndx();
         try {
             if (!document.getElementById("funcMenuBot").style.display) {
-                updateUnloadAllChatsButton();
+                updateFunctionMenuButtons();
             }
         }
         catch(err) {}
