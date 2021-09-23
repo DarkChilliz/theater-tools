@@ -8,6 +8,7 @@ custom-styles-ext-tt.tv
 main.js: create fullscreen toggle and cookie
 main.js: persistant button toggle cookies
 main.js: addStream button dosent load when only chats loaded e.g. 0 streams 7 chats
+main.js: starting with 0 streams 7 chats.. then adding stream from outside, setMaxQualityMode dosent work
 
 main.js: watch party mode
 main.js: throw away chats not tied to a stream
