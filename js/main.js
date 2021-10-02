@@ -1809,8 +1809,8 @@ async function addStreamsFromChat(event) {
         c.splice(7, c.length);
 
         addfromui(1, c.toString());
-        updateFunctionMenuButtons();
     }
+    updateFunctionMenuButtons();
 
     for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
         let obj = document.getElementById('v-' + fldids[i]);
