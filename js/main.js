@@ -1443,6 +1443,7 @@ async function chgQuality(strmID, strmQuality) {
         aspect_ratio = screen.width / screen.height;
     // getQualities(strmID);
     // setQuality(strmID, strmQuality);
+
     // if (lockChgQuality === true) {
     //     return;
     // }
