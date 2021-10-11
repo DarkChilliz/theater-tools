@@ -5,6 +5,7 @@ custom-styles-ext-twitchtheater.tv
 custom-styles-ext-tt.tv
 
 # primary objectives
+main.js: addStreams 0/0 when no streams loaded
 main.js: create fullscreen toggle and cookie
 main.js: persistant button toggle cookies
 main.js: addStream button dosent load when only chats loaded e.g. 0 streams 7 chats
