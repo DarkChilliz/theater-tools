@@ -5,8 +5,8 @@
 // @run-at       document-start
 // @grant        none
 // @version      1.0.5.0002
-// @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
-// @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitch-player.user.js
+// @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/twitch-player.user.js
+// @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/twitch-player.user.js
 // @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
 // @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
