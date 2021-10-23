@@ -4,7 +4,8 @@ chrome-extension-twitchtheater.tv
 custom-styles-ext-twitchtheater.tv
 custom-styles-ext-tt.tv
 
-# primary objectives
+# primary
+main.js: add auto pause button, so every stream exept the main is paused
 main.js: addStreams 0/0 when no streams loaded
 main.js: create fullscreen toggle and cookie
 main.js: persistant button toggle cookies
@@ -22,7 +23,7 @@ main.js: obj.player.getPlaybackStats().bufferSize !== 0
 main.js: (userQuality[0] = fldids[0]) move to div var like getQualities(); obj.quality = [];
           userQuality = reference to stream player div
 
-# secondary objectives
+# secondary
 main.js: "playerStyleImg" » check if number of loaded chats dosent exceed set value(7)
 main.js: gaming mode check box with cookie to lower quality to 720/480
   - 1st steam quality option list
