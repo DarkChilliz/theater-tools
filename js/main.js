@@ -1600,9 +1600,12 @@ async function updChatIndx() {
         chatsel.selectedIndex = selectedChat;
         chatmen.selectedIndex = selectedChat;
 
-        if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
-            chgchat();
+        try {
+            if (!document.getElementById('v-' + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
+                chgchat();
+            }
         }
+        catch(err) {}
     }
 }
 
