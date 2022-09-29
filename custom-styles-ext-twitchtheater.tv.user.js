@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        custom-styles-ext-twitchtheater.tv.user.js
 // @namespace   https://github.com/DarkChilliz
-// @match       *://*/*
+// @match        *://*twitchtheater.tv/*
 // @grant       none
 // @version     1.0
 // @author      -
