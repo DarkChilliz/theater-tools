@@ -10,9 +10,14 @@
 // @author       darkchilliz
 // @description  30/09/2022, 3:29:15 am
 
-// @resource     IMPORTED_CSS file:///D:/xxx/xxx/styles.css
-// @grant        GM_getResourceText
 // @grant        GM_addStyle
+// @grant        GM_getResourceText
+
+// @resource     IMPORTED_CSS file:///X:/GitHub/custom-styles-ext-twitchtheater.tv/js/main.css
+// @resource     html /html/content.html
+// @resource     icon1 /img/playerstyle.png
+// @resource     icon2 /img/functionsmenu.png
+// @resource     icon3 /img/favicon-192.png
 
 // ==/UserScript==
 
