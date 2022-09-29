@@ -10,9 +10,9 @@
 // @author       darkchilliz
 // @description  30/09/2022, 3:29:15 am
 
-// @resource   IMPORTED_CSS file:///D:/xxx/xxx/styles.css
-// @grant      GM_getResourceText
-// @grant      GM_addStyle
+// @resource     IMPORTED_CSS file:///D:/xxx/xxx/styles.css
+// @grant        GM_getResourceText
+// @grant        GM_addStyle
 
 // ==/UserScript==
 
