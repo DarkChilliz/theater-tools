@@ -21,6 +21,7 @@
     'use strict';
     const my_css = GM_getResourceText("IMPORTED_CSS");
     GM_addStyle(my_css);
+})
 
 
 
