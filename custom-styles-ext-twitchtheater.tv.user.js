@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        New script
+// @name        custom-styles-ext-twitchtheater.tv.user.js
 // @namespace   Violentmonkey Scripts
 // @match       *://*/*
 // @grant       none
