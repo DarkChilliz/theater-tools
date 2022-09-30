@@ -51,7 +51,6 @@ function createFuncMenuDiv() {
 
 
 function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
-    // document.getElementById("funcMenuDiv").outerHTML = funcMenuDivHtml;
 
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
         functionsMenuImgObj = document.getElementById("functionsMenuImg");
@@ -67,6 +66,8 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
 }
 
 (function () {
+    // var script = document.createElement('script'),//https://stackoverflow.com/questions/9515704
+
         //content.html
         txtFile = new XMLHttpRequest(),
         sContentHTML = "html/content.html",
@@ -80,8 +81,6 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
 
         //main.css
         sMainCSS_URL = "css/main.css";
-
-    // createFuncMenuDiv();
 
     //content.html
     txtFile.open("GET", sContentHTML, true);//https://forums.tumult.com/t/2129
