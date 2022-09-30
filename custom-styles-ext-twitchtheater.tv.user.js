@@ -4,9 +4,9 @@
 // @match        *://*twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
-// @version      0.0.0.0004
-// @updateURL    https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/custom-styles-ext-twitchtheater.tv.user.js
-// @downloadURL  https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/custom-styles-ext-twitchtheater.tv.user.js
+// @version      0.0.0.0005
+// @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/custom-styles-ext-twitchtheater.tv.user.js
+// @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
 // @description  30/09/2022, 3:29:15 am
 // @resource     REMOTE_CSS https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/css/main.css
@@ -30,7 +30,7 @@ function createFuncMenuDiv() {
     GM_xmlhttpRequest({
         method : "GET",
         // from other domain than the @match one (.org / .com):
-        url : "https://gist.github.com/DarkChilliz/28ace0c47d912243b13664a0369361ec/raw/6c729986d68bc4d4960b7eba0d188c4d81b9f2b0/content.html",
+        url : "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/html/content.html",
         onload : (ev) => {
             try {
                 document.getElementById("funcMenuDiv").outerHTML = ev.responseText;
