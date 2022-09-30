@@ -40,6 +40,7 @@ function createFuncMenuDiv() {
         onload : (ev) =>
         {
             let script = document.createElement('script');
+            script.type="text/javascript";
             script.innerText = ev.responseText;
             (document.head || document.documentElement).appendChild(script);
         }
