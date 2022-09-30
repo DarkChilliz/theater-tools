@@ -26,10 +26,8 @@ function createFuncMenuDiv() {
 
     createFuncMenuDiv();
 
-    // Load remote JS
     GM_xmlhttpRequest({
         method : "GET",
-        // from other domain than the @match one (.org / .com):
         url : "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/html/content.html",
         onload : (ev) => {
             try {
@@ -39,8 +37,10 @@ function createFuncMenuDiv() {
         }
     });
 
-    // Load remote CSS
-    // @see https://github.com/Tampermonkey/tampermonkey/issues/835
+    let script = document.createElement('script'); //https://stackoverflow.com/questions/9515704
+    script.src = "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/js/main.js";
+    (document.head || document.documentElement).appendChild(script);
+
     const myCss = GM_getResourceText("REMOTE_CSS");
     GM_addStyle(myCss);
 })();
@@ -72,7 +72,7 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
 }
 
 (function () {
-    // var script = document.createElement('script'),//https://stackoverflow.com/questions/9515704
+    var script = document.createElement('script'),//https://stackoverflow.com/questions/9515704
 
         //content.html
         txtFile = new XMLHttpRequest(),
