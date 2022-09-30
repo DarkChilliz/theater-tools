@@ -9,16 +9,10 @@
 // @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
 // @description  30/09/2022, 3:29:15 am
-
-// @grant        GM_addStyle
+// @resource     REMOTE_CSS https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/css/main.css
+// @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
-
-// @resource     IMPORTED_CSS file:///X:/GitHub/custom-styles-ext-twitchtheater.tv/js/main.css
-// @resource     html /html/content.html
-// @resource     icon1 /img/playerstyle.png
-// @resource     icon2 /img/functionsmenu.png
-// @resource     icon3 /img/favicon-192.png
-
+// @grant        GM_addStyle
 // ==/UserScript==
 
 
