@@ -15,6 +15,11 @@
 // @grant        GM_addStyle
 // ==/UserScript==
 
+function createFuncMenuDiv() {
+    var funcMenuDiv = document.createElement("div");
+    funcMenuDiv.id = "funcMenuDiv";
+    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
+}
 
 (function() {
     'use strict';
