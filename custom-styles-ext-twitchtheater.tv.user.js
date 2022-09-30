@@ -23,20 +23,28 @@ function createFuncMenuDiv() {
 
 (function() {
     'use strict';
-    const my_css = GM_getResourceText("IMPORTED_CSS");
-    GM_addStyle(my_css);
-});
 
+    createFuncMenuDiv();
 
+    // Load remote JS
+    GM_xmlhttpRequest({
+        method : "GET",
+        // from other domain than the @match one (.org / .com):
+        url : "https://gist.github.com/DarkChilliz/28ace0c47d912243b13664a0369361ec/raw/6c729986d68bc4d4960b7eba0d188c4d81b9f2b0/content.html",
+        onload : (ev) => {
+            try {
+                document.getElementById("funcMenuDiv").outerHTML = ev.responseText;
+            }
+            catch(err){};
+        }
+    });
 
-
-
-
-
-
-
-
-
+    // Load remote CSS
+    // @see https://github.com/Tampermonkey/tampermonkey/issues/835
+    const myCss = GM_getResourceText("REMOTE_CSS");
+    console.log(my_css); // temp
+    GM_addStyle(myCss);
+})();
 
 
 
