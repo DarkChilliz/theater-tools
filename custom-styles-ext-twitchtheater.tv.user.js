@@ -4,7 +4,7 @@
 // @match        *://*twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
-// @version      0.0.0.0003
+// @version      0.0.1.0003
 // @updateURL    https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/custom-styles-ext-twitchtheater.tv.user.js
 // @downloadURL  https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
