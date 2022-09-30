@@ -50,14 +50,9 @@ function createFuncMenuDiv() {
 
 // #####################################################################################
 
-function createFuncMenuDiv() {
-    var funcMenuDiv = document.createElement("div");
-    funcMenuDiv.id = "funcMenuDiv";
-    document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
-}
 
 function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
-    document.getElementById("funcMenuDiv").outerHTML = funcMenuDivHtml;
+    // document.getElementById("funcMenuDiv").outerHTML = funcMenuDivHtml;
 
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
         functionsMenuImgObj = document.getElementById("functionsMenuImg");
@@ -73,11 +68,6 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
 }
 
 (function () {
-    var script = document.createElement('script'),//https://stackoverflow.com/questions/9515704
-
-        isFirefox = typeof InstallTrigger !== 'undefined',//https://stackoverflow.com/questions/9847580
-        isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
-
         //content.html
         txtFile = new XMLHttpRequest(),
         sContentHTML = "html/content.html",
@@ -92,22 +82,7 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
         //main.css
         sMainCSS_URL = "css/main.css";
 
-    if (isChrome == true) {//https://stackoverflow.com/questions/32344868 https://developer.chrome.com/extensions/extension#method-getURL
-        script.src =        chrome.runtime.getURL(sScriptURL);
-        sFunctionsMenuURL = chrome.runtime.getURL(sFunctionsMenuURL);
-        sPlayerStyleURL =   chrome.runtime.getURL(sPlayerStyleURL);
-        sContentHTML =      chrome.runtime.getURL(sContentHTML);
-        sMainCSS_URL =      chrome.runtime.getURL(sMainCSS_URL);
-    }
-    else if (isFirefox == true) {//https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/getURL
-        script.src =        browser.runtime.getURL(sScriptURL);
-        sFunctionsMenuURL = browser.runtime.getURL(sFunctionsMenuURL);
-        sPlayerStyleURL =   browser.runtime.getURL(sPlayerStyleURL);
-        sContentHTML =      browser.runtime.getURL(sContentHTML);
-        sMainCSS_URL =      browser.runtime.getURL(sMainCSS_URL);
-    }
-
-    createFuncMenuDiv();
+    // createFuncMenuDiv();
 
     //content.html
     txtFile.open("GET", sContentHTML, true);//https://forums.tumult.com/t/2129
@@ -132,4 +107,4 @@ function onReceiveImgURL(funcMenuDivHtml, playerStyleImg, functionsMenuImg) {
     style.type = 'text/css';
     style.href = sMainCSS_URL;
     (document.head || document.documentElement).appendChild(style);
-})();
+});
