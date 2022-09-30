@@ -4,7 +4,7 @@
 // @match        *://*twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
-// @version      0.0.0.0005
+// @version      0.0.0.0006
 // @updateURL    https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/custom-styles-ext-twitchtheater.tv.user.js
 // @downloadURL  https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
@@ -42,7 +42,6 @@ function createFuncMenuDiv() {
     // Load remote CSS
     // @see https://github.com/Tampermonkey/tampermonkey/issues/835
     const myCss = GM_getResourceText("REMOTE_CSS");
-    console.log(my_css); // temp
     GM_addStyle(myCss);
 })();
 
