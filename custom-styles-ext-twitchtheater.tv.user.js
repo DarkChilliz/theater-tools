@@ -34,17 +34,30 @@ function createFuncMenuDiv() {
         }
     });
 
-    GM_xmlhttpRequest({ //https://gist.github.com/jpcaparas/e8257fca97e2fad44a43c34668810244
-        method : "GET",
-        url : "https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/js/main.js",
-        onload : (ev) =>
-        {
-            let script = document.createElement('script');
-            script.type="text/javascript";
-            script.innerText = ev.responseText;
-            (document.head || document.documentElement).appendChild(script);
-        }
-    });
+    // GM_xmlhttpRequest({ //https://gist.github.com/jpcaparas/e8257fca97e2fad44a43c34668810244
+    //     method : "GET",
+    //     url : "https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/js/main.js",
+    //     onload : (ev) =>
+    //     {
+    //         let script = document.createElement('script');
+    //         script.type="text/javascript";
+    //         script.innerText = ev.responseText;
+    //         (document.head || document.documentElement).appendChild(script);
+    //     }
+    // });
+
+
+
+    var script = document.createElement('script');
+    script.type="text/javascript";
+    // script.innerText = ev.responseText;
+    script.src = "https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/js/main.js";
+    script.onload = function() {
+        this.remove();
+    };
+    (document.head || document.documentElement).appendChild(script);
+
+
 
     const myCss = GM_getResourceText("REMOTE_CSS");
     GM_addStyle(myCss);
