@@ -34,7 +34,7 @@ function createFuncMenuDiv() {
         }
     });
 
-    GM_xmlhttpRequest({
+    GM_xmlhttpRequest({ //https://gist.github.com/jpcaparas/e8257fca97e2fad44a43c34668810244
         method : "GET",
         url : "https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/js/main.js",
         onload : (ev) =>
@@ -54,7 +54,7 @@ function createFuncMenuDiv() {
 
 // #####################################################################################
 
-function myFunction(x) {
+function myFunction(x) { //https://www.w3schools.com/howto/howto_css_menu_icon.asp
   x.classList.toggle("change");
 }
 
