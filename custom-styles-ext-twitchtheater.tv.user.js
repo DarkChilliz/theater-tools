@@ -36,7 +36,7 @@ function createFuncMenuDiv() {
 
     GM_xmlhttpRequest({
         method : "GET",
-        url : "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/js/main.js",
+        url : "https://raw.githubusercontent.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/main/js/main.js",
         onload : (ev) =>
         {
             let script = document.createElement('script');
