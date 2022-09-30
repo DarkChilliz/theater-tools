@@ -30,16 +30,20 @@ function createFuncMenuDiv() {
         method : "GET",
         url : "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/html/content.html",
         onload : (ev) => {
-            try {
-                document.getElementById("funcMenuDiv").outerHTML = ev.responseText;
-            }
-            catch(err){};
+            document.getElementById("funcMenuDiv").outerHTML = ev.responseText;
         }
     });
 
-    let script = document.createElement('script'); //https://stackoverflow.com/questions/9515704
-    script.src = "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/js/main.js";
-    (document.head || document.documentElement).appendChild(script);
+    GM_xmlhttpRequest({
+        method : "GET",
+        url : "https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/main/js/main.js",
+        onload : (ev) =>
+        {
+            let script = document.createElement('script');
+            script.innerText = ev.responseText;
+            (document.head || document.documentElement).appendChild(script);
+        }
+    });
 
     const myCss = GM_getResourceText("REMOTE_CSS");
     GM_addStyle(myCss);
