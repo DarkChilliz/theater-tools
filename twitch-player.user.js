@@ -4,7 +4,7 @@
 // @match        *://*.twitch.tv/*
 // @run-at       document-start
 // @grant        none
-// @version      1.0.7
+// @version      1.0.10
 // @updateURL
 // @downloadURL  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitch-player.user.js
 // @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
