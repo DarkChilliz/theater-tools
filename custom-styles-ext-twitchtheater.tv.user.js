@@ -9,6 +9,7 @@
 // @author       darkchilliz
 // @description  30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // ==/UserScript==
+// @updateURL
 
 function createFuncMenuDiv() {
     var funcMenuDiv = document.createElement("div");
