@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         custom-styles-ext-twitchtheater.tv.user.js
-// @namespace    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv https://github.com/DarkChilliz
+// @namespace    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv | https://github.com/DarkChilliz
 // @match        *://*.twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
