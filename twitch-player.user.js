@@ -4,12 +4,12 @@
 // @match        *://*.twitch.tv/*
 // @run-at       document-start
 // @grant        none
-// @version      1.0.6
-// @updateURL    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitch-player.user.js
+// @version      1.0.7
 // @downloadURL  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitch-player.user.js
 // @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
 // @description  29/04/2021, 1:54:21 am
 // ==/UserScript==
+// @updateURL
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
 // import { ContextEventHandler } from 'beaverjs';
