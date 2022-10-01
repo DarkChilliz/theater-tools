@@ -4,7 +4,7 @@
 // @match        *://*.twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
-// @version      0.0.19
+// @version      0.0.20
 // @updateURL
 // @downloadURL  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
