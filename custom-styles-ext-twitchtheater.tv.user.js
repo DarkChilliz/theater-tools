@@ -1,14 +1,13 @@
 // ==UserScript==
-// @name         custom-styles-ext-twitchtheater.tv.user.js
+// @name         twitchtheatertv-tools.user.js
 // @namespace    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv | https://github.com/DarkChilliz
 // @match        *://*.twitchtheater.tv/*
 // @run-at       document-idle
 // @grant        none
-// @version      0.0.15
-// @updateURL    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/custom-styles-ext-twitchtheater.tv.user.js
+// @version      0.0.18
 // @downloadURL  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/custom-styles-ext-twitchtheater.tv.user.js
 // @author       darkchilliz
-// @description  30/09/2022, 3:29:15 am
+// @description  30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // ==/UserScript==
 
 function createFuncMenuDiv() {
