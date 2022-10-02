@@ -7,7 +7,7 @@ Features:
 
 ### Userscript
 
-- Viewing the [twitchtheatertv-tools.user.js](https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitchtheatertv-tools.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
+- Viewing the [twitchtheatertv-tools.user.js](https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtheatertv-tools.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
 
 ### ~Firefox, Firefox Developer Edition, Firefox Nightly, Firefox ESR~
 
@@ -25,7 +25,7 @@ Features:
 
 ### Userscript
 
-- Viewing the [twitchtv-playerlowlatency.user.js](https://github.com/DarkChilliz/custom-styles-ext-twitchtheater.tv/raw/master/twitchtv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
+- Viewing the [twitchtv-playerlowlatency.user.js](https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
 
 ## Features
 
