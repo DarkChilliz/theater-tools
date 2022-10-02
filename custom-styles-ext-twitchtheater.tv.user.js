@@ -36,7 +36,6 @@ function writeStyleElement(content) {
 
 }
 
-`;
 
     var head = document.head || document.getElementsByTagName('head')[0],
         style = document.createElement('style');
