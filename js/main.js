@@ -1615,7 +1615,7 @@ async function openFuncMenu(val) {
     }
     if (val) { //show menu (display = "")
         updateFunctionMenuButtons();
-        document.getElementById("functionsMenuImg").classList.add('change'); //https://www.w3schools.com/howto/howto_css_menu_icon.asp
+        // document.getElementById("functionsMenuImg").classList.add('change'); //https://www.w3schools.com/howto/howto_css_menu_icon.asp
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
@@ -1625,7 +1625,7 @@ async function openFuncMenu(val) {
         document.getElementById("funcMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
     }
     else { //hide menu (display = "none")
-        document.getElementById("functionsMenuImg").classList.remove('change');
+        // document.getElementById("functionsMenuImg").classList.remove('change');
 
         document.getElementById("funcMenuTop").style.display = "none";
         document.getElementById("funcMenuBot").style.display = "none";
