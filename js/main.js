@@ -1615,7 +1615,7 @@ async function openFuncMenu(val) {
     }
     if (val) { //show menu (display = "")
         updateFunctionMenuButtons();
-        document.getElementById("functionsMenuImg").classList.add('change');
+        document.getElementById("functionsMenuImg").classList.add('change'); //https://www.w3schools.com/howto/howto_css_menu_icon.asp
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
         document.getElementById("funcMenuBot").style.display = ""; //"inline"
