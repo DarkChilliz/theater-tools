@@ -69,8 +69,8 @@ function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
         sContentHTML = GM_getResourceURL("html"), //"html/content.html",
 
         //createFuncMenuDiv()
-        sPlayerStyleURL = GM_getResourceURL("icon"), //"img/playerstyle.png",
         // sFunctionsMenuURL = GM_getResourceURL("name"); //"img/functionsmenu.png",
+        sPlayerStyleURL = GM_getResourceURL("icon1"), //"img/playerstyle.png",
 
         //main.css
         sMainCSS_URL = GM_getResourceURL("css"), //"css/main.css",
