@@ -24,7 +24,7 @@
     opacity: 0.5;
 }
 
-.functionsMenuImg {
+#functionsMenuImg {
     display: inline-block;
     cursor: pointer;
     left: 50px;
