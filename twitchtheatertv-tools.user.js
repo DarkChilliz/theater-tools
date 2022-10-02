@@ -4,7 +4,7 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.0.1
+// @version         1.1.0
 // @updateURL
 // @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.user.js
 // @author          darkchilliz
@@ -36,17 +36,17 @@ function writeStyleElement(content) {
     style.appendChild(document.createTextNode(css));
 }
 
-function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
+function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml, playerStyleImg, functionsMenuImg)
     // document.getElementById("funcMenuDiv").outerHTML = funcMenuDivHtml;
 
-    var playerStyleImgObj = document.getElementById("playerStyleImg");
-        // functionsMenuImgObj = document.getElementById("functionsMenuImg");
+    var playerStyleImgObj = document.getElementById("playerStyleImg"),
+        functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
     //playerStyleImg
     playerStyleImgObj.src = playerStyleImg;
 
     //functionsMenuImg
-    // functionsMenuImgObj.src = functionsMenuImg;
+    functionsMenuImgObj.src = functionsMenuImg;
 
     var event = new CustomEvent("triggerScript");
     document.dispatchEvent(event);
@@ -69,15 +69,14 @@ function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
         sContentHTML = GM_getResourceURL("html"), //"html/content.html",
 
         //createFuncMenuDiv()
-        // sFunctionsMenuURL = GM_getResourceURL("name"); //"img/functionsmenu.png",
         sPlayerStyleURL = GM_getResourceURL("icon1"), //"img/playerstyle.png",
+        sFunctionsMenuURL = GM_getResourceURL("icon2"), //"img/functionsmenu.png",
 
         //main.css
         sMainCSS_URL = GM_getResourceURL("css"), //"css/main.css",
 
         //main.js
         sScriptURL = GM_getResourceURL("main"); //"js/main.js";
-        script.src = GM_getResourceURL("main"); //chrome.runtime.getURL(sScriptURL);
 
     //content.html
     // txtFile.open("GET", sContentHTML, true);//https://forums.tumult.com/t/2129
@@ -85,7 +84,7 @@ function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
     //     if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse
     //         if (txtFile.status === 200) {  // Makes sure its found the file
     //             script.onload = function() {
-    //                 onReceiveImgURL(txtFile.responseText, sPlayerStyleURL); //sFunctionsMenuURL
+    //                 onReceiveImgURL(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL);
     //                 this.remove();
     //             };
     //         }
@@ -94,8 +93,9 @@ function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
     // txtFile.send(null);
 
     //main.js
+    script.src = sScriptURL;
     script.onload = function() {
-        onReceiveImgURL(sPlayerStyleURL); //sFunctionsMenuURL
+        onReceiveImgURL(sPlayerStyleURL, sFunctionsMenuURL); //(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL)
         this.remove();
     };
     (document.head || document.documentElement).appendChild(script);
