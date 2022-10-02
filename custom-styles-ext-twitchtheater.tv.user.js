@@ -17,10 +17,12 @@
 // @resource main  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/js/main.js
 // ==/UserScript==
 
-function createFuncMenuDiv() {
+function createFuncMenuDiv(content) {
     var funcMenuDiv = document.createElement("div");
     funcMenuDiv.id = "funcMenuDiv";
+    // funcMenuDiv.innerHTML = content;
     document.body.insertBefore(funcMenuDiv, document.getElementById("menudiv"));
+    document.getElementById("funcMenuDiv").outerHTML = content;
 }
 
 (function () {
