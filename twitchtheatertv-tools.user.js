@@ -1,20 +1,20 @@
 // ==UserScript==
 // @name           twitchtheatertv-tools.user.js
-// @namespace      http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv | https://github.com/DarkChilliz
+// @namespace      http://192.168.1.200:8080/twitchtheatertv-tools | https://github.com/DarkChilliz
 // @match          *://*.twitchtheater.tv/*
 // @run-at         document-idle
 // @grant          none
 // @version        0.2.3
 // @updateURL
-// @downloadURL    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitchtheatertv-tools.user.js
+// @downloadURL    http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.user.js
 // @author         darkchilliz
 // @description    30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // @grant          GM_getResourceText
 // @grant          GM_getResourceURL
-// @resource icon  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/img/playerstyle.png
-// @resource html  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/html/content.html
-// @resource css   http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/css/main.css
-// @resource main  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/js/main.js
+// @resource icon  http://192.168.1.200:8080/twitchtheatertv-tools/img/playerstyle.png
+// @resource html  http://192.168.1.200:8080/twitchtheatertv-tools/html/content.html
+// @resource css   http://192.168.1.200:8080/twitchtheatertv-tools/css/main.css
+// @resource main  http://192.168.1.200:8080/twitchtheatertv-tools/js/main.js
 // ==/UserScript==
 
 function createFuncMenuDiv(content) {
@@ -57,7 +57,7 @@ function onReceiveImgURL(playerStyleImg) { //functionsMenuImg
     //https://www.tampermonkey.net/documentation.php#GM_getResourceText
     //https://www.tampermonkey.net/documentation.php#GM_getResourceURL
     //https://www.tampermonkey.net/documentation.php#_resource
-    //http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/
+    //http://192.168.1.200:8080/twitchtheatertv-tools/
     createFuncMenuDiv(GM_getResourceText("html"));
     writeStyleElement(GM_getResourceText("css"));
 
