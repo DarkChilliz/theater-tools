@@ -1613,7 +1613,7 @@ async function openFuncMenu(val) {
     if (val == undefined) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
-    if (val) {
+    if (val) { //show menu (display = "")
         updateFunctionMenuButtons();
 
         document.getElementById("funcMenuTop").style.display = ""; //"inline"
@@ -1623,7 +1623,7 @@ async function openFuncMenu(val) {
         document.getElementById("funcMenuBot").style.background = "#202023 none repeat scroll 0% 0%"; //funcMenuDiv
         document.getElementById("funcMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
     }
-    else {
+    else { //hide menu (display = "none")
         document.getElementById("funcMenuTop").style.display = "none";
         document.getElementById("funcMenuBot").style.display = "none";
 
