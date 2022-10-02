@@ -27,6 +27,9 @@ function createFuncMenuDiv(content) {
 
 function writeStyleElement(content) {
     //https://stackoverflow.com/questions/524696
+    var css = content,
+        head = document.head || document.getElementsByTagName('head')[0],
+        style = document.createElement('style');
 
 }
 
