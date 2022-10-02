@@ -21,12 +21,13 @@
 #functionsMenuImg, #playerStyleImg {
     position: absolute;
     /* visibility: hidden; */
+    cursor: pointer;
     opacity: 0.5;
 }
 
 #functionsMenuImg {
-    display: inline-block;
-    cursor: pointer;
+    /* display: inline-block; */
+    /* cursor: pointer; */
     left: 50px;
     /* top: 5px; */
 }
