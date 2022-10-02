@@ -7,7 +7,7 @@
 // @version        1.0.12
 // @updateURL
 // @downloadURL    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitchtv-playerlowlatency.user.js
-// @author         darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
+// @author         https://github.com/Nerixyz/ttv-tools
 // @description    29/04/2021, 1:54:21 am | twitch-player.user.js
 // ==/UserScript==
 
