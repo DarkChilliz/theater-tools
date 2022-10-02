@@ -6,9 +6,9 @@
 // @grant        none
 // @version      1.0.10
 // @updateURL
-// @downloadURL  http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitch-player.user.js
-// @author       darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
-// @description  29/04/2021, 1:54:21 am
+// @downloadURL    http://192.168.1.200:8080/custom-styles-ext-twitchtheater.tv/twitch-player.user.js
+// @author         darkchilliz | credit to https://github.com/Nerixyz/ttv-tools
+// @description    29/04/2021, 1:54:21 am | twitch-player.user.js
 // ==/UserScript==
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
