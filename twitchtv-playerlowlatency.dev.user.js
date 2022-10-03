@@ -14,7 +14,7 @@
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
 // import { ContextEventHandler } from 'beaverjs';
 
-// 'src/options.ts'
+// 'src/options.ts' ////////////////////////////////////////////////////////////////////
 var Option;
 (function (Option) {                  // Defaults //
     Option.MinLatencySpeedup =  2.25; //   2.25;  //
