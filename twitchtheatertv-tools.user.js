@@ -6,16 +6,16 @@
 // @grant           none
 // @version         1.1.0
 // @updateURL
-// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.user.js
+// @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtheatertv-tools.user.js
 // @author          darkchilliz
 // @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @resource icon1  http://192.168.1.200:8080/twitchtheatertv-tools/img/playerstyle.png
-// @resource icon2  http://192.168.1.200:8080/twitchtheatertv-tools/img/functionsmenu.png
-// @resource html   http://192.168.1.200:8080/twitchtheatertv-tools/html/content.html
-// @resource css    http://192.168.1.200:8080/twitchtheatertv-tools/css/main.css
-// @resource main   http://192.168.1.200:8080/twitchtheatertv-tools/js/main.js
+// @resource icon1  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/playerstyle.png
+// @resource icon2  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/functionsmenu.png
+// @resource html   https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/html/content.html
+// @resource css    https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/css/main.css
+// @resource main   https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/js/main.js
 // ==/UserScript==
 
 function createFuncMenuDiv(content) {
