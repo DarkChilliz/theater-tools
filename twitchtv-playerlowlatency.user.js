@@ -6,7 +6,7 @@
 // @grant          none
 // @version        1.1.0
 // @updateURL
-// @downloadURL    http://192.168.1.200:8080/twitchtheatertv-tools/twitchtv-playerlowlatency.user.js
+// @downloadURL    https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-playerlowlatency.user.js
 // @author         https://github.com/Nerixyz/ttv-tools
 // @description    29/04/2021, 1:54:21 am | twitch-player.user.js
 // ==/UserScript==
