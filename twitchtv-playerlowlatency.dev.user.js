@@ -30,7 +30,7 @@ const MinLatencyReload = makeGetOption(Option.MinLatencyReload);
 const KeepBuffer = makeGetOption(Option.KeepBuffer);
 const OverridePlayer = makeGetOption(Option.OverridePlayer);
 
-// 'src/context/twitch-player.ts' || from 'dist/build/context-script.js'
+// 'src/context/twitch-player.ts' || from 'dist/build/context-script.js' ///////////////
 function getPlayer(connector) {
     return connector().find('twitch-player', node => node.setPlayerActive && node.props?.mediaPlayerInstance);
 }
