@@ -1,8 +1,5 @@
 ########################################################################### main.js ####
 # https://github.com/DarkChilliz/chrome-extension-twitchtheater.tv/settings
-chrome-extension-twitchtheater.tv
-custom-styles-ext-twitchtheater.tv
-custom-styles-ext-tt.tv
 
 # primary
 main.js: add auto pause button, so every stream exept the main is paused
