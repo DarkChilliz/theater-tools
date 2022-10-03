@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           twitchtv-playerlowlatency.user.js
+// @name           twitchtv-playerlowlatency.dev.user.js
 // @namespace      https://github.com/DarkChilliz
 // @match          *://*.twitch.tv/*
 // @run-at         document-idle
