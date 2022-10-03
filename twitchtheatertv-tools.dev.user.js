@@ -6,7 +6,7 @@
 // @grant           none
 // @version         1.1.0
 // @updateURL
-// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.user.js
+// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.dev.user.js
 // @author          darkchilliz
 // @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // @grant           GM_getResourceText
