@@ -132,7 +132,7 @@ function overwriteMonitor(monitor) {
     monitor.setPlaybackRate.known = true;
 }
 
-// 'src/utilities.ts' || from 'dist/build/context-script.js'
+// 'src/utilities.ts' || from 'dist/build/context-script.js' ///////////////////////////
 function lazy(fn) {
     let value = undefined;
     return () => {
