@@ -1906,6 +1906,8 @@ async function triggerScript() {
     functionsMenuImgObj.onclick = function() {
         openFuncMenu();
     };
+
+    setMaxQualityMode(); //TODO: [TEMP] replace with cookie state save
 }
 
 // async function setButtonVisibility() {
