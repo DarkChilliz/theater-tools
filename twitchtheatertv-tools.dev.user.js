@@ -5,7 +5,7 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.0
+// @version         1.1.12
 // @updateURL
 // @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.dev.user.js
 // @author          https://github.com/DarkChilliz
