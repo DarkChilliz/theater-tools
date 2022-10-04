@@ -1,15 +1,15 @@
 // ==UserScript==
-// @name           twitchtv-playerlowlatency.dev.user.js
-// @namespace      https://github.com/DarkChilliz
+// @name            twitchtv-playerlowlatency.dev.user.js
+// @namespace       https://github.com/DarkChilliz
 // @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
-// @match          *://*.twitch.tv/*
-// @run-at         document-idle
-// @grant          none
-// @version        1.1.1
+// @match           *://*.twitch.tv/*
+// @run-at          document-idle
+// @grant           none
+// @version         1.1.1
 // @updateURL
-// @downloadURL    http://192.168.1.200:8080/twitchtheatertv-tools/twitchtv-playerlowlatency.dev.user.js
-// @author         https://github.com/Nerixyz/ttv-tools
-// @description    29/04/2021, 1:54:21 am
+// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtv-playerlowlatency.dev.user.js
+// @author          https://github.com/Nerixyz/ttv-tools
+// @description     29/04/2021, 1:54:21 am
 // ==/UserScript==
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
