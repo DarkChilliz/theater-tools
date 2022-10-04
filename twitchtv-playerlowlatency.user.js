@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name           twitchtv-playerlowlatency.user.js
 // @namespace      https://github.com/DarkChilliz
+// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
 // @match          *://*.twitch.tv/*
 // @run-at         document-idle
 // @grant          none
-// @version        1.1.0
+// @version        1.1.1
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-playerlowlatency.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
