@@ -8,7 +8,7 @@
 // @updateURL
 // @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.dev.user.js
 // @author          darkchilliz
-// @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
+// @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
 // @resource icon1  http://192.168.1.200:8080/twitchtheatertv-tools/img/playerstyle.png
