@@ -97,6 +97,7 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     //main.js
     script.id = 'twitchtheatertv_tools'; //ffz_script
     script.type = 'text/javascript';
+    // script.src = '//cdn.frankerfacez.com/script/script.min.js?_=' + Date.now();
     script.src = sScriptURL;
     script.onload = function() {
         onReceiveImgURL(sPlayerStyleURL, sFunctionsMenuURL); //(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL)
