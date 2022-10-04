@@ -95,7 +95,7 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     // txtFile.send(null);
 
     //main.js
-    script.id = 'twitchtheatertv_tools';
+    script.id = 'twitchtheatertv_tools'; //ffz_script
     script.type = 'text/javascript';
     script.src = sScriptURL;
     script.onload = function() {
