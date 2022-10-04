@@ -5,7 +5,7 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1
+// @version         1.1.1.0001
 // @updateURL
 // @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtv-playerlowlatency.dev.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
