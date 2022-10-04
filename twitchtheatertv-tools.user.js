@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name            twitchtheatertv-tools.user.js
 // @namespace       https://github.com/DarkChilliz
+// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
