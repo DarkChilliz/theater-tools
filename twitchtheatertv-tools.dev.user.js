@@ -5,7 +5,7 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1.0014
+// @version         1.1.1.0015
 // @updateURL
 // @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.dev.user.js
 // @author          https://github.com/DarkChilliz
@@ -95,6 +95,7 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     // txtFile.send(null);
 
     //main.js
+    script.id = 'twitchtheatertv_tools';
     script.type = 'text/javascript';
     script.src = sScriptURL;
     script.onload = function() {
