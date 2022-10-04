@@ -98,9 +98,9 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     script.src = sScriptURL;
     script.onload = function() {
         onReceiveImgURL(sPlayerStyleURL, sFunctionsMenuURL); //(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL)
-        this.remove();
+        // this.remove();
     };
-    (document.head || document.documentElement).appendChild(script);
+    document.head.appendChild(script); //(document.head || document.documentElement).appendChild(script);
 
     //main.css
     // var style = document.createElement('link');//https://stackoverflow.com/questions/9721344
