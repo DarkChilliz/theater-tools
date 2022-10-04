@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name            twitchtheatertv-tools.dev.user.js
 // @namespace       https://github.com/DarkChilliz
+// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
@@ -11,6 +12,7 @@
 // @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
+// @icon            http://192.168.1.200:8080/twitchtheatertv-tools/img/favicon-192.png
 // @resource icon1  http://192.168.1.200:8080/twitchtheatertv-tools/img/playerstyle.png
 // @resource icon2  http://192.168.1.200:8080/twitchtheatertv-tools/img/functionsmenu.png
 // @resource html   http://192.168.1.200:8080/twitchtheatertv-tools/html/content.html
