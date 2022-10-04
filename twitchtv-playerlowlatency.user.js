@@ -15,7 +15,7 @@
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
 // import { ContextEventHandler } from 'beaverjs';
 
-// 'src/options.ts'
+// 'src/options.ts' ////////////////////////////////////////////////////////////////////
 var Option;
 (function (Option) {                  // Defaults //
     Option.MinLatencySpeedup =  2.25; //   2.25;  //
@@ -31,7 +31,7 @@ const MinLatencyReload = makeGetOption(Option.MinLatencyReload);
 const KeepBuffer = makeGetOption(Option.KeepBuffer);
 const OverridePlayer = makeGetOption(Option.OverridePlayer);
 
-// 'src/context/twitch-player.ts' || from 'dist/build/context-script.js'
+// 'src/context/twitch-player.ts' || from 'dist/build/context-script.js' ///////////////
 function getPlayer(connector) {
     return connector().find('twitch-player', node => node.setPlayerActive && node.props?.mediaPlayerInstance);
 }
@@ -133,7 +133,7 @@ function overwriteMonitor(monitor) {
     monitor.setPlaybackRate.known = true;
 }
 
-// 'src/utilities.ts' || from 'dist/build/context-script.js'
+// 'src/utilities.ts' || from 'dist/build/context-script.js' ///////////////////////////
 function lazy(fn) {
     let value = undefined;
     return () => {
@@ -143,7 +143,7 @@ function lazy(fn) {
     };
 }
 
-// './react-connector' || from 'dist/build/context-script.js' || credit to ffz devs
+// './react-connector' || from 'dist/build/context-script.js' || credit to ffz devs ////
 class ReactConnector {
     constructor() {
         this.known = new Map();
@@ -173,7 +173,7 @@ class ReactConnector {
     }
 }
 
-// 'dist/build/context-script.js'
+// 'dist/build/context-script.js' //////////////////////////////////////////////////////
 
 const lazyConnector = lazy(() => new ReactConnector());
 // const eventHandler = new ContextEventHandler();
