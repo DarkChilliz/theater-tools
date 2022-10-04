@@ -12,6 +12,7 @@
 // @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
+// @icon            https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/favicon-192.png
 // @resource icon1  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/playerstyle.png
 // @resource icon2  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/functionsmenu.png
 // @resource html   https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/html/content.html
