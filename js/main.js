@@ -1,6 +1,6 @@
 // Set Player Styles ///////////////////////////////////////////////////////////////////
 
-async function missingValue(aspect_ratio, width, height) {
+function missingValue(aspect_ratio, width, height) {
     //https://www.silisoftware.com/tools/screen_aspect_ratio_calculator
     if (width && height) {
         aspect_ratio = width / height;
@@ -18,7 +18,7 @@ async function missingValue(aspect_ratio, width, height) {
     }
 }
 
-async function writeStyle(v, w, h, t, l) {
+function writeStyle(v, w, h, t, l) {
     var obj = document.getElementById("v-" + fldids[v]);
     obj.style = "width: "  + w + "px;" +
                 "height: " + h + "px;" +
@@ -26,7 +26,7 @@ async function writeStyle(v, w, h, t, l) {
                 "left: "   + l + "px;";
 }
 
-async function chgPlayerStyle() {
+function chgPlayerStyle() {
     const r = 1.7777777777777777; //1.778
     var clientW = Math.round( document.getElementById("playdiv").clientWidth ),
         clientH = Math.round( document.getElementById("playdiv").clientHeight ),
@@ -1379,7 +1379,7 @@ async function chgPlayerStyle() {
     }
 }
 
-async function goFullScreen() {
+function goFullScreen() {
     if (isfullscr()) {
         chgPlayerStyle();
     }
@@ -1393,7 +1393,7 @@ async function goFullScreen() {
 
 // Set Quality /////////////////////////////////////////////////////////////////////////
 
-async function getQualities(strmID) {
+function getQualities(strmID) {
     var obj = document.getElementById("v-" + fldids[strmID]);
     if (typeof obj.quality === "undefined" || obj.quality.length < 1) {
         if (chans[strmID].search("v=") == -1) {
@@ -1409,7 +1409,7 @@ async function getQualities(strmID) {
     }
 }
 
-async function chkQuality(array, string) {
+function chkQuality(array, string) {
     if (array.indexOf(string) < 0) {
         return array[array.length - 1]; //[0]
     }
@@ -1418,7 +1418,7 @@ async function chkQuality(array, string) {
     }
 }
 
-async function setQuality(strmID, strmQuality) {
+function setQuality(strmID, strmQuality) {
     var currentQuality = "",
         checkQuality = "",
         pad = 7,
@@ -1438,7 +1438,7 @@ async function setQuality(strmID, strmQuality) {
     }
 }
 
-async function chgQuality(strmID, strmQuality) {
+function chgQuality(strmID, strmQuality) {
     var length = 0,
         aspect_ratio = screen.width / screen.height;
     // getQualities(strmID);
@@ -1504,13 +1504,13 @@ async function chgQuality(strmID, strmQuality) {
 
 // Miscellaneous Functions /////////////////////////////////////////////////////////////
 
-async function chgCookie_(chk, val, txt) {
+function chgCookie_(chk, val, txt) {
     var i = new Date();
     i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
     document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
 }
 
-async function getCookie_(txt) {
+function getCookie_(txt) {
     if (txt) {
         return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
     }
@@ -1519,7 +1519,7 @@ async function getCookie_(txt) {
     }
 }
 
-async function updChatIndx() {
+function updChatIndx() {
     //https://www.w3schools.com/js/js_cookies.asp
     var chatsel = document.getElementById("chatsel"),
         chatmen = document.getElementById("chatmen"),
@@ -1609,7 +1609,7 @@ async function updChatIndx() {
     }
 }
 
-async function openFuncMenu(val) {
+function openFuncMenu(val) {
     if (val == undefined) {
         val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
     }
@@ -1636,7 +1636,7 @@ async function openFuncMenu(val) {
     }
 }
 
-async function evtchk(event) {
+function evtchk(event) {
     if (event.ctrlKey) {
         openmenu(0);
         openFuncMenu(0);
@@ -1647,7 +1647,7 @@ async function evtchk(event) {
     }
 }
 
-async function funcEvtChk(event) {
+function funcEvtChk(event) {
     if (event.ctrlKey) {
         openFuncMenu(0);
         chgvolume(100);
@@ -1658,7 +1658,7 @@ async function funcEvtChk(event) {
 
 // Update Function Menu Buttons ////////////////////////////////////////////////////////
 
-async function updateUnloadAllChatsButton() {
+function updateUnloadAllChatsButton() {
     var loadedChats = 0;
     for(let indx in chats) {
         let obj = document.getElementById("c-" + chats[indx]);
@@ -1684,7 +1684,7 @@ async function updateUnloadAllChatsButton() {
     }
 }
 
-async function updateAddStreamsFromChatButton() {
+function updateAddStreamsFromChatButton() {
     const loadedStreams = chans.length;
 
     if (loadedStreams > 0) {
@@ -1693,14 +1693,14 @@ async function updateAddStreamsFromChatButton() {
     }
 }
 
-async function updateFunctionMenuButtons() {
+function updateFunctionMenuButtons() {
     updateUnloadAllChatsButton();
     updateAddStreamsFromChatButton();
 }
 
 // Button Menu Functions ///////////////////////////////////////////////////////////////
 
-async function removeOfflineChannels(val) {
+function removeOfflineChannels(val) {
     var list = [],
         id = [];
 
@@ -1722,7 +1722,7 @@ async function removeOfflineChannels(val) {
     updateFunctionMenuButtons();
 }
 
-async function setGameMode() {
+function setGameMode() {
     var obj = document.getElementsByClassName("setGameMode")[0];
     gameMode = !gameMode;
 
@@ -1734,7 +1734,7 @@ async function setGameMode() {
     }
 }
 
-async function setMaxQualityMode() {
+function setMaxQualityMode() {
     var obj = document.getElementsByClassName("setMaxQualityMode")[0];
     maxQualityMode = !maxQualityMode;
 
@@ -1746,7 +1746,7 @@ async function setMaxQualityMode() {
     }
 }
 
-async function unloadAllChats() {
+function unloadAllChats() {
     // add number of loaded chats to button text
     // dont unload selected chat.. only if shift is held
 
@@ -1782,7 +1782,7 @@ async function unloadAllChats() {
     updateFunctionMenuButtons();
 }
 
-async function addStreamsFromChat(event) {
+function addStreamsFromChat(event) {
     var currentPlayerLength = fldids.length;
 
     if (event.shiftKey) {
@@ -1838,7 +1838,7 @@ async function addStreamsFromChat(event) {
     }
 }
 
-async function watchPartyMode() {
+function watchPartyMode() {
     var obj = document.getElementsByClassName("watchPartyMode")[0];
     watchParty = !watchParty;
 
@@ -1850,7 +1850,7 @@ async function watchPartyMode() {
     }
 }
 
-async function randomTestButton() {
+function randomTestButton() {
     let obj = document.getElementById("v-" + fldids[0]);
     // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
     // console.log( obj.player.getPlaybackStats().hlsLatencyBroadcaster + ' - hlsLatencyBroadcaster' );
@@ -1867,7 +1867,7 @@ async function randomTestButton() {
 
 // Setup Functions /////////////////////////////////////////////////////////////////////
 
-async function updMenuElement() {
+function updMenuElement() {
     //https://forum.webflow.com/t/23730
     document.getElementById("menubtn").onclick = function() {
         openmenu();
@@ -1881,7 +1881,7 @@ async function updMenuElement() {
     }
 }
 
-async function triggerScript() {
+function triggerScript() {
     document.removeEventListener("triggerScript", triggerScript);
     var playerStyleImgObj = document.getElementById("playerStyleImg"),
     functionsMenuImgObj = document.getElementById("functionsMenuImg");
@@ -1910,7 +1910,7 @@ async function triggerScript() {
     setMaxQualityMode(); //TODO: [TEMP] replace with cookie state save
 }
 
-// async function setButtonVisibility() {
+// function setButtonVisibility() {
 //     var list = ["playerStyleImg", "functionsMenuImg"];
 //     list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
 //         var obj = document.getElementById(value)
@@ -1927,7 +1927,7 @@ function onEventTrigger() {
     // setButtonVisibility();
 }
 
-async function setEventTrigger() {
+function setEventTrigger() {
     //https://stackoverflow.com/questions/28610365
     if (fldids.length > 0) {
         var indx = ("v-" + fldids[fldids.length - 1]),
