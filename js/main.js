@@ -46,14 +46,14 @@ function chgPlayerStyle() {
             case 1:
                 if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
-                    h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                    h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
                     writeStyle(0, w[0], h[0], 0, 0);
                 }
                 break;
             case 2:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -64,7 +64,7 @@ function chgPlayerStyle() {
                 break;
             case 3:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 w[1] = clientW / 2;
                 //
@@ -81,7 +81,7 @@ function chgPlayerStyle() {
                 break;
             case 4:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -100,7 +100,7 @@ function chgPlayerStyle() {
                 break;
             case 5:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -123,13 +123,13 @@ function chgPlayerStyle() {
                 break;
             case 6:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 //
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -151,7 +151,7 @@ function chgPlayerStyle() {
                 break;
             case 7:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -159,7 +159,7 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -182,14 +182,14 @@ function chgPlayerStyle() {
                 break;
             case 8:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 3;
                 //
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -199,7 +199,7 @@ function chgPlayerStyle() {
                 w[2] = l[3];
                 w[3] = l[3] / 2;
                 l[4] = w[3];
-                h[4] = Math.round( await missingValue( r, w[3], 0 ) );
+                h[4] = Math.round( missingValue( r, w[3], 0 ) );
                 h[3] = h[1] - h[4];
                 t[2] = t[1] + h[3];
                 //top
@@ -220,7 +220,7 @@ function chgPlayerStyle() {
                 break;
             case 9: //update
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -228,8 +228,8 @@ function chgPlayerStyle() {
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 w[3] = clientW - (w[2] * 2) - (w[1] * 3);
                 //
                 t[2] = t[1] + h[3];
@@ -260,15 +260,15 @@ function chgPlayerStyle() {
                 break;
             case 10:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -297,15 +297,15 @@ function chgPlayerStyle() {
                 break;
             case 11: //update
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -335,15 +335,15 @@ function chgPlayerStyle() {
                 break;
             case 12:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -377,15 +377,15 @@ function chgPlayerStyle() {
                 break;
             case 13:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 l[1] = l[0] - w[1];
@@ -420,15 +420,15 @@ function chgPlayerStyle() {
                 break;
             case 14:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -464,15 +464,15 @@ function chgPlayerStyle() {
                 break;
             case 15:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -511,15 +511,15 @@ function chgPlayerStyle() {
                 break;
             case 16:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = clientW - w[1];
                 //
@@ -559,14 +559,14 @@ function chgPlayerStyle() {
                 break;
             case 17: //update
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -608,14 +608,14 @@ function chgPlayerStyle() {
                 break;
             case 18:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -658,14 +658,14 @@ function chgPlayerStyle() {
                 break;
             case 19:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 t[2] = t[1] + h[2];
                 //
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 l[0] = w[2] * 8;
                 l[1] = w[2] * 7;
@@ -719,14 +719,14 @@ function chgPlayerStyle() {
             case 1:
                 if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
-                    h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                    h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
                     writeStyle(0, w[0], h[0], 0, 0);
                 }
                 break;
             case 2:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -737,7 +737,7 @@ function chgPlayerStyle() {
                 break;
             case 3:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 w[1] = clientW / 2;
                 //
@@ -754,12 +754,12 @@ function chgPlayerStyle() {
                 break;
             case 4:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
                 l[0] = clientW - w[1];
                 //
                 l[1] = w[2] = l[0] / 2;
@@ -774,16 +774,16 @@ function chgPlayerStyle() {
                 break;
             case 5:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
                 l[0] = clientW - w[1];
                 //
                 h[3] = h[1] / 2;
-                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
+                w[3] = Math.round( missingValue( r, 0, h[3] ) );
                 // l[1] = l[0] - w[3];
                 t[2] = t[1] + h[3];
                 w[2] = l[0] - w[3];
@@ -800,7 +800,7 @@ function chgPlayerStyle() {
                 break;
             case 6:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -808,11 +808,11 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 w[3] = clientW - ( w[1] + w[2] );
                 //
-                h[3] = Math.round( await missingValue( r, w[3], 0 ) );
+                h[3] = Math.round( missingValue( r, w[3], 0 ) );
                 h[4] = h[1] - h[3];
                 t[3] = t[1] + h[3];
                 //
@@ -832,7 +832,7 @@ function chgPlayerStyle() {
                 break;
             case 7:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -840,12 +840,12 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 w[3] = clientW - ( w[1] + w[2] );
                 w[4] = w[3] / 2;
                 //
-                h[4] = Math.round( await missingValue( r, w[4], 0 ) );
+                h[4] = Math.round( missingValue( r, w[4], 0 ) );
                 h[3] = h[1] - h[4];
                 t[3] = t[1] + h[3];
                 //
@@ -867,7 +867,7 @@ function chgPlayerStyle() {
                 break;
             case 8:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 h[2] = h[1] / 2;
@@ -876,9 +876,9 @@ function chgPlayerStyle() {
                 t[1] = clientH - h[1];
                 t[2] = t[1] + h[2];
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
-                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[3] = Math.round( missingValue( r, 0, h[3] ) );
                 w[4] = w[0] - ( w[3] + w[2] + w[1] );
                 //
                 l[1] = w[3];
@@ -900,7 +900,7 @@ function chgPlayerStyle() {
                 break;
             case 9:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -908,9 +908,9 @@ function chgPlayerStyle() {
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
-                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
+                w[3] = Math.round( missingValue( r, 0, h[3] ) );
                 w[4] = w[0] - ( w[3] + w[2] + w[1] );
                 //
                 t[2] = t[1] + h[3];
@@ -937,15 +937,15 @@ function chgPlayerStyle() {
                 break;
             case 10:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 h[2] = h[1] / 2;
                 h[3] = h[1] / 3;
                 //
-                w[1] = Math.round( await missingValue( r, 0, h[1] ) );
-                w[3] = Math.round( await missingValue( r, 0, h[3] ) );
+                w[1] = Math.round( missingValue( r, 0, h[1] ) );
+                w[3] = Math.round( missingValue( r, 0, h[3] ) );
                 //
                 t[2] = t[1] + h[3];
                 t[3] = t[2] + h[3];
@@ -973,13 +973,13 @@ function chgPlayerStyle() {
                 break;
             case 11:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -988,7 +988,7 @@ function chgPlayerStyle() {
                 l[2] = w[2] * 2;
                 l[0] = w[2] * 3;
                 //
-                w[1] = w[0] - l[0]; //Math.round( await missingValue( r, 0, h[1] ) );
+                w[1] = w[0] - l[0]; //Math.round( missingValue( r, 0, h[1] ) );
                 //top
                 writeStyle(0, w[0], h[0], 0, 0);
                 //stack 1
@@ -1008,13 +1008,13 @@ function chgPlayerStyle() {
                 break;
             case 12:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1046,14 +1046,14 @@ function chgPlayerStyle() {
                 break;
             case 13:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
                 h[3] = h[1] / 2;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1087,13 +1087,13 @@ function chgPlayerStyle() {
                 break;
             case 14:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1127,13 +1127,13 @@ function chgPlayerStyle() {
                 break;
             case 15:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1177,13 +1177,13 @@ function chgPlayerStyle() {
                 break;
             case 16:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1227,13 +1227,13 @@ function chgPlayerStyle() {
                 break;
             case 17:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1246,11 +1246,11 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //
-                h[3] = Math.round( await missingValue( r, w[1], 0 ) );
+                h[3] = Math.round( missingValue( r, w[1], 0 ) );
                 h[4] = h[1] - h[3];
                 t[4] = t[1] + h[3];
                 //
-                w[3] = Math.round( await missingValue( r, 0, h[4] ) );
+                w[3] = Math.round( missingValue( r, 0, h[4] ) );
                 w[4] = (w[1] + w[2]) - w[3];
                 l[5] = l[4] + w[4];
                 //top
@@ -1280,13 +1280,13 @@ function chgPlayerStyle() {
                 break;
             case 18:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
                 //
                 h[2] = h[1] / 3;
-                w[2] = Math.round( await missingValue( r, 0, h[2] ) );
+                w[2] = Math.round( missingValue( r, 0, h[2] ) );
                 //
                 t[2] = t[1] + h[2];
                 t[3] = t[2] + h[2];
@@ -1299,7 +1299,7 @@ function chgPlayerStyle() {
                 //
                 w[1] = w[0] - l[0];
                 //
-                h[3] = Math.round( await missingValue( r, w[1], 0 ) );
+                h[3] = Math.round( missingValue( r, w[1], 0 ) );
                 h[4] = h[1] - h[3];
                 t[4] = t[1] + h[3];
                 //top
@@ -1330,7 +1330,7 @@ function chgPlayerStyle() {
                 break;
             case 19:
                 w[0] = clientW;
-                h[0] = Math.round( await missingValue( r, w[0], 0 ) );
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
                 //
                 h[1] = clientH - h[0];
                 t[1] = clientH - h[1];
@@ -1427,7 +1427,7 @@ function setQuality(strmID, strmQuality) {
         currentQuality = obj.player.getQuality();
         if (currentQuality !== strmQuality) {
             if (chans[strmID].search("v=") == -1) {
-                checkQuality = await chkQuality(obj.quality, strmQuality);
+                checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
                 console.info("setQuality(v-" + fldids[strmID] + "): ", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
             }
@@ -1497,7 +1497,7 @@ function chgQuality(strmID, strmQuality) {
             // length = 0;
     }
     for(let i = 0, l = chans.length; i < l; i++) {
-        await getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+        getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
         setQuality(i, (i > length ? "160p30" : quality[i]) );
     }
 }
@@ -1524,7 +1524,7 @@ function updChatIndx() {
     var chatsel = document.getElementById("chatsel"),
         chatmen = document.getElementById("chatmen"),
         cookieName = "sesssave",
-        sesssave = await getCookie_(cookieName),
+        sesssave = getCookie_(cookieName),
         sesssaveLowerCase = sesssave.toLowerCase();
 
     if ( sesssave !== sesssaveLowerCase ) {
