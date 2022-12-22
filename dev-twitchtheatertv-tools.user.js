@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name            twitchtheatertv-tools.dev.user.js
+// @name            dev-twitchtheatertv-tools.user.js
 // @namespace       https://github.com/DarkChilliz
 // @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1.0016
+// @version         1.1.1.0017
 // @updateURL
-// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/twitchtheatertv-tools.dev.user.js
+// @downloadURL     http://192.168.1.200:8080/twitchtheatertv-tools/dev-twitchtheatertv-tools.user.js
 // @author          https://github.com/DarkChilliz
 // @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
