@@ -1456,6 +1456,10 @@ function chgQuality(strmID, strmQuality) {
     if (maxQualityMode === true) {
         quality[0] = "chunked";
     }
+    if (watchParty === true) {
+        length = 1;
+        quality[1] = "chunked";
+    }
     switch(aspect_ratio) {
         case 1.7777777777777777:
             // length = 0;
