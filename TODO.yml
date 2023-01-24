@@ -45,3 +45,9 @@ main.js: writeStyle(): inline calculations
 main.js: function writeStyle(){}: left and right l[0]=, l[1]="right"
 
 ########################################################################################
+
+\\pi0\AppData\apache\apache-static\twitchtheatertv-tools\js\content.js
+
+\\pi0\AppData\apache\apache-static\twitchtheatertv-tools\js\main.js
+\\pi0\AppData\apache\apache-static\twitchtheatertv-tools\html\content.html
+\\pi0\AppData\apache\apache-static\twitchtheatertv-tools\css\main.css
