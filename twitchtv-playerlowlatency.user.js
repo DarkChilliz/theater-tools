@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name            twitchtv-playerlowlatency.user.js
-// @namespace       https://github.com/DarkChilliz
-// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
+// @namespace       https://gitea.darkchilliz.duckdns.org/DarkChilliz
+// @homepage        https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
 // @version         1.1.1
 // @updateURL
-// @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-playerlowlatency.user.js
+// @downloadURL     https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/twitchtv-playerlowlatency.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
 // @description     29/04/2021, 1:54:21 am
 // ==/UserScript==
