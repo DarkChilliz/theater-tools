@@ -1,23 +1,23 @@
 // ==UserScript==
 // @name            twitchtheatertv-tools.user.js
-// @namespace       https://github.com/DarkChilliz
-// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
+// @namespace       https://gitea.darkchilliz.duckdns.org/DarkChilliz
+// @homepage        https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1
+// @version         1.1.2
 // @updateURL
-// @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtheatertv-tools.user.js
-// @author          https://github.com/DarkChilliz
+// @downloadURL     https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/twitchtheatertv-tools.user.js
+// @author          https://gitea.darkchilliz.duckdns.org/DarkChilliz
 // @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @icon            https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/favicon-192.png
-// @resource icon1  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/playerstyle.png
-// @resource icon2  https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/functionsmenu.png
-// @resource html   https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/html/content.html
-// @resource css    https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/css/main.css
-// @resource main   https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/js/main.js
+// @icon            https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/favicon-192.png
+// @resource icon1  https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/playerstyle.png
+// @resource icon2  https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/functionsmenu.png
+// @resource html   https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/html/content.html
+// @resource css    https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/css/main.css
+// @resource main   https://gitea.darkchilliz.duckdns.org/DarkChilliz/twitchtheatertv-tools/raw/branch/main/js/main.js
 // ==/UserScript==
 
 function createFuncMenuDiv(content) {
