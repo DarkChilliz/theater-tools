@@ -1,23 +1,23 @@
 // ==UserScript==
 // @name            dev-twitchtheatertv-tools.user.js
-// @namespace       https://github.com/DarkChilliz
-// @homepage        https://github.com/DarkChilliz/twitchtheatertv-tools
+// @namespace       http://192.168.1.200:3000/DarkChilliz
+// @homepage        http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1.0018
+// @version         1.1.1.0019
 // @updateURL
-// @downloadURL     http://192.168.1.200:8020/twitchtheatertv-tools/dev-twitchtheatertv-tools.user.js
-// @author          https://github.com/DarkChilliz
+// @downloadURL     http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/dev-twitchtheatertv-tools.user.js
+// @author          http://192.168.1.200:3000/DarkChilliz
 // @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @icon            http://192.168.1.200:8020/twitchtheatertv-tools/img/favicon-192.png
-// @resource icon1  http://192.168.1.200:8020/twitchtheatertv-tools/img/playerstyle.png
-// @resource icon2  http://192.168.1.200:8020/twitchtheatertv-tools/img/functionsmenu.png
-// @resource html   http://192.168.1.200:8020/twitchtheatertv-tools/html/content.html
-// @resource css    http://192.168.1.200:8020/twitchtheatertv-tools/css/main.css
-// @resource main   http://192.168.1.200:8020/twitchtheatertv-tools/js/main.js
+// @icon            http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/favicon-192.png
+// @resource icon1  http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/playerstyle.png
+// @resource icon2  http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/img/functionsmenu.png
+// @resource html   http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/html/content.html
+// @resource css    http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/css/main.css
+// @resource main   http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools/raw/branch/main/js/main.js
 // ==/UserScript==
 
 function createFuncMenuDiv(content) {
