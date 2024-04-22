@@ -60,7 +60,11 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     //https://www.tampermonkey.net/documentation.php#GM_getResourceText
     //https://www.tampermonkey.net/documentation.php#GM_getResourceURL
     //https://www.tampermonkey.net/documentation.php#_resource
-    //http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
+
+    // https://github.com/DarkChilliz/twitchtheatertv-tools
+    // http://192.168.1.200:8020/twitchtheatertv-tools
+    // http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
+
     createFuncMenuDiv(GM_getResourceText("html"));
     writeStyleElement(GM_getResourceText("css"));
 
