@@ -60,7 +60,11 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     //https://www.tampermonkey.net/documentation.php#GM_getResourceText
     //https://www.tampermonkey.net/documentation.php#GM_getResourceURL
     //https://www.tampermonkey.net/documentation.php#_resource
-    //http://192.168.1.200:8080/twitchtheatertv-tools/
+
+    // https://github.com/DarkChilliz/twitchtheatertv-tools
+    // http://192.168.1.200:8020/twitchtheatertv-tools
+    // http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
+
     createFuncMenuDiv(GM_getResourceText("html"));
     writeStyleElement(GM_getResourceText("css"));
 
@@ -95,12 +99,15 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     // txtFile.send(null);
 
     //main.js
+    script.id = 'twitchtheatertv_tools'; //ffz_script
+    script.type = 'text/javascript';
+    // script.src = '//cdn.frankerfacez.com/script/script.min.js?_=' + Date.now();
     script.src = sScriptURL;
     script.onload = function() {
         onReceiveImgURL(sPlayerStyleURL, sFunctionsMenuURL); //(txtFile.responseText, sPlayerStyleURL, sFunctionsMenuURL)
-        this.remove();
+        // this.remove();
     };
-    (document.head || document.documentElement).appendChild(script);
+    document.head.appendChild(script); //(document.head || document.documentElement).appendChild(script);
 
     //main.css
     // var style = document.createElement('link');//https://stackoverflow.com/questions/9721344
