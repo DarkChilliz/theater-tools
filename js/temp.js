@@ -1,6 +1,95 @@
 // temp.js
 //
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+(function() {
+// https://www.google.com/search?q=how+does+twitch.tv+webplayer+work&client=firefox-b-d&sca_esv=618eadb7918fb614&sxsrf=ACQVn0_LesKNKG8e36jbHsY2VPwgFrhmXA%3A1713781885545&ei=fTwmZq_hIIOv0-kP2Pqd4Ac&ved=0ahUKEwjvk4qEz9WFAxWD1zQHHVh9B3wQ4dUDCBA&uact=5&oq=how+does+twitch.tv+webplayer+work&gs_lp=Egxnd3Mtd2l6LXNlcnAiIWhvdyBkb2VzIHR3aXRjaC50diB3ZWJwbGF5ZXIgd29yazIFECEYoAEyBRAhGKABSLhYUMEGWKRWcAV4AZABApgB9gKgAc4_qgEJMC4xNy4xOS4xuAEDyAEA-AEBmAIooAKOPMICChAAGLADGNYEGEfCAgQQIxgnwgIKECMYgAQYJxiKBcICCxAAGIAEGJECGIoFwgILEAAYgAQYsQMYgwHCAg4QLhiABBixAxjRAxjHAcICERAuGIAEGLEDGIMBGNQCGIoFwgIREC4YgAQYsQMY0QMYgwEYxwHCAgUQABiABMICCxAAGIAEGLEDGIoFwgILEC4YgAQYsQMY1ALCAgoQABiABBhDGIoFwgIEEAAYA8ICCBAAGIAEGLEDwgIFEC4YgATCAgcQABiABBgKwgIGEAAYFhgewgIIEAAYFhgKGB7CAgsQABiABBiGAxiKBcICCBAAGIAEGKIEwgIEECEYFcICBxAhGKABGAqYAwCIBgGQBgiSBwk1LjE2LjE4LjGgB-DdAQ&sclient=gws-wiz-serp
+// https://medium.com/canal-tech/how-video-streaming-works-on-the-web-an-introduction-7919739f7e1
+
+document.getElementById("v-" + fldids[0]).player.pause()
+document.getElementById("v-" + fldids[0]).player.play()
+
+document.getElementById("v-" + fldids[0]).player
+document.getElementById("v-" + fldids[0]).player.getPlayer()
+
+document.getElementById("v-" + fldids[0]).player.isPaused()
+document.getElementById("v-" + fldids[0]).player.getEnded()
+document.getElementById("v-" + fldids[0]).player.getMuted()
+
+document.getElementById("v-" + fldids[0]).player.getPlayerState()
+document.getElementById("v-" + fldids[0]).player.getPlayerState().currentTime
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats()
+
+
+
+
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats().bufferSize
+document.getElementById("v-" + fldids[0]).player.getCurrentTime()
+
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats().fps
+
+document.getElementById("v-" + fldids[0]).player.getVolume()
+document.getElementById("v-" + fldids[0]).player.setVolume()
+
+document.getElementById("v-" + fldids[0]).player.getQuality()
+document.getElementById("v-" + fldids[0]).player.setQuality("160p30")
+
+document.getElementById("v-" + fldids[0]).player.getChannel()
+document.getElementById("v-" + fldids[0]).player.setChannel("rainbow6")
+
+////////////////////////////////////////////////////////////////
+
+var timerID = null, isStalling = false;
+
+vid.addEventListener("timeupdate", function() {
+    clearTimeout(timerID);
+    isStalling = false;
+    // remove stalling indicator if any ...
+    timerID = setTimeout(reportStalling, 2000);  // 2 sec timeout
+});
+
+// integrate with stalled event in some way -
+vid.addEventListener("stalled", function() {isStalling = true})
+
+function reportStalling() {
+    if ((!vid.paused && !vid.ended) || isStalling) {  }
+}
+
+
+
+// document.getElementById("v-" + fldids[0]).player.addEventListener(Twitch.Player.PLAYBACK_BLOCKED, function() {
+//     // isStalling = true
+//     console.log("eventListener: Twitch.Player.PLAYBACK_BLOCKED");
+// });
+
+
+// https://help.kick.com/en/articles/8010826-how-to-embed-your-kick-livestream
+<iframe
+    src="https://player.kick.com/xqc?muted=false"
+    height="720"
+    width="1280"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true">
+</iframe>
+// https://kick-chat.corard.tv/
+// https://kick-chat.corard.tv/v1/chat?user=xqc&font-size=Small&stroke=Thin&animate=true&badges=true&commands=true&bots=true
+
+// https://kick.com/xqc/chatroom
+
+
+document.cookie
+})
+
+// https://greasyfork.org/en/scripts/30545-html5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%B7%A5%E5%85%B7/code
+
+////////////////////////////////////////////////////////////////////////////////////////
+
 // CSS
 /* #functionsMenuImg, #playerStyleImg, #menudiv {
     z-index: 1;
