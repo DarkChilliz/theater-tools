@@ -3,7 +3,28 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-
+//original: https://stackoverflow.com/q/52184291
+async function waitUntil(condition) {
+    return await new Promise(resolve => {
+        const interval = setInterval(() => {
+                if (condition) {
+                    resolve('foo');
+                    clearInterval(interval);
+                };
+        }, 1000);
+    });
+}
+//testing
+async function waitUntil(condition) {
+    return await new Promise(function() {
+        const interval = setInterval(() => {
+                if (condition) {
+                    clearInterval(interval);
+                    return 'foo';
+                };
+        }, 1000);
+    });
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,33 +35,29 @@
 document.getElementById("v-" + fldids[0]).player.pause()
 document.getElementById("v-" + fldids[0]).player.play()
 
-document.getElementById("v-" + fldids[0]).player
-document.getElementById("v-" + fldids[0]).player.getPlayer()
-
 document.getElementById("v-" + fldids[0]).player.isPaused()
 document.getElementById("v-" + fldids[0]).player.getEnded()
-document.getElementById("v-" + fldids[0]).player.getMuted()
-
-document.getElementById("v-" + fldids[0]).player.getPlayerState()
-document.getElementById("v-" + fldids[0]).player.getPlayerState().currentTime
-document.getElementById("v-" + fldids[0]).player.getPlaybackStats()
-
-
-
 
 document.getElementById("v-" + fldids[0]).player.getPlaybackStats().bufferSize
-document.getElementById("v-" + fldids[0]).player.getCurrentTime()
-
 document.getElementById("v-" + fldids[0]).player.getPlaybackStats().fps
-
-document.getElementById("v-" + fldids[0]).player.getVolume()
-document.getElementById("v-" + fldids[0]).player.setVolume()
 
 document.getElementById("v-" + fldids[0]).player.getQuality()
 document.getElementById("v-" + fldids[0]).player.setQuality("160p30")
 
+////////////////////////////////////////////////////////////////
+
+document.getElementById("v-" + fldids[0]).player.getCurrentTime()
+document.getElementById("v-" + fldids[0]).player.getVolume()
+document.getElementById("v-" + fldids[0]).player.setVolume()
 document.getElementById("v-" + fldids[0]).player.getChannel()
-document.getElementById("v-" + fldids[0]).player.setChannel("rainbow6")
+document.getElementById("v-" + fldids[0]).player.setChannel("forsen")
+
+document.getElementById("v-" + fldids[0]).player
+document.getElementById("v-" + fldids[0]).player.getPlayer()
+document.getElementById("v-" + fldids[0]).player.getMuted()
+document.getElementById("v-" + fldids[0]).player.getPlayerState()
+document.getElementById("v-" + fldids[0]).player.getPlayerState().currentTime
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats()
 
 ////////////////////////////////////////////////////////////////
 
