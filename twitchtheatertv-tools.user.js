@@ -5,11 +5,11 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.3
+// @version         1.1.4
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtheatertv-tools.user.js
 // @author          https://github.com/DarkChilliz
-// @description     30/09/2022, 3:29:15 am | custom-styles-ext-twitchtheater.tv.user.js
+// @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
 // @icon            https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/img/favicon-192.png
@@ -60,10 +60,6 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     //https://www.tampermonkey.net/documentation.php#GM_getResourceText
     //https://www.tampermonkey.net/documentation.php#GM_getResourceURL
     //https://www.tampermonkey.net/documentation.php#_resource
-
-    // https://github.com/DarkChilliz/twitchtheatertv-tools
-    // http://192.168.1.200:8020/twitchtheatertv-tools
-    // http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
 
     createFuncMenuDiv(GM_getResourceText("html"));
     writeStyleElement(GM_getResourceText("css"));
