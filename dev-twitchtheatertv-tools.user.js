@@ -1,23 +1,23 @@
 // ==UserScript==
 // @name            dev-twitchtheatertv-tools.user.js
-// @namespace       http://192.168.1.200:8020/
-// @homepage        http://192.168.1.200:8020/twitchtheatertv-tools
+// @namespace       http://localhost:8020/
+// @homepage        http://localhost:8020/twitchtheatertv-tools
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.3.0021
+// @version         1.1.4.0000
 // @updateURL
-// @downloadURL     http://192.168.1.200:8020/twitchtheatertv-tools/dev-twitchtheatertv-tools.user.js
-// @author          http://192.168.1.200:8020/
+// @downloadURL     http://localhost:8020/twitchtheatertv-tools/dev-twitchtheatertv-tools.user.js
+// @author          http://localhost:8020/
 // @description     30/09/2022, 3:29:15 am
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @icon            http://192.168.1.200:8020/twitchtheatertv-tools/img/favicon-192.png
-// @resource icon1  http://192.168.1.200:8020/twitchtheatertv-tools/img/playerstyle.png
-// @resource icon2  http://192.168.1.200:8020/twitchtheatertv-tools/img/functionsmenu.png
-// @resource html   http://192.168.1.200:8020/twitchtheatertv-tools/html/content.html
-// @resource css    http://192.168.1.200:8020/twitchtheatertv-tools/css/main.css
-// @resource main   http://192.168.1.200:8020/twitchtheatertv-tools/js/main.js
+// @icon            http://localhost:8020/twitchtheatertv-tools/img/favicon-192.png
+// @resource icon1  http://localhost:8020/twitchtheatertv-tools/img/playerstyle.png
+// @resource icon2  http://localhost:8020/twitchtheatertv-tools/img/functionsmenu.png
+// @resource html   http://localhost:8020/twitchtheatertv-tools/html/content.html
+// @resource css    http://localhost:8020/twitchtheatertv-tools/css/main.css
+// @resource main   http://localhost:8020/twitchtheatertv-tools/js/main.js
 // ==/UserScript==
 
 function createFuncMenuDiv(content) {
@@ -60,10 +60,6 @@ function onReceiveImgURL(playerStyleImg, functionsMenuImg) { //(funcMenuDivHtml,
     //https://www.tampermonkey.net/documentation.php#GM_getResourceText
     //https://www.tampermonkey.net/documentation.php#GM_getResourceURL
     //https://www.tampermonkey.net/documentation.php#_resource
-
-    // https://github.com/DarkChilliz/twitchtheatertv-tools
-    // http://192.168.1.200:8020/twitchtheatertv-tools
-    // http://192.168.1.200:3000/DarkChilliz/twitchtheatertv-tools
 
     createFuncMenuDiv(GM_getResourceText("html"));
     writeStyleElement(GM_getResourceText("css"));
