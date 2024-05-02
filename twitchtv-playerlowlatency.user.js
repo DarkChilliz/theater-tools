@@ -10,6 +10,7 @@
 // @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-playerlowlatency.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
 // @description     29/04/2021, 1:54:21 am
+// @icon
 // ==/UserScript==
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
