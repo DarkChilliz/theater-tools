@@ -1,4 +1,4 @@
-# twitchtheatertv-tools.user.js
+# twitchtheatertv-tools.user.js <!-- https://www.markdownguide.org/cheat-sheet/ -->
 
 #### Userscript
 
@@ -6,9 +6,15 @@
 
 #### Features
 
+- Detect stalled players and attempt to fix them.
+
 - 1920x1080 (16:9) & 1440x900 (16:10) styles for [twitchtheater.tv](https://twitchtheater.tv/).
 
-    ![alt text](https://github.com/DarkChilliz/twitchtheatertv-tools/blob/main/img/preview/preview.png?raw=true)
+    ![preview](https://github.com/DarkChilliz/twitchtheatertv-tools/blob/main/img/preview/preview.png?raw=true)
+
+- Add Buttons
+
+    <img src="https://github.com/DarkChilliz/twitchtheatertv-tools/blob/main/img/playerstyle.png?raw=true" alt="playerstyle" title="run functions"/><img src="https://github.com/DarkChilliz/twitchtheatertv-tools/blob/main/img/functionsmenu.png?raw=true" alt="functionsmenu" title="function menu"/>
 
 #### ~~Firefox, Firefox Developer Edition, Firefox Nightly, Firefox ESR~~
 

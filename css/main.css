@@ -1,20 +1,20 @@
-.bar1, .bar2, .bar3 {
+/* .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
-}
+} */
 
-.change .bar1 {
+/* .change .bar1 {
     transform: translate(0, 11px) rotate(-45deg);
-}
+} */
 
-.change .bar2 {opacity: 0;}
+/* .change .bar2 {opacity: 0;} */
 
-.change .bar3 {
+/* .change .bar3 {
     transform: translate(0, -11px) rotate(45deg);
-}
+} */
 
 /* ################################################################################## */
 
@@ -87,13 +87,13 @@
 .danger {color: red;}
 .default {color: black;} */
 
-.btnInner, #btnLine1, #btnLine2, #btnLine3, #btnLine4 {
+.btnInner, .btnLine {
     display: inline-block;
 }
-#btnLine1, #btnLine2, #btnLine3, #btnLine4 {
+.btnLine {
     /* text-align: center; */
     width: 100%;
 }
-#btnLine2, #btnLine3, #btnLine4 {
+.btnLine:not(#btnLine1) { /* https://stackoverflow.com/a/12120364 */
     padding-top: 4px;
 }

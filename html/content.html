@@ -12,7 +12,7 @@
     <div id="funcMenuBot" style="display:none;">
         <div id="fm0" onclick="funcEvtChk(event)">
 
-            <div id="btnLine1">
+            <div id="btnLine1" class="btnLine">
                 <div class="btnInner">
                     <button class="funcBtn removeOfflineChannels" title="Remove offline players and remove their chats from the list"
                         onclick="removeOfflineChannels(1)">Remove Offline <!-- removeOffChannels -->
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div id="btnLine2">
+            <div class="btnLine">
                 <div class="btnInner">
                     <button class="funcBtn setGameMode"
                         onclick="setGameMode()">setGameMode
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="btnLine3">
+            <div class="btnLine">
                 <div class="btnInner">
                     <button class="funcBtn unloadAllChats"
                         onclick="unloadAllChats(event)">loadedChats <!-- unloadChats -->
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div id="btnLine4">
+            <div class="btnLine">
                 <div class="btnInner">
                     <button class="funcBtn watchPartyMode"
                         onclick="watchPartyMode()">watchPartyMode
@@ -62,6 +62,19 @@
                         onclick="randomTestButton()">randomTestButton
                     </button>
                 </div>
+            </div>
+
+            <div class="btnLine">
+                <div class="btnInner">
+                    <button class="funcBtn fixStalledPlayersButton"
+                        onclick="fixStalledPlayersButton()">fixStalledPlayers
+                    </button>
+                </div>
+                <!-- <div class="btnInner">
+                    <button class="funcBtn randomTestButton"
+                        onclick="randomTestButton()">randomTestButton
+                    </button>
+                </div> -->
             </div>
 
         </div>
