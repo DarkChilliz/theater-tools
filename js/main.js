@@ -1419,7 +1419,7 @@ function chkQuality(array, string) {
 }
 
 function setQuality(strmID, strmQuality) {
-    var currentQuality = "",
+    let currentQuality = "",
         checkQuality = "",
         pad = 7,
         obj = document.getElementById("v-" + fldids[strmID]);
@@ -1429,10 +1429,11 @@ function setQuality(strmID, strmQuality) {
             if (chans[strmID].search("v=") == -1) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
-                console.log("setQuality(v-" + fldids[strmID] + "): ", (typeof currentQuality !== "undefined" ? currentQuality.padStart(pad) : "".padStart(pad)),"->", (typeof checkQuality !== "undefined" ? checkQuality.padEnd(pad) : "".padEnd(pad)), "["+obj.player.getPlayerState().channelName+"]");
+
+                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + " == " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
             }
             else {
-                console.log("setQuality(v-" + fldids[strmID] +"): Not Twitch");
+                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") == Not Twitch");
             }
         }
     }
@@ -1500,9 +1501,20 @@ function chgQuality(strmID, strmQuality) {
         default:
             // length = 0;
     }
-    for(let i = 0, l = chans.length; i < l; i++) {
-        getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-        setQuality(i, (i > length ? "160p30" : quality[i]) );
+
+    if (typeof strmID !== "undefined") {
+        if (typeof strmQuality !== "undefined") {
+            getQualities(strmID);
+            setQuality(strmID, strmQuality);
+        } else {
+            getQualities(strmID);
+            setQuality(strmID, (strmID > length ? "160p30" : quality[strmID]) );
+        }
+    } else {
+        for(let i = 0, l = chans.length; i < l; i++) {
+            getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+            setQuality(i, (i > length ? "160p30" : quality[i]) );
+        }
     }
 }
 
@@ -1899,28 +1911,43 @@ function randomTestButton() {
 }
 
 function fixStalledPlayers() {
-    let run = 0;
-
-    // styledConsoleLog("TTVTools", "fixStalledPlayers.run", "");
+    let run = [];
 
     for(let i = 0, l = fldids.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[i]);
+        let playerState = obj.player.getPlayerState();
 
-        if (obj.player.getPlaybackStats().fps == 0) {
-            if (obj.player.isPaused() == false && obj.player.getEnded() == false) { //TODO: maybe better test
+        if (playerState.stats.videoStats.fps == 0) {
+            if (playerState.playback !== "Idle" && playerState.ended == false) {
                 obj.player.pause();
                 obj.player.play();
-                run++;
-                styledConsoleLog("TTVTools", "fixStalledPlayers.fix", "v-" + i + " [" + obj.player.getPlayerState().channelName + "]");
+                run[run.length] = i;
+                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".fps == " + playerState.stats.videoStats.fps);
             }
-        } else if (obj.player.getPlaybackStats().bufferSize < 0) { //TODO: maybe better test
-            relstream(i,-1); //TODO: maybe better code
+        } else if (playerState.stats.videoStats.bufferSize < 0) {
+            if (playerState.playback !== "Idle" && playerState.ended == false) {
+                relstream(i,-1);
+                run[run.length] = i;
+                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".bufferSize == " + playerState.stats.videoStats.bufferSize);
+            }
+        } else if (playerState.currentTime === playerState.ttvtools_currentTime) {
+            if (playerState.playback !== "Idle" && playerState.ended == false) {
+                obj.player.pause();
+                obj.player.play();
+                run[run.length] = i;
+                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".currentTime == " + playerState.ttvtools_currentTime + " / " + playerState.currentTime);
+            }
         }
+
+        obj.player._player._playerState.ttvtools_currentTime = playerState.currentTime;
     }
 
-    if (run > 0) {
-        setTimeout(chgQuality, 1500);
-        // styledConsoleLog("TTVTools", "fixStalledPlayers.chgQuality", "chgQuality");
+    if (run.length) {
+        setTimeout(() => {
+            for(let i = 0, l = run.length; i < l; i++) {
+                chgQuality(run[i]);
+            }
+        }, 1500);
     }
 }
 
@@ -2011,16 +2038,16 @@ function setEventTrigger() {
     //https://dev.twitch.tv/docs/embed/everything/
     //https://dev.twitch.tv/docs/embed/video-and-clips/#interactive-frames-for-live-streams-and-vods
     if (fldids.length > 0) {
-        var indx = ("v-" + fldids[fldids.length - 1]),
+        let indx = ("v-" + fldids[fldids.length - 1]),
             obj = document.getElementById(indx);
 
         function playingEventListener() {
-            styledConsoleLog("TTVTools", "setEventTrigger.playingEventListener", indx + " [" + obj.player.getPlayerState().channelName + "]");
+            styledConsoleLog("TTVTools", "setEventTrigger.playingEventListener", "(" + indx + ") " + obj.player.getPlayerState().channelName);
             rmvEvtLsnr();
             onEventTrigger();
         }
         function offlineEventListener() {
-            styledConsoleLog("TTVTools", "setEventTrigger.offlineEventListener", indx + " [" + obj.player.getPlayerState().channelName + "]");
+            styledConsoleLog("TTVTools", "setEventTrigger.offlineEventListener", "(" + indx + ") " + obj.player.getPlayerState().channelName);
             rmvEvtLsnr();
             onEventTrigger();
         }
@@ -2036,7 +2063,7 @@ function setEventTrigger() {
         //     onEventTrigger();
         // }, 10000);
 
-        styledConsoleLog("TTVTools", "setEventTrigger", "fldids.length ==" + fldids.length);
+        styledConsoleLog("TTVTools", "setEventTrigger", "fldids.length == " + fldids.length);
         // console.log("setEventTrigger(): fldids.length ===", fldids.length);
     }
     else {
