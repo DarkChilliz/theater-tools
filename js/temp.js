@@ -28,7 +28,6 @@ async function waitUntil(condition) {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-(function() {
 // https://www.google.com/search?q=how+does+twitch.tv+webplayer+work&client=firefox-b-d&sca_esv=618eadb7918fb614&sxsrf=ACQVn0_LesKNKG8e36jbHsY2VPwgFrhmXA%3A1713781885545&ei=fTwmZq_hIIOv0-kP2Pqd4Ac&ved=0ahUKEwjvk4qEz9WFAxWD1zQHHVh9B3wQ4dUDCBA&uact=5&oq=how+does+twitch.tv+webplayer+work&gs_lp=Egxnd3Mtd2l6LXNlcnAiIWhvdyBkb2VzIHR3aXRjaC50diB3ZWJwbGF5ZXIgd29yazIFECEYoAEyBRAhGKABSLhYUMEGWKRWcAV4AZABApgB9gKgAc4_qgEJMC4xNy4xOS4xuAEDyAEA-AEBmAIooAKOPMICChAAGLADGNYEGEfCAgQQIxgnwgIKECMYgAQYJxiKBcICCxAAGIAEGJECGIoFwgILEAAYgAQYsQMYgwHCAg4QLhiABBixAxjRAxjHAcICERAuGIAEGLEDGIMBGNQCGIoFwgIREC4YgAQYsQMY0QMYgwEYxwHCAgUQABiABMICCxAAGIAEGLEDGIoFwgILEC4YgAQYsQMY1ALCAgoQABiABBhDGIoFwgIEEAAYA8ICCBAAGIAEGLEDwgIFEC4YgATCAgcQABiABBgKwgIGEAAYFhgewgIIEAAYFhgKGB7CAgsQABiABBiGAxiKBcICCBAAGIAEGKIEwgIEECEYFcICBxAhGKABGAqYAwCIBgGQBgiSBwk1LjE2LjE4LjGgB-DdAQ&sclient=gws-wiz-serp
 // https://medium.com/canal-tech/how-video-streaming-works-on-the-web-an-introduction-7919739f7e1
 
@@ -41,10 +40,15 @@ document.getElementById("v-" + fldids[0]).player.getEnded()
 document.getElementById("v-" + fldids[0]).player.getPlaybackStats().bufferSize
 document.getElementById("v-" + fldids[0]).player.getPlaybackStats().fps
 
-document.getElementById("v-" + fldids[0]).player.getQuality()
-document.getElementById("v-" + fldids[0]).player.setQuality("160p30")
-
+document.getElementById("v-" + fldids[0]).player.getPlayerState()
 ////////////////////////////////////////////////////////////////
+
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats()
+
+document.getElementById("v-" + fldids[0]).player.getPlayerState().currentTime
+document.getElementById("v-" + fldids[0]).player.getPlayerState().playback // "Buffering", "Playing"
+
+document.getElementById("v-" + fldids[0]).player.getPlaybackStats().playbackRate
 
 document.getElementById("v-" + fldids[0]).player.getCurrentTime()
 document.getElementById("v-" + fldids[0]).player.getVolume()
@@ -52,12 +56,12 @@ document.getElementById("v-" + fldids[0]).player.setVolume()
 document.getElementById("v-" + fldids[0]).player.getChannel()
 document.getElementById("v-" + fldids[0]).player.setChannel("forsen")
 
+document.getElementById("v-" + fldids[0]).player.getQuality()
+document.getElementById("v-" + fldids[0]).player.setQuality("160p30")
+
 document.getElementById("v-" + fldids[0]).player
 document.getElementById("v-" + fldids[0]).player.getPlayer()
 document.getElementById("v-" + fldids[0]).player.getMuted()
-document.getElementById("v-" + fldids[0]).player.getPlayerState()
-document.getElementById("v-" + fldids[0]).player.getPlayerState().currentTime
-document.getElementById("v-" + fldids[0]).player.getPlaybackStats()
 
 ////////////////////////////////////////////////////////////////
 
@@ -101,7 +105,6 @@ function reportStalling() {
 
 
 document.cookie
-})
 
 // https://greasyfork.org/en/scripts/30545-html5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%B7%A5%E5%85%B7/code
 
