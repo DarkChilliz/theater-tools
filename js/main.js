@@ -1750,53 +1750,6 @@ function removeOfflineChannels(val) {
     updateFunctionMenuButtons();
 }
 
-function setGameMode() {
-    var obj = document.getElementsByClassName("setGameMode")[0];
-    gameMode = !gameMode;
-
-    if (gameMode === true) {
-        obj.style.color = "lightcoral";
-    }
-    else {
-        obj.style.color = "whitesmoke";
-    }
-}
-
-function setMaxQualityMode(isfirstrun) {
-    let obj = document.getElementsByClassName("setMaxQualityMode")[0],
-        maxQualityMode = "false";
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(localStorage.getItem("maxQualityMode")) {
-            case "false":
-            case "true":
-                maxQualityMode = localStorage.getItem("maxQualityMode");
-                break;
-            case null:
-            default:
-                localStorage.setItem("maxQualityMode", "false");
-                break;
-        }
-    } else {
-        switch(localStorage.getItem("maxQualityMode")) {
-            case "false":
-                maxQualityMode = "true";
-                break;
-            case "true":
-                maxQualityMode = "false";
-                break;
-        }
-        localStorage.setItem("maxQualityMode", maxQualityMode);
-    }
-
-    if (maxQualityMode === "true") {
-        obj.classList.add("active");
-    }
-    else {
-        obj.classList.remove("active");
-    }
-}
-
 function unloadAllChats() {
     // add number of loaded chats to button text
     // dont unload selected chat.. only if shift is held
@@ -1889,44 +1842,51 @@ function addStreamsFromChat(event) {
     }
 }
 
-function watchPartyMode() {
-    var obj = document.getElementsByClassName("watchPartyMode")[0];
-    watchParty = !watchParty;
+function setGameMode() {
+    var obj = document.getElementsByClassName("setGameMode")[0];
+    gameMode = !gameMode;
 
-    if (watchParty === true) {
+    if (gameMode === true) {
+        obj.style.color = "lightcoral";
+    }
+    else {
+        obj.style.color = "whitesmoke";
+    }
+}
+
+function setMaxQualityMode(isfirstrun) {
+    let obj = document.getElementsByClassName("setMaxQualityMode")[0],
+        maxQualityMode = "false";
+
+    if (typeof isfirstrun !== "undefined") {
+        switch(localStorage.getItem("maxQualityMode")) {
+            case "false":
+            case "true":
+                maxQualityMode = localStorage.getItem("maxQualityMode");
+                break;
+            case null:
+            default:
+                localStorage.setItem("maxQualityMode", "false");
+                break;
+        }
+    } else {
+        switch(localStorage.getItem("maxQualityMode")) {
+            case "false":
+                maxQualityMode = "true";
+                break;
+            case "true":
+                maxQualityMode = "false";
+                break;
+        }
+        localStorage.setItem("maxQualityMode", maxQualityMode);
+    }
+
+    if (maxQualityMode === "true") {
         obj.classList.add("active");
     }
     else {
         obj.classList.remove("active");
     }
-}
-
-function randomTestButton() {
-    let obj = document.getElementById("v-" + fldids[0]);
-    // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
-    // console.log( obj.player.getPlaybackStats().hlsLatencyBroadcaster + ' - hlsLatencyBroadcaster' );
-    // console.log( obj.player.getPlayerState().currentTime +             ' - currentTime' );
-    // console.log( obj.player.isPaused() +                               ' - isPaused' );
-    // console.log( obj.player.getChannel() +                             ' - getChannel' );
-    // console.log( obj.player.getChannelId() +                           ' - getChannelId' );
-    // console.log( obj.player.getQualities() );
-    // console.log( obj.player.getPlayerState().qualitiesAvailable );
-    console.log( obj.player.getPlayerState().playback +            ' - playback' );
-    console.log( obj.player.getPlayerState().ended +               ' - ended' );
-    console.log( obj.player.getEnded() +                           ' - getEnded' );
-    console.log (obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
-    console.log (obj.player.getPlaybackStats().fps +               ' - fps' );
-
-    // obj.player.getQuality();
-    // obj.player.setQuality("160p30");
-
-    // (function() {
-    //     'use strict';
-    //     var button = document.querySelector(".player-overlay-background button");
-    //     if (button) {
-    //         button.click();
-    //     }
-    // })();
 }
 
 function fixStalledPlayers() {
@@ -1982,6 +1942,46 @@ function fixStalledPlayersButton() {
         useFixStalledPlayers = null;
         obj.classList.remove("active");
     }
+}
+
+function watchPartyMode() {
+    var obj = document.getElementsByClassName("watchPartyMode")[0];
+    watchParty = !watchParty;
+
+    if (watchParty === true) {
+        obj.classList.add("active");
+    }
+    else {
+        obj.classList.remove("active");
+    }
+}
+
+function randomTestButton() {
+    let obj = document.getElementById("v-" + fldids[0]);
+    // console.log( obj.player.getPlaybackStats().bufferSize +            ' - bufferSize' );
+    // console.log( obj.player.getPlaybackStats().hlsLatencyBroadcaster + ' - hlsLatencyBroadcaster' );
+    // console.log( obj.player.getPlayerState().currentTime +             ' - currentTime' );
+    // console.log( obj.player.isPaused() +                               ' - isPaused' );
+    // console.log( obj.player.getChannel() +                             ' - getChannel' );
+    // console.log( obj.player.getChannelId() +                           ' - getChannelId' );
+    // console.log( obj.player.getQualities() );
+    // console.log( obj.player.getPlayerState().qualitiesAvailable );
+    console.log( obj.player.getPlayerState().playback +            ' - playback' );
+    console.log( obj.player.getPlayerState().ended +               ' - ended' );
+    console.log( obj.player.getEnded() +                           ' - getEnded' );
+    console.log (obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
+    console.log (obj.player.getPlaybackStats().fps +               ' - fps' );
+
+    // obj.player.getQuality();
+    // obj.player.setQuality("160p30");
+
+    // (function() {
+    //     'use strict';
+    //     var button = document.querySelector(".player-overlay-background button");
+    //     if (button) {
+    //         button.click();
+    //     }
+    // })();
 }
 
 // Setup Functions /////////////////////////////////////////////////////////////////////
