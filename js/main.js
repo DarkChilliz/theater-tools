@@ -1442,9 +1442,10 @@ function setQuality(strmID, strmQuality) {
 function chgQuality(strmID, strmQuality) {
     let length = 0,
         aspect_ratio = screen.width / screen.height,
-        maxQualityMode = localStorage.getItem("maxQualityMode");
+        maxQualityMode = localStorage.getItem("maxQualityMode"),
+        gameMode = localStorage.getItem("gameMode");
 
-    if (gameMode === true) {
+    if (gameMode === "true") {
         quality = ["480p30","160p30","160p30"];
     }
     else {
@@ -1469,8 +1470,8 @@ function chgQuality(strmID, strmQuality) {
                 case 7:
                 case 5:
                     length = 2;
-                    if (gameMode === false) {
-                        quality[2] = "360p30"; //(gameMode === true ? "160p30" : "360p30")
+                    if (gameMode === "false") {
+                        quality[2] = "360p30"; //(gameMode === "true" ? "160p30" : "360p30")
                     }
                     break;
                 case 2:
@@ -1488,7 +1489,7 @@ function chgQuality(strmID, strmQuality) {
                 case 15:
                 case 16:
                     length = 1;
-                    if (gameMode === false) {
+                    if (gameMode === "false") {
                         quality[1] = "360p30";
                     }
                     break;
@@ -1842,15 +1843,38 @@ function addStreamsFromChat(event) {
     }
 }
 
-function setGameMode() {
-    var obj = document.getElementsByClassName("setGameMode")[0];
-    gameMode = !gameMode;
+function setGameMode(isfirstrun) {
+    let obj = document.getElementsByClassName("setGameMode")[0],
+        gameMode = "false";
 
-    if (gameMode === true) {
-        obj.style.color = "lightcoral";
+    if (typeof isfirstrun !== "undefined") {
+        switch(localStorage.getItem("gameMode")) {
+            case "false":
+            case "true":
+                gameMode = localStorage.getItem("gameMode");
+                break;
+            case null:
+            default:
+                localStorage.setItem("gameMode", "false");
+                break;
+        }
+    } else {
+        switch(localStorage.getItem("gameMode")) {
+            case "false":
+                gameMode = "true";
+                break;
+            case "true":
+                gameMode = "false";
+                break;
+        }
+        localStorage.setItem("gameMode", gameMode);
+    }
+
+    if (gameMode === "true") {
+        obj.classList.add("active");
     }
     else {
-        obj.style.color = "whitesmoke";
+        obj.classList.remove("active");
     }
 }
 
@@ -2029,9 +2053,9 @@ function triggerScript() {
 }
 
 function onEventTrigger() {
-    userQuality[0] = fldids[0];
     chgQuality();
 
+    setGameMode(1);
     setMaxQualityMode(1);
     fixStalledPlayersButton(); //TODO: [TEMP] replace with cookie state save
 }
@@ -2079,10 +2103,7 @@ function setEventTrigger() {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-var userQuality = [],
-    useUserQuality = false,
-    gameMode = false,
-    watchParty = false,
+var watchParty = false,
     useGoFullScreen = true,
     useChgPlayerStyleCaseOne = false,
     useFixStalledPlayers = null;
