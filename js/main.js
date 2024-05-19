@@ -1440,21 +1440,17 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    var length = 0,
-        aspect_ratio = screen.width / screen.height;
-    // getQualities(strmID);
-    // setQuality(strmID, strmQuality);
+    let length = 0,
+        aspect_ratio = screen.width / screen.height,
+        maxQualityMode = localStorage.getItem("maxQualityMode");
 
-    // if (lockChgQuality === true) {
-    //     return;
-    // }
     if (gameMode === true) {
         quality = ["480p30","160p30","160p30"];
     }
     else {
         quality = ["auto","auto","auto"];
     }
-    if (maxQualityMode === true) {
+    if (maxQualityMode === "true") {
         quality[0] = "chunked";
     }
     if (watchParty === true) {
@@ -1766,15 +1762,38 @@ function setGameMode() {
     }
 }
 
-function setMaxQualityMode() {
-    var obj = document.getElementsByClassName("setMaxQualityMode")[0];
-    maxQualityMode = !maxQualityMode;
+function setMaxQualityMode(isfirstrun) {
+    let obj = document.getElementsByClassName("setMaxQualityMode")[0],
+        maxQualityMode = "false";
 
-    if (maxQualityMode === true) {
-        obj.style.color = "lightcoral";
+    if (typeof isfirstrun !== "undefined") {
+        switch(localStorage.getItem("maxQualityMode")) {
+            case "false":
+            case "true":
+                maxQualityMode = localStorage.getItem("maxQualityMode");
+                break;
+            case null:
+            default:
+                localStorage.setItem("maxQualityMode", "false");
+                break;
+        }
+    } else {
+        switch(localStorage.getItem("maxQualityMode")) {
+            case "false":
+                maxQualityMode = "true";
+                break;
+            case "true":
+                maxQualityMode = "false";
+                break;
+        }
+        localStorage.setItem("maxQualityMode", maxQualityMode);
+    }
+
+    if (maxQualityMode === "true") {
+        obj.classList.add("active");
     }
     else {
-        obj.style.color = "whitesmoke";
+        obj.classList.remove("active");
     }
 }
 
@@ -1983,8 +2002,9 @@ function updMenuElement() {
 
 function triggerScript() {
     document.removeEventListener("triggerScript", triggerScript);
-    var playerStyleImgObj = document.getElementById("playerStyleImg"),
-    functionsMenuImgObj = document.getElementById("functionsMenuImg");
+
+    let playerStyleImgObj = document.getElementById("playerStyleImg"),
+        functionsMenuImgObj = document.getElementById("functionsMenuImg");
 
     playerStyleImgObj.onclick = function(event) {
         if (event.ctrlKey) {
@@ -2008,28 +2028,11 @@ function triggerScript() {
     };
 }
 
-// function setButtonVisibility() {
-//     var list = ["playerStyleImg", "functionsMenuImg"];
-//     list.forEach((value) => { //https://www.w3schools.com/js/js_arrow_function.asp
-//         var obj = document.getElementById(value)
-//         if (obj.style.visibility != "visible") {
-//             obj.style.visibility = "visible"; //https://www.w3schools.com/cssref/pr_class_visibility.asp
-//         }
-//     });
-// }
-
 function onEventTrigger() {
     userQuality[0] = fldids[0];
-    // lockChgQuality = false;
     chgQuality();
-    // setButtonVisibility();
 
-    loadUserSettings();
-}
-
-function loadUserSettings() {
-
-    setMaxQualityMode(); //TODO: [TEMP] replace with cookie state save
+    setMaxQualityMode(1);
     fixStalledPlayersButton(); //TODO: [TEMP] replace with cookie state save
 }
 
@@ -2079,10 +2082,8 @@ function setEventTrigger() {
 var userQuality = [],
     useUserQuality = false,
     gameMode = false,
-    maxQualityMode = false,
     watchParty = false,
     useGoFullScreen = true,
-    // lockChgQuality = true,
     useChgPlayerStyleCaseOne = false,
     useFixStalledPlayers = null;
 (function() {

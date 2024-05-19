@@ -5,7 +5,7 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.7.0000
+// @version         1.1.8.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/twitchtheatertv-tools/dev-twitchtheatertv-tools.user.js
 // @author          http://localhost:8020/

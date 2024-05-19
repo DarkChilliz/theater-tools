@@ -10,51 +10,38 @@
             <div id="btnLine1" class="btnLine">
                 <div class="btnInner">
                     <button class="funcBtn removeOfflineChannels" title="Remove offline players and remove their chats from the list"
-                        onclick="removeOfflineChannels(1)">Remove Offline <!-- removeOffChannels -->
+                        onclick="removeOfflineChannels(1)">removeOffline
                     </button>
                 </div>
                 <div class="btnInner">
                     <button class="funcBtn removeOfflineStreams" title="Unload offline players but keep their chats in the list"
-                        onclick="removeOfflineChannels()">Unload Offline <!-- removeOffPlayers -->
+                        onclick="removeOfflineChannels()">unloadOffline
                     </button>
                 </div>
             </div>
 
             <div class="btnLine">
                 <div class="btnInner">
-                    <button class="funcBtn setGameMode"
-                        onclick="setGameMode()">setGameMode
+                    <button class="funcBtn unloadAllChats" title="Unload all chats except active stream. [chats loaded / all chats]"
+                        onclick="unloadAllChats(event)">loadedChats
                     </button>
                 </div>
                 <div class="btnInner">
-                    <button class="funcBtn setMaxQualityMode"
-                        onclick="setMaxQualityMode()">setMaxQualityMode
-                    </button>
-                </div>
-            </div>
-
-            <div class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn unloadAllChats"
-                        onclick="unloadAllChats(event)">loadedChats <!-- unloadChats -->
-                    </button>
-                </div>
-                <div class="btnInner">
-                    <button class="funcBtn addStreamsFromChat"
-                        onclick="addStreamsFromChat(event)">addStreams <!-- addStreamsFromChat -->
+                    <button class="funcBtn addStreamsFromChat" title="Add stream from chat list. [streams loaded / all chats]"
+                        onclick="addStreamsFromChat(event)">addStreams
                     </button>
                 </div>
             </div>
 
             <div class="btnLine">
                 <div class="btnInner">
-                    <button class="funcBtn watchPartyMode"
-                        onclick="watchPartyMode()">watchPartyMode
+                    <button class="funcBtn setGameMode" title="Game mode for the top stream in the list"
+                        onclick="setGameMode()">gameMode
                     </button>
                 </div>
                 <div class="btnInner">
-                    <button class="funcBtn randomTestButton"
-                        onclick="randomTestButton()">randomTestButton
+                    <button class="funcBtn setMaxQualityMode" title="Max quality mode for the top stream in the list"
+                        onclick="setMaxQualityMode()">maxQualityMode
                     </button>
                 </div>
             </div>
@@ -65,11 +52,19 @@
                         onclick="fixStalledPlayersButton()">fixStalledPlayers
                     </button>
                 </div>
-                <!-- <div class="btnInner">
+                <div class="btnInner">
+                    <button class="funcBtn watchPartyMode"
+                        onclick="watchPartyMode()">watchPartyMode
+                    </button>
+                </div>
+            </div>
+
+            <div class="btnLine">
+                <div class="btnInner">
                     <button class="funcBtn randomTestButton"
                         onclick="randomTestButton()">randomTestButton
                     </button>
-                </div> -->
+                </div>
             </div>
 
         </div>
