@@ -35,7 +35,7 @@ function chgPlayerStyle() {
         t = [],
         l = [],
         playerNotConfigured = function() {
-            console.log("chgPlayerStyle(): not configured for [" + fldids.length + "] players");
+            styledConsoleLog("TTVTools", "chgPlayerStyle", "not configured for [" + fldids.length + "] players");
         };
 
     //1920x1080 (16:9 aspect ratio)
@@ -1430,10 +1430,10 @@ function setQuality(strmID, strmQuality) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
 
-                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + " == " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
+                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + ": " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
             }
             else {
-                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") == Not Twitch");
+                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + "): Not Twitch");
             }
         }
     }
@@ -1746,7 +1746,7 @@ function removeOfflineChannels(val) {
     }
 
     if (list.length > 0){
-        console.log("removeOfflineChannels(" + list.length + "):", list.toString());
+        styledConsoleLog("TTVTools", "removeOfflineChannels", list.length + ") " + list.toString());
     }
     updateFunctionMenuButtons();
 }
@@ -1832,7 +1832,7 @@ function addStreamsFromChat(event) {
             obj.player.removeEventListener("ready", playerReadyEventListener);
             obj.player.pause();
 
-            console.log("playerReadyEventListener(v-" + i +"): ["+obj.player.getPlayerState().channelName+"]");
+            styledConsoleLog("TTVTools", "playerReadyEventListener", "(v-" + i +"): ["+obj.player.getPlayerState().channelName+"]");
         }
 
         if (!obj.player.pause()) {
@@ -1993,8 +1993,8 @@ function randomTestButton() {
     console.log( obj.player.getPlayerState().playback +            ' - playback' );
     console.log( obj.player.getPlayerState().ended +               ' - ended' );
     console.log( obj.player.getEnded() +                           ' - getEnded' );
-    console.log (obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
-    console.log (obj.player.getPlaybackStats().fps +               ' - fps' );
+    console.log(obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
+    console.log(obj.player.getPlaybackStats().fps +               ' - fps' );
 
     // obj.player.getQuality();
     // obj.player.setQuality("160p30");
