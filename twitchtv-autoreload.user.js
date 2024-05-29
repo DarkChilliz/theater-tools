@@ -5,7 +5,7 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.0.1
+// @version         1.0.3
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/twitchtv-autoreload.user.js
 // @author          https://greasyfork.org/en/scripts/472868-twitch-auto-reload-when-k-error/code
@@ -28,19 +28,19 @@ function styledConsoleLog(module, func, log) {
     const isEmbed = (loc.hostname == "player.twitch.tv");
     const channelName = (channelNameEmbed || channelNameTwitch);
 
-    styledConsoleLog("TTVAutoReload", loc.href, "Checking for [https://player.twitch.tv/?channel=]: " + isEmbed + " (" + channelNameEmbed + ")");
-    styledConsoleLog("TTVAutoReload", loc.href, "Checking for [#live-page-chat]: " + (id ? "true" : "false"));
+    // styledConsoleLog("TTVAutoReload", loc.origin + loc.pathname, "Checking for [player.twitch.tv/?channel=]: " + isEmbed + (channelNameEmbed ? " (" + channelNameEmbed + ")" : ""));
+    // styledConsoleLog("TTVAutoReload", loc.origin + loc.pathname, "Checking for [#live-page-chat]: " + (id ? "true" : "false"));
 
     if (id || isEmbed && channelNameEmbed) {
-        styledConsoleLog("TTVAutoReload", loc.href, "Initialising... " + channelName);
+        styledConsoleLog("TTVAutoReload", loc.origin + loc.pathname, "Initialising... " + channelName);
         setInterval(() => {
             var button = document.querySelector(".player-overlay-background button:not(.qeepv)"); //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
             if (button) {
                 button.click();
-                styledConsoleLog("TTVAutoReload", loc.href, "Reloading... " + channelName);
+                styledConsoleLog("TTVAutoReload", loc.origin + loc.pathname, "Reloading... " + channelName);
             }
         }, 3500); //default: 1000
     } else {
-        styledConsoleLog("TTVAutoReload", loc.href, "Skipping...");
+        styledConsoleLog("TTVAutoReload", loc.origin + loc.pathname, "Skipping...");
     }
 })();
