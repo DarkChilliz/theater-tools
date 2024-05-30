@@ -1,72 +1,67 @@
-<div id="funcMenuDiv">
-    <img id="playerStyleImg" src="" alt="">
+<div id="theaterMenuDiv">
+  <img id="theaterRunBtn" src="" alt="">
+  <img id="theaterMenuBtn" src="" alt="">
+  <div id="theaterMenuTop" style="display:none;"></div>
+  <div id="theaterMenuBot" style="display:none;">
+    <div id="theaterMenuPage0" onclick="evtchk(event)">
 
-    <img id="functionsMenuImg" src="" alt="">
-
-    <div id="funcMenuTop" style="display:none;"></div>
-    <div id="funcMenuBot" style="display:none;">
-        <div id="fm0" onclick="funcEvtChk(event)">
-
-            <div id="btnLine1" class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn removeOfflineChannels" title="Remove offline players and remove their chats from the list"
-                        onclick="removeOfflineChannels(1)">removeOffline
-                    </button>
-                </div>
-                <div class="btnInner">
-                    <button class="funcBtn removeOfflineStreams" title="Unload offline players but keep their chats in the list"
-                        onclick="removeOfflineChannels()">unloadOffline
-                    </button>
-                </div>
-            </div>
-
-            <div class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn unloadAllChats" title="Unload all chats except active stream. [chats loaded / all chats]"
-                        onclick="unloadAllChats(event)">loadedChats
-                    </button>
-                </div>
-                <div class="btnInner">
-                    <button class="funcBtn addStreamsFromChat" title="Add stream from chat list. [streams loaded / all chats]"
-                        onclick="addStreamsFromChat(event)">addStreams
-                    </button>
-                </div>
-            </div>
-
-            <div class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn setGameMode" title="Game mode for the top stream in the list"
-                        onclick="setGameMode()">gameMode
-                    </button>
-                </div>
-                <div class="btnInner">
-                    <button class="funcBtn setMaxQualityMode" title="Max quality mode for the top stream in the list"
-                        onclick="setMaxQualityMode()">maxQualityMode
-                    </button>
-                </div>
-            </div>
-
-            <div class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn fixStalledPlayersButton"
-                        onclick="fixStalledPlayersButton()">fixStalledPlayers
-                    </button>
-                </div>
-                <div class="btnInner">
-                    <button class="funcBtn watchPartyMode"
-                        onclick="watchPartyMode()">watchPartyMode
-                    </button>
-                </div>
-            </div>
-
-            <div class="btnLine">
-                <div class="btnInner">
-                    <button class="funcBtn randomTestButton"
-                        onclick="randomTestButton()">randomTestButton
-                    </button>
-                </div>
-            </div>
-
+      <div id="theaterBtnLine1" class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn removeOfflineChannels" title="Remove offline players and remove their chats from the list" onclick="removeOfflineChannels(1)">removeOffline</button>
         </div>
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn removeOfflineStreams" title="Unload offline players but keep their chats in the list" onclick="removeOfflineChannels()">unloadOffline</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn unloadAllChats" title="Unload all chats except currently selected chat, unless shift is held then unload all. [chats loaded / all chats]" onclick="unloadAllChats(event)">loadedChats</button>
+        </div>
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn addStreamsFromChat" title="Add stream from chat list. [streams loaded / all chats]" onclick="addStreamsFromChat(event)">addStreams</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn" id="addKickStreams" title="Add a kick stream by creating a kick embed with the twitch name. Shift click to force recreate kick embed" onclick="addKickStreams(event)">addKickStreams</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn setGameMode" title="Game mode for the top stream in the list" onclick="setGameMode()">gameMode</button>
+        </div>
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn setMaxQualityMode" title="Max quality mode for the top stream in the list" onclick="setMaxQualityMode()">maxQualityMode</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn fixStalledPlayersButton" onclick="fixStalledPlayersButton()">fixStalledPlayers</button>
+        </div>
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn watchPartyMode" onclick="watchPartyMode()">watchPartyMode</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn useGoFullScreen" onclick="setGoFullScreen()">useGoFullScreen</button>
+        </div>
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn useChgPlayerStyleCaseOne" onclick="setChgPlayerStyleCaseOne()">useStyleCaseOne</button>
+        </div>
+      </div>
+
+      <div class="theaterBtnDiv">
+        <div class="theaterBtnWrapper">
+          <button class="theaterBtn randomTestButton" onclick="randomTestButton()">randomTestButton</button>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>

@@ -35,8 +35,9 @@ function chgPlayerStyle() {
         t = [],
         l = [],
         playerNotConfigured = function() {
-            styledConsoleLog("TTVTools", "chgPlayerStyle", "not configured for [" + fldids.length + "] players");
-        };
+            styledConsoleLog(0, "chgPlayerStyle", "not configured for [" + fldids.length + "] players");
+        },
+        useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
 
     //1920x1080 (16:9 aspect ratio)
     if (screen.width / screen.height == 1.7777777777777777 || screen.width == 1920 && screen.height == 1080) {
@@ -44,7 +45,7 @@ function chgPlayerStyle() {
             case 0:
                 break;
             case 1:
-                if (useChgPlayerStyleCaseOne === true) {
+                if (useChgPlayerStyleCaseOne === "true") {
                     w[0] = clientW;
                     h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
@@ -717,7 +718,7 @@ function chgPlayerStyle() {
             case 0:
                 break;
             case 1:
-                if (useChgPlayerStyleCaseOne === true) {
+                if (useChgPlayerStyleCaseOne === "true") {
                     w[0] = clientW;
                     h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
@@ -1377,6 +1378,9 @@ function chgPlayerStyle() {
                 playerNotConfigured;
         }
     }
+
+    //kickSizeWrapper
+    updKickSizeWrapper();
 }
 
 function goFullScreen() {
@@ -1421,8 +1425,8 @@ function chkQuality(array, string) {
 function setQuality(strmID, strmQuality) {
     let currentQuality = "",
         checkQuality = "",
-        pad = 7,
         obj = document.getElementById("v-" + fldids[strmID]);
+
     if (obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
         currentQuality = obj.player.getQuality();
         if (currentQuality !== strmQuality) {
@@ -1430,10 +1434,10 @@ function setQuality(strmID, strmQuality) {
                 checkQuality = chkQuality(obj.quality, strmQuality);
                 obj.player.setQuality( checkQuality );
 
-                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + ": " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
+                styledConsoleLog(0, "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + ": " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
             }
             else {
-                styledConsoleLog("TTVTools", "setQuality", "(v-" + fldids[strmID] + "): Not Twitch");
+                styledConsoleLog(0, "setQuality", "(v-" + fldids[strmID] + "): Not Twitch");
             }
         }
     }
@@ -1442,8 +1446,9 @@ function setQuality(strmID, strmQuality) {
 function chgQuality(strmID, strmQuality) {
     let length = 0,
         aspect_ratio = screen.width / screen.height,
+        gameMode = localStorage.getItem("gameMode"),
         maxQualityMode = localStorage.getItem("maxQualityMode"),
-        gameMode = localStorage.getItem("gameMode");
+        watchParty = localStorage.getItem("watchParty");
 
     if (gameMode === "true") {
         quality = ["480p30","160p30","160p30"];
@@ -1454,7 +1459,7 @@ function chgQuality(strmID, strmQuality) {
     if (maxQualityMode === "true") {
         quality[0] = "chunked";
     }
-    if (watchParty === true) {
+    if (watchParty === "true") {
         length = 1;
         quality[1] = "chunked";
     }
@@ -1517,31 +1522,16 @@ function chgQuality(strmID, strmQuality) {
 
 // Miscellaneous Functions /////////////////////////////////////////////////////////////
 
-function chgCookie_(chk, val, txt) {
-    var i = new Date();
-    i.setTime(i.getTime() + ((chk ? 365 : 0) * 24 * 60 * 60 * 1000));
-    document.cookie = val + "=" + (chk ? (txt == undefined ? 1 : txt) : "") + ";expires=" + i.toUTCString() + ";path=/"
-}
-
-function getCookie_(txt) {
-    if (txt) {
-        return getvarval(document.cookie.replace(/\s+/g, "").split(";"), txt)
-    }
-    else {
-        return document.cookie.replace(/\s+/g, "").split(";")
-    }
-}
-
-function updChatIndx() {
+function reorderChatsArr() {
     //https://www.w3schools.com/js/js_cookies.asp
     var chatsel = document.getElementById("chatsel"),
         chatmen = document.getElementById("chatmen"),
         cookieName = "sesssave",
-        sesssave = getCookie_(cookieName),
+        sesssave = getCookie(cookieName),
         sesssaveLowerCase = sesssave.toLowerCase();
 
     if ( sesssave !== sesssaveLowerCase ) {
-        chgCookie_( 1, cookieName, sesssaveLowerCase );
+        chgCookie( 1, cookieName, sesssaveLowerCase );
     }
 
     // https://morioh.com/p/0b5bd0ececd4
@@ -1622,56 +1612,31 @@ function updChatIndx() {
     }
 }
 
-function openFuncMenu(val) {
+function openTheaterMenu(val) {
     if (val == undefined) {
-        val = document.getElementById("funcMenuBot").style.display; //funcMenuDiv
+        val = document.getElementById("theaterMenuBot").style.display;
     }
-    if (val) { //show menu (display = "")
-        updateFunctionMenuButtons();
-        // document.getElementById("functionsMenuImg").classList.add('change'); //https://www.w3schools.com/howto/howto_css_menu_icon.asp
-
-        document.getElementById("funcMenuTop").style.display = ""; //"inline"
-        document.getElementById("funcMenuBot").style.display = ""; //"inline"
-        document.getElementById("funcMenuDiv").style.right = "0px";
-        document.getElementById("funcMenuDiv").style.width = "340px";
-        document.getElementById("funcMenuBot").style.background = "#202023 none repeat scroll 0% 0%"; //funcMenuDiv
-        document.getElementById("funcMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
+    if (val) {
+        document.getElementById("theaterMenuTop").style.display = "";
+        document.getElementById("theaterMenuBot").style.display = "";
+        document.getElementById("theaterMenuDiv").style.right = "0px";
+        document.getElementById("theaterMenuDiv").style.width = "340px";
+        document.getElementById("theaterMenuBot").style.background = "#202023 none repeat scroll 0% 0%";
+        document.getElementById("theaterMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
     }
-    else { //hide menu (display = "none")
-        // document.getElementById("functionsMenuImg").classList.remove('change');
+    else {
+        document.getElementById("theaterMenuTop").style.display = "none";
+        document.getElementById("theaterMenuBot").style.display = "none";
 
-        document.getElementById("funcMenuTop").style.display = "none";
-        document.getElementById("funcMenuBot").style.display = "none";
-
-        document.getElementById("funcMenuDiv").style.right = ""; //"290px", "254px"
-        document.getElementById("funcMenuDiv").style.width = "";
-        document.getElementById("funcMenuDiv").style.background = "";
-    }
-}
-
-function evtchk(event) {
-    if (event.ctrlKey) {
-        openmenu(0);
-        openFuncMenu(0);
-        chgvolume(100);
-        updChatIndx();
-        chgQuality();
-        goFullScreen();
-    }
-}
-
-function funcEvtChk(event) {
-    if (event.ctrlKey) {
-        openFuncMenu(0);
-        chgvolume(100);
-        chgQuality();
-        goFullScreen();
+        document.getElementById("theaterMenuDiv").style.right = ""; //"290px", "254px"
+        document.getElementById("theaterMenuDiv").style.width = "";
+        document.getElementById("theaterMenuDiv").style.background = "";
     }
 }
 
 function styledConsoleLog(module, func, log) {
     //https://dev.to/annlin/consolelog-with-css-style-1mmp
-    console.log("%c" + module + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
+    console.log("%c" + (module || "Theater-Tools") + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
 
     //#f67810
     //#e36c09
@@ -1685,49 +1650,7 @@ function styledConsoleLog(module, func, log) {
     //#755000
 }
 
-// Update Function Menu Buttons ////////////////////////////////////////////////////////
-
-function updateUnloadAllChatsButton() {
-    var loadedChats = 0;
-    for(let indx in chats) {
-        let obj = document.getElementById("c-" + chats[indx]);
-
-        if (obj.innerHTML) {
-            loadedChats++;
-        }
-    }
-
-    if (loadedChats >= 0) {
-        // if (loadedChats == 0) { //load chat if 0
-        //     let chatsel = document.getElementById("chatsel"),
-        //         indexOfSelectedChat = chatsel.selectedIndex,
-        //         obj = document.getElementById("v-" + fldids[indexOfSelectedChat]);
-
-        //     if (!obj.player.getPlayerState().videoID) {
-        //         chgchat();
-        //     }
-        // }
-
-        let obj = document.getElementsByClassName("unloadAllChats")[0];
-        obj.innerText = "loadedChats " + loadedChats + " / " + chats.length;
-    }
-}
-
-function updateAddStreamsFromChatButton() {
-    const loadedStreams = chans.length;
-
-    if (loadedStreams >= 0) {
-        let obj = document.getElementsByClassName("addStreamsFromChat")[0];
-        obj.innerText = "addStreams " + loadedStreams + " / " + chats.length;
-    }
-}
-
-function updateFunctionMenuButtons() {
-    updateUnloadAllChatsButton();
-    updateAddStreamsFromChatButton();
-}
-
-// Button Menu Functions ///////////////////////////////////////////////////////////////
+// button.click() functions ///////////////////////////////////////////////////////////////
 
 function removeOfflineChannels(val) {
     var list = [],
@@ -1746,45 +1669,26 @@ function removeOfflineChannels(val) {
     }
 
     if (list.length > 0){
-        styledConsoleLog("TTVTools", "removeOfflineChannels", list.length + ") " + list.toString());
+        styledConsoleLog(0, "removeOfflineChannels", list.length + ") " + list.toString());
     }
-    updateFunctionMenuButtons();
 }
 
-function unloadAllChats() {
-    // add number of loaded chats to button text
-    // dont unload selected chat.. only if shift is held
+function unloadAllChats(event) {
+    var selectedChat = chats[document.getElementById("chatsel").selectedIndex];
 
-    var chatsel = document.getElementById("chatsel"),
-        // c = chans.slice(),
-        indexOfSelectedChat = chatsel.selectedIndex,
-        // selectedChat = chats[indexOfSelectedChat],
-        obj = document.getElementById("v-" + fldids[indexOfSelectedChat]);
-
-    /*
     if (event.shiftKey) {
-
-    }
-    if (!document.getElementById("c-" + chats[indx]).innerHTML) {
-        genchat(indx)
-    }
-
-    for(let i = 0, l = chats.length; i < l; i++) {
-
-    }
-    */
-
-    for(let indx in chats) {
-        // if (chats[indx] != selectedChat) {}
-        let obj = document.getElementById("c-" + chats[indx]);
-        obj.textContent = '';
-    }
-
-    if (!obj.player.getPlayerState().videoID) {
+        for(let indx in chats) {
+            document.getElementById("c-" + chats[indx]).textContent = '';
+        }
         chgchat();
+    } else {
+        for(let i = 0, l = chats.length; i < l; i++) {
+            if (chats[i] !== selectedChat) {
+                document.getElementById("c-" + chats[i]).textContent = '';
+            }
+        }
+        updUnloadAllChatsBtn();
     }
-
-    updateFunctionMenuButtons();
 }
 
 function addStreamsFromChat(event) {
@@ -1794,35 +1698,24 @@ function addStreamsFromChat(event) {
         addfromui(1, chats.toString());
     }
     else {
-        updChatIndx();
-
         let c = chats.slice(),
             list = [];
-
-        // console.log(c.length, "c.length a");
 
         for(let indx in chans) {
             if (c.indexOf(chans[indx]) > -1) {
                 list.push(indx);
-                // console.log(indx, "a")
             }
-            // console.log(indx, "b")
         }
-        // console.log(list, "before")
         list.sort(function(a, b){return b-a});
-        // console.log(list, "after")
 
         for(let indx in list) {
             c.splice(list[indx], 1);
-            // console.log(c.splice(list[indx], 1), "aaaaa");
         }
 
-        // console.log(c.length, "c.length b");
         c.splice(7, c.length);
 
         addfromui(1, c.toString());
     }
-    updateFunctionMenuButtons();
 
     for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[i]);
@@ -1832,7 +1725,7 @@ function addStreamsFromChat(event) {
             obj.player.removeEventListener("ready", playerReadyEventListener);
             obj.player.pause();
 
-            styledConsoleLog("TTVTools", "playerReadyEventListener", "(v-" + i +"): ["+obj.player.getPlayerState().channelName+"]");
+            styledConsoleLog(0, "playerReadyEventListener", "(v-" + i +"): "+obj.player.getPlayerState().channelName);
         }
 
         if (!obj.player.pause()) {
@@ -1843,23 +1736,83 @@ function addStreamsFromChat(event) {
     }
 }
 
+
+
+function updKickSizeWrapper() {
+    let kickSizeWrapperArrLength = document.getElementsByClassName("kickSizeWrapper").length;
+
+    if (kickSizeWrapperArrLength > 0) {
+        let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
+        const r = 1.7777777777777777;
+
+        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
+            let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
+                maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
+                width = 0,
+                left = 0;
+
+            width = (maxHeight * r < maxWidth ? maxHeight * r : maxWidth);
+            left = (width < maxWidth ? (maxWidth - width) / 2 : 0);
+
+            kickSizeWrapperObjArr[i].style = "height: 100%;" +
+                                              "width: " + width + "px;" +
+                                              "left: "  + left  + "px;";
+        }
+    }
+}
+
+function addKickStreams(event) {
+    const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
+    const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
+    const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
+
+    for(let i = 0, l = fldids.length; i < l; i++) {
+        let obj = document.getElementById("v-" + fldids[i]);
+
+        if (obj.player.getQualities().length == 0) {
+            let txt = obj.player.getPlayerState().channelName,
+                isKick = obj.kick;
+
+            if (isKick !== true || event.shiftKey) {
+                obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + txt + kickPlayerEmbed[1] + kickSizeWrapper[1];
+
+                if (isKick !== true) {
+                    // obj.player = null;
+                    // obj.twitch = false;
+                    obj.kick = true;
+                }
+            }
+
+            document.getElementById("c-" + txt).innerHTML = kickChatEmbed[0] + txt + kickChatEmbed[1];
+            document.getElementById("chatdiv").style.background = "inherit";
+        }
+    }
+    updKickSizeWrapper();
+}
+
+
+
 function setGameMode(isfirstrun) {
     let obj = document.getElementsByClassName("setGameMode")[0],
-        gameMode = "false";
+        gameMode = localStorage.getItem("gameMode");
 
     if (typeof isfirstrun !== "undefined") {
-        switch(localStorage.getItem("gameMode")) {
+        switch(gameMode) {
             case "false":
             case "true":
-                gameMode = localStorage.getItem("gameMode");
                 break;
             case null:
             default:
+                gameMode = "false";
                 localStorage.setItem("gameMode", "false");
                 break;
         }
+
+        if (gameMode === "true") {
+            obj.classList.add("active");
+        }
     } else {
-        switch(localStorage.getItem("gameMode")) {
+        switch(gameMode) {
             case "false":
                 gameMode = "true";
                 break;
@@ -1868,52 +1821,54 @@ function setGameMode(isfirstrun) {
                 break;
         }
         localStorage.setItem("gameMode", gameMode);
-    }
 
-    if (gameMode === "true") {
-        obj.classList.add("active");
-    }
-    else {
-        obj.classList.remove("active");
+        if (gameMode === "true") {
+            obj.classList.add("active");
+        } else {
+            obj.classList.remove("active");
+        }
     }
 }
 
 function setMaxQualityMode(isfirstrun) {
     let obj = document.getElementsByClassName("setMaxQualityMode")[0],
-        maxQualityMode = "false";
+        maxQualityMode = localStorage.getItem("maxQualityMode");
 
     if (typeof isfirstrun !== "undefined") {
-        switch(localStorage.getItem("maxQualityMode")) {
+        switch(maxQualityMode) {
             case "false":
+                break;
             case "true":
-                maxQualityMode = localStorage.getItem("maxQualityMode");
+                obj.classList.add("active");
                 break;
             case null:
             default:
+                maxQualityMode = "false";
                 localStorage.setItem("maxQualityMode", "false");
                 break;
         }
     } else {
-        switch(localStorage.getItem("maxQualityMode")) {
+        switch(maxQualityMode) {
             case "false":
                 maxQualityMode = "true";
+                obj.classList.add("active");
                 break;
             case "true":
                 maxQualityMode = "false";
+                obj.classList.remove("active");
                 break;
         }
         localStorage.setItem("maxQualityMode", maxQualityMode);
     }
-
-    if (maxQualityMode === "true") {
-        obj.classList.add("active");
-    }
-    else {
-        obj.classList.remove("active");
-    }
 }
 
+
+
 function fixStalledPlayers() {
+    if (document.getElementById("theaterMenuBot").style.display == "") {
+        return;
+    }
+
     let run = [];
 
     for(let i = 0, l = fldids.length; i < l; i++) {
@@ -1925,20 +1880,20 @@ function fixStalledPlayers() {
                 obj.player.pause();
                 obj.player.play();
                 run[run.length] = i;
-                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".fps == " + playerState.stats.videoStats.fps);
+                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".fps == " + playerState.stats.videoStats.fps);
             }
         } else if (playerState.stats.videoStats.bufferSize < 0) {
             if (playerState.playback !== "Idle" && playerState.ended == false) {
                 relstream(i,-1);
                 run[run.length] = i;
-                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".bufferSize == " + playerState.stats.videoStats.bufferSize);
+                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".bufferSize == " + playerState.stats.videoStats.bufferSize);
             }
         } else if (playerState.currentTime === playerState.ttvtools_currentTime) {
             if (playerState.playback !== "Idle" && playerState.ended == false) {
                 obj.player.pause();
                 obj.player.play();
                 run[run.length] = i;
-                styledConsoleLog("TTVTools", "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".currentTime == " + playerState.ttvtools_currentTime + " / " + playerState.currentTime);
+                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".currentTime == " + playerState.ttvtools_currentTime + " / " + playerState.currentTime);
             }
         }
 
@@ -1954,29 +1909,141 @@ function fixStalledPlayers() {
     }
 }
 
-function fixStalledPlayersButton() {
+function fixStalledPlayersButton(isfirstrun) {
     //https://stackoverflow.com/a/21638776
-    var obj = document.getElementsByClassName("fixStalledPlayersButton")[0];
+    var obj = document.getElementsByClassName("fixStalledPlayersButton")[0],
+        useFixStalledPlayers = localStorage.getItem("useFixStalledPlayers");
 
-    if (useFixStalledPlayers === null) {
-        useFixStalledPlayers = window.setInterval(fixStalledPlayers,3500);
-        obj.classList.add("active");
+    if (typeof isfirstrun !== "undefined") {
+        switch(useFixStalledPlayers) {
+            case "false":
+                break;
+            case "true":
+                fixStalledPlayersState = window.setInterval(fixStalledPlayers,3500);
+                obj.classList.add("active");
+                break;
+            case null:
+            default:
+                localStorage.setItem("useFixStalledPlayers", "false");
+                break;
+        }
     } else {
-        window.clearInterval(useFixStalledPlayers);
-        useFixStalledPlayers = null;
-        obj.classList.remove("active");
+        switch(useFixStalledPlayers) {
+            case "false":
+                if (fixStalledPlayersState !== null) {
+                    window.clearInterval(fixStalledPlayersState);
+                }
+                useFixStalledPlayers = "true";
+                fixStalledPlayersState = window.setInterval(fixStalledPlayers,3500);
+                obj.classList.add("active");
+                break;
+            case "true":
+                useFixStalledPlayers = "false";
+                window.clearInterval(fixStalledPlayersState);
+                fixStalledPlayersState = null;
+                obj.classList.remove("active");
+                break;
+        }
+        localStorage.setItem("useFixStalledPlayers", useFixStalledPlayers);
     }
 }
 
-function watchPartyMode() {
-    var obj = document.getElementsByClassName("watchPartyMode")[0];
-    watchParty = !watchParty;
 
-    if (watchParty === true) {
-        obj.classList.add("active");
+
+function watchPartyMode(isfirstrun) {
+    let obj = document.getElementsByClassName("watchPartyMode")[0],
+        watchParty = localStorage.getItem("watchParty");
+
+    if (typeof isfirstrun !== "undefined") {
+        switch(watchParty) {
+            case "false":
+                break;
+            case "true":
+                obj.classList.add("active");
+                break;
+            case null:
+            default:
+                watchParty = "false";
+                localStorage.setItem("watchParty", "false");
+                break;
+        }
+    } else {
+        switch(watchParty) {
+            case "false":
+                watchParty = "true";
+                obj.classList.add("active");
+                break;
+            case "true":
+                watchParty = "false";
+                obj.classList.remove("active");
+                break;
+        }
+        localStorage.setItem("watchParty", watchParty);
     }
-    else {
-        obj.classList.remove("active");
+}
+
+function setGoFullScreen(isfirstrun) {
+    let obj = document.getElementsByClassName("useGoFullScreen")[0],
+        useGoFullScreen = localStorage.getItem("useGoFullScreen");
+
+    if (typeof isfirstrun !== "undefined") {
+        switch(useGoFullScreen) {
+            case "false":
+                break;
+            case "true":
+                obj.classList.add("active");
+                break;
+            case null:
+            default:
+                useGoFullScreen = "false";
+                localStorage.setItem("useGoFullScreen", "false");
+                break;
+        }
+    } else {
+        switch(useGoFullScreen) {
+            case "false":
+                useGoFullScreen = "true";
+                obj.classList.add("active");
+                break;
+            case "true":
+                useGoFullScreen = "false";
+                obj.classList.remove("active");
+                break;
+        }
+        localStorage.setItem("useGoFullScreen", useGoFullScreen);
+    }
+}
+
+function setChgPlayerStyleCaseOne(isfirstrun) {
+    let obj = document.getElementsByClassName("useChgPlayerStyleCaseOne")[0],
+        useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
+
+    if (typeof isfirstrun !== "undefined") {
+        switch(useChgPlayerStyleCaseOne) {
+            case "false":
+                break;
+            case "true":
+                obj.classList.add("active");
+                break;
+            case null:
+            default:
+                useChgPlayerStyleCaseOne = "false";
+                localStorage.setItem("useChgPlayerStyleCaseOne", "false");
+                break;
+        }
+    } else {
+        switch(useChgPlayerStyleCaseOne) {
+            case "false":
+                useChgPlayerStyleCaseOne = "true";
+                localStorage.setItem("useChgPlayerStyleCaseOne", useChgPlayerStyleCaseOne);
+                obj.classList.add("active");
+                break;
+            case "true":
+                useChgPlayerStyleCaseOne = "false";
+                localStorage.setItem("useChgPlayerStyleCaseOne", useChgPlayerStyleCaseOne);
+                obj.classList.remove("active");
+                break;
+        }
     }
 }
 
@@ -1993,8 +2060,8 @@ function randomTestButton() {
     console.log( obj.player.getPlayerState().playback +            ' - playback' );
     console.log( obj.player.getPlayerState().ended +               ' - ended' );
     console.log( obj.player.getEnded() +                           ' - getEnded' );
-    console.log(obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
-    console.log(obj.player.getPlaybackStats().fps +               ' - fps' );
+    console.log( obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
+    console.log( obj.player.getPlaybackStats().fps +               ' - fps' );
 
     // obj.player.getQuality();
     // obj.player.setQuality("160p30");
@@ -2008,109 +2075,142 @@ function randomTestButton() {
     // })();
 }
 
-// Setup Functions /////////////////////////////////////////////////////////////////////
+// Update Function Menu Buttons ////////////////////////////////
 
-function updMenuElement() {
-    //https://forum.webflow.com/t/23730
-    document.getElementById("menubtn").onclick = function() {
-        openmenu();
-        updChatIndx();
-        try {
-            if (!document.getElementById("funcMenuBot").style.display) {
-                updateFunctionMenuButtons();
-            }
+function updUnloadAllChatsBtn() {
+    var loadedChats = 0;
+
+    for(let indx in chats) {
+        let obj = document.getElementById("c-" + chats[indx]);
+
+        if (obj.innerHTML) {
+            loadedChats++;
         }
-        catch(err) {}
     }
+
+    let obj = document.getElementsByClassName("unloadAllChats")[0];
+    obj.innerText = "loadedChats " + loadedChats + " / " + chats.length;
 }
 
-function triggerScript() {
-    document.removeEventListener("triggerScript", triggerScript);
+function updAddStreamsFromChatBtn() {
+    let obj = document.getElementsByClassName("addStreamsFromChat")[0];
 
-    let playerStyleImgObj = document.getElementById("playerStyleImg"),
-        functionsMenuImgObj = document.getElementById("functionsMenuImg");
+    obj.innerText = "addStreams " + chans.length + " / " + chats.length;
+}
 
-    playerStyleImgObj.onclick = function(event) {
+// Rewrite TwitchTheater.tv Functions //////////////////////////////////////////////////
+
+evtchk = (function() {
+    //https://stackoverflow.com/a/9134757
+    var cached_function = evtchk; //evtchk(event)
+    return function() {
+        cached_function.apply(this, arguments);
+        if (arguments[0].ctrlKey) {
+            openTheaterMenu(0);
+            chgvolume(100);
+            chgQuality();
+            goFullScreen();
+        }
+    };
+})();
+
+chgchat = (function() {
+    var cached_function = chgchat; //chgchat(indx)
+    return function() {
+        cached_function.apply(this, arguments);
+        updUnloadAllChatsBtn();
+    };
+})();
+
+updlayout = (function() {
+    var cached_function = updlayout; //updlayout(oddrow)
+    return function() {
+        cached_function.apply(this, arguments);
+        updKickSizeWrapper();
+    };
+})();
+
+moveposup = (function() {
+    var cached_function = moveposup; //moveposup(val)
+    return function() {
+        cached_function.apply(this, arguments);
+        reorderChatsArr();
+    };
+})();
+
+addstreams = (function() {
+    var cached_function = addstreams; //addstreams(val, txt, list)
+    return function() {
+        cached_function.apply(this, arguments);
+        reorderChatsArr();
+        updUnloadAllChatsBtn();
+        updAddStreamsFromChatBtn();
+    };
+})();
+
+remstream = (function() {
+    var cached_function = remstream; //remstream(val, txt, chk)
+    return function() {
+        cached_function.apply(this, arguments);
+        reorderChatsArr();
+        updUnloadAllChatsBtn();
+        updAddStreamsFromChatBtn();
+    };
+})();
+
+remchat = (function() {
+    var cached_function = remchat; //remchat(indx, chk)
+    return function() {
+        cached_function.apply(this, arguments);
+        reorderChatsArr();
+        updUnloadAllChatsBtn();
+        updAddStreamsFromChatBtn();
+    };
+})();
+
+// Setup Functions /////////////////////////////////////////////////////////////////////
+
+function onScriptLoad() {
+    document.removeEventListener("onScriptLoad", onScriptLoad);
+
+    setGameMode(1);
+    setMaxQualityMode(1);
+    fixStalledPlayersButton(1);
+    watchPartyMode(1);
+    setGoFullScreen(1);
+    setChgPlayerStyleCaseOne(1);
+
+    setTimeout(() => {
+        updUnloadAllChatsBtn();
+        updAddStreamsFromChatBtn();
+    }, 2000);
+
+    document.getElementById("theaterRunBtn").onclick = function onclick(event) {
         if (event.ctrlKey) {
-            openFuncMenu(0);
+            openTheaterMenu(0);
             chgvolume(100);
             playpause(1);
-            theatr.playm = 0;
         }
         chgQuality();
 
-        if (useGoFullScreen) {
+        if (localStorage.getItem("useGoFullScreen") === "true") {
             goFullScreen();
-        }
-        else {
+        } else {
             chgPlayerStyle();
         }
     };
 
-    functionsMenuImgObj.onclick = function() {
-        openFuncMenu();
+    document.getElementById("theaterMenuBtn").onclick = function onclick() {
+        openTheaterMenu();
     };
-}
-
-function onEventTrigger() {
-    chgQuality();
-
-    setGameMode(1);
-    setMaxQualityMode(1);
-    fixStalledPlayersButton(); //TODO: [TEMP] replace with cookie state save
-}
-
-function setEventTrigger() {
-    //https://stackoverflow.com/questions/28610365
-    //https://dev.twitch.tv/docs/embed/everything/
-    //https://dev.twitch.tv/docs/embed/video-and-clips/#interactive-frames-for-live-streams-and-vods
-    if (fldids.length > 0) {
-        let indx = ("v-" + fldids[fldids.length - 1]),
-            obj = document.getElementById(indx);
-
-        function playingEventListener() {
-            styledConsoleLog("TTVTools", "setEventTrigger.playingEventListener", "(" + indx + ") " + obj.player.getPlayerState().channelName);
-            rmvEvtLsnr();
-            onEventTrigger();
-        }
-        function offlineEventListener() {
-            styledConsoleLog("TTVTools", "setEventTrigger.offlineEventListener", "(" + indx + ") " + obj.player.getPlayerState().channelName);
-            rmvEvtLsnr();
-            onEventTrigger();
-        }
-        function rmvEvtLsnr() {
-            obj.player.removeEventListener("playing", playingEventListener);
-            obj.player.removeEventListener("offline", offlineEventListener);
-        }
-        obj.player.addEventListener("playing", playingEventListener); //TODO: test "ready" instead of "playing"
-        obj.player.addEventListener("offline", offlineEventListener);
-
-        // setTimeout(function() {
-        //     rmvEvtLsnr();
-        //     onEventTrigger();
-        // }, 10000);
-
-        styledConsoleLog("TTVTools", "setEventTrigger", "fldids.length == " + fldids.length);
-        // console.log("setEventTrigger(): fldids.length ===", fldids.length);
-    }
-    else {
-        loadUserSettings();
-        // setButtonVisibility();
-        styledConsoleLog("TTVTools", "setEventTrigger", "no streams found");
-        // console.log("setEventTrigger(): no streams found");
-    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-var watchParty = false,
-    useGoFullScreen = true,
-    useChgPlayerStyleCaseOne = false,
-    useFixStalledPlayers = null;
+var fixStalledPlayersState = null;
+
 (function() {
-    updMenuElement();
-    document.addEventListener("triggerScript", triggerScript);
-    setTimeout(setEventTrigger, 300);
+    document.addEventListener("onScriptLoad", onScriptLoad);
 })();
 
 ////////////////////////////////////////////////////////////////////////////////////////

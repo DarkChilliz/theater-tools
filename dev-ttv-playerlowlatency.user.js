@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name            dev-twitchtv-playerlowlatency.user.js
+// @name            dev-ttv-playerlowlatency.user.js
 // @namespace       http://localhost:8020/
-// @homepage        http://localhost:8020/twitchtheatertv-tools
+// @homepage        http://localhost:8020/theater-tools
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.1.0006
+// @version         1.1.2.0000
 // @updateURL
-// @downloadURL     http://localhost:8020/twitchtheatertv-tools/dev-twitchtv-playerlowlatency.user.js
+// @downloadURL     http://localhost:8020/theater-tools/dev-ttv-playerlowlatency.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
 // @description     29/04/2021, 1:54:21 am
 // @icon

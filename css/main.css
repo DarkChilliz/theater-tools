@@ -1,18 +1,18 @@
-#functionsMenuImg, #playerStyleImg {
+#theaterMenuBtn, #theaterRunBtn {
     position: absolute;
     /* visibility: hidden; */
     cursor: pointer;
     opacity: 0.5;
 }
 
-#functionsMenuImg {
+#theaterMenuBtn {
     /* display: inline-block; */
     /* cursor: pointer; */
     left: 50px;
     /* top: 5px; */
 }
 
-#funcMenuDiv {
+#theaterMenuDiv {
     position: absolute;
     overflow: hidden;
     min-width: 86px;
@@ -21,7 +21,7 @@
     top: 50px;
 }
 
-#funcMenuTop {
+#theaterMenuTop {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
@@ -31,7 +31,7 @@
     /* top: 50px; */
 }
 
-#funcMenuBot {
+#theaterMenuBot {
     font-size: 0.8em;
     line-height: 1.5em;
     overflow: auto;
@@ -40,15 +40,15 @@
     /* top: 100px; */
 }
 
-#fm0 {
+#theaterMenuPage0 {
     /* padding: 10px 10px; */
     padding: 6px 6px;
 }
 
-.funcBtn:hover {background: rgb(73, 73, 73);}
-.funcBtn:focus {background: rgb(50, 50, 50);}
-.funcBtn:active {color: lightcoral;}
-.funcBtn {
+.theaterBtn:hover {background: rgb(73, 73, 73);}
+.theaterBtn:focus {background: rgb(50, 50, 50);}
+.theaterBtn:active {color: lightcoral;}
+.theaterBtn {
     border: none;
     background-color: rgb(56, 56, 56); /* background-color: inherit; */
     color: whitesmoke;
@@ -67,13 +67,13 @@
 .danger {color: red;}
 .default {color: black;} */
 
-.btnInner, .btnLine {
+.theaterBtnWrapper, .theaterBtnDiv {
     display: inline-block;
 }
-.btnLine {
+.theaterBtnDiv {
     /* text-align: center; */
     width: 100%;
 }
-.btnLine:not(#btnLine1) { /* https://stackoverflow.com/a/12120364 */
+.theaterBtnDiv:not(#theaterBtnLine1) { /* https://stackoverflow.com/a/12120364 */
     padding-top: 4px;
 }
