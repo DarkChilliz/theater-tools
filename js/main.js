@@ -2168,6 +2168,39 @@ remchat = (function() {
     };
 })();
 
+document.getElementById("strc").childNodes[0].onclick = function onclick(event) {
+    playpause(1, null, event);
+};
+
+document.getElementById("strc").childNodes[1].onclick = function onclick(event) {
+    playpause(null, null, event);
+};
+
+playpause = (function() {
+    var cached_function = playpause; //playpause(val, chk)
+    return function() {
+        if (arguments[2] && arguments[2].shiftKey) {
+            let obj = document.getElementById('v-' + fldids[0]);
+
+            if (obj.player) {
+                obj.player.play();
+            }
+
+            for (let i = 1, l = chans.length; i < l; i++) {
+                let obj = document.getElementById('v-' + fldids[i]);
+
+                if (obj.player) {
+                    obj.player.pause();
+                }
+            }
+        } else {
+            cached_function.apply(this, arguments);
+            clearTimeout(theatr.playt);
+            theatr.playm = 0;
+        }
+    };
+})();
+
 // Setup Functions /////////////////////////////////////////////////////////////////////
 
 function onScriptLoad() {
