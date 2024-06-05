@@ -15,6 +15,8 @@ document.getElementById("chatdiv").appendChild(theaterMenuDiv);
 
 // https://stackoverflow.com/a/5926068
 
+// https://stackoverflow.com/a/68854570
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 //original: https://stackoverflow.com/q/52184291
