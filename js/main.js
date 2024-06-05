@@ -2101,70 +2101,98 @@ function updAddStreamsFromChatBtn() {
 // Rewrite TwitchTheater.tv Functions //////////////////////////////////////////////////
 
 evtchk = (function() {
-    //https://stackoverflow.com/a/9134757
     var cached_function = evtchk; //evtchk(event)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         if (arguments[0].ctrlKey) {
             openTheaterMenu(0);
             chgvolume(100);
             chgQuality();
             goFullScreen();
         }
+
+        return result;
     };
+    //https://stackoverflow.com/a/9134757
 })();
 
 chgchat = (function() {
     var cached_function = chgchat; //chgchat(indx)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         updUnloadAllChatsBtn();
+
+        return result;
     };
 })();
 
 updlayout = (function() {
     var cached_function = updlayout; //updlayout(oddrow)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         updKickSizeWrapper();
+
+        return result;
     };
 })();
 
 moveposup = (function() {
     var cached_function = moveposup; //moveposup(val)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         reorderChatsArr();
+
+        return result;
     };
 })();
 
 addstreams = (function() {
     var cached_function = addstreams; //addstreams(val, txt, list)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
+
+        return result;
     };
 })();
 
 remstream = (function() {
     var cached_function = remstream; //remstream(val, txt, chk)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
+
+        return result;
     };
 })();
 
 remchat = (function() {
     var cached_function = remchat; //remchat(indx, chk)
+
     return function() {
-        cached_function.apply(this, arguments);
+        var result = cached_function.apply(this, arguments);
+
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
+
+        return result;
     };
 })();
 
@@ -2178,6 +2206,7 @@ document.getElementById("strc").childNodes[1].onclick = function onclick(event) 
 
 playpause = (function() {
     var cached_function = playpause; //playpause(val, chk)
+
     return function() {
         if (arguments[2] && arguments[2].shiftKey) {
             let obj = document.getElementById('v-' + fldids[0]);
@@ -2194,9 +2223,12 @@ playpause = (function() {
                 }
             }
         } else {
-            cached_function.apply(this, arguments);
+            var result = cached_function.apply(this, arguments);
+
             clearTimeout(theatr.playt);
             theatr.playm = 0;
+
+            return result;
         }
     };
 })();
