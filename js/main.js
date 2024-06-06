@@ -1446,11 +1446,12 @@ function setQuality(strmID, strmQuality) {
 }
 
 function chgQuality(strmID, strmQuality) {
-    let length = 0,
-        aspect_ratio = screen.width / screen.height,
-        gameMode = localStorage.getItem("gameMode"),
-        maxQualityMode = localStorage.getItem("maxQualityMode"),
-        watchParty = localStorage.getItem("watchParty");
+    var length = 0;
+    var quality = [];
+    var aspect_ratio = screen.width / screen.height;
+    var gameMode = localStorage.getItem("gameMode");
+    var maxQualityMode = localStorage.getItem("maxQualityMode");
+    var watchParty = localStorage.getItem("watchParty");
 
     if (gameMode === "true") {
         quality = ["480p30","160p30","160p30"];
