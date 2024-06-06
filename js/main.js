@@ -1527,11 +1527,11 @@ function chgQuality(strmID, strmQuality) {
 
 function reorderChatsArr() {
     //https://www.w3schools.com/js/js_cookies.asp
-    var chatsel = document.getElementById("chatsel"),
-        chatmen = document.getElementById("chatmen"),
-        cookieName = "sesssave",
-        sesssave = getCookie(cookieName),
-        sesssaveLowerCase = sesssave.toLowerCase();
+    var chatsel = document.getElementById("chatsel");
+    var chatmen = document.getElementById("chatmen");
+    var cookieName = "sesssave";
+    var sesssave = getCookie(cookieName);
+    var sesssaveLowerCase = sesssave.toLowerCase();
 
     if ( sesssave !== sesssaveLowerCase ) {
         chgCookie( 1, cookieName, sesssaveLowerCase );
@@ -1561,20 +1561,18 @@ function reorderChatsArr() {
         }
         chats = chats.join('|').toLowerCase().split('|');
 
-        try {
-            if (!document.getElementById("v-" + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
-                chgchat();
-            }
-        }
-        catch(err) {}
+        chgchat();
     }
 
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
     if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        var selectedChat = "",
-            list = [],
-            indx = chats.slice();
+        const selectedChannelName = {
+            chatsel: "",
+            chatmen: "",
+        };
+        let list = [];
+        let indx = chats.slice();
 
         //find 'chats' that have active streams and list them in order of 'chans'
         for(let i = 0, l = chans.length; i < l; i++) {
@@ -1589,7 +1587,8 @@ function reorderChatsArr() {
         }
 
         //get 'selectedIndex' value
-        selectedChat = chats[chatsel.selectedIndex];
+        selectedChannelName["chatsel"] = chats[chatsel.selectedIndex];
+        selectedChannelName["chatmen"] = chats[chatmen.selectedIndex];
 
         //replace 'chatsel' & 'chatmen'
         for(let i = 0, l = list.length; i < l; i++) {
@@ -1602,16 +1601,11 @@ function reorderChatsArr() {
         ctils = list.slice();
 
         //restore 'selectedIndex' value
-        selectedChat = chats.indexOf(selectedChat);
-        chatsel.selectedIndex = selectedChat;
-        chatmen.selectedIndex = selectedChat;
+        chatsel.selectedIndex = chats.indexOf(selectedChannelName["chatsel"]);
 
-        try {
-            if (!document.getElementById("v-" + fldids[chatsel.selectedIndex]).player.getPlayerState().videoID) {
-                chgchat();
-            }
-        }
-        catch(err) {}
+        chgchat();
+
+        chatmen.selectedIndex = chats.indexOf(selectedChannelName["chatmen"]);
     }
 }
 
@@ -1677,21 +1671,22 @@ function removeOfflineChannels(val) {
 }
 
 function unloadAllChats(event) {
-    var selectedChat = chats[document.getElementById("chatsel").selectedIndex];
+    var selectedChannelName = chats[document.getElementById("chatsel").selectedIndex];
 
     if (event.shiftKey) {
-        for(let indx in chats) {
-            document.getElementById("c-" + chats[indx]).textContent = '';
+        for(let chatName of chats) {
+            document.getElementById("c-" + chatName).textContent = '';
         }
         chgchat();
     } else {
-        for(let i = 0, l = chats.length; i < l; i++) {
-            if (chats[i] !== selectedChat) {
-                document.getElementById("c-" + chats[i]).textContent = '';
+        for(let chatName of chats) {
+            if (chatName !== selectedChannelName) {
+                document.getElementById("c-" + chatName).textContent = '';
             }
         }
-        updUnloadAllChatsBtn();
     }
+
+    updUnloadAllChatsBtn();
 }
 
 function addStreamsFromChat(event) {
@@ -1769,12 +1764,16 @@ function addKickStreams(event) {
     const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
     const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
 
+    var chatsel = document.getElementById("chatsel");
+    var selectedChannelName = chats[chatsel.selectedIndex];
+    var hasRun = false;
+
     for(let i = 0, l = fldids.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[i]);
 
         if (obj.player.getQualities().length == 0) {
-            let txt = obj.player.getPlayerState().channelName,
-                isKick = obj.kick;
+            let txt = obj.player.getPlayerState().channelName;
+            let isKick = obj.kick;
 
             if (isKick !== true || event.shiftKey) {
                 obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + txt + kickPlayerEmbed[1] + kickSizeWrapper[1];
@@ -1786,11 +1785,18 @@ function addKickStreams(event) {
                 }
             }
 
+            chgchat(fldids[i]);
             document.getElementById("c-" + txt).innerHTML = kickChatEmbed[0] + txt + kickChatEmbed[1];
-            document.getElementById("chatdiv").style.background = "inherit";
+            hasRun = true;
         }
     }
-    updKickSizeWrapper();
+
+    if (hasRun) {
+        chgchat(fldids[chats.indexOf(selectedChannelName)]);
+
+        updUnloadAllChatsBtn();
+        updKickSizeWrapper();
+    }
 }
 
 
