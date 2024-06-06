@@ -17,6 +17,26 @@ document.getElementById("chatdiv").appendChild(theaterMenuDiv);
 
 // https://stackoverflow.com/a/68854570
 
+    // 1. Function
+    function onKeyDown() {}
+
+    // 2. Method
+    class A {
+        onKeyDown() {}
+    }
+
+    // 3. Static method
+    class B {
+        static onKeyDown() {}
+    }
+
+// https://softwareengineering.stackexchange.com/a/25015
+    "MAJOR.MINOR.REVISION.BUILDNUMBER"
+      "MAJOR", "is a major release (usually many new features or changes to the UI or underlying OS)"
+      "MINOR", "is a minor release (perhaps some new features) on a previous major release"
+      "REVISION", "is usually a fix for a previous minor release (no new functionality)"
+      "BUILDNUMBER", "is incremented for each latest build of a revision."
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 //original: https://stackoverflow.com/q/52184291

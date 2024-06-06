@@ -2070,7 +2070,6 @@ function randomTestButton() {
     // obj.player.setQuality("160p30");
 
     // (function() {
-    //     'use strict';
     //     var button = document.querySelector(".player-overlay-background button");
     //     if (button) {
     //         button.click();
