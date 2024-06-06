@@ -5,7 +5,7 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.0.5.0000
+// @version         1.0.6.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-ttv-autoreload.user.js
 // @author          https://greasyfork.org/en/scripts/472868-twitch-auto-reload-when-k-error/code
@@ -13,13 +13,13 @@
 // @icon
 // ==/UserScript==
 
+"use strict";
+
 function styledConsoleLog(module, func, log) {
     console.log("%c" + (module || "TTVAutoReload") + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
 }
 
 (function() {
-    'use strict';
-
     const id = document.querySelector("#live-page-chat");
     const loc = window.location; //https://developer.mozilla.org/en-US/docs/Web/API/Location#examples
     const params = new URLSearchParams(loc.search); //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get#examples

@@ -1,3 +1,5 @@
+"use strict";
+
 // Set Player Styles ///////////////////////////////////////////////////////////////////
 
 function missingValue(aspect_ratio, width, height) {

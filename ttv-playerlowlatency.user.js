@@ -5,13 +5,15 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.1.2
+// @version         1.1.3
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/twitchtheatertv-tools/raw/main/ttv-playerlowlatency.user.js
 // @author          https://github.com/Nerixyz/ttv-tools
 // @description     29/04/2021, 1:54:21 am
 // @icon
 // ==/UserScript==
+
+"use strict";
 
 // 'beaverjs' ##### import { ContextEventHandler } from 'beaverjs';
 // import { ContextEventHandler } from 'beaverjs';

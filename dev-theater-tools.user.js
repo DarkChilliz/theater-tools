@@ -5,7 +5,7 @@
 // @match           *://*.twitchtheater.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         2.0.0.0003
+// @version         2.2.0.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-theater-tools.user.js
 // @author          http://localhost:8020/
@@ -20,6 +20,8 @@
 // @resource main   http://localhost:8020/theater-tools/js/main.js
 // @match           *://*.darkchilliz.github.io/*
 // ==/UserScript==
+
+"use strict";
 
 function createMenu(html) {
     var theaterMenuDiv = document.createElement("div");
@@ -48,7 +50,6 @@ function onReceiveImgURL(theaterRunBtn, theaterMenuBtn) {
 }
 
 (function () {
-    "use strict";
     createMenu(GM_getResourceText("html"));
     createStyle(GM_getResourceText("css"));
 
