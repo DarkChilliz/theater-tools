@@ -3,9 +3,10 @@
 // @namespace       https://github.com/DarkChilliz
 // @homepage        https://github.com/DarkChilliz/theater-tools
 // @match           *://*.twitchtheater.tv/*
+// @match           *://*.darkchilliz.github.io/*
 // @run-at          document-idle
 // @grant           none
-// @version         2.2.2
+// @version         2.2.3
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/theater-tools/raw/main/theater-tools.user.js
 // @author          https://github.com/DarkChilliz
@@ -13,8 +14,8 @@
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
 // @icon            https://github.com/DarkChilliz/theater-tools/raw/main/img/favicon-192.png
-// @resource icon1  https://github.com/DarkChilliz/theater-tools/raw/main/img/playerstyle.png
-// @resource icon2  https://github.com/DarkChilliz/theater-tools/raw/main/img/functionsmenu.png
+// @resource run    https://github.com/DarkChilliz/theater-tools/raw/main/img/playerstyle.png
+// @resource menu   https://github.com/DarkChilliz/theater-tools/raw/main/img/functionsmenu.png
 // @resource html   https://github.com/DarkChilliz/theater-tools/raw/main/html/content.html
 // @resource css    https://github.com/DarkChilliz/theater-tools/raw/main/css/main.css
 // @resource main   https://github.com/DarkChilliz/theater-tools/raw/main/js/main.js

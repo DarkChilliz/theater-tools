@@ -3,9 +3,10 @@
 // @namespace       http://localhost:8020/
 // @homepage        http://localhost:8020/theater-tools
 // @match           *://*.twitchtheater.tv/*
+// @match           *://*.darkchilliz.github.io/*
 // @run-at          document-idle
 // @grant           none
-// @version         2.2.2.0000
+// @version         2.2.3.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-theater-tools.user.js
 // @author          http://localhost:8020/
@@ -18,7 +19,6 @@
 // @resource html   http://localhost:8020/theater-tools/html/content.html
 // @resource css    http://localhost:8020/theater-tools/css/main.css
 // @resource main   http://localhost:8020/theater-tools/js/main.js
-// @match           *://*.darkchilliz.github.io/*
 // ==/UserScript==
 
 "use strict";
