@@ -2150,11 +2150,58 @@ updlayout = (function() {
     };
 })();
 
+newstream = (function() {
+    setTimeout(() => {
+        var obj = document.getElementsByClassName("extops");
+
+        for(let i = 0, l = obj.length; i < l; i++) {
+            obj[i].childNodes[2].onclick = function onclick(event) {
+                moveposup(i,event);
+            };
+        }
+    }, 1000);
+
+    return function(txt, i, list) { //moveposup(' + val + ',event)
+        var val = genminid(fldids);
+        fldids.push(val);
+        chans.push(txt);
+        vtils.push(txt.split('&')[0]);
+        document.getElementById('strflds').appendChild(document.createElement('div'));
+        document.getElementById('strflds').lastChild.id = val;
+        document.getElementById(val).className = 'menurow';
+        document.getElementById(val).onmouseover = function (event) {
+            chgextctl(event, val)
+        };
+        document.getElementById(val).innerHTML = '<div class="extops"><img src="/x20/aud.png" alt="" style="margin:0" title="Audio from here only" onclick="chgaudio(' + val + ')"><img src="/x20/cht.png" alt="" title="Show this chat" onclick="addfromui(2,' + val + ')"><img src="/x20/mov.png" alt="" title="Move position up" onclick="moveposup(' + val + ',event)"><img src="/x20/rel.png" alt="" title="Reload this stream" onclick="relstream(' + val + ',event)"></div>' + '<a href="" target="_blank"><img id="i-' + val + '" alt="" style="margin:0" title="Open source page"></a><input type="text" id="t-' + val + '" disabled><img src="/x20/eye.png" alt="" title="Show/hide stream" onclick="chgplavis(' + val + ')"><img src="/x20/rem.png" alt="" title="Remove without chat" onclick="remstream(' + val + ')"><img src="/x20/rwc.png" alt="" title="Remove with chat" onclick="remstream(' + val + ',1)">';
+        document.getElementById('t-' + val).value = txt;
+        updsource('i-' + val, txt);
+        document.getElementById(val).firstChild.style.display = document.getElementById('pinc').chk ? '' : 'none';
+        document.getElementById(val).firstChild.style.background = document.getElementById('menudiv').style.background;
+        document.getElementById('playdiv').appendChild(document.createElement('div'));
+        document.getElementById('playdiv').lastChild.id = 'v-' + val;
+        document.getElementById('playdiv').lastChild.style.background = 'black';
+        if (srcharay(list, /^cht=/) > -1) {
+            list = getCookie('s' + (chans.length - 1)).split('/');
+            list.unshift(i);
+            if (list.length > 5) {
+                document.getElementById('v-' + val).plops = list
+            }
+        };
+        genplayer(val, i)
+    };
+})();
+
 moveposup = (function() {
-    var cached_function = moveposup; //moveposup(val)
+    var cached_function = moveposup; //moveposup(val, event)
 
     return function() {
-        var result = cached_function.apply(this, arguments);
+        if (arguments[1] && arguments[1].shiftKey) {
+            for(let i = fldids.indexOf(arguments[0]); i > 0; i--) {
+                var result = cached_function.apply(this, arguments);
+            }
+        } else {
+            var result = cached_function.apply(this, arguments);
+        }
 
         reorderChatsArr();
 
