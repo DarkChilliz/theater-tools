@@ -1647,6 +1647,29 @@ function styledConsoleLog(module, func, log) {
     //#755000
 }
 
+function updKickSizeWrapper() {
+    let kickSizeWrapperArrLength = document.getElementsByClassName("kickSizeWrapper").length;
+
+    if (kickSizeWrapperArrLength > 0) {
+        let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
+        const r = 1.7777777777777777;
+
+        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
+            let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
+                maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
+                width = 0,
+                left = 0;
+
+            width = (maxHeight * r < maxWidth ? maxHeight * r : maxWidth);
+            left = (width < maxWidth ? (maxWidth - width) / 2 : 0);
+
+            kickSizeWrapperObjArr[i].style = "height: 100%;" +
+                                              "width: " + width + "px;" +
+                                              "left: "  + left  + "px;";
+        }
+    }
+}
+
 // button.click() functions ///////////////////////////////////////////////////////////////
 
 function removeOfflineChannels(val) {
@@ -1730,31 +1753,6 @@ function addStreamsFromChat(event) {
             setTimeout(function() {
                 obj.player.addEventListener("ready", playerReadyEventListener);
             }, 300);
-        }
-    }
-}
-
-
-
-function updKickSizeWrapper() {
-    let kickSizeWrapperArrLength = document.getElementsByClassName("kickSizeWrapper").length;
-
-    if (kickSizeWrapperArrLength > 0) {
-        let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
-        const r = 1.7777777777777777;
-
-        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
-            let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
-                maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
-                width = 0,
-                left = 0;
-
-            width = (maxHeight * r < maxWidth ? maxHeight * r : maxWidth);
-            left = (width < maxWidth ? (maxWidth - width) / 2 : 0);
-
-            kickSizeWrapperObjArr[i].style = "height: 100%;" +
-                                              "width: " + width + "px;" +
-                                              "left: "  + left  + "px;";
         }
     }
 }
