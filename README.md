@@ -18,7 +18,7 @@
 
     <img src="https://github.com/DarkChilliz/theater-tools/blob/main/img/playerstyle.png?raw=true" alt="playerstyle" title="run functions"/><img src="https://github.com/DarkChilliz/theater-tools/blob/main/img/functionsmenu.png?raw=true" alt="functionsmenu" title="function menu"/>
 
-#### ~~Firefox, Firefox Developer Edition, Firefox Nightly, Firefox ESR~~
+<!-- #### ~~Firefox, Firefox Developer Edition, Firefox Nightly, Firefox ESR~~
 
 - ~~Download repository as ZIP & Extract All.~~
 - ~~Set `xpinstall.signatures.required` to `false` in `about:config`.~~
@@ -28,7 +28,7 @@
 #### ~~Google Chrome, Chromium~~
 
 - ~~Download repository as ZIP & Extract All.~~
-- ~~Toggle `Developer mode` in `chrome://extensions/` and `Load unpacked`.~~
+- ~~Toggle `Developer mode` in `chrome://extensions/` and `Load unpacked`.~~ -->
 
 # ttv-playerlowlatency.user.js
 
