@@ -1531,7 +1531,7 @@ function removeOfflineChannels(val) {
 
     for(let i = (fldids.length - 1); i > -1; i--) {
         if (chans[i].includes("k=")) {
-            break;
+            continue;
         }
 
         let obj = document.getElementById("v-" + fldids[i]);
@@ -2068,6 +2068,48 @@ function updKickSizeWrapper() {
     }
 }
 
+function genKickPlayer(list, indx) {
+    const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
+    const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
+
+    var kickNames = [];
+    var kickIndx = [];
+
+    if (list) {
+        for(let chanName of list) {
+            if (chanName.includes("k=")) {
+                kickNames.push(chanName);
+                kickIndx.push(chans.indexOf(chanName));
+            }
+        }
+    } else if (typeof indx !== "undefined") {
+        kickIndx.push(fldids.indexOf(indx));
+        kickNames.push(chans[fldids.indexOf(indx)]);
+    } else {
+        for(let i = 0, l = chans.length; i < l; i++) {
+            if (chans[i].includes("k=")) {
+                kickNames.push(chans[i]);
+                kickIndx.push(i);
+            }
+        }
+    }
+
+    for(let i = 0, l = kickIndx.length; i < l; i++) {
+        let obj = document.getElementById("v-" + fldids[kickIndx[i]]);
+        let isKick = obj.kick;
+
+        if (isKick !== true || typeof indx !== "undefined") {
+            obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + kickNames[i].replace("k=","") + kickPlayerEmbed[1] + kickSizeWrapper[1];
+
+            if (isKick !== true) {
+                obj.kick = true;
+            }
+        }
+    }
+
+    updKickSizeWrapper();
+}
+
 // Rewrite TwitchTheater.tv Functions //////////////////////////////////////////////////
 
 evtchk = (function() {
@@ -2131,14 +2173,6 @@ updlayout = (function() {
 })();
 
 newstream = (function() {
-    var obj = document.getElementsByClassName("extops");
-
-    for(let i = 0, l = obj.length; i < l; i++) {
-        obj[i].childNodes[2].onclick = function onclick(event) {
-            moveposup(i,event);
-        };
-    }
-
     return function(txt, i, list) { //moveposup(' + val + ',event)
         var val = genminid(fldids);
         fldids.push(val);
@@ -2172,6 +2206,16 @@ newstream = (function() {
 moveposup = (function() {
     var cached_function = moveposup; //moveposup(val, event)
 
+    setTimeout(() => {
+        var obj = document.getElementsByClassName("extops");
+
+        for(let i = 0, l = obj.length; i < l; i++) {
+            obj[i].childNodes[2].onclick = function onclick(event) {
+                moveposup(i,event);
+            };
+        }
+    }, 1000);
+
     return function() {
         if (arguments[1] && arguments[1].shiftKey) {
             for(let i = fldids.indexOf(arguments[0]); i > 0; i--) {
@@ -2190,30 +2234,30 @@ moveposup = (function() {
 addstreams = (function() {
     var cached_function = addstreams; //addstreams(val, txt, list)
 
+    setTimeout(() => {
+        genKickPlayer();
+    }, 1000);
+
     return function() {
         var result = cached_function.apply(this, arguments);
 
-        const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
-        const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
-
-        for(let chanName of arguments[0]) {
-            if (chanName.includes("k=")) {
-                let indx = chans.indexOf(chanName);
-
-                let obj = document.getElementById("v-" + fldids[indx]);
-
-                if (obj.kick != true) {
-                    obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + chanName.replace("k=","") + kickPlayerEmbed[1] + kickSizeWrapper[1];
-                    obj.kick = true;
-                }
-            }
-        }
-
-        updKickSizeWrapper();
+        genKickPlayer(arguments[0]);
 
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
+
+        return result;
+    };
+})();
+
+relstream = (function() {
+    var cached_function = relstream; //relstream(val, chk)
+
+    return function() {
+        var result = cached_function.apply(this, arguments);
+
+        genKickPlayer(null, arguments[0]);
 
         return result;
     };
