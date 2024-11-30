@@ -8,6 +8,8 @@
 
 - Detect stalled players and attempt to fix them.
 
+- kick.com support with 'k=' prefix.
+
 - 1920x1080 (16:9) & 1440x900 (16:10) styles for [twitchtheater.tv](https://twitchtheater.tv/).
 
     ![preview](https://github.com/DarkChilliz/theater-tools/blob/main/img/preview/preview.png?raw=true)

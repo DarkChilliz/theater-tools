@@ -2108,8 +2108,13 @@ function genKickPlayer(list, indx) {
             }
         }
     } else if (typeof indx !== "undefined") {
-        kickIndx.push(fldids.indexOf(indx));
-        kickNames.push(chans[fldids.indexOf(indx)]);
+        let id = fldids.indexOf(indx);
+        let txt = chans[id];
+
+        if (txt.includes("k=")) {
+            kickIndx.push(id);
+            kickNames.push(txt);
+        }
     } else {
         for(let i = 0, l = chans.length; i < l; i++) {
             if (chans[i].includes("k=")) {
