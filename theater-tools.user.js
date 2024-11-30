@@ -6,7 +6,7 @@
 // @match           *://*.darkchilliz.github.io/*
 // @run-at          document-idle
 // @grant           none
-// @version         2.5.2
+// @version         2.5.3
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/theater-tools/raw/main/theater-tools.user.js
 // @author          https://github.com/DarkChilliz

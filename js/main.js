@@ -1677,9 +1677,13 @@ function removeOfflineChannels(val) {
         id = [];
 
     for(let i = (fldids.length - 1); i > -1; i--) {
+        if (chans[i].includes("k=")) {
+            break;
+        }
+
         let obj = document.getElementById("v-" + fldids[i]);
         if (obj.player.getEnded() || obj.player.getQualities().length == 0) { //obj.player.isPaused()
-            list.unshift(obj.player.getPlayerState().channelName);
+            list.unshift(chans[i]);
             id.unshift(fldids[i]);
         }
     }
