@@ -2131,15 +2131,13 @@ updlayout = (function() {
 })();
 
 newstream = (function() {
-    setTimeout(() => {
-        var obj = document.getElementsByClassName("extops");
+    var obj = document.getElementsByClassName("extops");
 
-        for(let i = 0, l = obj.length; i < l; i++) {
-            obj[i].childNodes[2].onclick = function onclick(event) {
-                moveposup(i,event);
-            };
-        }
-    }, 1000);
+    for(let i = 0, l = obj.length; i < l; i++) {
+        obj[i].childNodes[2].onclick = function onclick(event) {
+            moveposup(i,event);
+        };
+    }
 
     return function(txt, i, list) { //moveposup(' + val + ',event)
         var val = genminid(fldids);
