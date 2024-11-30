@@ -2068,6 +2068,31 @@ function updKickSizeWrapper() {
     }
 }
 
+function genKickChat(indx, chk) {
+    var kickName = "";
+    if (indx) {
+        kickName = chats[indx];
+    } else {
+        kickName = chats[document.getElementById('chatsel').selectedIndex];
+    }
+    if (kickName.includes("k=")) {
+        //https://stackoverflow.com/a/52124191
+        //https://stackoverflow.com/a/10398941
+        const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
+
+        let obj = document.getElementById("c-" + kickName);
+        let isKick = obj.kick;
+
+        if (isKick !== true || chk == 2) {
+            obj.innerHTML = kickChatEmbed[0] + kickName.replace("k=","") + kickChatEmbed[1];
+
+            if (isKick !== true) {
+                obj.kick = true;
+            }
+        }
+    }
+}
+
 function genKickPlayer(list, indx) {
     const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
     const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
@@ -2133,26 +2158,14 @@ evtchk = (function() {
 chgchat = (function() {
     var cached_function = chgchat; //chgchat(indx)
 
+    setTimeout(() => {
+        genKickChat();
+    }, 1000);
+
     return function() {
         var result = cached_function.apply(this, arguments);
 
-        var kickName = "";
-        if (arguments[0]) {
-            kickName = chats[arguments[0]];
-        } else {
-            kickName = chats[document.getElementById('chatsel').selectedIndex];
-        }
-        if (kickName.includes("k=")) {
-            //https://stackoverflow.com/a/52124191
-            //https://stackoverflow.com/a/10398941
-            const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
-
-            let obj = document.getElementById("c-" + kickName);
-
-            if (obj.innerHTML == '') {
-                obj.innerHTML = kickChatEmbed[0] + kickName.replace("k=","") + kickChatEmbed[1];
-            }
-        }
+        genKickChat(arguments[0]);
 
         updUnloadAllChatsBtn();
 
@@ -2246,6 +2259,18 @@ addstreams = (function() {
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
+
+        return result;
+    };
+})();
+
+relchat = (function() {
+    var cached_function = relchat;
+
+    return function() {
+        var result = cached_function.apply(this, arguments);
+
+        genKickChat(null, 2);
 
         return result;
     };
