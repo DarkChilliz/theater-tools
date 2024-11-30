@@ -1523,153 +1523,6 @@ function chgQuality(strmID, strmQuality) {
     }
 }
 
-// Miscellaneous Functions /////////////////////////////////////////////////////////////
-
-function reorderChatsArr() {
-    //https://www.w3schools.com/js/js_cookies.asp
-    var chatsel = document.getElementById("chatsel");
-    var chatmen = document.getElementById("chatmen");
-    var cookieName = "sesssave";
-    var sesssave = getCookie(cookieName);
-    var sesssaveLowerCase = sesssave.toLowerCase();
-
-    if ( sesssave !== sesssaveLowerCase ) {
-        chgCookie( 1, cookieName, sesssaveLowerCase );
-    }
-
-    // https://morioh.com/p/0b5bd0ececd4
-    if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
-        for(let indx in fldids) {
-            let obj = document.querySelector("#t-" + fldids[indx]); //strflds
-            if (obj.value !== obj.value.toLowerCase()) {
-                obj.value = obj.value.toLowerCase();
-            }
-        }
-        chans = chans.join('|').toLowerCase().split('|');
-    }
-    if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
-        for(let indx in chats) {
-            let obj = document.getElementById("c-" + chats[indx]);
-            if (obj.id !== obj.id.toLowerCase()) {
-                obj.id = obj.id.toLowerCase();
-                obj.textContent = '';
-            }
-        }
-        for(let i = 0, l = chats.length; i < l; i++) {
-            chatsel.options[i].textContent = chatsel.options[i].textContent.toLowerCase();
-            chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
-        }
-        chats = chats.join('|').toLowerCase().split('|');
-
-        chgchat();
-    }
-
-    //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
-    //https://stackoverflow.com/questions/25934989
-    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        const selectedChannelName = {
-            chatsel: "",
-            chatmen: "",
-        };
-        let list = [];
-        let indx = chats.slice();
-
-        //find 'chats' that have active streams and list them in order of 'chans'
-        for(let i = 0, l = chans.length; i < l; i++) {
-            let indxOf = indx.indexOf(chans[i]);
-            if (indxOf > -1) {
-                list.push( indx.splice(indxOf, 1).toString() );
-            }
-        }
-        //add rest of chats with inactive streams to end of list
-        for(let l = indx.length; l > 0; l--) {
-            list.push( indx.shift() );
-        }
-
-        //get 'selectedIndex' value
-        selectedChannelName["chatsel"] = chats[chatsel.selectedIndex];
-        selectedChannelName["chatmen"] = chats[chatmen.selectedIndex];
-
-        //replace 'chatsel' & 'chatmen'
-        for(let i = 0, l = list.length; i < l; i++) {
-            chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-            chatmen.options[i].textContent = list[i]; //innerHTML, value
-        }
-
-        //replace 'chats' with reordered 'list'
-        chats = list.slice(); //chats = [...list];
-        ctils = list.slice();
-
-        //restore 'selectedIndex' value
-        chatsel.selectedIndex = chats.indexOf(selectedChannelName["chatsel"]);
-
-        chgchat();
-
-        chatmen.selectedIndex = chats.indexOf(selectedChannelName["chatmen"]);
-    }
-}
-
-function openTheaterMenu(val) {
-    if (val == undefined) {
-        val = document.getElementById("theaterMenuBot").style.display;
-    }
-    if (val) {
-        document.getElementById("theaterMenuTop").style.display = "";
-        document.getElementById("theaterMenuBot").style.display = "";
-        document.getElementById("theaterMenuDiv").style.right = "0px";
-        document.getElementById("theaterMenuDiv").style.width = "340px";
-        document.getElementById("theaterMenuBot").style.background = "#202023 none repeat scroll 0% 0%";
-        document.getElementById("theaterMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
-    }
-    else {
-        document.getElementById("theaterMenuTop").style.display = "none";
-        document.getElementById("theaterMenuBot").style.display = "none";
-
-        document.getElementById("theaterMenuDiv").style.right = ""; //"290px", "254px"
-        document.getElementById("theaterMenuDiv").style.width = "";
-        document.getElementById("theaterMenuDiv").style.background = "";
-    }
-}
-
-function styledConsoleLog(module, func, log) {
-    //https://dev.to/annlin/consolelog-with-css-style-1mmp
-    console.log("%c" + (module || "Theater-Tools") + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
-
-    //#f67810
-    //#e36c09
-
-    //#bc91ff
-    //#7e67c7
-    //#37266c
-
-    //#color:default
-    //#999999
-    //#755000
-}
-
-function updKickSizeWrapper() {
-    let kickSizeWrapperArrLength = document.getElementsByClassName("kickSizeWrapper").length;
-
-    if (kickSizeWrapperArrLength > 0) {
-        let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
-        const r = 1.7777777777777777;
-
-        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
-            let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
-                maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
-                width = 0,
-                left = 0;
-
-            width = (maxHeight * r < maxWidth ? maxHeight * r : maxWidth);
-            left = (width < maxWidth ? (maxWidth - width) / 2 : 0);
-
-            kickSizeWrapperObjArr[i].style = "height: 100%;" +
-                                              "width: " + width + "px;" +
-                                              "left: "  + left  + "px;";
-        }
-    }
-}
-
 // button.click() functions ///////////////////////////////////////////////////////////////
 
 function removeOfflineChannels(val) {
@@ -2066,6 +1919,153 @@ function updAddStreamsFromChatBtn() {
     let obj = document.getElementsByClassName("addStreamsFromChat")[0];
 
     obj.innerText = "addStreams " + chans.length + " / " + chats.length;
+}
+
+// Miscellaneous Functions /////////////////////////////////////////////////////////////
+
+function reorderChatsArr() {
+    //https://www.w3schools.com/js/js_cookies.asp
+    var chatsel = document.getElementById("chatsel");
+    var chatmen = document.getElementById("chatmen");
+    var cookieName = "sesssave";
+    var sesssave = getCookie(cookieName);
+    var sesssaveLowerCase = sesssave.toLowerCase();
+
+    if ( sesssave !== sesssaveLowerCase ) {
+        chgCookie( 1, cookieName, sesssaveLowerCase );
+    }
+
+    // https://morioh.com/p/0b5bd0ececd4
+    if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
+        for(let indx in fldids) {
+            let obj = document.querySelector("#t-" + fldids[indx]); //strflds
+            if (obj.value !== obj.value.toLowerCase()) {
+                obj.value = obj.value.toLowerCase();
+            }
+        }
+        chans = chans.join('|').toLowerCase().split('|');
+    }
+    if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
+        for(let indx in chats) {
+            let obj = document.getElementById("c-" + chats[indx]);
+            if (obj.id !== obj.id.toLowerCase()) {
+                obj.id = obj.id.toLowerCase();
+                obj.textContent = '';
+            }
+        }
+        for(let i = 0, l = chats.length; i < l; i++) {
+            chatsel.options[i].textContent = chatsel.options[i].textContent.toLowerCase();
+            chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
+        }
+        chats = chats.join('|').toLowerCase().split('|');
+
+        chgchat();
+    }
+
+    //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
+    //https://stackoverflow.com/questions/25934989
+    if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
+        const selectedChannelName = {
+            chatsel: "",
+            chatmen: "",
+        };
+        let list = [];
+        let indx = chats.slice();
+
+        //find 'chats' that have active streams and list them in order of 'chans'
+        for(let i = 0, l = chans.length; i < l; i++) {
+            let indxOf = indx.indexOf(chans[i]);
+            if (indxOf > -1) {
+                list.push( indx.splice(indxOf, 1).toString() );
+            }
+        }
+        //add rest of chats with inactive streams to end of list
+        for(let l = indx.length; l > 0; l--) {
+            list.push( indx.shift() );
+        }
+
+        //get 'selectedIndex' value
+        selectedChannelName["chatsel"] = chats[chatsel.selectedIndex];
+        selectedChannelName["chatmen"] = chats[chatmen.selectedIndex];
+
+        //replace 'chatsel' & 'chatmen'
+        for(let i = 0, l = list.length; i < l; i++) {
+            chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+            chatmen.options[i].textContent = list[i]; //innerHTML, value
+        }
+
+        //replace 'chats' with reordered 'list'
+        chats = list.slice(); //chats = [...list];
+        ctils = list.slice();
+
+        //restore 'selectedIndex' value
+        chatsel.selectedIndex = chats.indexOf(selectedChannelName["chatsel"]);
+
+        chgchat();
+
+        chatmen.selectedIndex = chats.indexOf(selectedChannelName["chatmen"]);
+    }
+}
+
+function openTheaterMenu(val) {
+    if (val == undefined) {
+        val = document.getElementById("theaterMenuBot").style.display;
+    }
+    if (val) {
+        document.getElementById("theaterMenuTop").style.display = "";
+        document.getElementById("theaterMenuBot").style.display = "";
+        document.getElementById("theaterMenuDiv").style.right = "0px";
+        document.getElementById("theaterMenuDiv").style.width = "340px";
+        document.getElementById("theaterMenuBot").style.background = "#202023 none repeat scroll 0% 0%";
+        document.getElementById("theaterMenuBot").style.maxHeight = "" + (window.innerHeight - 50) + "px";
+    }
+    else {
+        document.getElementById("theaterMenuTop").style.display = "none";
+        document.getElementById("theaterMenuBot").style.display = "none";
+
+        document.getElementById("theaterMenuDiv").style.right = ""; //"290px", "254px"
+        document.getElementById("theaterMenuDiv").style.width = "";
+        document.getElementById("theaterMenuDiv").style.background = "";
+    }
+}
+
+function styledConsoleLog(module, func, log) {
+    //https://dev.to/annlin/consolelog-with-css-style-1mmp
+    console.log("%c" + (module || "Theater-Tools") + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
+
+    //#f67810
+    //#e36c09
+
+    //#bc91ff
+    //#7e67c7
+    //#37266c
+
+    //#color:default
+    //#999999
+    //#755000
+}
+
+function updKickSizeWrapper() {
+    let kickSizeWrapperArrLength = document.getElementsByClassName("kickSizeWrapper").length;
+
+    if (kickSizeWrapperArrLength > 0) {
+        let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
+        const r = 1.7777777777777777;
+
+        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
+            let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
+                maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
+                width = 0,
+                left = 0;
+
+            width = (maxHeight * r < maxWidth ? maxHeight * r : maxWidth);
+            left = (width < maxWidth ? (maxWidth - width) / 2 : 0);
+
+            kickSizeWrapperObjArr[i].style = "height: 100%;" +
+                                              "width: " + width + "px;" +
+                                              "left: "  + left  + "px;";
+        }
+    }
 }
 
 // Rewrite TwitchTheater.tv Functions //////////////////////////////////////////////////
