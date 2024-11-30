@@ -2105,7 +2105,11 @@ chgchat = (function() {
             //https://stackoverflow.com/a/10398941
             const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
 
-            document.getElementById("c-" + kickName).innerHTML = kickChatEmbed[0] + kickName.replace("k=","") + kickChatEmbed[1];
+            let obj = document.getElementById("c-" + kickName);
+
+            if (obj.innerHTML == '') {
+                obj.innerHTML = kickChatEmbed[0] + kickName.replace("k=","") + kickChatEmbed[1];
+            }
         }
 
         updUnloadAllChatsBtn();
