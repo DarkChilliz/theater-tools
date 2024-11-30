@@ -2213,7 +2213,7 @@ document.getElementById("strc").childNodes[1].onclick = function onclick(event) 
 };
 
 playpause = (function() {
-    var cached_function = playpause; //playpause(val, chk)
+    var cached_function = playpause; //playpause(val, chk, event)
 
     return function() {
         if (arguments[2] && arguments[2].shiftKey) {
@@ -2223,7 +2223,7 @@ playpause = (function() {
                 obj.player.play();
             }
 
-            for (let i = 1, l = chans.length; i < l; i++) {
+            for(let i = 1, l = chans.length; i < l; i++) {
                 let obj = document.getElementById('v-' + fldids[i]);
 
                 if (obj.player) {
