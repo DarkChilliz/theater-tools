@@ -1759,46 +1759,6 @@ function updKickSizeWrapper() {
     }
 }
 
-function addKickStreams(event) {
-    const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
-    const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
-    const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
-
-    var chatsel = document.getElementById("chatsel");
-    var selectedChannelName = chats[chatsel.selectedIndex];
-    var hasRun = false;
-
-    for(let i = 0, l = fldids.length; i < l; i++) {
-        let obj = document.getElementById("v-" + fldids[i]);
-
-        if (obj.player.getQualities().length == 0) {
-            let txt = obj.player.getPlayerState().channelName;
-            let isKick = obj.kick;
-
-            if (isKick !== true || event.shiftKey) {
-                obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + txt + kickPlayerEmbed[1] + kickSizeWrapper[1];
-
-                if (isKick !== true) {
-                    // obj.player = null;
-                    // obj.twitch = false;
-                    obj.kick = true;
-                }
-            }
-
-            chgchat(fldids[i]);
-            document.getElementById("c-" + txt).innerHTML = kickChatEmbed[0] + txt + kickChatEmbed[1];
-            hasRun = true;
-        }
-    }
-
-    if (hasRun) {
-        chgchat(fldids[chats.indexOf(selectedChannelName)]);
-
-        updUnloadAllChatsBtn();
-        updKickSizeWrapper();
-    }
-}
-
 
 
 function setGameMode(isfirstrun) {
