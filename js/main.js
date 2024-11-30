@@ -2132,6 +2132,20 @@ chgchat = (function() {
     return function() {
         var result = cached_function.apply(this, arguments);
 
+        var kickName = "";
+        if (arguments[0]) {
+            kickName = chats[arguments[0]];
+        } else {
+            kickName = chats[document.getElementById('chatsel').selectedIndex];
+        }
+        if (kickName.includes("k=")) {
+            //https://stackoverflow.com/a/52124191
+            //https://stackoverflow.com/a/10398941
+            const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
+
+            document.getElementById("c-" + kickName).innerHTML = kickChatEmbed[0] + kickName.replace("k=","") + kickChatEmbed[1];
+        }
+
         updUnloadAllChatsBtn();
 
         return result;
