@@ -2229,6 +2229,21 @@ addstreams = (function() {
     return function() {
         var result = cached_function.apply(this, arguments);
 
+        const kickSizeWrapper = ['<div style="height: 100%;width: 100%;background: black;"><div class="kickSizeWrapper" style="height: 100%; width: 790px; left: 0px;">','</div></div>']
+        const kickPlayerEmbed = ['<iframe src="https://player.kick.com/','?muted=true" height="720" width="1280" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>'];
+
+        for(let chanName of arguments[0]) {
+            if (chanName.includes("k=")) {
+                let indx = chans.indexOf(chanName);
+
+                let obj = document.getElementById("v-" + fldids[indx]);
+
+                obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + chanName.replace("k=","") + kickPlayerEmbed[1] + kickSizeWrapper[1];
+            }
+        }
+
+        updKickSizeWrapper();
+
         reorderChatsArr();
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
