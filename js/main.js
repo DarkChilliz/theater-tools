@@ -2200,7 +2200,10 @@ addstreams = (function() {
 
                 let obj = document.getElementById("v-" + fldids[indx]);
 
-                obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + chanName.replace("k=","") + kickPlayerEmbed[1] + kickSizeWrapper[1];
+                if (obj.kick != true) {
+                    obj.childNodes[0].outerHTML = kickSizeWrapper[0] + kickPlayerEmbed[0] + chanName.replace("k=","") + kickPlayerEmbed[1] + kickSizeWrapper[1];
+                    obj.kick = true;
+                }
             }
         }
 
