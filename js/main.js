@@ -1551,17 +1551,28 @@ function removeOfflineChannels(val) {
 }
 
 function unloadAllChats(event) {
-    var selectedChannelName = chats[document.getElementById("chatsel").selectedIndex];
+    var selectedChat = chats[document.getElementById("chatsel").selectedIndex];
+
+    var deleteNode = function(chatName) {
+        let obj = document.getElementById("c-" + chatName);
+        let isKick = obj.kick;
+
+        obj.textContent = '';
+
+        if (isKick) {
+            obj.kick = false;
+        }
+    };
 
     if (event.shiftKey) {
         for(let chatName of chats) {
-            document.getElementById("c-" + chatName).textContent = '';
+            deleteNode(chatName);
         }
         chgchat();
     } else {
         for(let chatName of chats) {
-            if (chatName !== selectedChannelName) {
-                document.getElementById("c-" + chatName).textContent = '';
+            if (chatName !== selectedChat) {
+                deleteNode(chatName);
             }
         }
     }
