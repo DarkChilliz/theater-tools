@@ -1405,7 +1405,7 @@ function getQualities(strmID) {
         if (chans[strmID].search("v=") == -1) {
             var list = obj.player.getQualities();
             obj.quality = [];
-            for(let i = 0, l = list.length; i < l; i++) {
+            for (let i = 0, l = list.length; i < l; i++) {
                 obj.quality.push(list[i].group);
             }
         }
@@ -1516,7 +1516,7 @@ function chgQuality(strmID, strmQuality) {
             setQuality(strmID, (strmID > length ? "160p30" : quality[strmID]) );
         }
     } else {
-        for(let i = 0, l = chans.length; i < l; i++) {
+        for (let i = 0, l = chans.length; i < l; i++) {
             getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
             setQuality(i, (i > length ? "160p30" : quality[i]) );
         }
@@ -1529,7 +1529,7 @@ function removeOfflineChannels(val) {
     var list = [],
         id = [];
 
-    for(let i = (fldids.length - 1); i > -1; i--) {
+    for (let i = (fldids.length - 1); i > -1; i--) {
         if (chans[i].includes("k=")) {
             continue;
         }
@@ -1541,7 +1541,7 @@ function removeOfflineChannels(val) {
         }
     }
 
-    for(let i = 0, l = id.length; i < l; i++) {
+    for (let i = 0, l = id.length; i < l; i++) {
         remstream(id[i], !val ? null : val);
     }
 
@@ -1565,12 +1565,12 @@ function unloadAllChats(event) {
     };
 
     if (event.shiftKey) {
-        for(let chatName of chats) {
+        for (let chatName of chats) {
             deleteNode(chatName);
         }
         chgchat();
     } else {
-        for(let chatName of chats) {
+        for (let chatName of chats) {
             if (chatName !== selectedChat) {
                 deleteNode(chatName);
             }
@@ -1590,14 +1590,14 @@ function addStreamsFromChat(event) {
         let c = chats.slice(),
             list = [];
 
-        for(let indx in chans) {
+        for (let indx in chans) {
             if (c.indexOf(chans[indx]) > -1) {
                 list.push(indx);
             }
         }
         list.sort(function(a, b){return b-a});
 
-        for(let indx in list) {
+        for (let indx in list) {
             c.splice(list[indx], 1);
         }
 
@@ -1606,7 +1606,7 @@ function addStreamsFromChat(event) {
         addfromui(1, c.toString());
     }
 
-    for(let i = currentPlayerLength, l = fldids.length; i < l; i++) {
+    for (let i = currentPlayerLength, l = fldids.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[i]);
 
         // temp function
@@ -1706,7 +1706,7 @@ function fixStalledPlayers() {
 
     let run = [];
 
-    for(let i = 0, l = fldids.length; i < l; i++) {
+    for (let i = 0, l = fldids.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[i]);
         let playerState = obj.player.getPlayerState();
 
@@ -1737,7 +1737,7 @@ function fixStalledPlayers() {
 
     if (run.length) {
         setTimeout(() => {
-            for(let i = 0, l = run.length; i < l; i++) {
+            for (let i = 0, l = run.length; i < l; i++) {
                 chgQuality(run[i]);
             }
         }, 1500);
@@ -1914,7 +1914,7 @@ function randomTestButton() {
 function updUnloadAllChatsBtn() {
     var loadedChats = 0;
 
-    for(let indx in chats) {
+    for (let indx in chats) {
         let obj = document.getElementById("c-" + chats[indx]);
 
         if (obj.innerHTML) {
@@ -1948,7 +1948,7 @@ function reorderChatsArr() {
 
     // https://morioh.com/p/0b5bd0ececd4
     if ( JSON.stringify(chans) !== JSON.stringify(chans).toLowerCase() ) {
-        for(let indx in fldids) {
+        for (let indx in fldids) {
             let obj = document.querySelector("#t-" + fldids[indx]); //strflds
             if (obj.value !== obj.value.toLowerCase()) {
                 obj.value = obj.value.toLowerCase();
@@ -1957,14 +1957,14 @@ function reorderChatsArr() {
         chans = chans.join('|').toLowerCase().split('|');
     }
     if ( JSON.stringify(chats) !== JSON.stringify(chats).toLowerCase() ) {
-        for(let indx in chats) {
+        for (let indx in chats) {
             let obj = document.getElementById("c-" + chats[indx]);
             if (obj.id !== obj.id.toLowerCase()) {
                 obj.id = obj.id.toLowerCase();
                 obj.textContent = '';
             }
         }
-        for(let i = 0, l = chats.length; i < l; i++) {
+        for (let i = 0, l = chats.length; i < l; i++) {
             chatsel.options[i].textContent = chatsel.options[i].textContent.toLowerCase();
             chatmen.options[i].textContent = chatmen.options[i].textContent.toLowerCase();
         }
@@ -1984,14 +1984,14 @@ function reorderChatsArr() {
         let indx = chats.slice();
 
         //find 'chats' that have active streams and list them in order of 'chans'
-        for(let i = 0, l = chans.length; i < l; i++) {
+        for (let i = 0, l = chans.length; i < l; i++) {
             let indxOf = indx.indexOf(chans[i]);
             if (indxOf > -1) {
                 list.push( indx.splice(indxOf, 1).toString() );
             }
         }
         //add rest of chats with inactive streams to end of list
-        for(let l = indx.length; l > 0; l--) {
+        for (let l = indx.length; l > 0; l--) {
             list.push( indx.shift() );
         }
 
@@ -2000,7 +2000,7 @@ function reorderChatsArr() {
         selectedChannelName["chatmen"] = chats[chatmen.selectedIndex];
 
         //replace 'chatsel' & 'chatmen'
-        for(let i = 0, l = list.length; i < l; i++) {
+        for (let i = 0, l = list.length; i < l; i++) {
             chatsel.options[i].textContent = list[i]; //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
             chatmen.options[i].textContent = list[i]; //innerHTML, value
         }
@@ -2063,7 +2063,7 @@ function updKickSizeWrapper() {
         let kickSizeWrapperObjArr = document.getElementsByClassName("kickSizeWrapper");
         const r = 1.7777777777777777;
 
-        for(let i = 0; i < kickSizeWrapperArrLength; i++) {
+        for (let i = 0; i < kickSizeWrapperArrLength; i++) {
             let maxWidth = kickSizeWrapperObjArr[i].parentElement.offsetWidth,
                 maxHeight = kickSizeWrapperObjArr[i].parentElement.offsetHeight,
                 width = 0,
@@ -2114,7 +2114,7 @@ function genKickPlayer(list, indx) {
     var kickIndx = [];
 
     if (list) {
-        for(let chanName of list) {
+        for (let chanName of list) {
             if (chanName.includes("k=")) {
                 kickNames.push(chanName);
                 kickIndx.push(chans.indexOf(chanName));
@@ -2129,7 +2129,7 @@ function genKickPlayer(list, indx) {
             kickNames.push(txt);
         }
     } else {
-        for(let i = 0, l = chans.length; i < l; i++) {
+        for (let i = 0, l = chans.length; i < l; i++) {
             if (chans[i].includes("k=")) {
                 kickNames.push(chans[i]);
                 kickIndx.push(i);
@@ -2137,7 +2137,7 @@ function genKickPlayer(list, indx) {
         }
     }
 
-    for(let i = 0, l = kickIndx.length; i < l; i++) {
+    for (let i = 0, l = kickIndx.length; i < l; i++) {
         let obj = document.getElementById("v-" + fldids[kickIndx[i]]);
         let isKick = obj.kick;
 
@@ -2209,7 +2209,7 @@ moveposup = (function() {
     setTimeout(() => { //add "event" param to onlick: onclick="moveposup(1,event)"
         var obj = document.getElementsByClassName("extops");
 
-        for(let i = 0, l = obj.length; i < l; i++) {
+        for (let i = 0, l = obj.length; i < l; i++) {
             obj[i].childNodes[2].onclick = function onclick(event) {
                 moveposup(i,event);
             };
@@ -2218,7 +2218,7 @@ moveposup = (function() {
 
     return function() {
         if (arguments[1] && arguments[1].shiftKey) {
-            for(let i = fldids.indexOf(arguments[0]); i > 0; i--) {
+            for (let i = fldids.indexOf(arguments[0]); i > 0; i--) {
                 var result = cached_function.apply(this, arguments);
             }
         } else {
@@ -2241,7 +2241,7 @@ addstreams = (function() {
     return function() {
         var result = cached_function.apply(this, arguments);
 
-        for(let i = 0, l = arguments[0].length; i < l; i++) { //add "event" param to onlick: onclick="moveposup(1,event)"
+        for (let i = 0, l = arguments[0].length; i < l; i++) { //add "event" param to onlick: onclick="moveposup(1,event)"
             let id = fldids[chans.indexOf(arguments[0][i])];
             let obj = document.getElementById(id.toString());
 
@@ -2331,7 +2331,7 @@ playpause = (function() {
                 obj.player.play();
             }
 
-            for(let i = 1, l = chans.length; i < l; i++) {
+            for (let i = 1, l = chans.length; i < l; i++) {
                 let obj = document.getElementById('v-' + fldids[i]);
 
                 if (obj.player) {
