@@ -1849,6 +1849,38 @@ function setGoFullScreen(isfirstrun) {
     }
 }
 
+function setVolumeOnRun(isfirstrun) {
+    let obj = document.getElementsByClassName("useVolumeOnRun")[0];
+    let useVolumeOnRun = localStorage.getItem("useVolumeOnRun");
+
+    if (typeof isfirstrun !== "undefined") {
+        switch(useVolumeOnRun) {
+            case "false":
+                break;
+            case "true":
+                obj.classList.add("active");
+                break;
+            case null:
+            default:
+                useVolumeOnRun = "false";
+                localStorage.setItem("useVolumeOnRun", "false");
+                break;
+        }
+    } else {
+        switch(useVolumeOnRun) {
+            case "false":
+                useVolumeOnRun = "true";
+                obj.classList.add("active");
+                break;
+            case "true":
+                useVolumeOnRun = "false";
+                obj.classList.remove("active");
+                break;
+        }
+        localStorage.setItem("useVolumeOnRun", useVolumeOnRun);
+    }
+}
+
 function setChgPlayerStyleCaseOne(isfirstrun) {
     let obj = document.getElementsByClassName("useChgPlayerStyleCaseOne")[0],
         useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
@@ -2162,9 +2194,18 @@ evtchk = (function() {
 
         if (arguments[0].ctrlKey) {
             openTheaterMenu(0);
-            chgvolume(100);
+
+            if (localStorage.getItem("useVolumeOnRun") === "true") {
+                chgvolume(100);
+            }
+
             chgQuality();
-            goFullScreen();
+
+            if (localStorage.getItem("useGoFullScreen") === "true") {
+                goFullScreen();
+            } else {
+                chgPlayerStyle();
+            }
         }
 
         return result;
@@ -2358,6 +2399,7 @@ function onScriptLoad() {
     fixStalledPlayersButton(1);
     watchPartyMode(1);
     setGoFullScreen(1);
+    setVolumeOnRun(1);
     setChgPlayerStyleCaseOne(1);
 
     setTimeout(() => {
@@ -2368,7 +2410,11 @@ function onScriptLoad() {
     document.getElementById("theaterRunBtn").onclick = function onclick(event) {
         if (event.ctrlKey) {
             openTheaterMenu(0);
-            chgvolume(100);
+
+            if (localStorage.getItem("useVolumeOnRun") === "true") {
+                chgvolume(100);
+            }
+
             playpause(1);
         }
         chgQuality();
