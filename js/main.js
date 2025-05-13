@@ -2036,8 +2036,8 @@ function reorderChatsArr() {
     //https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array
     //https://stackoverflow.com/questions/25934989
     if ( JSON.stringify(chans) !== JSON.stringify(chats.slice(0, chans.length)) ) {
-        let chatsel_selectedChannelName = "";
-        let chatmen_selectedChannelName = "";
+        let chatsel_selectedName = "";
+        let chatmen_selectedIndex = 0;
         let list = [];
         let indx = chats.slice();
 
@@ -2054,8 +2054,8 @@ function reorderChatsArr() {
         }
 
         //get 'selectedIndex' value
-        chatsel_selectedChannelName = chats[chatsel.selectedIndex];
-        chatmen_selectedChannelName = chats[chatmen.selectedIndex];
+        chatsel_selectedName = chats[chatsel.selectedIndex];
+        chatmen_selectedIndex = chatmen.selectedIndex;
 
         //replace 'chatsel' & 'chatmen'
         for (let i = 0, l = list.length; i < l; i++) {
@@ -2068,11 +2068,11 @@ function reorderChatsArr() {
         ctils = list.slice();
 
         //restore 'selectedIndex' value
-        chatsel.selectedIndex = chats.indexOf(chatsel_selectedChannelName);
+        chatsel.selectedIndex = chats.indexOf(chatsel_selectedName);
 
         chgchat();
 
-        chatmen.selectedIndex = chats.indexOf(chatmen_selectedChannelName);
+        chatmen.selectedIndex = chatmen_selectedIndex;
     }
 }
 
