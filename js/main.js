@@ -1625,6 +1625,33 @@ function addStreamsFromChat(event) {
     }
 }
 
+async function addLiveFromTwitch() {
+    let accessToken = localStorage.getItem("accessToken");
+    let clientId = localStorage.getItem("clientId");
+    let userId = localStorage.getItem("userId");
+    let data = {};
+    let channelNames = [];
+
+    if (accessToken !== null && clientId !== null && userId !== null) {
+
+        const res = await fetch('https://api.twitch.tv/helix/streams/followed?user_id=' + userId, {
+            headers: {
+            'Accept': 'application/vnd.twitchtv.v5+json',
+            'Client-ID': clientId,
+            'Authorization': 'Bearer ' + accessToken,
+            }
+        })
+
+        data = await res.json();
+
+        for (let i = 0, l = data["data"].length; i < l; i++) {
+            channelNames.push(data["data"][i]["user_login"]);
+        }
+
+        addfromui(2, channelNames.toString())
+    }
+}
+
 
 
 function setGameMode(isfirstrun) {
