@@ -30,16 +30,16 @@ function writeStyle(v, w, h, t, l) {
 
 function chgPlayerStyle() {
     const r = 1.7777777777777777; //1.778
-    var clientW = Math.round( document.getElementById("playdiv").clientWidth ),
-        clientH = Math.round( document.getElementById("playdiv").clientHeight ),
-        w = [],
-        h = [],
-        t = [],
-        l = [],
-        playerNotConfigured = function() {
+    var clientW = Math.round( document.getElementById("playdiv").clientWidth );
+    var clientH = Math.round( document.getElementById("playdiv").clientHeight );
+    var w = []; // width
+    var h = []; // height
+    var t = []; // top
+    var l = []; // left
+    var playerNotConfigured = function() {
             styledConsoleLog(0, "chgPlayerStyle", "not configured for [" + fldids.length + "] players");
-        },
-        useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
+        };
+    var useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
 
     //1920x1080 (16:9 aspect ratio)
     if (screen.width / screen.height == 1.7777777777777777 || screen.width == 1920 && screen.height == 1080) {
@@ -711,7 +711,7 @@ function chgPlayerStyle() {
                 writeStyle(18, w[2], h[2], t[2], 0);
                 break;
             default:
-                playerNotConfigured;
+                playerNotConfigured();
         }
     //1440x900 (16:10 aspect ratio)
     }
@@ -1377,7 +1377,7 @@ function chgPlayerStyle() {
                 writeStyle(18, w[2], h[2], t[3], 0);
                 break;
             default:
-                playerNotConfigured;
+                playerNotConfigured();
         }
     }
 
