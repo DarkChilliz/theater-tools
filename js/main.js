@@ -1651,8 +1651,10 @@ async function addLiveFromTwitch() {
 
         let chatsel_selectedName = chats[chatsel.selectedIndex];
         addfromui(2, channelNames.toString());
-        chatsel.selectedIndex = chats.indexOf(chatsel_selectedName);
-        chgchat();
+        if (typeof chatsel_selectedName !== "undefined") {
+            chatsel.selectedIndex = chats.indexOf(chatsel_selectedName);
+            chgchat();
+        }
     }
 }
 
