@@ -1452,9 +1452,10 @@ function chgQuality(strmID, strmQuality) {
     var gameMode = localStorage.getItem("gameMode");
     var maxQualityMode = localStorage.getItem("maxQualityMode");
     var watchParty = localStorage.getItem("watchParty");
+    var defaultQuality = document.getElementById("defqua").value;
 
     if (gameMode === "true") {
-        quality = ["480p30","160p30","160p30"];
+        quality = ["480p30",defaultQuality,defaultQuality];
     }
     else {
         quality = ["auto","auto","auto"];
@@ -1479,7 +1480,7 @@ function chgQuality(strmID, strmQuality) {
                 case 5:
                     length = 2;
                     if (gameMode === "false") {
-                        quality[2] = "360p30"; //(gameMode === "true" ? "160p30" : "360p30")
+                        quality[2] = "360p30"; //(gameMode === "true" ? defaultQuality : "360p30")
                     }
                     break;
                 case 2:
@@ -1513,12 +1514,12 @@ function chgQuality(strmID, strmQuality) {
             setQuality(strmID, strmQuality);
         } else {
             getQualities(strmID);
-            setQuality(strmID, (strmID > length ? "160p30" : quality[strmID]) );
+            setQuality(strmID, (strmID > length ? defaultQuality : quality[strmID]) );
         }
     } else {
         for (let i = 0, l = chans.length; i < l; i++) {
-            getQualities(i); //"160p30" "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
-            setQuality(i, (i > length ? "160p30" : quality[i]) );
+            getQualities(i); //defaultQuality "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+            setQuality(i, (i > length ? defaultQuality : quality[i]) );
         }
     }
 }
@@ -1653,6 +1654,13 @@ async function addLiveFromTwitch() {
         chatsel.selectedIndex = chats.indexOf(chatsel_selectedName);
         chgchat();
     }
+}
+
+function updLocalstorage(key) {
+    let val = document.getElementById(key).value;
+    document.getElementById(key).value = '';
+
+    localStorage.setItem(key, val);
 }
 
 

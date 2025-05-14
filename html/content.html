@@ -30,6 +30,19 @@
       </div>
 
       <div class="theaterBtnDiv">
+        <span>accessToken:</span>
+        <input type="text" id="accessToken" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {updLocalstorage(this.id)}">
+      </div>
+      <div class="theaterBtnDiv">
+        <span>clientId:</span>
+        <input type="text" id="clientId" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {updLocalstorage(this.id)}">
+      </div>
+      <div class="theaterBtnDiv">
+        <span>userId:</span>
+        <input type="text" id="userId" style="margin:0" onkeydown="if (event.keyCode == 13 || event.keyCode == 10) {updLocalstorage(this.id)}">
+      </div>
+
+      <div class="theaterBtnDiv">
         <div class="theaterBtnWrapper">
           <button class="theaterBtn setGameMode" title="Game mode for the top stream in the list" onclick="setGameMode()">gameMode</button>
         </div>
