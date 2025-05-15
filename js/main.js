@@ -1041,6 +1041,69 @@ function chgPlayerStyle() {
                 writeStyle(23, w[1], h[2], t[1], 0);    // row  2
                 writeStyle(24, w[1], h[2], t[2], 0);    // row   3
                 break;
+            case 26:
+                w[0] = clientW;
+                h[0] = Math.round( missingValue( r, w[0], 0 ) );
+                //
+                h[1] = clientH - h[0];
+                t[0] = clientH - h[1];
+                //
+                h[2] = h[1] / 2; //main hight
+                w[1] = Math.round( missingValue( r, 0, h[2] ) );
+                //
+                h[0] -= h[2];
+                w[0] = Math.round( missingValue( r, 0, h[0] ) );
+                //
+                t[0] -= h[2];
+                t[1] = t[0] + h[2];
+                t[2] = t[1] + h[2];
+                h[3] = clientH - t[0]
+                //
+                l[0] = w[1];
+                l[1] = l[0] + w[1];
+                l[2] = l[1] + w[1];
+                l[3] = l[2] + w[1];
+                l[4] = l[3] + w[1];
+                l[5] = l[4] + w[1];
+                w[2] = clientW - l[5];
+                //
+                h[4] = h[0] / 6;
+                t[3] = h[4];
+                t[4] = t[3] + h[4];
+                t[5] = t[4] + h[4];
+                t[6] = t[5] + h[4];
+                t[7] = t[6] + h[4];
+                //
+                writeStyle( 0, w[0], h[0], 0, 0);
+                //
+                writeStyle( 1, w[2], h[3], t[0], l[5]); // row 0
+                // down right
+                writeStyle( 2, w[1], h[4],    0, w[0]);
+                writeStyle( 3, w[1], h[4], t[3], w[0]);
+                writeStyle( 4, w[1], h[4], t[4], w[0]);
+                writeStyle( 5, w[1], h[4], t[5], w[0]);
+                writeStyle( 6, w[1], h[4], t[6], w[0]);
+                writeStyle( 7, w[1], h[4], t[7], w[0]);
+                //
+                writeStyle( 8, w[1], h[2], t[0], l[4]); // row 1
+                writeStyle( 9, w[1], h[2], t[1], l[4]); // row  2
+                writeStyle(10, w[1], h[2], t[2], l[4]); // row   3
+                writeStyle(11, w[1], h[2], t[0], l[3]); // row 1
+                writeStyle(12, w[1], h[2], t[1], l[3]); // row  2
+                writeStyle(13, w[1], h[2], t[2], l[3]); // row   3
+                writeStyle(14, w[1], h[2], t[0], l[2]); // row 1
+                writeStyle(15, w[1], h[2], t[1], l[2]); // row  2
+                writeStyle(16, w[1], h[2], t[2], l[2]); // row   3
+                writeStyle(17, w[1], h[2], t[0], l[1]); // row 1
+                writeStyle(18, w[1], h[2], t[1], l[1]); // row  2
+                writeStyle(19, w[1], h[2], t[2], l[1]); // row   3
+                writeStyle(20, w[1], h[2], t[0], l[0]); // row 1
+                writeStyle(21, w[1], h[2], t[1], l[0]); // row  2
+                writeStyle(22, w[1], h[2], t[2], l[0]); // row   3
+                writeStyle(23, w[1], h[2], t[0], 0);    // row 1
+                writeStyle(24, w[1], h[2], t[1], 0);    // row  2
+                writeStyle(25, w[1], h[2], t[2], 0);    // row   3
+                break;
             default:
                 playerNotConfigured();
         }
