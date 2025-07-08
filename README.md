@@ -6,17 +6,45 @@
 
 #### Features
 
-- Detect stalled players and attempt to fix them.
+- If `fixStalledPlayers` is enabled, detect **stalled** players and attempt to fix them.
 
-- kick.com support with 'k=' prefix.
+- **kick.com** support with `k=` prefix. **e.g.** `k=xqc k=trainwreckstv`
 
-- 1920x1080 (16:9) & 1440x900 (16:10) styles for [twitchtheater.tv](https://twitchtheater.tv/).
+- `addLiveFromTwitch` uses Twitch.tv API to check if a user's followed channels are live. Then adds them as inactive chats, click `addStreams` or add them manually using the interface.
+
+    - The Twitch API now requires that the client ID is associated with the OAuth access token.
+        You can generate these [here](https://twitchtokengenerator.com/) for example. This script requires adding ```user:read:follows``` to the scope.
+
+    - You will also need your user ID. This can be found [here](https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/).
+
+    - **Credit to [begs/livestreamers](https://github.com/begs/livestreamers)**
+
+- `1920x1080 (16:9)` & `1440x900 (16:10)` **styles** for [twitchtheater.tv](https://twitchtheater.tv/).
 
     ![preview](https://github.com/DarkChilliz/theater-tools/blob/main/img/preview/preview.png?raw=true)
 
-- Add Buttons
+- Menu Buttons `runFunctions` & `functionsMenu`.
 
     <img src="https://github.com/DarkChilliz/theater-tools/blob/main/img/playerstyle.png?raw=true" alt="playerstyle" title="run functions"/><img src="https://github.com/DarkChilliz/theater-tools/blob/main/img/functionsmenu.png?raw=true" alt="functionsmenu" title="function menu"/>
+
+    - Click the `runFunctions` menu to:
+
+        - Change player **quality** of the first video using `gameMode` and `maxQualityMode` setting.
+        - Uses `Default video quality:` in **TwitchTheater.tv** settings to set video quality of the others.
+        - If `useGoFullScreen` is **enabled** make the browser **fullscreen**.
+        - Change player styles.
+
+    - Hold `Control` when clicking the `runFunctions` button to also:
+
+        - Close the `functionsMenu`.
+        - If `useVolumeOnRun` is **enabled**, set the volume of all players to **100%**.
+        - **Unpause** all streams.
+
+    - `functionsMenu` Each button includes a tooltip that describes **its primary function** & what happens when used with `Shift` and/or `Control`.
+
+    <img src="https://github.com/DarkChilliz/theater-tools/blob/main/img/preview/mov.png?raw=true" alt="mov" title="Move position up"/>
+
+    - `Shift` clicking this button moves the **streams position** to the very **top**.
 
 <!-- #### ~~Firefox, Firefox Developer Edition, Firefox Nightly, Firefox ESR~~
 
