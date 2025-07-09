@@ -5,7 +5,7 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.0.6.0000
+// @version         1.0.7.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-ttv-autoreload.user.js
 // @author          https://greasyfork.org/en/scripts/472868-twitch-auto-reload-when-k-error/code
@@ -34,7 +34,7 @@ function styledConsoleLog(module, func, log) {
     if (id || isEmbed && channelNameEmbed) {
         styledConsoleLog(0, loc.origin + loc.pathname, "Initialising... " + channelName);
         setInterval(() => {
-            var button = document.querySelector(".player-overlay-background button:not(.qeepv)"); //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+            var button = document.querySelector(".player-overlay-background button:not(.gJvhRf)"); //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
             if (button) {
                 button.click();
                 styledConsoleLog(0, loc.origin + loc.pathname, "Reloading... " + channelName);
