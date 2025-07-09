@@ -1996,20 +1996,25 @@ function goFullScreen() {
 
 // Set Quality /////////////////////////////////////////////////////////////////////////
 
-function getQualities(strmID) {
-    var obj = document.getElementById("v-" + fldids[strmID]);
+function getQualities(streamPos) {
+    var obj = document.getElementById("v-" + fldids[streamPos]);
+
     if (typeof obj.quality === "undefined" || obj.quality.length < 1) {
-        if (chans[strmID].search("v=") == -1) {
-            var list = obj.player.getQualities();
+        if (chans[streamPos].search("k=") > -1) { // test for a kick player
+            //kick does not have a method implemented
+        }
+        else if (chans[streamPos].search("v=") > -1) { // test for a youtube player
+            obj.quality = obj.player.getQualities();
+        }
+        else { // code for a twitch player
+            let list = obj.player.getQualities();
             obj.quality = [];
             for (let i = 0, l = list.length; i < l; i++) {
                 obj.quality.push(list[i].group);
             }
         }
-        else if (chans[strmID].search("v=") > -1) {
-            obj.quality = obj.player.getQualities();
-        }
     }
+
 }
 
 function chkQuality(array, string) {
@@ -2021,54 +2026,85 @@ function chkQuality(array, string) {
     }
 }
 
-function setQuality(strmID, strmQuality) {
-    let currentQuality = "",
-        checkQuality = "",
-        obj = document.getElementById("v-" + fldids[strmID]);
+function setQuality(streamPos, streamQuality) {
+    let currentQuality = "";
+    let checkQuality = "";
+    let obj = document.getElementById("v-" + fldids[streamPos]);
 
-    if (obj.player.getEnded() !== true && chans[strmID].search("v=") == -1) {
+    if (chans[streamPos].search("k=") > -1) {
+        //
+    } else if (chans[streamPos].search("v=") > -1) {
+        //
+    } else if (obj.player.getEnded() !== true) {
         currentQuality = obj.player.getQuality();
-        if (currentQuality !== strmQuality) {
-            if (chans[strmID].search("v=") == -1) {
-                checkQuality = chkQuality(obj.quality, strmQuality);
-                obj.player.setQuality( checkQuality );
 
-                styledConsoleLog(0, "setQuality", "(v-" + fldids[strmID] + ") " + obj.player.getPlayerState().channelName + ": " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
+        if (streamQuality == "1440p60" || streamQuality == "1080p60") {
+            let includes_1080p60 = obj.quality.includes("1080p60");
+
+            if (streamQuality == "1080p60" && includes_1080p60 == false) {
+                streamQuality = "chunked";
             }
-            else {
-                styledConsoleLog(0, "setQuality", "(v-" + fldids[strmID] + "): Not Twitch");
+            else if (streamQuality == "1080p60" && includes_1080p60 == true) {
+                streamQuality = "1080p60";
             }
+            else if (streamQuality == "1440p60" && includes_1080p60 == true) {
+                streamQuality = "chunked";
+            }
+        }
+
+        if (currentQuality !== streamQuality) {
+            checkQuality = chkQuality(obj.quality, streamQuality);
+            obj.player.setQuality(checkQuality);
+            styledConsoleLog(0, "setQuality", "(v-" + fldids[streamPos] + ") " + obj.player.getPlayerState().channelName + ": " + (typeof currentQuality !== "undefined" ? currentQuality : "") + " -> " + (typeof checkQuality !== "undefined" ? checkQuality : ""));
         }
     }
 }
 
-function chgQuality(strmID, strmQuality) {
-    var length = 0;
-    var quality = [];
+function setMaxQuality() {
+    let maxQuality = localStorage.getItem("maxQuality");
+
+    if (maxQuality == null) {
+        localStorage.setItem("maxQuality", "auto");
+        maxQuality = "auto";
+    }
+
+    document.getElementById("maxQuality").value = maxQuality;
+    document.getElementById("maxQuality").addEventListener("change", function() {
+        localStorage.setItem("maxQuality", this.value);
+    });
+}
+
+function chgQuality(streamPos) {
+    var length = 0; //whether to apply a quality override from "var quality" (e.g. length[0] = quality[0] = apply to v-0)
+    var quality = ["auto","auto","auto"];
+    var defaultQuality = document.getElementById("defqua").value;
+    var maxQuality = document.getElementById("maxQuality").value;
+
     var aspect_ratio = screen.width / screen.height;
+
     var gameMode = localStorage.getItem("gameMode");
     var maxQualityMode = localStorage.getItem("maxQualityMode");
     var watchParty = localStorage.getItem("watchParty");
-    var defaultQuality = document.getElementById("defqua").value;
 
     if (gameMode === "true") {
-        quality = ["480p30",defaultQuality,defaultQuality];
+        quality[0] = "480p30";
+        quality[1] = defaultQuality;
+        quality[2] = defaultQuality;
     }
-    else {
-        quality = ["auto","auto","auto"];
-    }
+
     if (maxQualityMode === "true") {
-        quality[0] = "chunked";
+        quality[0] = maxQuality;
     }
+
     if (watchParty === "true") {
         length = 1;
-        quality[1] = "chunked";
+        quality[1] = maxQuality;
     }
-    switch(aspect_ratio) {
-        case 1.7777777777777777:
-            // length = 0;
+
+    switch(aspect_ratio) { //test for 16:9 or 16:10 display
+        case 1.7777777777777777: // 16:9 display
             break;
-        case 1.6:
+        case 1.6: //16:10 display
             switch(chans.length) {
                 case 3:
                     length = 2;
@@ -2101,21 +2137,14 @@ function chgQuality(strmID, strmQuality) {
                     break;
             }
             break;
-        default:
-            // length = 0;
     }
 
-    if (typeof strmID !== "undefined") {
-        if (typeof strmQuality !== "undefined") {
-            getQualities(strmID);
-            setQuality(strmID, strmQuality);
-        } else {
-            getQualities(strmID);
-            setQuality(strmID, (strmID > length ? defaultQuality : quality[strmID]) );
-        }
+    if (typeof streamPos !== "undefined") {
+        getQualities(streamPos);
+        setQuality(streamPos, (streamPos > length ? defaultQuality : quality[streamPos]) );
     } else {
         for (let i = 0, l = chans.length; i < l; i++) {
-            getQualities(i); //defaultQuality "360p30" "480p30" "720p30" "720p60" "chunked" "auto"
+            getQualities(i);
             setQuality(i, (i > length ? defaultQuality : quality[i]) );
         }
     }
@@ -3038,6 +3067,7 @@ function onScriptLoad() {
     setGoFullScreen(1);
     setVolumeOnRun(1);
     setChgPlayerStyleCaseOne(1);
+    setMaxQuality();
 
     setTimeout(() => {
         updUnloadAllChatsBtn();
