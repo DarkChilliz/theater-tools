@@ -62,12 +62,12 @@
 
 #### Userscript
 
-- Viewing the [ttv-playerlowlatency.user.js](https://github.com/DarkChilliz/theater-tools/raw/main/ttv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
+- Viewing the [ttv-playerlowlatency.user.js](https://github.com/DarkChilliz/theater-tools/raw/main/ttv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Tampermonkey).
 
 #### Features
 
+- Reduce the latency of the broadcast by speeding up the playback rate when you have more then 3 seconds of latency.
 - Works on twitch.tv and embeded players. (Tested on [twitchtheater.tv](https://twitchtheater.tv/) and [twitch.tv](https://twitch.tv/forsen)).
-- Minimal latency (automatically reload or speed up the stream if you're too far behind)
     <!-- ``` -->
     <!-- | Options                    | Defaults | -->
     <!-- | -------------------------- | -------- | -->
@@ -77,8 +77,6 @@
     <!-- | Option.OverridePlayer    = |   false  | -->
     <!-- ``` -->
 <!-- - Reload on error (if the player errors, reload it) -->
-
-#### Credit to [Nerixyz/ttv-tools](https://github.com/Nerixyz/ttv-tools)
 
 # ttv-autoreload.user.js
 
