@@ -66,7 +66,7 @@
 
 #### Features
 
-- Reduce the latency of the broadcast by speeding up the playback rate when you have more then 3 seconds of latency.
+- Reduce the `Latency To Broadcaster` by speeding up the playback rate when you have more then 3 seconds of delay. It keeps a video buffer of 1 second.
 - Works on twitch.tv and embeded players. (Tested on [twitchtheater.tv](https://twitchtheater.tv/) and [twitch.tv](https://twitch.tv/forsen)).
     <!-- ``` -->
     <!-- | Options                    | Defaults | -->
