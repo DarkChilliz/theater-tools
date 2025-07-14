@@ -5,14 +5,13 @@
 // @match           *://*.twitchtheater.tv/*
 // @match           *://*.darkchilliz.github.io/*
 // @run-at          document-idle
-// @grant           none
-// @version         2.12.0.0000
+// @grant           GM_getResourceText
+// @grant           GM_getResourceURL
+// @version         2.12.1.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-theater-tools.user.js
 // @author          http://localhost:8020/
 // @description     30/09/2022, 3:29:15 am
-// @grant           GM_getResourceText
-// @grant           GM_getResourceURL
 // @icon            http://localhost:8020/theater-tools/img/favicon-192.png
 // @resource run    http://localhost:8020/theater-tools/img/playerstyle.png
 // @resource menu   http://localhost:8020/theater-tools/img/functionsmenu.png
