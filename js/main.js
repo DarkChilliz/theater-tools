@@ -39,7 +39,7 @@ function chgPlayerStyle() {
     var playerNotConfigured = function() {
             styledConsoleLog(0, "chgPlayerStyle", "not configured for [" + fldids.length + "] players");
         };
-    var useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
+    var useChgPlayerStyleCaseOne = Settings.get("useChgPlayerStyleCaseOne");
 
     //1920x1080 (16:9 aspect ratio)
     if (screen.width / screen.height == 1.7777777777777777 || screen.width == 1920 && screen.height == 1080) {
@@ -47,7 +47,7 @@ function chgPlayerStyle() {
             case 0:
                 break;
             case 1:
-                if (useChgPlayerStyleCaseOne === "true") {
+                if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
                     h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
@@ -1317,7 +1317,7 @@ function chgPlayerStyle() {
             case 0:
                 break;
             case 1:
-                if (useChgPlayerStyleCaseOne === "true") {
+                if (useChgPlayerStyleCaseOne === true) {
                     w[0] = clientW;
                     h[0] = Math.round( missingValue( r, w[0], 0 ) );
                     //top
@@ -2061,42 +2061,42 @@ function setQuality(streamPos, streamQuality) {
 }
 
 function setMaxQuality() {
-    let maxQuality = localStorage.getItem("maxQuality");
+    const el = document.getElementById("maxQuality");
+    let value = Settings.get("maxQuality");
 
-    if (maxQuality == null) {
-        localStorage.setItem("maxQuality", "auto");
-        maxQuality = "auto";
+    if (value == null) {
+        value = "auto";
+        Settings.update("maxQuality", value);
     }
 
-    document.getElementById("maxQuality").value = maxQuality;
-    document.getElementById("maxQuality").addEventListener("change", function() {
-        localStorage.setItem("maxQuality", this.value);
-    });
+    el.value = value;
+    el.addEventListener("change", () => Settings.update("maxQuality", el.value));
 }
 
 function chgQuality(streamPos) {
-    var length = 0; //whether to apply a quality override from "var quality" (e.g. length[0] = quality[0] = apply to v-0)
-    var quality = ["auto","auto","auto"];
     var defaultQuality = document.getElementById("defqua").value;
     var maxQuality = document.getElementById("maxQuality").value;
 
+    var length = 0; //whether to apply a quality override from "var quality" (e.g. length[0] = quality[0] = apply to v-0)
+    var quality = [defaultQuality,defaultQuality,defaultQuality];
+
     var aspect_ratio = screen.width / screen.height;
 
-    var gameMode = localStorage.getItem("gameMode");
-    var maxQualityMode = localStorage.getItem("maxQualityMode");
-    var watchParty = localStorage.getItem("watchParty");
+    var gameMode = Settings.get("gameMode");
+    var maxQualityMode = Settings.get("maxQualityMode");
+    var watchParty = Settings.get("watchParty");
 
-    if (gameMode === "true") {
+    if (gameMode === true) {
         quality[0] = "480p30";
         quality[1] = defaultQuality;
         quality[2] = defaultQuality;
     }
 
-    if (maxQualityMode === "true") {
+    if (maxQualityMode === true) {
         quality[0] = maxQuality;
     }
 
-    if (watchParty === "true") {
+    if (watchParty === true) {
         length = 1;
         quality[1] = maxQuality;
     }
@@ -2112,7 +2112,7 @@ function chgQuality(streamPos) {
                 case 7:
                 case 5:
                     length = 2;
-                    if (gameMode === "false") {
+                    if (gameMode === false) {
                         quality[2] = "360p30"; //(gameMode === "true" ? defaultQuality : "360p30")
                     }
                     break;
@@ -2131,7 +2131,7 @@ function chgQuality(streamPos) {
                 case 15:
                 case 16:
                     length = 1;
-                    if (gameMode === "false") {
+                    if (gameMode === false) {
                         quality[1] = "360p30";
                     }
                     break;
@@ -2151,6 +2151,21 @@ function chgQuality(streamPos) {
 }
 
 // button.click() functions ///////////////////////////////////////////////////////////////
+
+function toggleSettingButton(key, className, isFirstRun) {
+    const btn = document.querySelector(`.${className}`);
+    let current = Settings.get(key) === true;
+
+    if (isFirstRun) {
+        btn.classList.toggle("active", current);
+    } else {
+        const newState = !current;
+        Settings.update(key, newState);
+        btn.classList.toggle("active", newState);
+    }
+}
+
+
 
 function removeOfflineChannels(val) {
     var list = [],
@@ -2253,13 +2268,13 @@ function addStreamsFromChat(event) {
 }
 
 async function addLiveFromTwitch() {
-    let accessToken = localStorage.getItem("accessToken");
-    let clientId = localStorage.getItem("clientId");
-    let userId = localStorage.getItem("userId");
+    let accessToken = Settings.get("accessToken");
+    let clientId = Settings.get("clientId");
+    let userId = Settings.get("userId");
     let data = {};
     let channelNames = [];
 
-    if (accessToken !== null && clientId !== null && userId !== null) {
+    if (accessToken && clientId && userId) {
 
         const res = await fetch('https://api.twitch.tv/helix/streams/followed?user_id=' + userId, {
             headers: {
@@ -2293,74 +2308,12 @@ function updLocalstorage(key) {
 
 
 
-function setGameMode(isfirstrun) {
-    let obj = document.getElementsByClassName("setGameMode")[0],
-        gameMode = localStorage.getItem("gameMode");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(gameMode) {
-            case "false":
-            case "true":
-                break;
-            case null:
-            default:
-                gameMode = "false";
-                localStorage.setItem("gameMode", "false");
-                break;
-        }
-
-        if (gameMode === "true") {
-            obj.classList.add("active");
-        }
-    } else {
-        switch(gameMode) {
-            case "false":
-                gameMode = "true";
-                break;
-            case "true":
-                gameMode = "false";
-                break;
-        }
-        localStorage.setItem("gameMode", gameMode);
-
-        if (gameMode === "true") {
-            obj.classList.add("active");
-        } else {
-            obj.classList.remove("active");
-        }
-    }
+function setGameMode(isFirstRun) {
+    toggleSettingButton("gameMode", "setGameMode", isFirstRun);
 }
 
-function setMaxQualityMode(isfirstrun) {
-    let obj = document.getElementsByClassName("setMaxQualityMode")[0],
-        maxQualityMode = localStorage.getItem("maxQualityMode");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(maxQualityMode) {
-            case "false":
-                break;
-            case "true":
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                maxQualityMode = "false";
-                localStorage.setItem("maxQualityMode", "false");
-                break;
-        }
-    } else {
-        switch(maxQualityMode) {
-            case "false":
-                maxQualityMode = "true";
-                obj.classList.add("active");
-                break;
-            case "true":
-                maxQualityMode = "false";
-                obj.classList.remove("active");
-                break;
-        }
-        localStorage.setItem("maxQualityMode", maxQualityMode);
-    }
+function setMaxQualityMode(isFirstRun) {
+    toggleSettingButton("maxQualityMode", "setMaxQualityMode", isFirstRun);
 }
 
 
@@ -2410,174 +2363,50 @@ function fixStalledPlayers() {
     }
 }
 
-function fixStalledPlayersButton(isfirstrun) {
-    //https://stackoverflow.com/a/21638776
-    var obj = document.getElementsByClassName("fixStalledPlayersButton")[0],
-        useFixStalledPlayers = localStorage.getItem("useFixStalledPlayers");
+function fixStalledPlayersButton(isFirstRun) {
+    const btn = document.querySelector(".fixStalledPlayersButton");
+    let isActive = Settings.get("useFixStalledPlayers") === true;
 
-    if (typeof isfirstrun !== "undefined") {
-        switch(useFixStalledPlayers) {
-            case "false":
-                break;
-            case "true":
-                fixStalledPlayersState = window.setInterval(fixStalledPlayers,3500);
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                localStorage.setItem("useFixStalledPlayers", "false");
-                break;
+    // First run: just apply the visual and behavior state
+    if (isFirstRun) {
+        if (isActive) {
+            fixStalledPlayersState = window.setInterval(fixStalledPlayers, 3500);
+            btn.classList.add("active");
         }
+        return;
+    }
+
+    // Toggle the setting
+    isActive = !isActive;
+    Settings.update("useFixStalledPlayers", isActive);
+
+    // Apply state change
+    if (isActive) {
+        fixStalledPlayersState = window.setInterval(fixStalledPlayers, 3500);
+        btn.classList.add("active");
     } else {
-        switch(useFixStalledPlayers) {
-            case "false":
-                if (fixStalledPlayersState !== null) {
-                    window.clearInterval(fixStalledPlayersState);
-                }
-                useFixStalledPlayers = "true";
-                fixStalledPlayersState = window.setInterval(fixStalledPlayers,3500);
-                obj.classList.add("active");
-                break;
-            case "true":
-                useFixStalledPlayers = "false";
-                window.clearInterval(fixStalledPlayersState);
-                fixStalledPlayersState = null;
-                obj.classList.remove("active");
-                break;
-        }
-        localStorage.setItem("useFixStalledPlayers", useFixStalledPlayers);
+        window.clearInterval(fixStalledPlayersState);
+        fixStalledPlayersState = null;
+        btn.classList.remove("active");
     }
 }
 
 
 
-function watchPartyMode(isfirstrun) {
-    let obj = document.getElementsByClassName("watchPartyMode")[0],
-        watchParty = localStorage.getItem("watchParty");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(watchParty) {
-            case "false":
-                break;
-            case "true":
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                watchParty = "false";
-                localStorage.setItem("watchParty", "false");
-                break;
-        }
-    } else {
-        switch(watchParty) {
-            case "false":
-                watchParty = "true";
-                obj.classList.add("active");
-                break;
-            case "true":
-                watchParty = "false";
-                obj.classList.remove("active");
-                break;
-        }
-        localStorage.setItem("watchParty", watchParty);
-    }
+function watchPartyMode(isFirstRun) {
+    toggleSettingButton("watchParty", "watchPartyMode", isFirstRun);
 }
 
-function setGoFullScreen(isfirstrun) {
-    let obj = document.getElementsByClassName("useGoFullScreen")[0],
-        useGoFullScreen = localStorage.getItem("useGoFullScreen");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(useGoFullScreen) {
-            case "false":
-                break;
-            case "true":
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                useGoFullScreen = "false";
-                localStorage.setItem("useGoFullScreen", "false");
-                break;
-        }
-    } else {
-        switch(useGoFullScreen) {
-            case "false":
-                useGoFullScreen = "true";
-                obj.classList.add("active");
-                break;
-            case "true":
-                useGoFullScreen = "false";
-                obj.classList.remove("active");
-                break;
-        }
-        localStorage.setItem("useGoFullScreen", useGoFullScreen);
-    }
+function setGoFullScreen(isFirstRun) {
+    toggleSettingButton("useGoFullScreen", "useGoFullScreen", isFirstRun);
 }
 
-function setVolumeOnRun(isfirstrun) {
-    let obj = document.getElementsByClassName("useVolumeOnRun")[0];
-    let useVolumeOnRun = localStorage.getItem("useVolumeOnRun");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(useVolumeOnRun) {
-            case "false":
-                break;
-            case "true":
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                useVolumeOnRun = "false";
-                localStorage.setItem("useVolumeOnRun", "false");
-                break;
-        }
-    } else {
-        switch(useVolumeOnRun) {
-            case "false":
-                useVolumeOnRun = "true";
-                obj.classList.add("active");
-                break;
-            case "true":
-                useVolumeOnRun = "false";
-                obj.classList.remove("active");
-                break;
-        }
-        localStorage.setItem("useVolumeOnRun", useVolumeOnRun);
-    }
+function setVolumeOnRun(isFirstRun) {
+    toggleSettingButton("useVolumeOnRun", "useVolumeOnRun", isFirstRun);
 }
 
-function setChgPlayerStyleCaseOne(isfirstrun) {
-    let obj = document.getElementsByClassName("useChgPlayerStyleCaseOne")[0],
-        useChgPlayerStyleCaseOne = localStorage.getItem("useChgPlayerStyleCaseOne");
-
-    if (typeof isfirstrun !== "undefined") {
-        switch(useChgPlayerStyleCaseOne) {
-            case "false":
-                break;
-            case "true":
-                obj.classList.add("active");
-                break;
-            case null:
-            default:
-                useChgPlayerStyleCaseOne = "false";
-                localStorage.setItem("useChgPlayerStyleCaseOne", "false");
-                break;
-        }
-    } else {
-        switch(useChgPlayerStyleCaseOne) {
-            case "false":
-                useChgPlayerStyleCaseOne = "true";
-                localStorage.setItem("useChgPlayerStyleCaseOne", useChgPlayerStyleCaseOne);
-                obj.classList.add("active");
-                break;
-            case "true":
-                useChgPlayerStyleCaseOne = "false";
-                localStorage.setItem("useChgPlayerStyleCaseOne", useChgPlayerStyleCaseOne);
-                obj.classList.remove("active");
-                break;
-        }
-    }
+function setChgPlayerStyleCaseOne(isFirstRun) {
+    toggleSettingButton("useChgPlayerStyleCaseOne", "useChgPlayerStyleCaseOne", isFirstRun);
 }
 
 function randomTestButton() {
@@ -2785,7 +2614,7 @@ function genKickChat(indx, chk) {
         kickName = chats[document.getElementById('chatsel').selectedIndex];
     }
 
-    if (kickName.includes("k=")) {
+    if (kickName && kickName.includes("k=")) {
         //https://stackoverflow.com/a/52124191
         //https://stackoverflow.com/a/10398941
         const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
@@ -2861,13 +2690,13 @@ evtchk = (function() {
         if (arguments[0].ctrlKey) {
             openTheaterMenu(0);
 
-            if (localStorage.getItem("useVolumeOnRun") === "true") {
+            if (Settings.get("useVolumeOnRun") === true) {
                 chgvolume(100);
             }
 
             chgQuality();
 
-            if (localStorage.getItem("useGoFullScreen") === "true") {
+            if (Settings.get("useGoFullScreen") === true) {
                 goFullScreen();
             } else {
                 chgPlayerStyle();
@@ -3058,47 +2887,92 @@ playpause = (function() {
 // Setup Functions /////////////////////////////////////////////////////////////////////
 
 function onScriptLoad() {
+    // Remove event listener to avoid duplicate runs
     document.removeEventListener("onScriptLoad", onScriptLoad);
 
-    setGameMode(1);
-    setMaxQualityMode(1);
-    fixStalledPlayersButton(1);
-    watchPartyMode(1);
-    setGoFullScreen(1);
-    setVolumeOnRun(1);
-    setChgPlayerStyleCaseOne(1);
+    Settings.load();
+
+    // Initialize settings
+    setGameMode(true);
+    setMaxQualityMode(true);
+    fixStalledPlayersButton(true);
+    watchPartyMode(true);
+    setGoFullScreen(true);
+    setVolumeOnRun(true);
+    setChgPlayerStyleCaseOne(true);
     setMaxQuality();
 
+    // Update UI buttons after a short delay
     setTimeout(() => {
         updUnloadAllChatsBtn();
         updAddStreamsFromChatBtn();
     }, 2000);
 
-    document.getElementById("theaterRunBtn").onclick = function onclick(event) {
+    // Run button behavior
+    const runBtn = document.getElementById("theaterRunBtn");
+    runBtn.onclick = (event) => {
         if (event.ctrlKey) {
             openTheaterMenu(0);
 
-            if (localStorage.getItem("useVolumeOnRun") === "true") {
+            if (Settings.get("useVolumeOnRun") === true) {
                 chgvolume(100);
             }
 
             playpause(1);
         }
+
         chgQuality();
 
-        if (localStorage.getItem("useGoFullScreen") === "true") {
+        if (Settings.get("useGoFullScreen") === true) {
             goFullScreen();
         } else {
             chgPlayerStyle();
         }
     };
 
-    document.getElementById("theaterMenuBtn").onclick = function onclick() {
-        openTheaterMenu();
-    };
+    // Menu button behavior
+    const menuBtn = document.getElementById("theaterMenuBtn");
+    menuBtn.onclick = () => openTheaterMenu();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
+
+const Settings = {
+    // Define your defaults here (booleans or strings)
+    cache: {
+        useChgPlayerStyleCaseOne: false,
+        maxQuality: "",
+        gameMode: false,
+        maxQualityMode: false,
+        watchParty: false,
+        accessToken: "",
+        clientId: "",
+        userId: "",
+        useFixStalledPlayers: false,
+        useVolumeOnRun: false,
+        useGoFullScreen: false,
+    },
+
+    load() {
+        for (const key in this.cache) {
+            const stored = localStorage.getItem(key);
+            if (typeof this.cache[key] === "boolean") {
+                this.cache[key] = stored === "true";
+            } else if (typeof this.cache[key] === "string") {
+                this.cache[key] = stored ?? "";
+            }
+        }
+    },
+
+    update(key, value) {
+        this.cache[key] = value;
+        localStorage.setItem(key, value.toString());
+    },
+
+    get(key) {
+        return this.cache[key];
+    }
+};
 
 var fixStalledPlayersState = null;
 
