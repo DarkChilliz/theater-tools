@@ -7,7 +7,7 @@
 // @run-at          document-idle
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @version         2.13.0.0000
+// @version         2.14.0.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-theater-tools.user.js
 // @author          http://localhost:8020/

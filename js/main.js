@@ -2064,7 +2064,7 @@ function setMaxQuality() {
     const el = document.getElementById("maxQuality");
     let value = Settings.get("maxQuality");
 
-    if (value == null) {
+    if (value == "") {
         value = "auto";
         Settings.update("maxQuality", value);
     }
@@ -2162,6 +2162,42 @@ function toggleSettingButton(key, className, isFirstRun) {
         const newState = !current;
         Settings.update(key, newState);
         btn.classList.toggle("active", newState);
+    }
+}
+
+function updLocalstorage(key) {
+    let val = document.getElementById(key).value;
+    document.getElementById(key).value = '';
+
+    Settings.update(key, val);
+}
+
+function loadPreferences() {
+    let dc = document.getElementById('dc');
+    if (dc.checked == false) {
+        dc.click();
+    }
+
+    let hidebits = document.getElementById('hidebits');
+    if (hidebits.selectedIndex != 2) {
+        hidebits.selectedIndex = 2;
+        hidebits.onchange();
+    }
+
+    let vo = document.getElementById('vo');
+    if (vo.checked == false) {
+        vo.click();
+    }
+
+    let au = document.getElementById('au');
+    if (au.checked == false) {
+        au.click();
+    }
+
+    let defqua = document.getElementById('defqua');
+    if (defqua.value != "160p30") {
+        defqua.value = "160p30";
+        defqua.onchange();
     }
 }
 
@@ -2297,13 +2333,6 @@ async function addLiveFromTwitch() {
             chgchat();
         }
     }
-}
-
-function updLocalstorage(key) {
-    let val = document.getElementById(key).value;
-    document.getElementById(key).value = '';
-
-    localStorage.setItem(key, val);
 }
 
 

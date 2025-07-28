@@ -7,7 +7,7 @@
 // @run-at          document-idle
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @version         2.13.0
+// @version         2.14.0
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/theater-tools/raw/main/theater-tools.user.js
 // @author          https://github.com/DarkChilliz
