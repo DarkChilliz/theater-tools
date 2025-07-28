@@ -62,7 +62,7 @@
 
 #### Userscript
 
-- Viewing the [ttv-playerlowlatency.user.js](https://github.com/DarkChilliz/theater-tools/raw/main/ttv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Tampermonkey).
+- Viewing the [ttv-playerlowlatency.user.js](https://github.com/DarkChilliz/theater-tools/raw/main/ttv-playerlowlatency.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
 
 #### Features
 
