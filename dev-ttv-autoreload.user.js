@@ -5,7 +5,7 @@
 // @match           *://*.twitch.tv/*
 // @run-at          document-idle
 // @grant           none
-// @version         1.0.7.0000
+// @version         1.0.8.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-ttv-autoreload.user.js
 // @author          https://greasyfork.org/en/scripts/472868-twitch-auto-reload-when-k-error/code
@@ -15,8 +15,12 @@
 
 "use strict";
 
-function styledConsoleLog(module, func, log) {
-    console.log("%c" + (module || "TTVAutoReload") + " [%c" + func + "%c]: %c" + log, "color:#755000; font-weight:bold", "color:#999999", "color:#755000; font-weight:bold", "color:#999999");
+function debugLog(module, func, log) {
+    console.log("%c" + (module || "TTV-AutoReload") + " [%c" + func + "%c]: %c" + log,
+    "color:#db934f; font-weight:bold",
+    "color:#999999",
+    "color:#db934f; font-weight:bold",
+    "color:#999999");
 }
 
 (function() {
@@ -28,19 +32,19 @@ function styledConsoleLog(module, func, log) {
     const isEmbed = (loc.hostname == "player.twitch.tv");
     const channelName = (channelNameEmbed || channelNameTwitch);
 
-    // styledConsoleLog(0, loc.origin + loc.pathname, "Checking for [player.twitch.tv/?channel=]: " + isEmbed + (channelNameEmbed ? " (" + channelNameEmbed + ")" : ""));
-    // styledConsoleLog(0, loc.origin + loc.pathname, "Checking for [#live-page-chat]: " + (id ? "true" : "false"));
+    // debugLog(0, loc.origin + loc.pathname, "Checking for [player.twitch.tv/?channel=]: " + isEmbed + (channelNameEmbed ? " (" + channelNameEmbed + ")" : ""));
+    // debugLog(0, loc.origin + loc.pathname, "Checking for [#live-page-chat]: " + (id ? "true" : "false"));
 
     if (id || isEmbed && channelNameEmbed) {
-        styledConsoleLog(0, loc.origin + loc.pathname, "Initialising... " + channelName);
+        debugLog(0, loc.origin + loc.pathname, "Initialising... " + channelName);
         setInterval(() => {
             var button = document.querySelector(".player-overlay-background button:not(.gJvhRf)"); //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
             if (button) {
                 button.click();
-                styledConsoleLog(0, loc.origin + loc.pathname, "Reloading... " + channelName);
+                debugLog(0, loc.origin + loc.pathname, "Reloading... " + channelName);
             }
         }, 3500); //default: 1000
     } else {
-        styledConsoleLog(0, loc.origin + loc.pathname, "Skipping...");
+        debugLog(0, loc.origin + loc.pathname, "Skipping...");
     }
 })();
