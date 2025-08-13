@@ -78,6 +78,18 @@
     <!-- ``` -->
 <!-- - Reload on error (if the player errors, reload it) -->
 
+# twitch-catchup-override.user.js
+
+#### Userscript
+
+- Viewing the [twitch-catchup-override.user.js](https://github.com/DarkChilliz/theater-tools/raw/main/twitch-catchup-override.user.js) userscript should prompt the script to be added. (tested in Violentmonkey).
+
+#### Features
+
+- Detects Twitch’s auto catch-up bump (usually ~1.03×) and swaps it to 1.35× instead.
+
+- Works on twitch.tv and embeded players. (Tested on [twitchtheater.tv](https://twitchtheater.tv/) and [twitch.tv](https://twitch.tv/forsen)).
+
 # ttv-autoreload.user.js
 
 #### Userscript
