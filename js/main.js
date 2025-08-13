@@ -2710,6 +2710,22 @@ function genKickPlayer(list, indx) {
     updKickSizeWrapper();
 }
 
+function setKickMuted(val) {
+    for (let i = 0; i < chans.length; i++) {
+        const container = document.getElementById('v-' + fldids[i]);
+
+        if (container.kick) {
+            const iframeInside = container.querySelector('iframe');
+
+            if ((val == undefined || val == fldids[i])) {
+                iframeInside.contentWindow.postMessage('unmute', '*');
+            } else {
+                iframeInside.contentWindow.postMessage('mute', '*');
+            }
+        }
+    }
+}
+
 // Rewrite TwitchTheater.tv Functions //////////////////////////////////////////////////
 
 evtchk = (function() {
@@ -2833,6 +2849,18 @@ relchat = (function() {
         var result = cached_function.apply(this, arguments);
 
         genKickChat(null, 2);
+
+        return result;
+    };
+})();
+
+chgaudio = (function() {
+    var cached_function = chgaudio;
+
+    return function() {
+        var result = cached_function.apply(this, arguments);
+
+        setKickMuted(arguments[0]);
 
         return result;
     };
