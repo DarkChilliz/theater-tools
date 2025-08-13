@@ -2348,44 +2348,51 @@ function setMaxQualityMode(isFirstRun) {
 
 
 function fixStalledPlayers() {
-    if (document.getElementById("theaterMenuBot").style.display == "") {
-        return;
-    }
+    if (document.getElementById("theaterMenuBot").style.display === "") return;
 
-    let run = [];
+    const run = [];
 
-    for (let i = 0, l = fldids.length; i < l; i++) {
-        let obj = document.getElementById("v-" + fldids[i]);
-        let playerState = obj.player.getPlayerState();
+    for (let i = 0; i < fldids.length; i++) {
+        const obj = document.getElementById("v-" + fldids[i]);
+        const state = obj.player.getPlayerState();
+        const vs = state.stats.videoStats;
 
-        if (playerState.stats.videoStats.fps == 0) {
-            if (playerState.playback !== "Idle" && playerState.ended == false) {
-                obj.player.pause();
-                obj.player.play();
-                run[run.length] = i;
-                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".fps == " + playerState.stats.videoStats.fps);
-            }
-        } else if (playerState.stats.videoStats.bufferSize < 0) {
-            if (playerState.playback !== "Idle" && playerState.ended == false) {
-                relstream(i,-1);
-                run[run.length] = i;
-                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".bufferSize == " + playerState.stats.videoStats.bufferSize);
-            }
-        } else if (playerState.currentTime === playerState.ttvtools_currentTime) {
-            if (playerState.playback !== "Idle" && playerState.ended == false) {
-                obj.player.pause();
-                obj.player.play();
-                run[run.length] = i;
-                styledConsoleLog(0, "fixStalledPlayers", "(v-" + fldids[i] + ") " + playerState.channelName + ".currentTime == " + playerState.ttvtools_currentTime + " / " + playerState.currentTime);
-            }
+        const isActive = state.playback !== "Idle" && state.ended === false;
+
+        if (!isActive) {
+            // Keep last-seen time in sync to avoid false positives later
+            obj.player._player._playerState.ttvtools_currentTime = state.currentTime;
+            continue;
         }
 
-        obj.player._player._playerState.ttvtools_currentTime = playerState.currentTime;
+        // Cond 1: FPS stalled or absurd
+        if (vs.fps === 0 || vs.fps > 999) {
+            styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.fps == ${vs.fps}`);
+            obj.player.pause();
+            obj.player.play();
+            run.push(i);
+
+        // Cond 2: Negative buffer size
+        } else if (vs.bufferSize < 0) {
+            styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.bufferSize == ${vs.bufferSize}`);
+            relstream(i, -1);
+            run.push(i);
+
+        // Cond 3: Current time not advancing
+        } else if (state.currentTime === state.ttvtools_currentTime) {
+            styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.currentTime == ${state.ttvtools_currentTime} / ${state.currentTime}`);
+            obj.player.pause();
+            obj.player.play();
+            run.push(i);
+        }
+
+        // Track last-seen time
+        obj.player._player._playerState.ttvtools_currentTime = state.currentTime;
     }
 
     if (run.length) {
         setTimeout(() => {
-            for (let i = 0, l = run.length; i < l; i++) {
+            for (let i = 0; i < run.length; i++) {
                 chgQuality(run[i]);
             }
         }, 1500);
@@ -2448,11 +2455,15 @@ function randomTestButton() {
     // console.log( obj.player.getChannelId() +                           ' - getChannelId' );
     // console.log( obj.player.getQualities() );
     // console.log( obj.player.getPlayerState().qualitiesAvailable );
-    console.log( obj.player.getPlayerState().playback +            ' - playback' );
-    console.log( obj.player.getPlayerState().ended +               ' - ended' );
-    console.log( obj.player.getEnded() +                           ' - getEnded' );
-    console.log( obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
-    console.log( obj.player.getPlaybackStats().fps +               ' - fps' );
+
+    // console.log( obj.player.getPlayerState().playback +            ' - playback' );
+    // console.log( obj.player.getPlayerState().ended +               ' - ended' );
+    // console.log( obj.player.getEnded() +                           ' - getEnded' );
+    // console.log( obj.player.getPlaybackStats().bufferSize +        ' - bufferSize' );
+    // console.log( obj.player.getPlaybackStats().fps +               ' - fps' );
+
+    console.log(obj.player.getPlaybackStats());
+    console.log(obj.player.getPlayerState());
 
     // obj.player.getQuality();
     // obj.player.setQuality("160p30");
