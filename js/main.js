@@ -2729,9 +2729,9 @@ function setKickMuted(val) {
             const iframeInside = container.querySelector('iframe');
 
             if ((val == undefined || val == fldids[i])) {
-                iframeInside.contentWindow.postMessage('unmute', '*');
+                iframeInside.contentWindow.postMessage({command: 'unmute'}, '*');
             } else {
-                iframeInside.contentWindow.postMessage('mute', '*');
+                iframeInside.contentWindow.postMessage({command: 'mute'}, '*');
             }
         }
     }
@@ -2866,7 +2866,7 @@ relchat = (function() {
 })();
 
 chgaudio = (function() {
-    var cached_function = chgaudio;
+    var cached_function = chgaudio; //chgaudio(val, chk)
 
     return function() {
         var result = cached_function.apply(this, arguments);

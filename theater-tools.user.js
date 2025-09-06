@@ -9,7 +9,7 @@
 // @run-at          document-idle
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @version         2.15.2
+// @version         2.15.3
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/theater-tools/raw/main/theater-tools.user.js
 // @author          https://github.com/DarkChilliz
@@ -70,13 +70,13 @@ function twitchtheater() {
 
 function kickPlayer() {
     window.onmessage = function(e) {
-        if (e.data == "mute") {
+        if (e.data.command === "mute") {
             const video = document.querySelector('video');
             if (video) {
                 video.muted = true;
             }
         }
-        if (e.data == "unmute") {
+        if (e.data.command === "unmute") {
             const video = document.querySelector('video');
             if (video) {
                 video.muted = false;
