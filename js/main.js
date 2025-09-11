@@ -2347,8 +2347,8 @@ function setMaxQualityMode(isFirstRun) {
 
 
 
-function fixStalledPlayers() {
-    if (document.getElementById("theaterMenuBot").style.display === "") return;
+function fixStalledPlayers() { // document.querySelector('video')
+    // if (document.getElementById("theaterMenuBot").style.display === "") return;
 
     const run = [];
 
@@ -2356,20 +2356,25 @@ function fixStalledPlayers() {
         const obj = document.getElementById("v-" + fldids[i]);
         const state = obj.player.getPlayerState();
         const vs = state.stats.videoStats;
+        // const ps = obj.player._player._playerState;
 
-        const isActive = state.playback !== "Idle" && state.ended === false;
+        const isActive = state.playback !== "Idle" && state.ended === false && state.qualitiesAvailable.length > 0;
 
         if (!isActive) {
             // Keep last-seen time in sync to avoid false positives later
-            obj.player._player._playerState.ttvtools_currentTime = state.currentTime;
+            state.currentTime_theaterTools = state.currentTime;
             continue;
         }
+
+        // const iframeInside = obj.querySelector('iframe');
 
         // Cond 1: FPS stalled or absurd
         if (vs.fps === 0 || vs.fps > 999) {
             styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.fps == ${vs.fps}`);
             obj.player.pause();
             obj.player.play();
+            // iframeInside.contentWindow.postMessage({command: 'pause'}, '*');
+            // iframeInside.contentWindow.postMessage({command: 'play'}, '*');
             run.push(i);
 
         // Cond 2: Negative buffer size
@@ -2379,15 +2384,15 @@ function fixStalledPlayers() {
             run.push(i);
 
         // Cond 3: Current time not advancing
-        } else if (state.currentTime === state.ttvtools_currentTime) {
-            styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.currentTime == ${state.ttvtools_currentTime} / ${state.currentTime}`);
+        } else if (state.currentTime === state.currentTime_theaterTools) {
+            styledConsoleLog(0, "fixStalledPlayers", `(v-${fldids[i]}) ${state.channelName}.currentTime == ${state.currentTime_theaterTools} / ${state.currentTime}`);
             obj.player.pause();
             obj.player.play();
             run.push(i);
         }
 
         // Track last-seen time
-        obj.player._player._playerState.ttvtools_currentTime = state.currentTime;
+        state.currentTime_theaterTools = state.currentTime;
     }
 
     if (run.length) {

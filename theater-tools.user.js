@@ -9,7 +9,7 @@
 // @run-at          document-idle
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @version         2.15.3
+// @version         2.15.4
 // @updateURL
 // @downloadURL     https://github.com/DarkChilliz/theater-tools/raw/main/theater-tools.user.js
 // @author          https://github.com/DarkChilliz
@@ -68,6 +68,23 @@ function twitchtheater() {
     document.head.appendChild(script);
 }
 
+function twitchPlayer() {
+    window.onmessage = function(e) {
+        if (e.data.command === "pause") {
+            const video = document.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        }
+        if (e.data.command === "play") {
+            const video = document.querySelector('video');
+            if (video) {
+                video.play();
+            }
+        }
+    };
+}
+
 function kickPlayer() {
     window.onmessage = function(e) {
         if (e.data.command === "mute") {
@@ -95,7 +112,7 @@ function kickPlayer() {
             twitchtheater();
             break;
         case "player.twitch.tv":
-            // Twitch code
+            twitchPlayer();
             break;
         case "player.kick.com":
             kickPlayer();
