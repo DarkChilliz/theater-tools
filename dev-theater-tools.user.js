@@ -9,7 +9,7 @@
 // @run-at          document-idle
 // @grant           GM_getResourceText
 // @grant           GM_getResourceURL
-// @version         2.15.4.0000
+// @version         2.15.5.0000
 // @updateURL
 // @downloadURL     http://localhost:8020/theater-tools/dev-theater-tools.user.js
 // @author          http://localhost:8020/
@@ -76,10 +76,25 @@ function twitchPlayer() {
                 video.pause();
             }
         }
-        if (e.data.command === "play") {
+
+        else if (e.data.command === "play") {
             const video = document.querySelector('video');
             if (video) {
                 video.play();
+            }
+        }
+
+        else if (e.data.command === "button.pause.click") {
+            const button = document.querySelector('button[aria-label="Pause (space/k)"]');
+            if (button) {
+                button.click();
+            }
+        }
+
+        else if (e.data.command === "button.play.click") {
+            const button = document.querySelector('button[aria-label="Play (space/k)"]');
+            if (button) {
+                button.click();
             }
         }
     };
@@ -93,7 +108,8 @@ function kickPlayer() {
                 video.muted = true;
             }
         }
-        if (e.data.command === "unmute") {
+
+        else if (e.data.command === "unmute") {
             const video = document.querySelector('video');
             if (video) {
                 video.muted = false;

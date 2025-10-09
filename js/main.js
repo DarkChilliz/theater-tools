@@ -2375,6 +2375,8 @@ function fixStalledPlayers() { // document.querySelector('video')
             obj.player.play();
             // iframeInside.contentWindow.postMessage({command: 'pause'}, '*');
             // iframeInside.contentWindow.postMessage({command: 'play'}, '*');
+            // iframeInside.contentWindow.postMessage({command: 'button.pause.click'}, '*');
+            // iframeInside.contentWindow.postMessage({command: 'button.play.click'}, '*');
             run.push(i);
 
         // Cond 2: Negative buffer size
@@ -2663,8 +2665,8 @@ function genKickChat(indx, chk) {
         //https://stackoverflow.com/a/52124191
         //https://stackoverflow.com/a/10398941
 
-        // const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
-        const kickChatEmbed = ['<iframe src="https://kick.com/popout/','/chat" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>'];
+        const kickChatEmbed = ['<iframe src="https://kick-chat.corard.tv/v1/chat?user=','&amp;font-size=Small&amp;stroke=Thin&amp;animate=true&amp;badges=true&amp;commands=true&amp;bots=true"></iframe>'];
+        // const kickChatEmbed = ['<iframe src="https://kick.com/popout/','/chat" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>'];
 
         let obj = document.getElementById("c-" + kickName);
         let isKick = obj.kick;
